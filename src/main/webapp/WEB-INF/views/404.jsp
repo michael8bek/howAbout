@@ -15,7 +15,7 @@
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
+          <a href="index.jsp">Home</a>
         </li>
         <li class="breadcrumb-item active">404</li>
       </ol>
@@ -25,31 +25,31 @@
         <p>The page you're looking for could not be found. Here are some helpful links to get you back on track:</p>
         <ul>
           <li>
-            <a href="index.html">Home</a>
+            <a href="index.jsp">Home</a>
           </li>
           <li>
-            <a href="about.html">About</a>
+            <a href="about.jsp">About</a>
           </li>
           <li>
-            <a href="services.html">Services</a>
+            <a href="services.jsp">Services</a>
           </li>
           <li>
-            <a href="contact.html">Contact</a>
+            <a href="contact.jsp">Contact</a>
           </li>
           <li>
             Portfolio
             <ul>
               <li>
-                <a href="portfolio-1-col.html">1 Column Portfolio</a>
+                <a href="portfolio-1-col.jsp">1 Column Portfolio</a>
               </li>
               <li>
-                <a href="portfolio-2-col.html">2 Column Portfolio</a>
+                <a href="portfolio-2-col.jsp">2 Column Portfolio</a>
               </li>
               <li>
-                <a href="portfolio-3-col.html">3 Column Portfolio</a>
+                <a href="portfolio-3-col.jsp">3 Column Portfolio</a>
               </li>
               <li>
-                <a href="portfolio-4-col.html">4 Column Portfolio</a>
+                <a href="portfolio-4-col.jsp">4 Column Portfolio</a>
               </li>
             </ul>
           </li>
@@ -57,13 +57,13 @@
             Blog
             <ul>
               <li>
-                <a href="blog-home-1.html">Blog Home 1</a>
+                <a href="blog-home-1.jsp">Blog Home 1</a>
               </li>
               <li>
-                <a href="blog-home-2.html">Blog Home 2</a>
+                <a href="blog-home-2.jsp">Blog Home 2</a>
               </li>
               <li>
-                <a href="blog-post.html">Blog Post</a>
+                <a href="blog-post.jsp">Blog Post</a>
               </li>
             </ul>
           </li>
@@ -71,19 +71,19 @@
             Other Pages
             <ul>
               <li>
-                <a href="full-width-page.html">Full Width Page</a>
+                <a href="full-width-page.jsp">Full Width Page</a>
               </li>
               <li>
-                <a href="sidebar.html">Sidebar Page</a>
+                <a href="sidebar.jsp">Sidebar Page</a>
               </li>
               <li>
-                <a href="faq.html">FAQ</a>
+                <a href="faq.jsp">FAQ</a>
               </li>
               <li>
-                <a href="404.html">404 Page</a>
+                <a href="404.jsp">404 Page</a>
               </li>
               <li>
-                <a href="pricing-table.html">Pricing Table</a>
+                <a href="pricing-table.jsp">Pricing Table</a>
               </li>
             </ul>
           </li>
@@ -94,19 +94,7 @@
     </div>
     <!-- /.container -->
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-  </body>
-
+ <!-- footer -->
+<%@ include file="footer.jsp" %>
+<!-- /.footer -->
 </html>

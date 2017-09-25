@@ -1,4 +1,4 @@
-package howAbout.member.models;
+package howAbout.models;
 
 import java.sql.Date;
 
