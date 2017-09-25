@@ -12,9 +12,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
+<!-- CSS link-->
+<link href="${path}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/resources/css/modern-business.css" rel="stylesheet">
 <style type="text/css"> .err { color: red; } </style>
 <script src="${path}/js/jquery.js"></script>
+
 <!-- Bootstrap core CSS -->
 <script src="${path}/resources/vendor/bootstrap/css/bootstrap.min.css"></script>
 <!-- Custom styles for this template -->
