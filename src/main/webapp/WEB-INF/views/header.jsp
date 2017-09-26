@@ -7,7 +7,7 @@
 <html><head>
 <!-- 절대경로 -->
 <c:set var="path" value="${pageContext.request.contextPath }" scope="application"></c:set>
-<%-- <c:set value="${path}" var="path" scope="application"/> --%> 
+<c:set value="${path}" var="path" scope="application"/> 
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,25 +37,25 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="about.html">재공</a>
+              <a class="nav-link" href="about.do">재공</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="services.html">Services</a>
+              <a class="nav-link" href="services.jsp">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.jsp">Contact</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Portfolio
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+                <a class="dropdown-item" href="portfolio-1-col.jsp">1 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-2-col.jsp">2 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-3-col.jsp">3 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-4-col.jsp">4 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-item.jsp">Single Portfolio Item</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -63,9 +63,9 @@
                 Blog
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+                <a class="dropdown-item" href="blog-home-1.jsp">Blog Home 1</a>
+                <a class="dropdown-item" href="blog-home-2.jsp">Blog Home 2</a>
+                <a class="dropdown-item" href="blog-post.jsp">Blog Post</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -73,11 +73,12 @@
                 Other Pages
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-                <a class="dropdown-item" href="faq.html">FAQ</a>
-                <a class="dropdown-item" href="404.html">404</a>
-                <a class="dropdown-item" href="pricing.html">Pricing Table</a>
+                <a class="dropdown-item" href="full-width.jsp">Full Width Page</a>
+                <a class="dropdown-item" href="sidebar.jsp">Sidebar Page</a>
+                <a class="dropdown-item" href="faq.jsp">FAQ</a>
+                <a class="dropdown-item" href="404.jsp">404</a>
+                <a class="dropdown-item" href="pricing.jsp">Pricing Table</a>
+                <a class="dropdown-item" href="indexManage.do">Manager</a>
               </div>
             </li>
           </ul>
