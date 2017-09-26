@@ -1,28 +1,9 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ include file="headerManage.jsp" %>
+<!DOCTYPE html>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Target Material Design Bootstrap Admin Template</title>
-	
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
-    <!-- Bootstrap Styles-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FontAwesome Styles-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- Morris Chart Styles-->
-    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-    <!-- Custom Styles-->
-    <link href="assets/css/custom-styles.css" rel="stylesheet" />
-    <!-- Google Fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
-</head>
 <body>
     <div id="wrapper">
-        <nav class="navbar navbar-default top-navbar" role="navigation">
+         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -214,6 +195,7 @@
                         </li>
 </ul>  
 	   <!--/. NAV TOP  -->
+        <!--/. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
@@ -228,7 +210,7 @@
                         <a href="chart.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> Charts</a>
                     </li>
                     <li>
-                        <a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
+                        <a href="tab-panel.html" class="active-menu waves-effect waves-dark"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
                     </li>
                     
                     <li>
@@ -243,13 +225,13 @@
                         <a href="#" class="waves-effect waves-dark"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Second Level Link</a>
+                                <a href="#" class="waves-effect waves-dark">Second Level Link</a>
                             </li>
                             <li>
-                                <a href="#">Second Level Link</a>
+                                <a href="#" class="waves-effect waves-dark">Second Level Link</a>
                             </li>
                             <li>
-                                <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                                <a href="#" class="waves-effect waves-dark">Second Level Link<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
                                         <a href="#">Third Level Link</a>
@@ -267,7 +249,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="active-menu waves-effect waves-dark" href="empty.html"><i class="fa fa-fw fa-file"></i> Empty Page</a>
+                        <a href="empty.html" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Empty Page</a>
                     </li>
                 </ul>
 
@@ -275,57 +257,163 @@
 
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
-		  <div class="header"> 
+        <div id="page-wrapper" >
+			  <div class="header"> 
                         <h1 class="page-header">
-                            Empty Page <small>Create new page.</small>
+                            Tabs & Panels
                         </h1>
 						<ol class="breadcrumb">
 					  <li><a href="#">Home</a></li>
-					  <li><a href="#">Empty</a></li>
+					  <li><a href="#">Tabs & Panels</a></li>
 					  <li class="active">Data</li>
 					</ol> 
 									
 		</div>
+		
             <div id="page-inner"> 
-			
-			  <div class="row">
-                    
-                    <div class="col-md-12">
+                                 
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                   <div class="card teal">
+						<div class="card-content white-text">
+						  <span class="card-title">Card Title</span>
+						  <p>I am a very simple card. I am good at containing small bits of information.
+						  I am convenient because I require little markup to use effectively.</p>
+						</div>
+						<div class="card-action">
+						  <a href="#">This is a link</a>
+						  <a href="#">This is a link</a>
+						</div>
+					  </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                   <div class="card">
+						<div class="card-content">
+						  <span class="card-title">Card Title</span>
+						  <p>I am a very simple card. I am good at containing small bits of information.
+						  I am convenient because I require little markup to use effectively.</p>
+						</div>
+						<div class="card-action">
+						  <a href="#">This is a link</a>
+						  <a href="#">This is a link</a>
+						</div>
+					  </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                        <div class="card blue-grey darken-1">
+						<div class="card-content white-text">
+						  <span class="card-title">Card Title</span>
+						  <p>I am a very simple card. I am good at containing small bits of information.
+						  I am convenient because I require little markup to use effectively.</p>
+						</div>
+						<div class="card-action">
+						  <a href="#">This is a link</a>
+						  <a href="#">This is a link</a>
+						</div>
+					  </div>
+                </div>
+            </div>
+                   <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="card">
+						<div class="card-image waves-effect waves-block waves-light">
+						  <img class="activator" src="http://materializecss.com/images/office.jpg">
+						</div>
+						<div class="card-content">
+						  <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+						  <p><a href="#">This is a link</a></p>
+						</div>
+						<div class="card-reveal">
+						  <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+						  <p>Here is some more information about this product that is only revealed once clicked on.</p>
+						</div>
+					  </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                     <div class="card">
+						<div class="card-image waves-effect waves-block waves-light">
+						  <img class="activator" src="http://materializecss.com/images/office.jpg">
+						</div>
+						<div class="card-content">
+						  <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+						  <p><a href="#">This is a link</a></p>
+						</div>
+						<div class="card-reveal">
+						  <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+						  <p>Here is some more information about this product that is only revealed once clicked on.</p>
+						</div>
+					  </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                        <div class="card">
+						<div class="card-image waves-effect waves-block waves-light">
+						  <img class="activator" src="http://materializecss.com/images/office.jpg">
+						</div>
+						<div class="card-content">
+						  <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+						  <p><a href="#">This is a link</a></p>
+						</div>
+						<div class="card-reveal">
+						  <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+						  <p>Here is some more information about this product that is only revealed once clicked on.</p>
+						</div>
+					  </div>
+                </div>
+            </div>
+                    <!-- /. ROW  --> 
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-action">
-                         Empty Page
-                        </div>        
-                         <div class="card-content"> 
-						 <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            Basic Tabs
+                        </div>
+                        <div class="card-content"> 
+							 <ul class="collapsible" data-collapsible="accordion">
+								<li>
+								  <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+								  <div class="collapsible-body"><p>Tt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..</p></div>
+								</li>
+								<li>
+								  <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+								  <div class="collapsible-body"><p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+								</li>
+								<li>
+								  <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+								  <div class="collapsible-body"><p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+								</li>
+							  </ul> 
+                            
+                            </div>
+                        </div>
+                    </div> 
+                <div class="col-md-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-action">
+                            Tabs
+                        </div>
+                        <div class="card-content">
+                           <div class="col">
+							  <ul class="tabs">
+								<li class="tab col s3"><a href="#test1">Test 1</a></li>
+								<li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+								<li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+								<li class="tab col s3"><a href="#test4">Test 4</a></li>
+							  </ul>
+							</div>
+							<div class="clearBoth"><br/></div>
+							<div id="test1" class="col s12"><p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+							<div id="test2" class="col s12"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+							<div id="test3" class="col s12"><p>Bpsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+							<div id="test4" class="col s12"><p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
                            <div class="clearBoth"><br/></div>
-						    
-						 </div>
-						 </div>
-									
-				 <footer><p>Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-</p></footer>
-				</div>
-             <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
-        </div>
-     <!-- /. WRAPPER  -->
-    <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-	
-	<!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-	
-	<script src="assets/materialize/js/materialize.min.js"></script>
-	
-    <!-- Metis Menu Js -->
-		<script src="assets/js/jquery.metisMenu.js"></script> 
-    <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script> 
-	
- 
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+				
+				
+<%@ include file="footerManage.jsp" %>
 
 </body>
 

@@ -78,6 +78,7 @@
                 <a class="dropdown-item" href="faq.jsp">FAQ</a>
                 <a class="dropdown-item" href="404.jsp">404</a>
                 <a class="dropdown-item" href="pricing.jsp">Pricing Table</a>
+                <a class="dropdown-item" href="indexManage.do">Manager</a>
               </div>
             </li>
           </ul>
