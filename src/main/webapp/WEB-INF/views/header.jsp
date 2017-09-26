@@ -41,7 +41,7 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="services.jsp">Services</a>
+              <a class="nav-link" href="stylefeed.do">Services</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.jsp">Contact</a>
@@ -96,12 +96,7 @@
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
           <!-- img size 1900x1080 -->
-          <div class="carousel-item active" style="background-image: url('http://meinhard.it/wp-content/uploads/2015/05/DSC2220-1900x1080.jpg')">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
-            </div>
-          </div>
+
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('http://88nn.info/uploads/fotos/37/img_359482.jpg')">
             <div class="carousel-caption d-none d-md-block">
