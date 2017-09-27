@@ -15,4 +15,8 @@ public class MemberController {
 	public String about() {
 		return "about";
 	}
+	@RequestMapping("joinForm")
+	public String joinForm() {
+		return "joinForm";
+	}
 }
