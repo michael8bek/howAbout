@@ -31,22 +31,7 @@
 <!-- Custom styles for this template -->
 <script src="${path}/resources/css/modern-business.css"></script>
 
-<!-- small modal css,js -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-	integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-	crossorigin="anonymous"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-	crossorigin="anonymous"></script>
+
 	
 <title>How about</title>
 </head>
@@ -63,18 +48,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<!-- small modal 2017 09 27  -->
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target=".bd-example-modal-sm">Small modal</button>
 
-				<div class="modal fade bd-example-modal-sm" tabindex="-1"
-					role="dialog" aria-labelledby="mySmallModalLabel"
-					aria-hidden="true">
-					<div class="modal-dialog modal-sm">
-						<div class="modal-content">...</div>
-					</div>
-				</div>
-				<!-- small modal 2017 09 27  -->
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="cartList.do">장바구니</a>
 					</li>

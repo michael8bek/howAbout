@@ -12,13 +12,13 @@
 <h2 class="text-primary">장바구니 목록</h2>
 <table class="table table-bordered">
 	<tr><th>주문상품</th><th>담은날짜</th><th>배송비</th><th>상품금액</th></tr>
-<c:forEach var="cart" items="${list }">
-	<tr><td>${cart.cart_id }</td>
-		<td><a href="" class="btn btn-default">
-			${cart.cart_date}</a></td><td>${cart.goods_id}</td>
-		<td><a href="" 
-			class="btn btn-warning">${cart.cart_editdate}</a></td></tr>
-</c:forEach></table>
+<c:forEach var="cart" items="${listCart }">
+<c:forEach var="goods" items="${listGoods }">
+	<tr><td>${goods.goods_name}</td>
+		<td>${cart.cart_date}</td>
+		<td>${cart.cart_state }</td>
+		<td>${goods.goods_price}</td></tr>
+</c:forEach></c:forEach></table>
 </div>
 <%@ include file="../footer.jsp" %>
 </body>
