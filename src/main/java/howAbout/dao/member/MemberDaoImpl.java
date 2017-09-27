@@ -1,10 +1,11 @@
-package howAbout.dao.cart;
+package howAbout.dao.member;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import howAbout.models.Member;
-
+import howAbout.model.Member;
+@Repository
 public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSessionTemplate sst;

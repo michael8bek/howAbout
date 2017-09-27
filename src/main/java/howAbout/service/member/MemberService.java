@@ -1,6 +1,6 @@
-package howAbout.service.cart;
+package howAbout.service.member;
 
-import howAbout.models.Member;
+import howAbout.model.Member;
 
 public interface MemberService {
 

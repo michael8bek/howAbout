@@ -1,10 +1,11 @@
-package howAbout.service.cart;
+package howAbout.service.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import howAbout.dao.cart.MemberDao;
-import howAbout.models.Member;
-
+import howAbout.dao.member.MemberDao;
+import howAbout.model.Member;
+@Service
 public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberDao md;

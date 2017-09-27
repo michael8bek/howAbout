@@ -10,18 +10,18 @@
 		<result property="mem_phone" column="mem_phone" />
 		<result property="mem_addr" column="mem_addr" />
 		<result property="mem_point" column="mem_point" />
-		<result property="grade_id" column="grade_id" />
+		<result property="grade_name" column="grade_name" />
 		<result property="mem_regdate" column="mem_regdate" />
 		<result property="mem_exitdate" column="mem_exitdate" />
 		<result property="mem_exitstate" column="mem_exitstate" />
 		<result property="mem_email" column="mem_email" />
 	</resultMap>
-<!-- 	<insert id="insert" parameterType="member">
+ 	<insert id="insert" parameterType="member">
 		insert into member (mem_id,
-		mem_name, mem_pw, mem_birth, mem_phone, mem_addr, mem_point, grade_id,
+		mem_name, mem_pw, mem_birth, mem_phone, mem_addr, mem_point, grade_name,
 		mem_regdate, mem_exitdate, mem_exitstate, mem_email) values
 		(#{mem_id},#{mem_name},#{mem_pw},#{mem_birth},#{mem_phone},
-		#{mem_addr},'0','bronze',sysdate,'',
+		#{mem_addr},'0','bronze',now(),null,
 		'n',#{mem_email})
-	</insert> -->
+	</insert>
 </mapper>

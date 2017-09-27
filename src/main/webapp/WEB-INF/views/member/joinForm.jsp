@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +34,7 @@
 								name="mem_name" required="required"></li>
 							<li class="list-group-item">이메일<input type="email"
 								name="mem_email" required="required"></li>
-							<li class="list-group-item">생일<input type="text"
+							<li class="list-group-item">생일<input type="date"
 								name="mem_birth" required="required"></li>
 							<li class="list-group-item">전화번호<input type="text"
 								name="mem_phone" required="required"></li>
@@ -51,6 +51,6 @@
 		</div>
 		<!-- /.container -->
 		<!-- footer -->
-		<%@ include file="footer.jsp"%>
+		<%@ include file="../footer.jsp"%>
 		<!-- /.footer -->
 </html>

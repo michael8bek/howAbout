@@ -1,6 +1,6 @@
-package howAbout.dao.cart;
+package howAbout.dao.member;
 
-import howAbout.models.Member;
+import howAbout.model.Member;
 
 public interface MemberDao {
 

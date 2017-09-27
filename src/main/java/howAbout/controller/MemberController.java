@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import howAbout.models.Member;
-import howAbout.service.cart.MemberService;
+import howAbout.model.Member;
+import howAbout.service.member.MemberService;
 
 @Controller
 public class MemberController {
@@ -23,12 +23,12 @@ public class MemberController {
 	}
 	@RequestMapping("joinForm")
 	public String joinForm() {
-		return "joinForm";
+		return "member/joinForm";
 	}
-/*	@RequestMapping("join")
+	@RequestMapping("join")
 	public String join(Member member, Model model) {
 		int result = ms.insert(member);
 		model.addAttribute("result", result);
-		return "join";
-	}*/
+		return "member/join";
+	}
 }

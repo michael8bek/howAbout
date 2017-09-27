@@ -7,7 +7,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("가입성공");
-		//location.href = "loginForm.do";
+		location.href = "main.do";
 	</script>	
 </c:if>
 <c:if test="${result <= 0 }">
