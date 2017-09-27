@@ -14,7 +14,7 @@ public class Member {
 	private Date mem_regdate;
 	private Date mem_exitdate;
 	private String mem_exitstate;
-	
+	private String mem_email;
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -81,4 +81,11 @@ public class Member {
 	public void setMem_exitstate(String mem_exitstate) {
 		this.mem_exitstate = mem_exitstate;
 	}
+/*	public String getMem_email() {
+		return mem_email;
+	}
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
+	}*/
+	
 }
