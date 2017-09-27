@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -94,6 +94,7 @@
 								class="dropdown-item" href="joinForm.do">Join page</a> <a
 								class="dropdown-item" href="indexManage.do">Manager</a>
 						</div></li>
+
 				</ul>
 			</div>
 		</div>

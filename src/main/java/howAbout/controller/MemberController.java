@@ -29,6 +29,6 @@ public class MemberController {
 	public String join(Member member, Model model) {
 		int result = ms.insert(member);
 		model.addAttribute("result", result);
-		return "member/join";
+		return "member/join";		
 	}
 }
