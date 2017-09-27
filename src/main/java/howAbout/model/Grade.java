@@ -1,4 +1,4 @@
-package howAbout.models;
+package howAbout.model;
 
 public class Grade {
 	private String	grade_id;

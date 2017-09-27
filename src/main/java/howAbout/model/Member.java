@@ -1,4 +1,4 @@
-package howAbout.models;
+package howAbout.model;
 
 import java.sql.Date;
 

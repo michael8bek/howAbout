@@ -1,4 +1,4 @@
-package howAbout.models.cart;
+package howAbout.model.cart;
 
 
 import java.sql.Date;
