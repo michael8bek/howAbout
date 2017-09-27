@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.how.about">
+	<logger name="com.howabout">
 		<level value="info" />
 	</logger>
 	
