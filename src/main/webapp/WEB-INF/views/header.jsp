@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="about.do">재공</a>
+              <a class="nav-link" href="cartList.do">장바구니</a>
             </li>
             
             <li class="nav-item">

@@ -15,7 +15,6 @@ public class MemberController {
 	
 	@RequestMapping("main")
 	public String main() {
-		System.out.println("뭐지");
 		return "main";
 	}
 	@RequestMapping("about")

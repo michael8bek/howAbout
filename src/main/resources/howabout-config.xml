@@ -4,9 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+<<<<<<< HEAD
 		<typeAlias type="howabout.models.Member" alias="member" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="member.xml" />
+=======
+		<!-- <typeAlias type="myBatis.model.Dept" alias="dept" />
+		<typeAlias type="myBatis.model.Emp" alias="emp" /> -->
+		<typeAlias type="howAbout.model.cart.Cart" alias="cart"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="Cart.xml"/>
+		<!-- <mapper resource="Dept.xml" />
+		<mapper resource="Emp.xml" /> -->
+>>>>>>> dev_cart(jeagong)
 	</mappers>
 </configuration>
