@@ -13,8 +13,8 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartDao cd;
 	@Override
-	public List<Cart> list() {
-		return cd.list();
+	public List<Cart> list(String mem_id) {
+		return cd.list(mem_id);
 	}
 
 }

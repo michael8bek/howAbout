@@ -24,4 +24,7 @@
 		#{mem_addr},'0','bronze',now(),null,
 		'n',#{mem_email})
 	</insert>
+	<select id="select" parameterType="String" resultType="member">
+		select * from member where mem_id=#{mem_id}
+	</select>
 </mapper>

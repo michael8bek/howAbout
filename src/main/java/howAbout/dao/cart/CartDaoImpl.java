@@ -13,8 +13,8 @@ public class CartDaoImpl implements CartDao {
 	private SqlSessionTemplate sst;
 
 	@Override
-	public List<Cart> list() {
-		return sst.selectList("cartns.list");
+	public List<Cart> list(String mem_id) {
+		return sst.selectList("cartns.list", mem_id);
 	}
 	
 }

@@ -697,3 +697,15 @@ insert into goods values(3, 'skirt','long t-shirt', 39900, 'guess', 'pink', 'nat
 insert into stock values(1,now(), now(), 'rent', 5, 1 );
 
 show tables;
+
+--상품테이블 변경
+alter table goods add goods_name varchar(30);
+--상품테이블 데이터 변경
+update goods set goods_name='폴로 반팔 셔츠'  where goods_id='1';
+update goods set goods_name='나이키 긴 스커트' where goods_id='2';
+update goods set goods_name='게스 반팔 셔츠', goods_bigc='shirts' where goods_id='3';
+--카트테이블 데이터 변경
+update cart set cart_state='y'  where cart_id='1';
+update cart set cart_state='y'  where cart_id='2';
+update cart set cart_state='y'  where cart_id='3';
+

@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="howAbout.model.Member"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -8,7 +9,7 @@
 <html>
 <head>
 <!-- 절대경로 -->
-<c:set var="path" value="${pageContext.request.contextPath }"
+<c:set var="path" value="${pageContext.request.contextPath}"
 	scope="application"></c:set>
 <c:set value="${path}" var="path" scope="application" />
 
@@ -31,9 +32,10 @@
 <!-- Custom styles for this template -->
 <script src="${path}/resources/css/modern-business.css"></script>
 
-
-	
 <title>How about</title>
+<script type="text/javascript">
+	
+</script>
 </head>
 <body>
 	<!-- Navigation -->
@@ -50,9 +52,16 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 
 				<ul class="navbar-nav ml-auto">
+					<c:if test="${not empty member }">
+					<li class="nav-item"><a class="nav-link" href="">${member.mem_name }</a>
+					</li>
+					</c:if>
+					<c:if test="${empty member }">
+					 <li class="nav-item"><a class="nav-link" href="">손님</a>
+					</li> 
+					</c:if>
 					<li class="nav-item"><a class="nav-link" href="cartList.do">장바구니</a>
 					</li>
-
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">Services</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
@@ -87,12 +96,18 @@
 							Other Pages </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="full-width.jsp">Full Width
-								Page</a> <a class="dropdown-item" href="sidebar.jsp">Sidebar
-								Page</a> <a class="dropdown-item" href="faq.jsp">FAQ</a> <a
+							<c:if test="${empty member }">
+							<a class="dropdown-item" href="loginForm.do">로그인</a> 
+							</c:if>
+							<c:if test="${not empty member }">
+							<a class="dropdown-item" href="logout.do">로그아웃</a> 
+							</c:if>
+							<a class="dropdown-item" href="faq.jsp">FAQ</a> <a
 								class="dropdown-item" href="404.jsp">404</a> <a
-								class="dropdown-item" href="joinForm.do">Join page</a> <a
-								class="dropdown-item" href="indexManage.do">Manager</a>
+								class="dropdown-item" href="joinForm.do">Join page</a> 
+								<c:if test="${member.mem_name==master }">
+								<a class="dropdown-item" href="indexManage.do">Manager</a>
+								</c:if>
 						</div></li>
 
 				</ul>

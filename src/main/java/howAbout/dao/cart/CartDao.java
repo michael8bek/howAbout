@@ -6,6 +6,6 @@ import howAbout.model.cart.Cart;
 
 public interface CartDao {
 
-	List<Cart> list();
+	List<Cart> list(String mem_id);
 
 }

@@ -11,6 +11,6 @@
 		<result property="goods_id" 		column="goods_id" />
 	</resultMap>
 <select id="list" resultMap="cartResult">
-	select * from cart order by cart_id
+	select * from cart where cart_state='y' and mem_id=#{mem_id} order by cart_id
 </select>
 </mapper>
