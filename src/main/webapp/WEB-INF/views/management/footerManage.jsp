@@ -1,4 +1,3 @@
-
 <footer>
 	<p>
 		Shopping by <i class="fa fa-love"></i><a

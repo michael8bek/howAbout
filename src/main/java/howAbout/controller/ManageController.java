@@ -14,6 +14,10 @@ public class ManageController {
 	public String tableManage() {
 		return "/management/tableManage";
 	}
+	@RequestMapping("chart")
+	public String chart() {
+		return "/management/chart";
+	}
 	@RequestMapping("empty")
 	public String empty() {
 		return "/management/empty";
