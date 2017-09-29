@@ -4,11 +4,10 @@
 <html>
 <body>
 	<%@ include file="menuManage.jsp"%>
-
 	<!-- indexMange page -->
 	<!-- <div id="page-wrapper"> -->
 	<div class="header">
-		<h1 class="page-header">How About!</h1>
+		<h1 class="page-header">How About</h1>
 		<ol class="breadcrumb">
 			<li><a href="#">Home</a></li>
 			<li><a href="#">Dashboard</a></li>

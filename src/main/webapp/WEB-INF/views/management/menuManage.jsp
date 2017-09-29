@@ -8,8 +8,8 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand waves-effect waves-dark" href="indexManage.do"><i
-				class="large material-icons">track_changes</i> <strong>HOWABOUT</strong><i class="sub-title">MANAGER</i></a>
+			<a class="navbar-brand waves-effect waves-dark" href="indexManage.do"><i class="large material-icons">track_changes</i> <strong>H.A manager</strong>	</a>
+			
 
 			<div id="sideNav" href="">
 				<i class="material-icons dp48">toc</i>
