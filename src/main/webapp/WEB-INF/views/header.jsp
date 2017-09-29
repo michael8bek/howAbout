@@ -53,11 +53,11 @@
 
 				<ul class="navbar-nav ml-auto">
 					<c:if test="${not empty member }">
-					<li class="nav-item"><a class="nav-link" href="">${member.mem_name }</a>
+					<li class="nav-item nav-link">${member.mem_name }
 					</li>
 					</c:if>
 					<c:if test="${empty member }">
-					 <li class="nav-item"><a class="nav-link" href="">손님</a>
+					 <li class="nav-item nav-link">손님
 					</li> 
 					</c:if>
 					<li class="nav-item"><a class="nav-link" href="cartList.do">장바구니</a>
@@ -105,16 +105,16 @@
 							<a class="dropdown-item" href="faq.jsp">FAQ</a> <a
 								class="dropdown-item" href="404.jsp">404</a> <a
 								class="dropdown-item" href="joinForm.do">Join page</a> 
-								<c:if test="${member.mem_name==master }">
+								
+							<c:if test="${member.mem_name=='master' }">
 								<a class="dropdown-item" href="indexManage.do">Manager</a>
-								</c:if>
+							</c:if>
 						</div></li>
 
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 	<header>
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">

@@ -15,7 +15,6 @@
 	.container1_1{
 		float:left;
 		width: 65%;
-		margin-left: 5%;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
@@ -44,6 +43,8 @@ function ckeckAll(){
 </script>
 </head>
 <body>
+<div class="container">
+<div class="row">
 <div class="container1">
 <div class="container1_1" >
 <h2 class="text-primary" style="padding-top: 3%;">장바구니 목록</h2>
@@ -53,12 +54,12 @@ function ckeckAll(){
 		<th class="">선택삭제</th>
 		</tr>
 <%-- <c:forEach var="cart" items="${listCart }"> --%>
- <c:forEach var="goods" items="${listGoods }"> 
 	<tr style="background-color: #E7E7E7;"><th style="width: 40%">주문상품</th>
 		<th>상품금액</th>
 		<th>배송비</th>
 		<th style="width: 15%">주문관리</th></tr>
 
+ <c:forEach var="goods" items="${listGoods }"> 
 	<tr><td><input type="checkbox" name="chk">${goods.goods_name}</td>
 		<td>${goods.goods_price}</td>
 		<td>2500</td>
@@ -70,16 +71,16 @@ function ckeckAll(){
 </table>
 </div>
 <div class="container1_2">
-<table class="table table-striped" style="margin-top: 5%; border: 10px; border-color:#1993A8;">
+<table class="table table-striped" style="margin-top: 5%; border: 5px solid #1993A8;">
 	<tr><th>총 상품금액</th><th>99999원</th></tr>
 	<tr><th>총 배송비</th><th>(+)2500원</th></tr>
 	<tr><th>할인 금액</th><th>(-)원</th></tr>
 	<tr><th>총 결제금액</th><th>12500원</th></tr>
 </table>
-<table class="table table-bordered">
-	<tr><th colspan="2"><input type="submit" value="구매하기" style=""></th></tr>
+<table class="table table-bordered"> <!-- style="margin-top: 5%; border: 5px solid #1993A8;" -->
+	<tr><th colspan="2"><input type="submit" value="구매하기" style="width: 100%;height: 100%;" class="btn btn-info"></th></tr>
 </table>
 </div></div>
+</div></div></body>
 <%@ include file="../footer.jsp" %>
-</body>
 </html>
