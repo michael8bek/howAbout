@@ -15,6 +15,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public List<Cart> list(String mem_id) {
 		return sst.selectList("cartns.list", mem_id);
+		
 	}
 	
 }

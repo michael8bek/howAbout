@@ -696,6 +696,7 @@ insert into member values('master','master', 'master',null,null,null,null,null,n
 insert into cart values(1, now(), 'jeagong', 1, now(), 'y');
 insert into cart values(2, now(), 'moon1214', 2, now(), 'n');
 insert into cart values(3, now(), 'moon1214', 2, now(), 'n');
+insert into cart values(4, now(), 'jeagong', 2, now(), 'y');
 
 insert into coupon values ('cp_bronze','5000');
 insert into coupon values ('cp_silver','10000');
@@ -722,4 +723,5 @@ update goods set goods_name='게스 반팔 셔츠', goods_bigc='shirts' where go
 update cart set cart_state='y'  where cart_id='1';
 update cart set cart_state='y'  where cart_id='2';
 update cart set cart_state='y'  where cart_id='3';
+
 

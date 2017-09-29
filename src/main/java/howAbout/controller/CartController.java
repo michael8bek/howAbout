@@ -27,14 +27,12 @@ public class CartController {
 	private MemberService ms;
 	
 	@RequestMapping("cartList")
-	public String cartList(Model model, HttpSession session) {
+	public String cartList(String goods_id, Model model, HttpSession session) {
 		List<Cart> listCart = cs.list((String) session.getAttribute("mem_id"));
 		List<Goods> listGoods = gs.list();
-	/*	String mem_id1 = (String)session.getAttribute("mem_id");
-		Member mem = ms.select(mem_id1);
-		model.addAttribute("member", mem);*/
-		model.addAttribute("listCart", listCart);
 		model.addAttribute("listGoods", listGoods);
+		model.addAttribute("listCart", listCart);
+		model.addAttribute("goods_id",goods_id);
 		return "cart/cartList";
 	}
 }

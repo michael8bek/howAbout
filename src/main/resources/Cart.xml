@@ -9,8 +9,11 @@
 		<result property="cart_state" 		column="cart_state" />
 		<result property="mem_id" 		column="mem_id" />
 		<result property="goods_id" 		column="goods_id" />
+		<result property="goods_name" 		column="goods_name" />
+		<result property="goods_price" 		column="goods_price" />
 	</resultMap>
 <select id="list" resultMap="cartResult">
-	select * from cart where cart_state='y' and mem_id=#{mem_id} order by cart_id
+	select * from cart c, goods g where cart_state='y' 
+	and mem_id=#{mem_id} and c.goods_id = g.goods_id
 </select>
 </mapper>

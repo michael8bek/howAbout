@@ -19,7 +19,7 @@
               <p class="card-text">FIRST TEXT</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">FIRST GO</a>
+              <a href="" class="btn btn-primary">FIRST</a>
             </div>
           </div>
         </div>
@@ -157,7 +157,6 @@
 
     </div>
     <!-- /.container -->
-    
 <!-- footer -->
 <%@ include file="footer.jsp" %>
 <!-- /.footer -->
