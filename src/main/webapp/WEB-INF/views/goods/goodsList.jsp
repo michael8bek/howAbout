@@ -13,4 +13,5 @@
     	<a href="insertOrders.do">바로주문</a>${goods.goods_name }<p>
     </c:forEach>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

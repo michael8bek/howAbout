@@ -12,8 +12,14 @@ public class Cart {
 	private String goods_id;
 	private String goods_name;
 	private int goods_price;
+	private int goods_delprice;
 
-	
+	public int getGoods_delprice() {
+		return goods_delprice;
+	}
+	public void setGoods_delprice(int goods_delprice) {
+		this.goods_delprice = goods_delprice;
+	}
 	public String getGoods_name() {
 		return goods_name;
 	}

@@ -11,9 +11,10 @@
 		<result property="goods_id" 		column="goods_id" />
 		<result property="goods_name" 		column="goods_name" />
 		<result property="goods_price" 		column="goods_price" />
+		<result property="goods_delprice" 		column="goods_delprice" />
 	</resultMap>
 <select id="list" resultMap="cartResult">
-	select * from cart c, goods g where cart_state='y' 
+	select * from cart c, goods g where cart_state='put' 
 	and mem_id=#{mem_id} and c.goods_id = g.goods_id
 </select>
 </mapper>
