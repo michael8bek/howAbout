@@ -39,7 +39,8 @@
 </head>
 <body>
 	<!-- Navigation -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="main.do">How About Style</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -48,19 +49,28 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<!-- search 창 -->
+			<div id="search" class="search-wrapper">
+				<form class="search-form" action="/search" method="GET">
+					<label class="input-wrapper remaining-width">
+					 <input	class="search-keyword" type="text" name="keyword" value=""
+						placeholder="검색">
+					<button class="btn btn-lg-col right" type="submit" value="">검색
+					</button></label>
+				</form>
+			</div>
+			
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 
 				<ul class="navbar-nav ml-auto">
 					<c:if test="${not empty member }">
-					<li class="nav-item nav-link">${member.mem_name }
-					</li>
+						<li class="nav-item nav-link">${member.mem_name }</li>
 					</c:if>
 					<c:if test="${empty member }">
-					 <li class="nav-item nav-link">손님
-					</li> 
+						<li class="nav-item nav-link">손님</li>
 					</c:if>
-					<li class="nav-item"><a class="nav-link" href="cartList.do?mem_id=${member.mem_id }">장바구니</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="cartList.do?mem_id=${member.mem_id }">장바구니</a></li>
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
@@ -96,15 +106,15 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<c:if test="${empty member }">
-							<a class="dropdown-item" href="loginForm.do">로그인</a> 
+								<a class="dropdown-item" href="loginForm.do">로그인</a>
 							</c:if>
 							<c:if test="${not empty member }">
-							<a class="dropdown-item" href="logout.do">로그아웃</a> 
+								<a class="dropdown-item" href="logout.do">로그아웃</a>
 							</c:if>
 							<a class="dropdown-item" href="orders.do">주문페이지</a> <a
 								class="dropdown-item" href="goodsList.do">상품페이지</a> <a
-								class="dropdown-item" href="joinForm.do">Join page</a> 
-								
+								class="dropdown-item" href="joinForm.do">Join page</a>
+
 							<c:if test="${member.mem_name=='master' }">
 								<a class="dropdown-item" href="indexManage.do">Manager</a>
 							</c:if>
