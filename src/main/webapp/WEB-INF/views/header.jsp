@@ -49,16 +49,16 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!-- search 창 -->
-			<div id="search" class="search-wrapper">
-				<form class="search-form" action="/search" method="GET">
-					<label class="input-wrapper remaining-width">
-					 <input	class="search-keyword" type="text" name="keyword" value=""
-						placeholder="검색">
-					<button class="btn btn-lg-col right" type="submit" value="">검색
-					</button></label>
-				</form>
-			</div>
+			<!-- search 창 form -->
+			<form class="form-inline">
+				<div class="form-group">
+					<input type="text"
+						class="form-control form-row " id="search" placeholder="Search Items">
+				<button type="submit" class="btn btn-primary btn-md active">Search</button>
+				</div>
+				
+			</form>
+			<!-- /.search 창 form -->
 			
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 
