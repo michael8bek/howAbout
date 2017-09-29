@@ -59,7 +59,7 @@
 					 <li class="nav-item nav-link">손님
 					</li> 
 					</c:if>
-					<li class="nav-item"><a class="nav-link" href="cartList.do">장바구니</a>
+					<li class="nav-item"><a class="nav-link" href="cartList.do?mem_id=${member.mem_id }">장바구니</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">Services</a>
 					</li>
@@ -101,8 +101,8 @@
 							<c:if test="${not empty member }">
 							<a class="dropdown-item" href="logout.do">로그아웃</a> 
 							</c:if>
-							<a class="dropdown-item" href="faq.jsp">FAQ</a> <a
-								class="dropdown-item" href="404.jsp">404</a> <a
+							<a class="dropdown-item" href="orders.do">주문페이지</a> <a
+								class="dropdown-item" href="goodsList.do">상품페이지</a> <a
 								class="dropdown-item" href="joinForm.do">Join page</a> 
 								
 							<c:if test="${member.mem_name=='master' }">
@@ -123,7 +123,7 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<%-- <div class="collapse navbar-collapse" id="navbarResponsive">
 
 				<ul class="navbar-nav ml-auto">
 					<c:if test="${not empty member }">
@@ -185,7 +185,7 @@
 						</div></li>
 
 				</ul>
-			</div>
+			</div> --%>
 		</div>
 	</nav>
 

@@ -16,6 +16,6 @@
 		<result property="goods_name" 		column="goods_name" />
 	</resultMap>
 <select id="list" resultMap="goodsResult">
-	select * from goods order by goods_id
+	select * from goods
 </select>
 </mapper>

@@ -22,8 +22,8 @@
 	.container1_2{
 		float: left;
 		width: 30%;
-		padding : 5%;
-		margin-top: 10%;
+		 padding : 5%;
+		margin-top: 3.5%; 
 		margin-left: 2%;
 		flex-direction: row;
 		justify-content: center;
@@ -53,21 +53,20 @@ function ckeckAll(){
 	<tr><th colspan="3"><input id="checkbox_1" type="checkbox" onclick="ckeckAll()" value="">전체선택</th>
 		<th class="">선택삭제</th>
 		</tr>
-<%-- <c:forEach var="cart" items="${listCart }"> --%>
-	<tr style="background-color: #E7E7E7;"><th style="width: 40%">주문상품</th>
+ <c:forEach var="cart" items="${listCart }">
+	<tr style="background-color: #E7E7E7;"><th style="width: 40%">주문상품(${cart.cart_date})</th>
 		<th>상품금액</th>
 		<th>배송비</th>
 		<th style="width: 15%">주문관리</th></tr>
 
- <c:forEach var="goods" items="${listGoods }"> 
-	<tr><td><input type="checkbox" name="chk">${goods.goods_name}</td>
-		<td>${goods.goods_price}</td>
-		<td>2500</td>
+	<tr><td><input type="checkbox" name="chk">${cart.goods_name}</td>
+		<td>${cart.goods_price}</td>
+		<td>${member.mem_id }</td>
 		<td><input type="submit" value="바로구매" class="btn" style="background-color: #63D297"><br>
 			<input type="submit" value="삭제" class="btn btn-danger">
 		</td></tr>
 	<tr><th colspan="4">상품가격 + 배송비  = 총 가격</th></tr>
-<%-- </c:forEach> --%></c:forEach>
+ </c:forEach>
 </table>
 </div>
 <div class="container1_2">

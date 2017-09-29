@@ -1,4 +1,4 @@
-/*package howAbout.controller;
+package howAbout.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import howAbout.model.cart.Cart;
-import howAbout.service.cart.CartService;
+import howAbout.model.goods.Goods;
+import howAbout.service.goods.GoodsService;
 
 @Controller
 public class GoodsController {
@@ -16,11 +16,10 @@ public class GoodsController {
 	@Autowired
 	private GoodsService cs;
 	
-	@RequestMapping("cartList")
-	public String cartList(Model model) {
-		List<Cart> list = cs.list();
+	@RequestMapping("goodsList")
+	public String goodsList(Model model) {
+		List<Goods> list = cs.list();
 		model.addAttribute("list", list);
-		return "cart/cartList";
+		return "goods/goodsList";
 	}
 }
-*/

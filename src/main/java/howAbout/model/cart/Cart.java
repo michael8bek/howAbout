@@ -10,6 +10,22 @@ public class Cart {
 	private String cart_state;
 	private String mem_id;
 	private String goods_id;
+	private String goods_name;
+	private int goods_price;
+
+	
+	public String getGoods_name() {
+		return goods_name;
+	}
+	public void setGoods_name(String goods_name) {
+		this.goods_name = goods_name;
+	}
+	public int getGoods_price() {
+		return goods_price;
+	}
+	public void setGoods_price(int goods_price) {
+		this.goods_price = goods_price;
+	}
 	public String getCart_id() {
 		return cart_id;
 	}
@@ -46,8 +62,4 @@ public class Cart {
 	public void setGoods_id(String goods_id) {
 		this.goods_id = goods_id;
 	}
-	
-	
 }
-
-
