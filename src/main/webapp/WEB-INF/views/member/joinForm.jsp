@@ -2,52 +2,72 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#idChk').click(function() {
+			if ($('#mem_id').val() == "") {
+				$('#result').text(" 아이디를 입력해주세요");
+				$('#mem_id').focus();
+				return false;
+			}
+			var sendData = "mem_id=" + $('#mem_id').val();
+			$.post('idChk.do', sendData, function(data) {
+				$('#result').text(data);
+			});
+		});
+	});
+</script>
 <body>
 	<!-- Page Content -->
 	<div class="container">
-		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">
-			Pricing <small>Subheading</small>
-		</h1>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
-			<li class="breadcrumb-item active">Pricing</li>
-		</ol>
+		<h2 class="text-primary">회원가입</h2>
+		<form action="join.do" method="post">
+			<table class="table table-bordered" style="table-layout:fixed;">
+				<tr>
+					<td style="width:15%;">아이디</td>
+					<td><input type="text" name="mem_id" required="required" id="mem_id"
+						autofocus="autofocus"><input type="button" class="btn btn-info" value="중복확인"
+						id="idChk" style="margin-left:15px;"><span id="result"></span></td>
+				</tr>
+				<tr>
+					<td>암호</td>
+					<td><input type="password" name="mem_pw" required="required"></td>
+				</tr>
+<!-- 				<tr>
+					<td>암호 확인</td>
+					<td><input type="password" name="mem_pw" required="required"></td>
+				</tr> -->
+				<tr>
+					<td>이름</td>
+					<td><input type="text" name="mem_name" required="required"></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><input type="email" name="mem_email" required="required"></td>
+				</tr>
+				<tr>
+					<td>생일</td>
+					<td><input type="date" name="mem_birth" required="required"></td>
+				</tr>
+				<tr>
+					<td>전화번호</td>
+					<td><input type="text" name="mem_phone" required="required"></td>
+				</tr>
+				<tr>
+					<td>주소</td>
+					<td><input type="text" name="mem_addr" required="required"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" class="btn btn-info" value="가입하기"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
 
-		<!-- Content Row -->
-		<div class="row">
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h3 class="card-header">회원가입</h3>
-					<form action="join.do" method="post">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">아이디 <input type="text"
-								name="mem_id" required="required" autofocus="autofocus"></li>
-							<li class="list-group-item">비밀번호<input type="password"
-								name="mem_pw" required="required"></li>
-							<li class="list-group-item">이름<input type="text"
-								name="mem_name" required="required"></li>
-							<li class="list-group-item">이메일<input type="email"
-								name="mem_email" required="required"></li>
-							<li class="list-group-item">생일<input type="date"
-								name="mem_birth" required="required"></li>
-							<li class="list-group-item">전화번호<input type="text"
-								name="mem_phone" required="required"></li>
-							<li class="list-group-item">주소<input type="text"
-								name="mem_addr" required="required"></li>
-							<li class="list-group-item"><input type="submit" value="가입"
-								class="btn btn-primary"></li>
-						</ul>
-					</form>
-				</div>
-			</div>
-			<!-- /.row -->
-
-		</div>
-		<!-- /.container -->
-		<!-- footer -->
-		<%@ include file="../footer.jsp"%>
-		<!-- /.footer -->
+	<!-- /.container -->
+	<!-- footer -->
+	<%@ include file="../footer.jsp"%>
+	<!-- /.footer -->
 </html>

@@ -1,6 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +14,9 @@
 		<tr><td>아이디</td><td><input type="text" name="mem_id" 
 		required="required" autofocus="autofocus"></td></tr>
 		<tr><td>암호</td><td><input type="password" name="mem_pw" required="required"></td></tr>
-		<tr><td colspan="2"><input type="submit" value="확인"></td></tr>
+		<tr><td colspan="2"><input type="submit" class="btn btn-info" value="확인"><a href="joinForm.do" class="btn btn-info" style="float:right">회원가입</a></td></tr>
 	</table></form>
-	<a href="joinForm.do" class="btn btn-info">회원가입</a>
+
 </div>
-<%@ include file="../footer.jsp" %>
 </body>
 </html>
