@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cartns">
+	<resultMap type="cart" 			id="cartResult">
+		<result property="cart_id" 	column="cart_id" />
+		<result property="cart_date" 	column="cart_date" />
+		<result property="cart_editdate" 		column="cart_editdate" />
+		<result property="cart_state" 		column="cart_state" />
+		<result property="mem_id" 		column="mem_id" />
+		<result property="goods_id" 		column="goods_id" />
+	</resultMap>
+<select id="list" resultMap="cartResult">
+	select * from cart where cart_state='y' and mem_id=#{mem_id} order by cart_id
+</select>
+</mapper>

@@ -4,11 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<!-- <typeAlias type="myBatis.model.Dept" alias="dept" />
-		<typeAlias type="myBatis.model.Emp" alias="emp" /> -->
+		<typeAlias type="howAbout.model.Member" alias="member" />
+		<typeAlias type="howAbout.model.cart.Cart" alias="cart"/>
+		<typeAlias type="howAbout.model.goods.Goods" alias="goods"/>
 	</typeAliases>
 	<mappers>
-		<!-- <mapper resource="Dept.xml" />
-		<mapper resource="Emp.xml" /> -->
+		<mapper resource="Member.xml" />
+		<mapper resource="Cart.xml"/>
+		<mapper resource="Goods.xml" />
 	</mappers>
 </configuration>
