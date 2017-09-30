@@ -1,4 +1,4 @@
-package howAbout.model.cart;
+package howAbout.model;
 
 
 import java.sql.Date;
@@ -13,7 +13,28 @@ public class Cart {
 	private String goods_name;
 	private int goods_price;
 	private int goods_delprice;
-
+	private String goods_color;
+	private String goods_size;
+	private String goods_img;
+	
+	public String getGoods_img() {
+		return goods_img;
+	}
+	public void setGoods_img(String goods_img) {
+		this.goods_img = goods_img;
+	}
+	public String getGoods_color() {
+		return goods_color;
+	}
+	public void setGoods_color(String goods_color) {
+		this.goods_color = goods_color;
+	}
+	public String getGoods_size() {
+		return goods_size;
+	}
+	public void setGoods_size(String goods_size) {
+		this.goods_size = goods_size;
+	}
 	public int getGoods_delprice() {
 		return goods_delprice;
 	}

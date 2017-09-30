@@ -1,4 +1,4 @@
-package howAbout.model.goods;
+package howAbout.model;
 
 public class Goods {
 	private String goods_id;

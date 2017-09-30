@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import howAbout.model.Cart;
+import howAbout.model.Goods;
 import howAbout.model.Member;
-import howAbout.model.cart.Cart;
-import howAbout.model.goods.Goods;
 import howAbout.service.cart.CartService;
 import howAbout.service.goods.GoodsService;
 import howAbout.service.member.MemberService;
@@ -35,5 +35,11 @@ public class CartController {
 		model.addAttribute("listCart", listCart);
 		model.addAttribute("goods_id",goods_id);
 		return "cart/cartList";
+	}
+	@RequestMapping("cartDelete")
+	public String cartDelete(String cart_id, Model model){
+		int result = cs.delete(cart_id);
+		model.addAttribute("result", result);
+		return "cart/cartDelete";
 	}
 }

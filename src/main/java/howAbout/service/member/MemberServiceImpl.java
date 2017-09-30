@@ -16,8 +16,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public Member select(String mem_id1) {
-		return md.select(mem_id1);
+	public Member select(String mem_id) {
+		return md.select(mem_id);
 	}
 
 	
