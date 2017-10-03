@@ -14,7 +14,7 @@
 	<select id="list" resultMap="mdtextResult">
 		select * from mdtext
 	</select>
-	<select id="best" resultType="mdtext">
-		select * from mdtext where mdtext_readcount = (select Max(mdtext_readcount) from mdtext)
+	<select id="best" resultType="String">
+		select mdtext_id from mdtext where mdtext_readcount = (select Max(mdtext_readcount) from mdtext)
 	</select>
 </mapper>

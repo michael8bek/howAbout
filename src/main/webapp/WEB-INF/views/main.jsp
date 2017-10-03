@@ -17,10 +17,8 @@
 				<div class="card h-100">
 					<h4 class="card-header">MD추천</h4>
 					<div class="card-body">
-						<c:forEach var="best" items="${best }">
 							<!-- 추천수 가장많은 내용을 보여준다. 왜 안나와 ㅜㅜ -->
-							<p class="card-text">${best.mdtext_content}</p>
-						</c:forEach>
+							<%-- <p class="card-text">${best[0].mdtext_content}</p> --%>
 					</div>
 					<div class="card-footer">
 						<a href="listMdtext.do" class="btn btn-primary">추천보기</a>
