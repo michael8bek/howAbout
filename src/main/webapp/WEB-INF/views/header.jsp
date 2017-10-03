@@ -78,11 +78,11 @@
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Portfolio </a>
+						aria-haspopup="true" aria-expanded="false"> 추천 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="portfolio-1-col.jsp">1 Column
-								Portfolio</a> <a class="dropdown-item" href="portfolio-2-col.jsp">2
+							<a class="dropdown-item" href="listMdtext.do">MD추천</a> 
+							<a class="dropdown-item" href="portfolio-2-col.jsp">2
 								Column Portfolio</a> <a class="dropdown-item"
 								href="portfolio-3-col.jsp">3 Column Portfolio</a> <a
 								class="dropdown-item" href="portfolio-4-col.jsp">4 Column
