@@ -34,7 +34,7 @@
 
 <title>How about</title>
 <script type="text/javascript">
-	
+
 </script>
 </head>
 <body>
@@ -56,10 +56,10 @@
 						class="form-control form-row " id="search" placeholder="Search Items">
 				<button type="submit" class="btn btn-primary btn-md active">Search</button>
 				</div>
-				
+
 			</form>
 			<!-- /.search 창 form -->
-			
+
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 
 				<ul class="navbar-nav ml-auto">
@@ -81,7 +81,7 @@
 						aria-haspopup="true" aria-expanded="false"> 추천 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="listMdtext.do">MD추천</a> 
+							<a class="dropdown-item" href="listMdtext.do">MD추천</a>
 							<a class="dropdown-item" href="portfolio-2-col.jsp">2
 								Column Portfolio</a> <a class="dropdown-item"
 								href="portfolio-3-col.jsp">3 Column Portfolio</a> <a
@@ -142,7 +142,7 @@
 					</c:if>
 					<c:if test="${empty member }">
 					 <li class="nav-item"><a class="nav-link" href="">손님</a>
-					</li> 
+					</li>
 					</c:if>
 					<li class="nav-item"><a class="nav-link" href="cartList.do">장바구니</a>
 					</li>
@@ -181,14 +181,14 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<c:if test="${empty member }">
-							<a class="dropdown-item" href="loginForm.do">로그인</a> 
+							<a class="dropdown-item" href="loginForm.do">로그인</a>
 							</c:if>
 							<c:if test="${not empty member }">
-							<a class="dropdown-item" href="logout.do">로그아웃</a> 
+							<a class="dropdown-item" href="logout.do">로그아웃</a>
 							</c:if>
 							<a class="dropdown-item" href="faq.jsp">FAQ</a> <a
 								class="dropdown-item" href="404.jsp">404</a> <a
-								class="dropdown-item" href="joinForm.do">Join page</a> 
+								class="dropdown-item" href="joinForm.do">Join page</a>
 								<c:if test="${member.mem_name==master }">
 								<a class="dropdown-item" href="indexManage.do">Manager</a>
 								</c:if>

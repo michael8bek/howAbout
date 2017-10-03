@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Member;
 import howAbout.service.member.MemberService;
-import javafx.scene.control.Alert;
 
 @Controller
 public class MemberController {
@@ -56,5 +55,16 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:main.do";
+	}
+	@RequestMapping("idChk")
+	public String idChk(String mem_id, Model model) {
+		Member member = ms.select(mem_id);
+		String msg = "";
+		if(member == null)
+			msg = "사용가능합니다";
+		else
+			msg = "사용중인 아이디입니다";
+		model.addAttribute("msg", msg);
+		return "member/idChk";
 	}
 }
