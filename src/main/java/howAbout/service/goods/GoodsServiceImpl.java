@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import howAbout.dao.goods.GoodsDao;
-import howAbout.model.goods.Goods;
+import howAbout.model.Goods;
 @Service
 public class GoodsServiceImpl implements GoodsService {
 	@Autowired
