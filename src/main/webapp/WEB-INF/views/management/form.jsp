@@ -26,7 +26,8 @@
 									<div class="row">
 										<div class="input-field col s6">
 											<input placeholder="Placeholder" id="first_name" type="text"
-												class="validate"> <label for="first_name">First Name</label>
+												class="validate"> <label for="first_name">First
+												Name</label>
 										</div>
 										<div class="input-field col s6">
 											<input id="last_name" type="text" class="validate"> <label
@@ -181,6 +182,12 @@
 
 
 				<%@ include file="footerManage.jsp"%>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>
+		<!-- /. PAGE WRAPPER  -->
+	</div>
+	<!-- /. WRAPPER  -->
 </body>
-
+<%@ include file="jsinclude.jsp"%>
 </html>

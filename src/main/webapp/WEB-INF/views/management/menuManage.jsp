@@ -30,7 +30,7 @@
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
 	<li><a href="#"><i class="fa fa-user fa-fw"></i> My Profile</a></li>
-	<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+	<li><a href="main.do"><i class="fa fa-gear fa-fw"></i> mainPage</a></li>
 	<li><a href="logout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
 </ul>
 <ul id="dropdown2" class="dropdown-content w250">
@@ -190,7 +190,7 @@
 					class="fa fa-qrcode"></i> Tabs & Panels</a></li>
 
 			<li><a href="tableManage.do" class="waves-effect waves-dark"><i
-					class="fa fa-table"></i> Responsive Tables</a></li>
+					class="fa fa-table"></i> Responsive 테이블</a></li>
 			<li><a href="form.do" class="waves-effect waves-dark"><i
 					class="fa fa-edit"></i> Forms </a></li>
 

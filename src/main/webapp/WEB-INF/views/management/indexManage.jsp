@@ -294,7 +294,13 @@
 			</div>
 			<!-- indexMange page -->
 
-			<%@ include file="footerManage.jsp"%>
+				<%@ include file="footerManage.jsp"%>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>
+		<!-- /. PAGE WRAPPER  -->
+	</div>
+	<!-- /. WRAPPER  -->
 </body>
-
+<%@ include file="jsinclude.jsp"%>
 </html>

@@ -21,55 +21,7 @@
 
 				<div class="row">
 					<div class="col-md-12">
-						<!-- 물품목록 테이블 만들기 -->
-						<div class="card">
-							<div class="card-action">상품 목록 테이블</div>
-							<div class="card-content">
-								<div class="table-responsive">
-									<table class="table table-striped table-hover">
-										<tr>
-											<th>번호</th>
-											<th>제목</th>
-											<th>작성자</th>
-											<th>작성일</th>
-											<th>조회수</th>
-											<th>텍스트text</th>
-										</tr>
-										<c:if test="${empty list}">
-											<tr>
-												<th colspan="5">데이터가 없습니다</th>
-											</tr>
-										</c:if>
-										<c:if test="${not empty list}">
-											<c:set var="number" value="${totNum}"></c:set>
-											<c:forEach var="board" items="${list}">
-												<tr>
-													<td>${number}</td>
-													<c:if test="${board.del=='y'}">
-														<td colspan="4">삭제된 글입니다</td>
-													</c:if>
-													<c:if test="${board.del!='y'}">
-														<td><c:if test="${board.re_level > 0 }">
-																<img alt="" src="resources/images/level.gif" height="10"
-																	width="${board.re_level*10 }">
-																<img alt="" src="resources/images/re.gif">
-															</c:if> <a href="view.do?num=${board.num}&pageNum=${pageNum}"
-															class="btn btn-info btn-sm">${board.subject}</a> <c:if
-																test="${board.readcount > 30 }">
-																<img alt="" src="resources/images/hot.gif">
-															</c:if></td>
-														<td>${board.writer}</td>
-														<td>${board.reg_date}</td>
-														<td>${board.readcount}</td>
-													</c:if>
-												</tr>
-												<c:set var="number" value="${number - 1 }"></c:set>
-											</c:forEach>
-										</c:if>
-									</table>
-								</div>
-							</div>
-						</div>
+						<div></div>
 						<!-- Advanced Tables -->
 						<div class="card">
 							<div class="card-action">Advanced Tables</div>
