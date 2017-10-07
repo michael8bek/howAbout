@@ -105,27 +105,13 @@
 										<td>${list.goods_delprice }</td>
 									</tr>
 								</c:forEach>
-								
-								<tr>
-									<td>null</td>
-									<td>null</td>
-									<td>null</td>
-									<td>null</td>
-									<td>null</td>
-									<td>null</td>
-									<td>null</td>
-									<td>null</td>
-									<td>null</td>
-									<!-- <td>null</td> -->
-									<td>null</td>
-									<td>null</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<div class="card-footer small text-muted">Updated yesterday at
-					11:59 PM</div>
+				<div class="card-footer small text-muted">
+					Update DATA :  <span id="dateInfo"></span>
+				</div>
 			</div>
 		</div>
 		<!-- /.container-fluid-->
@@ -161,6 +147,10 @@
 		<script src="${path}/resources/sbAdmin/js/sb-admin.min.js"></script>
 		<!-- Custom scripts for this page-->
 		<script src="${path}/resources/sbAdmin/js/sb-admin-datatables.min.js"></script>
+		<!-- date current -->
+		<script>
+			document.getElementById("dateInfo").innerHTML = Date();
+		</script>
 	</div>
 </body>
 
