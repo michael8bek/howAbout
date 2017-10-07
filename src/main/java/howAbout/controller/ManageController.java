@@ -1,10 +1,19 @@
 package howAbout.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import howAbout.model.goods.Goods;
+import howAbout.service.goods.GoodsService;
 
 @Controller
 public class ManageController {
+	@Autowired
+	private GoodsService cs;
 	
 	@RequestMapping("indexManage")
 	public String indexManage() {
@@ -39,7 +48,9 @@ public class ManageController {
 		return "/management/register";
 	}
 	@RequestMapping("tables")
-	public String tables() {
+	public String tables(Model model) {
+		List<Goods> listGoods = cs.list();
+		model.addAttribute("list", listGoods);
 		return "/management/tables";
 	}
 }

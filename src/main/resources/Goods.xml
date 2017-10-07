@@ -11,9 +11,10 @@
 		<result property="goods_color" 		column="goods_color" />
 		<result property="goods_theme" 		column="goods_theme" />
 		<result property="goods_size" 		column="goods_size" />
-		<result property="goods_patthern" 		column="goods_patthern" />
+		<result property="goods_pattern" 		column="goods_patthern" />
 		<result property="goods_img" 		column="goods_img" />
 		<result property="goods_name" 		column="goods_name" />
+		<result property="goods_delprice" 		column="goods_delprice" />
 	</resultMap>
 <select id="list" resultMap="goodsResult">
 	select * from goods

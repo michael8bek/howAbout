@@ -12,6 +12,8 @@ public class Goods {
 	private String goods_patthern;
 	private String goods_img;
 	private String goods_name;
+	private int goods_delprice;
+	
 	public String getGoods_id() {
 		return goods_id;
 	}
@@ -77,6 +79,12 @@ public class Goods {
 	}
 	public void setGoods_name(String goods_name) {
 		this.goods_name = goods_name;
+	}
+	public int getGoods_delprice() {
+		return goods_delprice;
+	}
+	public void setGoods_delprice(int goods_delprice) {
+		this.goods_delprice = goods_delprice;
 	}
 	
 	
