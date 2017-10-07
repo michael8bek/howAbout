@@ -10,33 +10,36 @@ public class ManageController {
 	public String indexManage() {
 		return "/management/indexManage";
 	}
-	@RequestMapping("tableManage")
-	public String tableManage() {
-		return "/management/tableManage";
+	@RequestMapping("blank")
+	public String blank() {
+		return "/management/blank";
 	}
-	@RequestMapping("chart")
-	public String chart() {
-		return "/management/chart";
+	@RequestMapping("cards")
+	public String cards() {
+		return "/management/cards";
 	}
-	@RequestMapping("empty")
-	public String empty() {
-		return "/management/empty";
+	@RequestMapping("charts")
+	public String charts() {
+		return "/management/charts";
 	}
-	@RequestMapping("form")
-	public String form() {
-		return "/management/form";
+	@RequestMapping("forgot-passord")
+	public String forgotpassord() {
+		return "/management/forgot-passord";
 	}
-	@RequestMapping("table")
-	public String table() {
-		return "/management/table";
+	@RequestMapping("loginManage")
+	public String loginManage() {
+		return "/management/loginManage";
 	}
-	@RequestMapping("tabpanel")
-	public String tabpanel() {
-		return "/management/tabpanel";
+	@RequestMapping("navbar")
+	public String navbar() {
+		return "/management/navbar";
 	}
-	@RequestMapping("uielements")
-	public String uielements() {
-		return "/management/uielements";
+	@RequestMapping("register")
+	public String register() {
+		return "/management/register";
 	}
-	
+	@RequestMapping("tables")
+	public String tables() {
+		return "/management/tables";
+	}
 }
