@@ -62,11 +62,11 @@
     </div>
   </div>
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/popper/popper.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="${path}/resources/sbAdmin/vendor/jquery/jquery.min.js"></script>
+  <script src="${path}/resources/sbAdmin/vendor/popper/popper.min.js"></script>
+  <script src="${path}/resources/sbAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="${path}/resources/sbAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 </body>
 
 </html>
