@@ -1,10 +1,13 @@
 <%@ include file="headerManage.jsp"%>
 <!DOCTYPE html>
-
+<html>
+<head>
+<%@ include file="linkcss.jsp"%>
+</head>
 <body>
 	<div id="wrapper">
 		<%@ include file="menuManage.jsp"%>
-		
+
 		<!-- page -->
 		<div id="page-wrapper">
 			<div class="header">
@@ -1015,13 +1018,41 @@
 					</div>
 
 
-				<%@ include file="footerManage.jsp"%>
+					<%@ include file="footerManage.jsp"%>
+				</div>
+				<!-- /. PAGE INNER  -->
 			</div>
-			<!-- /. PAGE INNER  -->
+			<!-- /. PAGE WRAPPER  -->
 		</div>
-		<!-- /. PAGE WRAPPER  -->
-	</div>
-	<!-- /. WRAPPER  -->
+		<!-- /. WRAPPER  -->
+
+	<!-- JS Scripts-->
+	<!-- jQuery Js -->
+	<script src="${path}/resources/assets/js/jquery-1.10.2.js"></script>
+
+	<!-- Bootstrap Js -->
+	<script src="${path}/resources/assets/js/bootstrap.min.js"></script>
+
+	<script
+		src="${path}/resources/assets/materialize/js/materialize.min.js"></script>
+
+	<!-- Metis Menu Js -->
+	<script src="${path}/resources/assets/js/jquery.metisMenu.js"></script>
+	<!-- Morris Chart Js -->
+	<script src="${path}/resources/assets/js/morris/raphael-2.1.0.min.js"></script>
+	<script src="${path}/resources/assets/js/morris/morris.js"></script>
+
+
+	<script src="${path}/resources/assets/js/easypiechart.js"></script>
+	<script src="${path}/resources/assets/js/easypiechart-data.js"></script>
+
+	<script
+		src="${path}/resources/assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+	<!-- Custom Js -->
+	<script src="${path}/resources/assets/js/custom-scripts.js"></script>
+
+
 </body>
-<%@ include file="jsinclude.jsp"%>
+
 </html>
