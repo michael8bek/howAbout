@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import howAbout.model.mdtext.Mdtext;
+import howAbout.model.Mdtext;
 import howAbout.service.mdtext.MdtextService;
 
 @Controller
