@@ -14,4 +14,6 @@ public interface CartDao {
 
 	List<Cart> listOrders(String mem_id);
 
+	Object delSelect(String[] arr);
+
 }

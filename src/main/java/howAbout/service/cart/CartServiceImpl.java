@@ -28,5 +28,9 @@ public class CartServiceImpl implements CartService {
 	public List<Cart> listOrders(String mem_id) {
 		return cd.listOrders(mem_id);
 	}
+	@Override
+	public void delSelect(String[] arr) {
+		cd.delSelect(arr);
+	}
 
 }

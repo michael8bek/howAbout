@@ -1,7 +1,10 @@
 package howAbout.controller;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Cart;
-import howAbout.model.Goods;
 import howAbout.model.Member;
 import howAbout.model.Orders;
 import howAbout.service.cart.CartService;
@@ -53,4 +55,11 @@ public class CartController {
 		model.addAttribute("listOrders", listOrders);
 		return "cart/ordersList";
 	}
+	@RequestMapping("delSelect")
+	public  String delSelect(HttpServletRequest request, Model model ) throws Exception {
+		String arr[] = request.getParameterValues("chk");
+		cs.delSelect(arr);
+		return "redirect:cartList.do";
+	}
+	
 }

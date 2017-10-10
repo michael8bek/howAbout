@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -30,12 +29,9 @@
 	justify-content: center;
 	align-items: center;
 }
-
 </style>
 <script type="text/javascript">
-	
-function itemSum() {
-	/* frm.delprice.value=2500; */
+  function itemSum() {
 	var sum =0;
 	var count = frm.chk.length;
 	for (var i = 0; i < count; i++) {
@@ -47,7 +43,6 @@ function itemSum() {
 	 frm.total_sum1.value = sum; 
 }
 function ckeckAll() {
-	/* frm.delprice.value=2500;  */
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
@@ -64,13 +59,22 @@ function ckeckAll() {
 		frm.total_sum1.value ="";
 		frm.delprice.value="";
 	}
-	
+}  
+
+function mySubmit(index) {
+    if (index == 1) {
+      document.frm.action='delSelect.do';
+    }
+    if (index == 2) {
+      document.frm.action='ordersSelect.do';
+    }
+    document.myForm.submit();
 }
-	
+
 	
 </script>
 </head>
-<form name="frm" action="ordersList.do" method="post">
+<form name="frm" action="" method="post">
 	<div class="container">
 			<div class="container1">
 				<div class="container1_1">
@@ -81,7 +85,7 @@ function ckeckAll() {
 						<tr>
 							<th colspan="3"><input id="checkbox_1" type="checkbox"
 								onclick="ckeckAll()" value="">전체선택</th>
-							<th class="">선택삭제</th>
+							<th><button onclick="mySubmit(1)" class="btn btn-info" style="">선택삭제</button></th>
 						</tr>
 						
 							<tr style="background-color: #E7E7E7;">
@@ -98,7 +102,7 @@ function ckeckAll() {
 						<c:set var = "price" value = "${cart.goods_price}"/>
 							<tr>
 								<td><input type="checkbox" name="chk"
-								value="${cart.goods_price}" onclick="itemSum()">${cart.goods_name}<p>
+								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
 									</td>
 								<td>${cart.goods_price}</td>
@@ -146,8 +150,8 @@ function ckeckAll() {
 					<table class="table table-bordered">
 						<!-- style="margin-top: 5%; border: 5px solid #1993A8;" -->
 						<tr>
-							<th colspan="2"><input type="submit" value="구매하기"
-								style="width: 100%; height: 100%;" class="btn btn-info"></th>
+							<th colspan="2">
+							<button onclick="mySubmit(2)" class="btn btn-info" style="width: 100%; height: 100%;">구매하기</button></th>
 						</tr>
 					</table>
 				</div>

@@ -14,4 +14,6 @@ public interface CartService {
 
 	List<Cart> listOrders(String mem_id);
 
+	void delSelect(String[] arr);
+
 }

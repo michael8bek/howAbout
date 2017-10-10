@@ -31,5 +31,10 @@ public class CartDaoImpl implements CartDao {
 	public List<Cart> listOrders(String mem_id) {
 		return sst.selectList("cartns.listOrders", mem_id);
 	}
+
+	@Override
+	public Object delSelect(String[] arr) {
+		return sst.update("cartns.delSelect", arr);
+	}
 	
 }
