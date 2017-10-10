@@ -1,5 +1,7 @@
 package howAbout.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Goods {
 	private String goods_id;
 	private String goods_bigc;
@@ -9,11 +11,26 @@ public class Goods {
 	private String goods_color;
 	private String goods_theme;
 	private int goods_size;
-	private String goods_patthern;
+	private String goods_patthernis;
 	private String goods_img;
 	private String goods_name;
 	private int goods_delprice;
-
+	/*이미지 */
+	private MultipartFile file1; private MultipartFile file2;	
+	
+	
+	public MultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(MultipartFile file1) {
+		this.file1 = file1;
+	}
+	public MultipartFile getFile2() {
+		return file2;
+	}
+	public void setFile2(MultipartFile file2) {
+		this.file2 = file2;
+	}
 	public String getGoods_id() {
 		return goods_id;
 	}
@@ -62,11 +79,11 @@ public class Goods {
 	public void setGoods_size(int goods_size) {
 		this.goods_size = goods_size;
 	}
-	public String getGoods_patthern() {
-		return goods_patthern;
+	public String getGoods_patthernis() {
+		return goods_patthernis;
 	}
-	public void setGoods_patthern(String goods_patthern) {
-		this.goods_patthern = goods_patthern;
+	public void setGoods_patthernis(String goods_patthernis) {
+		this.goods_patthernis = goods_patthernis;
 	}
 	public String getGoods_img() {
 		return goods_img;

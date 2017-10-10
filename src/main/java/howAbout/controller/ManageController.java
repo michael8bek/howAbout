@@ -53,4 +53,5 @@ public class ManageController {
 		model.addAttribute("list", listGoods);
 		return "/management/tables";
 	}
+	
 }

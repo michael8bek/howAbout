@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,57 +37,142 @@
 <body class="bg-dark">
 	<div class="container">
 		<div class="card card-register mx-auto mt-5">
-			<div class="card-header">File Up Load</div>
+			<div class="card-header">상품 등록</div>
 			<div class="card-body">
-				<form>
+				<form action="registergoods.do" method="post" id="frm">
 					<div class="form-group">
 						<div class="form-row">
-							<div class="col-md-6">
-								<label for="exampleInputName">First name</label> <input
-									class="form-control" id="exampleInputName" type="text"
-									aria-describedby="nameHelp" placeholder="Enter first name">
+							<div class="hide">
+								<label for="goods_id">goods_id</label> <input
+									class="form-control" id="goods_id" type="text">
 							</div>
 							<div class="col-md-6">
-								<label for="exampleInputLastName">Last name</label> <input
-									class="form-control" id="exampleInputLastName" type="text"
-									aria-describedby="nameHelp" placeholder="Enter last name">
+								<label for="goods_bigc">goods_bigc</label> <select
+									id="goods_bigc" title="대분류">
+									<option value="men">남성용</option>
+									<option value="women">여성용</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="goods_smc">goods_smc</label> <select id="goods_smc"
+									title="소분류">
+									<option value="shirts">셔츠</option>
+									<option value="suit">정장</option>
+									<option value="t-shirts">티셔츠</option>
+									<option value="blouse">블라우스</option>
+									<option value="one-piece">원피스</option>
+									<option value="pants">바지</option>
+									<option value="leggings">레깅스</option>
+									<option value="skirt">스커트</option>
+									<option value="knitwear">니트</option>
+									<option value="hood">후드</option>
+									<option value="jeans">청바지</option>
+									<option value="jacket">자켓</option>
+									<option value="shoes">신발</option>
+									<option value="bag">가방</option>
+									<option value="accessory">기타잡화</option>
+								</select>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
-								<form name="file" method="post" enctype="multipart/form-data">
-								<input type="file" name="selectfile">
+								<label for="goods_price">goods_price</label> <input
+									class="form-control" id="goods_price" type="text"
+									placeholder="Enter Price">
+							</div>
+							<div class="col-md-6">
+								<label for="goods_brand">goods_brand</label> <input
+									class="form-control" id="goods_brand" type="text"
+									placeholder="Enter Brand">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<label for="goods_color">goods_color</label> <select
+									id="goods_bigc" title="색상">
+									<option value="red">빨강</option>
+									<option value="orange">주황</option>
+									<option value="yellow">노랑</option>
+									<option value="green">초록</option>
+									<option value="blue">파랑</option>
+									<option value="violet">보라</option>
+									<option value="dark">검정</option>
+									<option value="white">흰색</option>
+									<option value="ivory">아이보리</option>
+									<option value="burgundy">버건디</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="goods_theme">goods_theme</label> <select
+									id="goods_theme" title="테마">
+									<option value="office">직장</option>
+									<option value="student">학생</option>
+									<option value="picnic">소풍</option>
+									<option value="daily">일상</option>
+									<option value="love">러브</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<label for="goods_size">goods_size</label> <select
+									id="goods_size" title="사이즈">
+									<option value="0">Free</option>
+									<option value="44">Small(W)</option>
+									<option value="55">Medium(W)</option>
+									<option value="66">Large(W)</option>
+									<option value="77">X-Large(W)</option>
+									<option value="90">X-Small(M)</option>
+									<option value="95">Small(M)</option>
+									<option value="100">Medium(M)</option>
+									<option value="105">Large(M)</option>
+									<option value="110">X-Large(M)</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="goods_patternis">goods_pattern</label> <select
+									id="goods_patternis" title="패턴">
+									<option value="none">없음</option>
+									<option value="stripe">줄무늬</option>
+									<option value="dots">도트</option>
+									<option value="check">체크</option>
+									<option value="flower">꽃무늬</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<form name="goods_img" id="goods_img" method="post" enctype="multipart/form-data">
+									<input type="file" name="goods_img">
 								</form>
 							</div>
-							<div class="col-md-6">
-								<label for="exampleInputLastName">Last name</label> <input
-									class="form-control" id="exampleInputLastName" type="text"
-									aria-describedby="nameHelp" placeholder="Enter last name">
-							</div>
+							
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Email address</label> <input
-							class="form-control" id="exampleInputEmail1" type="email"
-							aria-describedby="emailHelp" placeholder="Enter email">
 					</div>
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
-								<label for="exampleInputPassword1">Password</label> <input
-									class="form-control" id="exampleInputPassword1" type="password"
-									placeholder="Password">
+								<label for="goods_name">상품명</label> <input
+									class="form-control" id="goods_name" type="text"
+									placeholder="Enter Goods name">
 							</div>
 							<div class="col-md-6">
-								<label for="exampleConfirmPassword">Confirm password</label> <input
-									class="form-control" id="exampleConfirmPassword"
-									type="password" placeholder="Confirm password">
+								<label for="goods_delprice">배송비</label> <input
+									class="form-control" id="goods_delprice" type="text"
+									placeholder="Enter 배송비">
 							</div>
 						</div>
 					</div>
-					<a class="btn btn-primary btn-block" href="loginManage.do">Register</a>
+<!-- 					<a class="btn btn-primary btn-block" href="loginManage.do">Register</a> -->
+					<a class="btn btn-primary btn-block" onclick="#{frm}">Register</a>
 				</form>
 				<div class="text-center">
 					<a class="d-block small mt-3" href="loginManage.do">Login Page</a>
