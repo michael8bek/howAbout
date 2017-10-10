@@ -12,6 +12,7 @@ public class Goods {
 	private String goods_patthern;
 	private String goods_img;
 	private String goods_name;
+	private int goods_delprice;
 
 	public String getGoods_id() {
 		return goods_id;
