@@ -84,18 +84,17 @@ function ckeckAll() {
 								onclick="ckeckAll()" value="">전체선택</th>
 							<th class="">선택삭제</th>
 						</tr>
-						<c:forEach var="cart" items="${listCart }">
-						<c:set var = "delprice" value = "${cart.goods_delprice}"/>
-						<c:set var = "price" value = "${cart.goods_price}"/>
-						<input type="hidden" name="cart_id" value="${cart.cart_id }">
+						
 							<tr style="background-color: #E7E7E7;">
-								<th style="width: 40%">주문상품(${cart.cart_date})</th>
+								<th style="width: 40%">주문상품</th>
 								<th>상품금액</th>
 								<th>배송비</th>
 								<th style="width: 15%">주문관리</th>
 							</tr>
-
-     					
+						<c:forEach var="cart" items="${listCart }">
+						<c:set var = "delprice" value = "${cart.goods_delprice}"/>
+						<c:set var = "price" value = "${cart.goods_price}"/>
+     					<c:if test="${not empty listCart }">
 							<tr>
 								<td><input type="checkbox" name="chk"
 									value="${cart.goods_price}" onclick="itemSum()">${cart.goods_name}<p>
@@ -114,7 +113,14 @@ function ckeckAll() {
 									${cart.goods_delprice} =
 									${cart.goods_price+cart.goods_delprice}원</th>
 							</tr>
+						</c:if>
 						</c:forEach>
+						<c:if test="${empty listCart }">
+							<tr>
+								<td colspan="4" style="text-align: center;">장바구니에 담긴 상품이 없습니다.</td>
+							</tr>
+						</c:if>
+							
 					</table>
 				</div>
 				<div class="container1_2">

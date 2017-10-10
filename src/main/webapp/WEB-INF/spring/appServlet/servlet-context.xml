@@ -26,6 +26,7 @@
 		<interceptor>
 			<mapping path="/cartList.do"/>
 			<mapping path="/indexManage.do"/>
+			<mapping path="/ordersList.do"/>
 			<beans:ref bean="lc" />
 		</interceptor>
 	</interceptors>	
