@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import howAbout.model.Cart;
 import howAbout.model.Goods;
 import howAbout.model.Member;
+import howAbout.model.Orders;
 import howAbout.service.cart.CartService;
 import howAbout.service.goods.GoodsService;
 import howAbout.service.member.MemberService;
@@ -27,13 +28,11 @@ public class CartController {
 	private MemberService ms;
 	
 	@RequestMapping("cartList")
-	public String cartList(String goods_id, Model model, HttpSession session) {
+	public String cartList(Model model, HttpSession session) {
 		List<Cart> listCart = cs.list((String) session.getAttribute("mem_id"));
-		List<Goods> listGoods = gs.list();
-/*		session.setAttribute("listCart1", listCart);*/
-		model.addAttribute("listGoods", listGoods);
+		/*List<Goods> listGoods = gs.list();
+		model.addAttribute("listGoods", listGoods);*/
 		model.addAttribute("listCart", listCart);
-		model.addAttribute("goods_id",goods_id);
 		return "cart/cartList";
 	}
 	@RequestMapping("cartDelete")
@@ -41,5 +40,17 @@ public class CartController {
 		int result = cs.delete(cart_id);
 		model.addAttribute("result", result);
 		return "cart/cartDelete";
+	}
+	@RequestMapping("buyOne")
+	public String buyOne(String cart_id, Model model) {
+		int result = cs.buyOne(cart_id);
+		model.addAttribute("result", result);
+		return "cart/buyOne";
+	}
+	@RequestMapping("ordersList")
+	public String ordersList(Model model, HttpSession session) {
+		List<Cart> listOrders = cs.listOrders((String) session.getAttribute("mem_id"));
+		model.addAttribute("listOrders", listOrders);
+		return "cart/ordersList";
 	}
 }

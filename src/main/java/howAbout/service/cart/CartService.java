@@ -10,4 +10,8 @@ public interface CartService {
 
 	int delete(String cart_id);
 
+	int buyOne(String cart_id);
+
+	List<Cart> listOrders(String mem_id);
+
 }

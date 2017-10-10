@@ -9,6 +9,7 @@ public class Cart {
 	private Date cart_editdate;
 	private String cart_state;
 	private String mem_id;
+	private int goods_qty;
 	private String goods_id;
 	private String goods_name;
 	private int goods_price;
@@ -17,6 +18,12 @@ public class Cart {
 	private String goods_size;
 	private String goods_img;
 	
+	public int getGoods_qty() {
+		return goods_qty;
+	}
+	public void setGoods_qty(int goods_qty) {
+		this.goods_qty = goods_qty;
+	}
 	public String getGoods_img() {
 		return goods_img;
 	}
