@@ -25,6 +25,10 @@
 					class="fa fa-fw fa-table"></i> <span class="nav-link-text">Tables</span>
 			</a></li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+				title="FileUpload"><a class="nav-link" href="fileUpLoad.do"> <i
+					class="fa fa-fw fa-file"></i> <span class="nav-link-text">사진넣기</span>
+			</a></li>
+			<li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="Components"><a
 				class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 				href="#collapseComponents" data-parent="#exampleAccordion"> <i

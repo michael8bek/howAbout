@@ -22,4 +22,8 @@ public class GoodsController {
 		model.addAttribute("list", list);
 		return "goods/goodsList";
 	}
+	@RequestMapping("fileUpLoad")
+	public String fileUpLoad() {
+		return "management/fileUpLoad";
+	}
 }
