@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import howAbout.model.goods.Goods;
+import howAbout.model.Goods;
 import howAbout.service.goods.GoodsService;
 
 @Controller
