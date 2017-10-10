@@ -7,6 +7,7 @@
 		<result property="cart_date" 	column="cart_date" />
 		<result property="cart_editdate" 		column="cart_editdate" />
 		<result property="cart_state" 		column="cart_state" />
+		<result property="goods_qty" 		column="goods_qty" />
 		<result property="mem_id" 		column="mem_id" />
 		<result property="goods_id" 		column="goods_id" />
 		<result property="goods_name" 		column="goods_name" />
@@ -23,4 +24,11 @@
 <update id="delete" parameterType="int">
 	update cart set cart_state='del' where cart_id=#{cart_id}
 </update>
+<update id="buyOne" parameterType="int">
+	update cart set cart_state='orders' where cart_id=#{cart_id}
+</update>
+<select id="listOrders" resultMap="cartResult">
+	select * from cart c, goods g where cart_state='orders' 
+	and mem_id=#{mem_id} and c.goods_id = g.goods_id
+</select>
 </mapper>

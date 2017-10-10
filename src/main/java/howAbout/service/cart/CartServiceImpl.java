@@ -20,5 +20,13 @@ public class CartServiceImpl implements CartService {
 	public int delete(String cart_id) {
 		return cd.delete(cart_id);
 	}
+	@Override
+	public int buyOne(String cart_id) {
+		return cd.buyOne(cart_id);
+	}
+	@Override
+	public List<Cart> listOrders(String mem_id) {
+		return cd.listOrders(mem_id);
+	}
 
 }

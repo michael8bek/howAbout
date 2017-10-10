@@ -18,11 +18,5 @@ public class OrdersController {
 	private OdersService os;
 	@Autowired
 	private CartService cs;
-	
-	@RequestMapping("ordersList")
-	public String ordersList(String cart_id, Model model) {
-		Orders orders = os.select(cart_id);
-		model.addAttribute("orders", orders);
-		return "orders/ordersList";
-	}
+
 }

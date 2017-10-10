@@ -72,7 +72,6 @@ function ckeckAll() {
 </head>
 <form name="frm" action="ordersList.do" method="post">
 	<div class="container">
-		<div class="row">
 			<div class="container1">
 				<div class="container1_1">
 					<h2 class="text-primary" style="padding-top: 3%;">장바구니 목록</h2>
@@ -84,18 +83,19 @@ function ckeckAll() {
 								onclick="ckeckAll()" value="">전체선택</th>
 							<th class="">선택삭제</th>
 						</tr>
-						<c:forEach var="cart" items="${listCart }">
-						<c:set var = "delprice" value = "${cart.goods_delprice}"/>
-						<c:set var = "price" value = "${cart.goods_price}"/>
-						<input type="hidden" name="cart_id" value="${cart.cart_id }">
+						
 							<tr style="background-color: #E7E7E7;">
-								<th style="width: 40%">주문상품(${cart.cart_date})</th>
+								<th style="width: 40%">주문상품</th>
 								<th>상품금액</th>
 								<th>배송비</th>
 								<th style="width: 15%">주문관리</th>
 							</tr>
 
      					
+						<c:if test="${not empty listCart }">
+						<c:forEach var="cart" items="${listCart }">
+						<c:set var = "delprice" value = "${cart.goods_delprice}"/>
+						<c:set var = "price" value = "${cart.goods_price}"/>
 							<tr>
 								<td><input type="checkbox" name="chk"
 									value="${cart.goods_price}" onclick="itemSum()">${cart.goods_name}<p>
@@ -103,7 +103,7 @@ function ckeckAll() {
 									</td>
 								<td>${cart.goods_price}</td>
 								<td>${cart.goods_delprice}</td>
-								<td><a href="ordersList.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%">바로구매</a><p>
+								<td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%">바로구매</a><p>
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%">삭제</a>
 								<!-- <input type="submit" value="바로구매" class="btn"
 									style="background-color: #63D297"><br> <input
@@ -115,6 +115,12 @@ function ckeckAll() {
 									${cart.goods_price+cart.goods_delprice}원</th>
 							</tr>
 						</c:forEach>
+						</c:if>
+						<c:if test="${empty listCart }">
+							<tr>
+								<td colspan="4">장바구니에 담긴 상품이 없습니다.</td>
+							</tr>
+						</c:if>
 					</table>
 				</div>
 				<div class="container1_2">
@@ -125,11 +131,11 @@ function ckeckAll() {
 							<th><input name="total_sum" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
 						<tr>	
-							<th>총 배송비</th>
+							<th>할인 금액</th>
 							<th><input name="delprice" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
 						<tr>
-							<th>할인 금액</th>
+							<th>총 배송비</th>
 							<th></th>
 						</tr>
 						<tr>
@@ -147,7 +153,6 @@ function ckeckAll() {
 				</div>
 			</div>
 		</div>
-	</div>
 </form>
 </body>
 <%@ include file="../footer.jsp"%>
