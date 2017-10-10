@@ -2,7 +2,7 @@ package howAbout.service.mdtext;
 
 import java.util.List;
 
-import howAbout.model.mdtext.Mdtext;
+import howAbout.model.Mdtext;
 
 public interface MdtextService {
 

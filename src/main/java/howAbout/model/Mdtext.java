@@ -1,4 +1,4 @@
-package howAbout.model.mdtext;
+package howAbout.model;
 
 import java.sql.Date;
 

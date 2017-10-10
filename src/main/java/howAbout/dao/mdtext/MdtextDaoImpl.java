@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import howAbout.model.mdtext.Mdtext;
+import howAbout.model.Mdtext;
 
 @Repository
 public class MdtextDaoImpl implements MdtextDao {
