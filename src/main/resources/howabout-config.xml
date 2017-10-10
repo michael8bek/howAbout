@@ -15,8 +15,9 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="Member.xml" />
-		<mapper resource="Cart.xml"/>
+		<mapper resource="Cart.xml" />
 		<mapper resource="Goods.xml" />
 		<mapper resource="Orders.xml" />
+		<mapper resource="Mdtext.xml" />
 	</mappers>
 </configuration>
