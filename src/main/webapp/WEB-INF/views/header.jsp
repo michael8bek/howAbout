@@ -45,8 +45,9 @@
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
+			<div class="col-lg-2">
 			<a class="navbar-brand" href="main.do">How About Style</a>
-
+</div>
 			<!--search 창 줄어들었을때 나오는 버튼 -->
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#searchResponsive"
@@ -54,13 +55,24 @@
 				aria-label="Toggle navigation">
 				<div class="w3-padding w3-xlarge w3-teal">
 					<i class="material-icons">search</i>
-					
+
 				</div>
 			</button>
 			<!--./search창 줄어들었을때 나오는 버튼 -->
 
 			<!-- search 창 form -->
-			<div class="collapse navbar-collapse" id="searchResponsive">
+			<div class="collapse col-lg-3 navbar-collapse">
+			<form class="form-inline my-2 my-lg-0 mr-lg-2">
+				<div class="input-group ">
+					<input class="form-control" type="text" placeholder="Search for...">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="button" value="">Search
+						</button>
+					</span>
+				</div>
+			</form>
+			</div>
+			<%-- <div class="collapse navbar-collapse" id="searchResponsive">
 				<form class="form-inline sm-auto">
 					<div class="form-group">
 						<input type="text" class="form-control form-row " id="search"
@@ -68,7 +80,7 @@
 						<button type="submit" class="btn btn-primary btn-sm active">Search</button>
 					</div>
 				</form>
-			</div>
+			</div> --%>
 			<!-- /.search 창 form -->
 
 			<!-- 창 줄어들었을때 나오는 버튼 -->
@@ -80,7 +92,7 @@
 			</button>
 			<!--./창 줄어들었을때 나오는 버튼 -->
 
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<div class="collapse col-lg-7 navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<c:if test="${not empty member }">
 						<li class="nav-item nav-link">${member.mem_name }</li>
