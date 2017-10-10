@@ -1,10 +1,10 @@
-show tables;
-
--- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `howaboutdb` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `howaboutdb`;
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: test
+-- Host: howaboutdb.cvq1vn4xsjwv.ap-northeast-2.rds.amazonaws.com    Database: howaboutdb
 -- ------------------------------------------------------
--- Server version	5.7.19-log
+-- Server version	5.5.5-10.0.24-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -45,6 +45,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES ('1','2017-09-27','jeagong','1','2017-09-27','y'),('2','2017-09-27','moon1214','2','2017-09-27','y'),('3','2017-09-27','moon1214','2','2017-09-27','y');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +58,7 @@ DROP TABLE IF EXISTS `coupon`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `coupon` (
   `cp_id` varchar(30) NOT NULL,
-  `cp_benefit` int(11) DEFAULT NULL,
+  `cp_benefit` int(50) DEFAULT NULL,
   PRIMARY KEY (`cp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -68,6 +69,7 @@ CREATE TABLE `coupon` (
 
 LOCK TABLES `coupon` WRITE;
 /*!40000 ALTER TABLE `coupon` DISABLE KEYS */;
+INSERT INTO `coupon` VALUES ('cp_bronze',5000),('cp_christmas',20000),('cp_gold',15000),('cp_silver',10000);
 /*!40000 ALTER TABLE `coupon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,6 +101,7 @@ CREATE TABLE `couponlist` (
 
 LOCK TABLES `couponlist` WRITE;
 /*!40000 ALTER TABLE `couponlist` DISABLE KEYS */;
+INSERT INTO `couponlist` VALUES ('1','2017-09-27','2018-01-01','n','cp_bronze','moon1214');
 /*!40000 ALTER TABLE `couponlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,12 +139,11 @@ DROP TABLE IF EXISTS `exp`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `exp` (
   `mem_id` varchar(30) NOT NULL,
-  `exp_write` int(11) DEFAULT NULL,
-  `exp_reply` int(11) DEFAULT NULL,
-  `exp_like` int(11) DEFAULT NULL,
-  `exp_totalexp` int(11) DEFAULT NULL,
-  PRIMARY KEY (`mem_id`),
-  CONSTRAINT `R_39` FOREIGN KEY (`mem_id`) REFERENCES `member` (`mem_id`)
+  `exp_write` int(50) DEFAULT NULL,
+  `exp_reply` int(50) DEFAULT NULL,
+  `exp_like` int(50) DEFAULT NULL,
+  `exp_totalexp` int(50) DEFAULT NULL,
+  PRIMARY KEY (`mem_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -165,13 +167,14 @@ CREATE TABLE `goods` (
   `goods_id` varchar(30) NOT NULL,
   `goods_bigc` varchar(30) DEFAULT NULL,
   `goods_smc` varchar(30) DEFAULT NULL,
-  `goods_price` int(11) DEFAULT NULL,
+  `goods_price` int(50) DEFAULT NULL,
   `goods_brand` varchar(30) DEFAULT NULL,
   `goods_color` varchar(30) DEFAULT NULL,
   `goods_theme` varchar(30) DEFAULT NULL,
-  `goods_size` int(11) DEFAULT NULL,
+  `goods_size` int(50) DEFAULT NULL,
   `goods_pattern` varchar(30) DEFAULT NULL,
   `goods_img` varchar(30) DEFAULT NULL,
+  `goods_name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`goods_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -182,7 +185,34 @@ CREATE TABLE `goods` (
 
 LOCK TABLES `goods` WRITE;
 /*!40000 ALTER TABLE `goods` DISABLE KEYS */;
+INSERT INTO `goods` VALUES ('1','shirts','short_shirts',10000,'polo','white','office',0,'stripe','img001','폴로 반팔 셔츠'),('2','skirt','long skirt',20000,'nike','red','nature',100,'dot','ima002','나이키 긴 스커트'),('3','shirts','long t-shirtc',39900,'guess','pink','nature',100,'colour','ima003','게스 반팔 셔츠');
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `goods_reply`
+--
+
+DROP TABLE IF EXISTS `goods_reply`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `goods_reply` (
+  `reply_id` varchar(30) NOT NULL,
+  `goods_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`reply_id`,`goods_id`),
+  KEY `goods_id_idx` (`goods_id`),
+  CONSTRAINT `goods_id` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `reply_id` FOREIGN KEY (`reply_id`) REFERENCES `reply` (`reply_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `goods_reply`
+--
+
+LOCK TABLES `goods_reply` WRITE;
+/*!40000 ALTER TABLE `goods_reply` DISABLE KEYS */;
+/*!40000 ALTER TABLE `goods_reply` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -194,7 +224,7 @@ DROP TABLE IF EXISTS `grade`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `grade` (
   `grade_name` varchar(30) NOT NULL,
-  `grade_totalexp` int(11) DEFAULT NULL,
+  `grade_totalexp` int(50) DEFAULT NULL,
   PRIMARY KEY (`grade_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -205,6 +235,7 @@ CREATE TABLE `grade` (
 
 LOCK TABLES `grade` WRITE;
 /*!40000 ALTER TABLE `grade` DISABLE KEYS */;
+INSERT INTO `grade` VALUES ('bronze',10),('gold',1000),('silver',100);
 /*!40000 ALTER TABLE `grade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,11 +277,9 @@ DROP TABLE IF EXISTS `md_like`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `md_like` (
   `mem_id` varchar(30) NOT NULL,
-  `md_id` char(18) NOT NULL,
-  PRIMARY KEY (`mem_id`,`md_id`),
-  KEY `R_38` (`md_id`),
-  CONSTRAINT `R_37` FOREIGN KEY (`mem_id`) REFERENCES `member` (`mem_id`),
-  CONSTRAINT `R_38` FOREIGN KEY (`md_id`) REFERENCES `mdtext` (`mdtext_id`)
+  `mdtext_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`mem_id`,`mdtext_id`),
+  CONSTRAINT `mem_id` FOREIGN KEY (`mem_id`) REFERENCES `member` (`mem_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -271,12 +300,9 @@ DROP TABLE IF EXISTS `md_reply`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `md_reply` (
-  `mdtext_id` char(18) NOT NULL,
-  `reply_id` char(18) NOT NULL,
-  PRIMARY KEY (`mdtext_id`,`reply_id`),
-  KEY `R_26` (`reply_id`),
-  CONSTRAINT `R_25` FOREIGN KEY (`mdtext_id`) REFERENCES `mdtext` (`mdtext_id`),
-  CONSTRAINT `R_26` FOREIGN KEY (`reply_id`) REFERENCES `reply` (`reply_id`)
+  `mdtext_id` varchar(30) NOT NULL,
+  `reply_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`mdtext_id`,`reply_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -297,16 +323,14 @@ DROP TABLE IF EXISTS `mdtext`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mdtext` (
-  `mdtext_id` char(18) NOT NULL,
-  `mdtext_type` char(18) DEFAULT NULL,
-  `mdtext_content` char(18) DEFAULT NULL,
-  `mdtext_regdate` char(18) DEFAULT NULL,
-  `mdtext_del` char(18) DEFAULT NULL,
+  `mdtext_id` varchar(30) NOT NULL,
+  `mdtext_type` varchar(30) DEFAULT NULL,
+  `mdtext_content` varchar(1000) DEFAULT NULL,
+  `mdtext_regdate` date DEFAULT NULL,
+  `mdtext_del` varchar(5) DEFAULT NULL,
   `mem_id` varchar(30) DEFAULT NULL,
-  `mdtext_readcount` char(18) DEFAULT NULL,
-  PRIMARY KEY (`mdtext_id`),
-  KEY `R_17` (`mem_id`),
-  CONSTRAINT `R_17` FOREIGN KEY (`mem_id`) REFERENCES `member` (`mem_id`)
+  `mdtext_readcount` int(50) DEFAULT NULL,
+  PRIMARY KEY (`mdtext_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -333,7 +357,7 @@ CREATE TABLE `member` (
   `mem_email` varchar(50) DEFAULT NULL,
   `mem_birth` date DEFAULT NULL,
   `mem_phone` varchar(30) DEFAULT NULL,
-  `mem_point` int(11) DEFAULT NULL,
+  `mem_point` int(50) DEFAULT NULL,
   `mem_regdate` date DEFAULT NULL,
   `mem_exitdate` date DEFAULT NULL,
   `mem_exitstate` varchar(5) DEFAULT NULL,
@@ -351,6 +375,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES ('jeagong','jeongjeagong','1234','jjkong86@gmail.com','1986-04-26','010-4923-9954',0,'2017-09-25',NULL,'n','sangdodong','bronze'),('master','master','master',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('moon1214','moonjimin','1234','jimin11592@gmail.com','1988-12-14','010-8831-1866',0,'2017-09-25',NULL,'n','incheon','bronze');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,7 +389,7 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `order_id` varchar(30) NOT NULL,
   `order_date` date DEFAULT NULL,
-  `order_odertype` varchar(3) DEFAULT NULL,
+  `order_odertype` varchar(30) DEFAULT NULL,
   `mem_id` varchar(30) NOT NULL,
   `goods_id` varchar(30) NOT NULL,
   `cplist_id` varchar(30) DEFAULT NULL,
@@ -427,9 +452,8 @@ DROP TABLE IF EXISTS `question`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `question` (
   `reply_id` varchar(30) NOT NULL,
-  `재고아이디` char(18) NOT NULL,
-  PRIMARY KEY (`reply_id`,`재고아이디`),
-  CONSTRAINT `R_14` FOREIGN KEY (`reply_id`) REFERENCES `reply` (`reply_id`)
+  `stock_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`reply_id`,`stock_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -450,13 +474,12 @@ DROP TABLE IF EXISTS `reply`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reply` (
-  `reply_id` char(18) NOT NULL,
-  `reply_type` char(18) DEFAULT NULL,
-  `reply_content` char(18) DEFAULT NULL,
+  `reply_id` varchar(30) NOT NULL,
+  `reply_type` varchar(30) DEFAULT NULL,
+  `reply_content` varchar(1000) DEFAULT NULL,
   `mem_id` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`reply_id`),
-  KEY `R_40` (`mem_id`),
-  CONSTRAINT `R_40` FOREIGN KEY (`mem_id`) REFERENCES `member` (`mem_id`)
+  KEY `mem_id` (`mem_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -477,15 +500,14 @@ DROP TABLE IF EXISTS `review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `review` (
-  `review_id` char(18) NOT NULL,
-  `review_content` char(18) DEFAULT NULL,
-  `review_regdate` char(18) DEFAULT NULL,
-  `review_del` char(18) DEFAULT NULL,
-  `order_id` varchar(30) DEFAULT NULL,
-  `review_readcount` char(18) DEFAULT NULL,
+  `review_id` varchar(30) NOT NULL,
+  `review_content` varchar(1000) DEFAULT NULL,
+  `review_regdate` date DEFAULT NULL,
+  `review_del` varchar(5) DEFAULT NULL,
+  `pay_id` varchar(30) DEFAULT NULL,
+  `review_readcount` int(50) DEFAULT NULL,
   PRIMARY KEY (`review_id`),
-  KEY `R_15` (`order_id`),
-  CONSTRAINT `R_15` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`)
+  KEY `pay_id_idx` (`pay_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -508,10 +530,7 @@ DROP TABLE IF EXISTS `review_like`;
 CREATE TABLE `review_like` (
   `mem_id` varchar(30) NOT NULL,
   `review_id` varchar(30) NOT NULL,
-  PRIMARY KEY (`mem_id`,`review_id`),
-  KEY `R_32` (`review_id`),
-  CONSTRAINT `R_31` FOREIGN KEY (`mem_id`) REFERENCES `member` (`mem_id`),
-  CONSTRAINT `R_32` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`)
+  PRIMARY KEY (`mem_id`,`review_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -532,12 +551,9 @@ DROP TABLE IF EXISTS `review_reply`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `review_reply` (
-  `review_id` char(18) NOT NULL,
-  `reply_id` char(18) NOT NULL,
-  PRIMARY KEY (`review_id`,`reply_id`),
-  KEY `R_20` (`reply_id`),
-  CONSTRAINT `R_19` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`),
-  CONSTRAINT `R_20` FOREIGN KEY (`reply_id`) REFERENCES `reply` (`reply_id`)
+  `review_id` varchar(30) NOT NULL,
+  `reply_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`review_id`,`reply_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -558,7 +574,7 @@ DROP TABLE IF EXISTS `stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stock` (
-  `stock_qty` int(11) DEFAULT NULL,
+  `stock_qty` int(50) DEFAULT NULL,
   `stock_regdate` date DEFAULT NULL,
   `stock_editdate` date DEFAULT NULL,
   `stock_sale` varchar(30) DEFAULT NULL,
@@ -576,6 +592,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
+INSERT INTO `stock` VALUES (5,'2017-09-27','2017-09-27','rent','1','1');
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -587,12 +604,12 @@ DROP TABLE IF EXISTS `trendshare`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `trendshare` (
-  `ts_id` char(18) NOT NULL,
-  `ts_content` char(18) DEFAULT NULL,
-  `ts_regdate` char(18) DEFAULT NULL,
-  `ts_del` char(18) DEFAULT NULL,
+  `ts_id` varchar(30) NOT NULL,
+  `ts_content` varchar(1000) DEFAULT NULL,
+  `ts_regdate` date DEFAULT NULL,
+  `ts_del` varchar(5) DEFAULT NULL,
   `mem_id` varchar(30) DEFAULT NULL,
-  `ts_readcount` char(18) DEFAULT NULL,
+  `ts_readcount` int(50) DEFAULT NULL,
   PRIMARY KEY (`ts_id`),
   KEY `R_16` (`mem_id`),
   CONSTRAINT `R_16` FOREIGN KEY (`mem_id`) REFERENCES `member` (`mem_id`)
@@ -618,10 +635,7 @@ DROP TABLE IF EXISTS `ts_like`;
 CREATE TABLE `ts_like` (
   `mem_id` varchar(30) NOT NULL,
   `ts_id` varchar(30) NOT NULL,
-  PRIMARY KEY (`mem_id`,`ts_id`),
-  KEY `R_35` (`ts_id`),
-  CONSTRAINT `R_34` FOREIGN KEY (`mem_id`) REFERENCES `member` (`mem_id`),
-  CONSTRAINT `R_35` FOREIGN KEY (`ts_id`) REFERENCES `trendshare` (`ts_id`)
+  PRIMARY KEY (`mem_id`,`ts_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -642,12 +656,9 @@ DROP TABLE IF EXISTS `ts_reply`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ts_reply` (
-  `ts_id` char(18) NOT NULL,
-  `reply_id` char(18) NOT NULL,
-  PRIMARY KEY (`ts_id`,`reply_id`),
-  KEY `R_23` (`reply_id`),
-  CONSTRAINT `R_22` FOREIGN KEY (`ts_id`) REFERENCES `trendshare` (`ts_id`),
-  CONSTRAINT `R_23` FOREIGN KEY (`reply_id`) REFERENCES `reply` (`reply_id`)
+  `ts_id` varchar(30) NOT NULL,
+  `reply_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`ts_id`,`reply_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -669,7 +680,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-25 19:17:23
+-- Dump completed on 2017-09-28 20:34:33
+
 
 use howaboutdb;
 
@@ -684,6 +696,7 @@ insert into member values('master','master', 'master',null,null,null,null,null,n
 insert into cart values(1, now(), 'jeagong', 1, now(), 'y');
 insert into cart values(2, now(), 'moon1214', 2, now(), 'n');
 insert into cart values(3, now(), 'moon1214', 2, now(), 'n');
+insert into cart values(4, now(), 'jeagong', 2, now(), 'y');
 
 insert into coupon values ('cp_bronze','5000');
 insert into coupon values ('cp_silver','10000');
@@ -711,3 +724,7 @@ update cart set cart_state='y'  where cart_id='1';
 update cart set cart_state='y'  where cart_id='2';
 update cart set cart_state='y'  where cart_id='3';
 
+insert into orders values(1, now(), 'y', null, 1);
+insert into orders values(2, now(), 'y', null, 4);
+
+insert into cart values(5, now(), 'jeagong', 3, now(), 'put', 1);

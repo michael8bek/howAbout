@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mdtextns">
+	<resultMap type="mdtext" 				id="mdtextResult">
+		<result property="mdtext_id" 			column="mdtext_id" />
+		<result property="mdtext_type" 			column="mdtext_type" />
+		<result property="mdtext_content" 		column="mdtext_content" />
+		<result property="mdtext_regdate" 		column="mdtext_regdate" />
+		<result property="mdtext_del" 			column="mdtext_del" />
+		<result property="mem_id" 				column="mem_id" />
+		<result property="mdtext_readcount" 	column="mdtext_readcount" />
+	</resultMap>
+	<select id="list" resultMap="mdtextResult">
+		select * from mdtext
+	</select>
+	<select id="best" resultType="mdtext">
+		select * from mdtext where mdtext_readcount = (select Max(mdtext_readcount) from mdtext)
+	</select>
+</mapper>

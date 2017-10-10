@@ -1,8 +1,3 @@
-use howabout
-show tables;
-select * from trendshare
-
-insert into trendshare values(001,'피드글 테스트',sysdate,'n','moon',0);
 use test;
 select * from cart;
 select * from member;
@@ -14,3 +9,10 @@ select * from member;
 delete from member where mem_name='jeongjeagong';
 
 select * from cart order by cart_id
+
+update cart set cart_state='n' where cart_id='2';
+
+select * from cart;
+alter table cart modify column goods_qty int(5);
+update cart set goods_qty =1 where cart_id=5;
+update goods set goods_delprice = 2500;

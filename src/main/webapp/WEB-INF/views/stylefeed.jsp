@@ -687,8 +687,6 @@ a {
 					data-slide="next"> <span class="icon-next"></span>
 				</a>
 			</div>
-
-
 		</section>
 
 
