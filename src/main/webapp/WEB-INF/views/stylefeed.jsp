@@ -742,11 +742,147 @@ a {
 			</div>
 			<div class="feed_list">
 				<div class="feed">
+					<c:forEach var="feed" items="${list }">
+						<div class="feed_imgbox">
+							<a class="feedpage" id="overlayTrigger2" href="#myOverlay2"
+								data-overlay-trigger><img class="card-img-top"
+								src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
+								alt=""> <!-- 이미지 캡션 --> <span class="caption_box">
+									<span class="title">좋아요/공유/</span> <span class="info">캡션
+										내용</span>
+							</span> </a>
+						</div>
+						<div class="feed_thumbnail">
+							<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
+							<div class="feed_writer" style="width: 140px; margin-left: 80px">${feed.mem_id }</div>
+							<div class="feed_content"
+								style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
+								${feed.ts_content }</div>
+						</div>
+					</c:forEach>
+					<div class="feed_comment">
+						<p class="card-text">피드 관련 댓글</p>
+					</div>
+				</div>
+<!-- 				<div class="feed">
 					<div class="feed_imgbox">
-						<a class="feedpage" id="overlayTrigger2" href="#myOverlay2"
-							data-overlay-trigger><img class="card-img-top"
+						<a href="#"><img class="card-img-top"
 							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-							alt=""> <!-- 이미지 캡션 --> <span class="caption_box"> <span
+							alt=""> 이미지 캡션 <span class="caption_box"> <span
+								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
+						</span> </a>
+					</div>
+					<div class="feed_thumbnail">
+						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
+						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
+						<div class="feed_content"
+							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
+							작성글 본문</div>
+					</div>
+					<div class="feed_comment">
+						<p class="card-text">피드 관련 댓글</p>
+					</div>
+				</div>
+				<div class="feed">
+					<div class="feed_imgbox">
+						<a href="#"><img class="card-img-top"
+							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
+							alt=""> 이미지 캡션 <span class="caption_box"> <span
+								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
+						</span> </a>
+					</div>
+					<div class="feed_thumbnail">
+						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
+						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
+						<div class="feed_content"
+							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
+							작성글 본문</div>
+					</div>
+					<div class="feed_comment">
+						<p class="card-text">피드 관련 댓글</p>
+					</div>
+				</div>
+				<div class="feed">
+					<div class="feed_imgbox">
+						<a href="#"><img class="card-img-top"
+							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
+							alt=""> 이미지 캡션 <span class="caption_box"> <span
+								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
+						</span> </a>
+					</div>
+					<div class="feed_thumbnail">
+						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
+						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
+						<div class="feed_content"
+							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
+							작성글 본문</div>
+					</div>
+					<div class="feed_comment">
+						<p class="card-text">피드 관련 댓글</p>
+					</div>
+				</div>
+				<div class="feed">
+					<div class="feed_imgbox">
+						<a href="#"><img class="card-img-top"
+							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
+							alt=""> 이미지 캡션 <span class="caption_box"> <span
+								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
+						</span> </a>
+					</div>
+					<div class="feed_thumbnail">
+						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
+						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
+						<div class="feed_content"
+							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
+							작성글 본문</div>
+					</div>
+					<div class="feed_comment">
+						<p class="card-text">피드 관련 댓글</p>
+					</div>
+				</div>
+				<div class="feed">
+					<div class="feed_imgbox">
+						<a href="#"><img class="card-img-top"
+							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
+							alt=""> 이미지 캡션 <span class="caption_box"> <span
+								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
+						</span> </a>
+					</div>
+					<div class="feed_thumbnail">
+						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
+						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
+						<div class="feed_content"
+							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
+							작성글 본문</div>
+					</div>
+					<div class="feed_comment">
+						<p class="card-text">피드 관련 댓글</p>
+					</div>
+				</div>
+				<div class="feed">
+					<div class="feed_imgbox">
+						<a href="#"><img class="card-img-top"
+							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
+							alt=""> 이미지 캡션 <span class="caption_box"> <span
+								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
+						</span> </a>
+					</div>
+					<div class="feed_thumbnail">
+						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
+						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
+						<div class="feed_content"
+							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
+							작성글 본문</div>
+					</div>
+					<div class="feed_comment">
+						<p class="card-text">피드 관련 댓글</p>
+					</div>
+				</div> -->
+<!-- 				<div class="feed">
+					<div class="feed_imgbox">
+						<a href="#"><img class="card-img-top"
+							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
+							alt=""> 이미지 캡션 <span class="caption_box"> <span
 								class="title">좋아요/공유/</span> <span class="info">캡션 내용</span>
 						</span> </a>
 					</div>
@@ -760,140 +896,7 @@ a {
 					<div class="feed_comment">
 						<p class="card-text">피드 관련 댓글</p>
 					</div>
-				</div>
-				<div class="feed">
-					<div class="feed_imgbox">
-						<a href="#"><img class="card-img-top"
-							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-							alt=""> <!-- 이미지 캡션 --> <span class="caption_box"> <span
-								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
-						</span> </a>
-					</div>
-					<div class="feed_thumbnail">
-						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
-						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
-						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
-							작성글 본문</div>
-					</div>
-					<div class="feed_comment">
-						<p class="card-text">피드 관련 댓글</p>
-					</div>
-				</div>
-				<div class="feed">
-					<div class="feed_imgbox">
-						<a href="#"><img class="card-img-top"
-							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-							alt=""> <!-- 이미지 캡션 --> <span class="caption_box"> <span
-								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
-						</span> </a>
-					</div>
-					<div class="feed_thumbnail">
-						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
-						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
-						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
-							작성글 본문</div>
-					</div>
-					<div class="feed_comment">
-						<p class="card-text">피드 관련 댓글</p>
-					</div>
-				</div>
-				<div class="feed">
-					<div class="feed_imgbox">
-						<a href="#"><img class="card-img-top"
-							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-							alt=""> <!-- 이미지 캡션 --> <span class="caption_box"> <span
-								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
-						</span> </a>
-					</div>
-					<div class="feed_thumbnail">
-						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
-						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
-						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
-							작성글 본문</div>
-					</div>
-					<div class="feed_comment">
-						<p class="card-text">피드 관련 댓글</p>
-					</div>
-				</div>
-				<div class="feed">
-					<div class="feed_imgbox">
-						<a href="#"><img class="card-img-top"
-							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-							alt=""> <!-- 이미지 캡션 --> <span class="caption_box"> <span
-								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
-						</span> </a>
-					</div>
-					<div class="feed_thumbnail">
-						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
-						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
-						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
-							작성글 본문</div>
-					</div>
-					<div class="feed_comment">
-						<p class="card-text">피드 관련 댓글</p>
-					</div>
-				</div>
-				<div class="feed">
-					<div class="feed_imgbox">
-						<a href="#"><img class="card-img-top"
-							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-							alt=""> <!-- 이미지 캡션 --> <span class="caption_box"> <span
-								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
-						</span> </a>
-					</div>
-					<div class="feed_thumbnail">
-						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
-						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
-						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
-							작성글 본문</div>
-					</div>
-					<div class="feed_comment">
-						<p class="card-text">피드 관련 댓글</p>
-					</div>
-				</div>
-				<div class="feed">
-					<div class="feed_imgbox">
-						<a href="#"><img class="card-img-top"
-							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-							alt=""> <!-- 이미지 캡션 --> <span class="caption_box"> <span
-								class="title">캡션 타이틀</span> <span class="info">캡션 내용</span>
-						</span> </a>
-					</div>
-					<div class="feed_thumbnail">
-						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
-						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
-						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
-							작성글 본문</div>
-					</div>
-					<div class="feed_comment">
-						<p class="card-text">피드 관련 댓글</p>
-					</div>
-				</div>
-				<div class="feed">
-					<div class="feed_imgbox">
-						<a href="#"><img class="card-img-top"
-							src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-							alt=""> <!-- 이미지 캡션 --> <span class="caption_box"> <span
-								class="title">좋아요/공유/</span> <span class="info">캡션 내용</span>
-						</span> </a>
-					</div>
-					<div class="feed_thumbnail">
-						<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
-						<div class="feed_writer" style="width: 140px; margin-left: 80px">작성자</div>
-						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; margin-left: 80px">피드
-							작성글 본문</div>
-					</div>
-					<div class="feed_comment">
-						<p class="card-text">피드 관련 댓글</p>
-					</div>
-				</div>
+				</div> -->
 			</div>
 		</section>
 		<div class="write_btn">

@@ -7,10 +7,12 @@
 		<typeAlias type="howAbout.model.Member" alias="member" />
 		<typeAlias type="howAbout.model.cart.Cart" alias="cart"/>
 		<typeAlias type="howAbout.model.goods.Goods" alias="goods"/>
+		<typeAlias type="howAbout.model.stylefeed.Stylefeed" alias="stylefeed"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="Member.xml" />
 		<mapper resource="Cart.xml"/>
 		<mapper resource="Goods.xml" />
+		<mapper resource="Stylefeed.xml" />
 	</mappers>
 </configuration>
