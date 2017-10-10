@@ -91,10 +91,10 @@ function ckeckAll() {
 								<th>배송비</th>
 								<th style="width: 15%">주문관리</th>
 							</tr>
+     					<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart }">
 						<c:set var = "delprice" value = "${cart.goods_delprice}"/>
 						<c:set var = "price" value = "${cart.goods_price}"/>
-     					<c:if test="${not empty listCart }">
 							<tr>
 								<td><input type="checkbox" name="chk"
 									value="${cart.goods_price}" onclick="itemSum()">${cart.goods_name}<p>
@@ -113,8 +113,8 @@ function ckeckAll() {
 									${cart.goods_delprice} =
 									${cart.goods_price+cart.goods_delprice}원</th>
 							</tr>
-						</c:if>
 						</c:forEach>
+						</c:if>
 						<c:if test="${empty listCart }">
 							<tr>
 								<td colspan="4" style="text-align: center;">장바구니에 담긴 상품이 없습니다.</td>
