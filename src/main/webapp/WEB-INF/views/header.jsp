@@ -25,7 +25,7 @@
 	color: red;
 }
 </style>
-<script src="${path}/js/jquery.js"></script>
+<script src="${path}/resources/js/jquery.js"></script>
 
 <!-- Bootstrap core CSS -->
 <script src="${path}/resources/vendor/bootstrap/css/bootstrap.min.css"></script>

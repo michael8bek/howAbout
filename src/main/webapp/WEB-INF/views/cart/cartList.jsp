@@ -35,7 +35,7 @@
 <script type="text/javascript">
 	
 function itemSum() {
-	frm.delprice.value=2500;
+	/* frm.delprice.value=2500; */
 	var sum =0;
 	var count = frm.chk.length;
 	for (var i = 0; i < count; i++) {
@@ -44,10 +44,10 @@ function itemSum() {
 		}
 	}
 	frm.total_sum.value = sum;
-	frm.total_sum1.value = sum+2500;
+	 frm.total_sum1.value = sum; 
 }
 function ckeckAll() {
-	frm.delprice.value=2500;
+	/* frm.delprice.value=2500;  */
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
@@ -57,7 +57,7 @@ function ckeckAll() {
 			sum += parseInt(frm.chk[i].value);
 		}
 		frm.total_sum.value = sum;
-		frm.total_sum1.value = sum+2500;
+		 frm.total_sum1.value = sum; 
 	}else {
 		$("input[name=chk]").prop("checked", false);
 		frm.total_sum.value ="";		
@@ -98,13 +98,13 @@ function ckeckAll() {
 						<c:set var = "price" value = "${cart.goods_price}"/>
 							<tr>
 								<td><input type="checkbox" name="chk"
-									value="${cart.goods_price}" onclick="itemSum()">${cart.goods_name}<p>
-								  &nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
+								value="${cart.goods_price}" onclick="itemSum()">${cart.goods_name}<p>
+						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
 									</td>
 								<td>${cart.goods_price}</td>
 								<td>${cart.goods_delprice}</td>
-								<td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%">바로구매</a><p>
-									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%">삭제</a>
+								<td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%; ">바로구매</a><p>
+									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								<!-- <input type="submit" value="바로구매" class="btn"
 									style="background-color: #63D297"><br> <input
 									type="submit" value="삭제" class="btn btn-danger"> --></td>
@@ -132,11 +132,11 @@ function ckeckAll() {
 						</tr>
 						<tr>	
 							<th>할인 금액</th>
-							<th><input name="delprice" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
+							<th></th>
 						</tr>
 						<tr>
 							<th>총 배송비</th>
-							<th></th>
+							<th><input name="delprice" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
 						<tr>
 							<th>총 결제금액</th>

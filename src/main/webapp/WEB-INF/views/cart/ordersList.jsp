@@ -73,6 +73,7 @@
 						<th>주문금액</th>
 						<th>배송비</th>
 					</tr>
+				<c:if test="${not empty listOrders }">
 				<c:forEach var="cart" items="${listOrders}">
 					<tr>
 						<td>${cart.goods_name}<p>
@@ -85,6 +86,12 @@
 						<td>${cart.goods_delprice }</td>
 					</tr>
 				</c:forEach>
+				</c:if>
+				<c:if test="${empty listOrders }">
+					<tr>
+						<td colspan="6">주문상품 내역이 아직없어요. 구매해주세요 ㅜㅜ</td>
+					</tr>
+				</c:if>
 				</table>
 			</div>
 		</div>
@@ -101,11 +108,11 @@
 					</tr>
 					<tr>
 						<th>쿠폰 입력</th>
-						<th><input type="text"><a href="" class="btn success">사용하기</a></th>
+						<th><input type="text">&nbsp;<a href="" class="btn success" style="color: #1993A8; border: 1px solid #1993A8;">사용하기</a></th>
 					</tr>
 					<tr>
 						<th>마일리지 사용</th>
-						<th><input type="text"><a href="" class="btn success">내 마일리지</a></th>
+						<th><input type="text">&nbsp;<a href="" class="btn success" style="color: #1993A8; border: 1px solid #1993A8;">내 마일리지</a></th>
 					</tr>
 					<tr>
 						<th colspan="2">
