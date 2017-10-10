@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import howAbout.dao.mdtext.MdtextDao;
-import howAbout.model.mdtext.Mdtext;
+import howAbout.model.Mdtext;
 
 @Service
 public class MdtextServiceImpl implements MdtextService{
