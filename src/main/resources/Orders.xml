@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ordersns">
+	<resultMap type="orders" 			id="ordersResult">
+		<result property="orders_id" 	column="orders_id" />
+		<result property="orders_date" 		column="orders_date" />
+		<result property="orders_type" 		column="orders_type" />
+		<result property="cplist_id" 		column="cplist_id" />
+		<result property="cart_id" 	column="cart_id" />
+	</resultMap>
+<select id="select" parameterType="String" resultType="orders">
+	select * from orders where cart_id=#{cart_id}
+</select>
+</mapper>

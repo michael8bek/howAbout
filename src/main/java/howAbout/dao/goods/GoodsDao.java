@@ -2,7 +2,7 @@ package howAbout.dao.goods;
 
 import java.util.List;
 
-import howAbout.model.goods.Goods;
+import howAbout.model.Goods;
 
 public interface GoodsDao {
 
