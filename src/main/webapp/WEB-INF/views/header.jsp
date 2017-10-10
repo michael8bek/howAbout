@@ -17,20 +17,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- CSS link-->
-<link href="${path}/resources/vendor/bootstrap/css/bootstrap.min.css"
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/css/modern-business.css" rel="stylesheet">
+<link href="resources/css/modern-business.css" rel="stylesheet">
+
+
 <style type="text/css">
 .err {
 	color: red;
 }
 </style>
-<script src="${path}/js/jquery.js"></script>
+<script src="resources/js/jquery.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap core CSS -->
-<script src="${path}/resources/vendor/bootstrap/css/bootstrap.min.css"></script>
+<script src="resources/css/bootstrap.min.css"></script>
 <!-- Custom styles for this template -->
-<script src="${path}/resources/css/modern-business.css"></script>
+<script src="resources/css/modern-business.css"></script>
 
 <title>How about</title>
 <script type="text/javascript">
@@ -64,7 +67,7 @@
 					</li>
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
+					<li class="nav-item"><a class="nav-link" href="contact.do">Contact</a>
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
