@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import howAbout.model.Goods;
+import howAbout.model.Member;
 import howAbout.service.goods.GoodsService;
 
 @Controller
@@ -29,13 +30,12 @@ public class GoodsController {
 		model.addAttribute("list", list);
 		return "goods/goodsList";
 	}
-	@RequestMapping(value="registergoods", method=RequestMethod.GET){
+	@RequestMapping(value= {"registergoods"}, method=RequestMethod.GET)
 		public String registerGoods(){
-			return "management/tables.do";
+			return "management/fileUpLoad";
 			
-			//여기하자
 		}
-	}
+	
 	@RequestMapping(value="registergoods", method=RequestMethod.POST)
 	public String registerGoods(Goods goods, HttpServletRequest request) throws IOException {
 		if(!goods.getFile1().isEmpty()){		
@@ -49,6 +49,6 @@ public class GoodsController {
 			
 			goods.setGoods_img(fname);
 		} 
-		return "redirect:management/tables.do";
+		return "redirect:tables.do";
 	}
 }

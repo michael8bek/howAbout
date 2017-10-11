@@ -11,7 +11,7 @@ public class LoginChk extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("mem_id") == null || session.getAttribute("mem_id").equals("")) {
+		if (session.getAttribute("member") == null || session.getAttribute("member").equals("")) {
 			response.sendRedirect("loginForm.do");
 			return false;
 		} else

@@ -41,15 +41,23 @@
 			<div class="card-body">
 				<form action="registergoods.do" method="post" id="frm">
 					<table title="상품등록" class="tables">
-						<tr>
-							<td><input id="goods_id" value="0" hidden="true">
-							<label for="goods_bigc">대분류</label> <select
-								id="goods_bigc" title="goods_bigc">
+					<tr>
+					<div class="form-group">
+					<td>	<div class="form-row">
+							<div hidden="true">
+								<label for="goods_id">goods_id</label> <input hidden="true"
+									class="form-control" id="goods_id" type="text">
+							</div>
+							<div class="col-md-6">
+								<label for="goods_bigc">대분류</label> <select
+									id="goods_bigc" title="goods_bigc">
 									<option value="men">남성용</option>
 									<option value="women">여성용</option>
-							</select></td>
-							<td><label for="goods_smc">소분류</label> <select
-								id="goods_smc" title="goods_smc">
+								</select>
+							</div>
+						<div class="col-md-6">
+								<label for="goods_smc">소분류</label> <select id="goods_smc"
+									title="goods_smc">
 									<option value="shirts">셔츠</option>
 									<option value="suit">정장</option>
 									<option value="t-shirts">티셔츠</option>
@@ -65,19 +73,29 @@
 									<option value="shoes">신발</option>
 									<option value="bag">가방</option>
 									<option value="accessory">기타잡화</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td><label for="goods_price">가격</label> <input
-								required="required" class="form-control" id="goods_price"
-								type="text" placeholder="Enter Price"></td>
-							<td><label for="goods_brand">goods_brand</label> <input
-								required="required" class="form-control" id="goods_brand"
-								type="text" placeholder="Enter Brand"></td>
-						</tr>
-						<tr>
-							<td><label for="goods_color">goods_color</label> <select
-								id="goods_bigc" title="색상">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<label for="goods_price">가격</label> <input required="required"
+									class="form-control" id="goods_price" type="text"
+									placeholder="Enter Price">
+							</div>
+							<div class="col-md-6">
+								<label for="goods_brand">goods_brand</label> <input required="required"
+									class="form-control" id="goods_brand" type="text"
+									placeholder="Enter Brand">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<label for="goods_color">goods_color</label> <select
+									id="goods_bigc" title="색상">
 									<option value="red">빨강</option>
 									<option value="orange">주황</option>
 									<option value="yellow">노랑</option>
@@ -88,19 +106,25 @@
 									<option value="white">흰색</option>
 									<option value="ivory">아이보리</option>
 									<option value="burgundy">버건디</option>
-							</select></td>
-							<td><label for="goods_theme">goods_theme</label> <select
-								id="goods_theme" title="테마">
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="goods_theme">goods_theme</label> <select
+									id="goods_theme" title="테마">
 									<option value="office">직장</option>
 									<option value="student">학생</option>
 									<option value="picnic">소풍</option>
 									<option value="daily">일상</option>
 									<option value="love">러브</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td><label for="goods_size">goods_size</label> <select
-								id="goods_size" title="사이즈">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<label for="goods_size">goods_size</label> <select
+									id="goods_size" title="사이즈">
 									<option value="0">Free</option>
 									<option value="44">Small(W)</option>
 									<option value="55">Medium(W)</option>
@@ -111,36 +135,47 @@
 									<option value="100">Medium(M)</option>
 									<option value="105">Large(M)</option>
 									<option value="110">X-Large(M)</option>
-							</select></td>
-							<td><label for="goods_patternis">goods_pattern</label> <select
-								id="goods_patternis" title="패턴">
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="goods_patternis">goods_pattern</label> <select
+									id="goods_patternis" title="패턴">
 									<option value="none">없음</option>
 									<option value="stripe">줄무늬</option>
 									<option value="dots">도트</option>
 									<option value="check">체크</option>
 									<option value="flower">꽃무늬</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<form name="goods_img" id="goods_img" method="post"
-									enctype="multipart/form-data">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<form name="goods_img" id="goods_img" method="post" enctype="multipart/form-data">
 									<input type="file" name="goods_img">
 								</form>
-							</td>
-						</tr>
-						<tr>
-							<td><label for="goods_name">상품명</label> <input
-								required="required" class="form-control" id="goods_name"
-								type="text" placeholder="Enter Goods name"></td>
-							<td><label for="goods_delprice">배송비</label> <input
-								required="required" class="form-control" id="goods_delprice"
-								type="text" placeholder="Enter 배송비"></td>
-						</tr>
-						<!-- 					<a class="btn btn-primary btn-block" href="loginManage.do">Register</a> -->
-					</table>
-					<input class="btn btn-primary btn-block" type="submit"
-						value="Register">
+							</div>
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<label for="goods_name">상품명</label> <input required="required"
+									class="form-control" id="goods_name" type="text"
+									placeholder="Enter Goods name">
+							</div>
+							<div class="col-md-6">
+								<label for="goods_delprice">배송비</label> <input required="required"
+									class="form-control" id="goods_delprice" type="text"
+									placeholder="Enter 배송비">
+							</div>
+						</div>
+					</div>
+<!-- 					<a class="btn btn-primary btn-block" href="loginManage.do">Register</a> -->
+</table>
+					<input class="btn btn-primary btn-block" type="submit" value="Register" >
 				</form>
 				<div class="text-center">
 					<a class="d-block small mt-3" href="loginManage.do">Login Page</a>

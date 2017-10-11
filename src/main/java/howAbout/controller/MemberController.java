@@ -42,10 +42,11 @@ public class MemberController {
 	public String login(Member member, Model model, HttpSession session) {
 		int result = 0;
 		Member mem = ms.select(member.getMem_id());
+		System.out.println("mem : "+mem.getMem_pw());
 		if(mem == null) result = -1;
 		else if (mem.getMem_pw().equals(member.getMem_pw())) {
 			model.addAttribute("member", mem);
-			session.setAttribute("mem_id", mem.getMem_id());
+			/*session.setAttribute("mem_id", mem.getMem_id());*/
 			session.setAttribute("member", mem);
 			return "main";
 		}
