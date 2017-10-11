@@ -66,6 +66,16 @@
 					<c:if test="${not empty member.mem_id }">
 						<li class="nav-item nav-link">${member.mem_name }</li>
 					</c:if>
+					<c:if test="${empty member }">
+                    	<a class="btn btn-info" href="loginForm.do" data-toggle="modal" data-target=".bd-example-modal-lg">로그인</a> 
+                    	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    		<div class="modal-dialog modal-lg">
+                    			<div class="modal-content">
+                    				<%@ include file="member/loginForm.jsp" %>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </c:if>
 					<c:if test="${empty member.mem_id }">
 						<li class="nav-item nav-link">손님</li>
 					</c:if>
@@ -106,9 +116,6 @@
 							Other Pages </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<c:if test="${empty member }">
-								<a class="dropdown-item" href="loginForm.do">로그인</a>
-							</c:if>
 							<c:if test="${not empty member }">
 								<a class="dropdown-item" href="logout.do">로그아웃</a>
 							</c:if>
