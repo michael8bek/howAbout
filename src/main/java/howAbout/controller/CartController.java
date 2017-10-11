@@ -66,9 +66,9 @@ public class CartController {
 			}
 		}else{
 			System.out.println("123123123");
-			return "redirect:cartList.do";	
+			return "redirect:cartList.do";
 		}
-		
+
 		return "redirect:cartList.do";
 	}
 	@RequestMapping("ordersSelect")
@@ -79,7 +79,7 @@ public class CartController {
 				cs.ordersSelect(arr[i]);
 			}
 		}
-		
+
 		return "redirect:ordersList.do";
 	}
 }

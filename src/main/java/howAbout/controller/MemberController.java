@@ -15,7 +15,7 @@ import javafx.scene.control.Alert;
 public class MemberController {
 	@Autowired
 	private MemberService ms;
-	
+
 	@RequestMapping("main")
 	public String main() {
 		return "main";
@@ -32,7 +32,7 @@ public class MemberController {
 	public String join(Member member, Model model) {
 		int result = ms.insert(member);
 		model.addAttribute("result", result);
-		return "member/join";		
+		return "member/join";
 	}
 	@RequestMapping("loginForm")
 	public String loginForm() {
@@ -42,6 +42,7 @@ public class MemberController {
 	public String login(Member member, Model model, HttpSession session) {
 		int result = 0;
 		Member mem = ms.select(member.getMem_id());
+		System.out.println("mem : "+mem.getMem_pw());
 		if(mem == null) result = -1;
 		else if (mem.getMem_pw().equals(member.getMem_pw())) {
 			/*session.setAttribute("mem_id", mem.getMem_id());*/
