@@ -33,7 +33,7 @@ public class GoodsController {
 	public String registerGoods(Goods goods,Model model){
 		int result = gs.register(goods);
 		model.addAttribute("result",result);
-		return "management/tables";
+		return "redirect:tables.do";
 	}
 	
 	@RequestMapping("registerForm")
