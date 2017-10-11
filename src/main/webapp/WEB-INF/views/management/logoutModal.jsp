@@ -15,7 +15,7 @@
 			<div class="modal-body">로그아웃을 하시려면 확인, 계속하시려면 취소를 누르세요.</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-				<a class="btn btn-primary" href="loginManage.do">확인</a>
+				<a class="btn btn-primary" href="main.do">확인</a>
 			</div>
 		</div>
 	</div>
