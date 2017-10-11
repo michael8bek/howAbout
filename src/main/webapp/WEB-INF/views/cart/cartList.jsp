@@ -67,10 +67,12 @@ function ckeckAll() {
 
 function mySubmit(index) {
     if (index == 1) {
-      document.frm.action='delSelect.do';
+    	if($("input[name=chk]").prop("checked")){
+      document.frm.action='delSelect.do';}
     }
     if (index == 2) {
-      document.frm.action='ordersSelect.do';
+    	if($("input[name=chk]").prop("checked")){
+      document.frm.action='ordersSelect.do';}
     }else{
     document.myForm.submit();}
 }

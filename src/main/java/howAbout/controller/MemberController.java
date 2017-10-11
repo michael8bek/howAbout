@@ -44,7 +44,8 @@ public class MemberController {
 		Member mem = ms.select(member.getMem_id());
 		if(mem == null) result = -1;
 		else if (mem.getMem_pw().equals(member.getMem_pw())) {
-			/*session.setAttribute("mem_id", mem.getMem_id());*/
+			model.addAttribute("member", mem);
+			session.setAttribute("mem_id", mem.getMem_id());
 			session.setAttribute("member", mem);
 			return "redirect:main.do";
 		}
