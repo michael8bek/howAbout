@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -30,26 +31,29 @@
 	align-items: center;
 }
 </style>
+
 <script type="text/javascript">
+
   function itemSum() {
 	var sum =0;
 	var count = frm.chk.length;
 	for (var i = 0; i < count; i++) {
 		if (frm.chk[i].checked == true) {
-			sum += parseInt(frm.chk[i].value);
+			 sum += parseInt(frm.goods_price[i].value); 
 		}
 	}
 	frm.total_sum.value = sum;
 	 frm.total_sum1.value = sum; 
 }
 function ckeckAll() {
+	
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
 	if ($("#checkbox_1").is(':checked')) {
 			$("input[name=chk]").prop("checked", true);
 		for (var i = 0; i < count; i++) {
-			sum += parseInt(frm.chk[i].value);
+			sum += parseInt(frm.goods_price[i].value);
 		}
 		frm.total_sum.value = sum;
 		 frm.total_sum1.value = sum; 
@@ -67,11 +71,11 @@ function mySubmit(index) {
     }
     if (index == 2) {
       document.frm.action='ordersSelect.do';
-    }
-    document.myForm.submit();
+    }else{
+    document.myForm.submit();}
 }
 
-	
+
 </script>
 </head>
 <form name="frm" action="" method="post">
@@ -98,20 +102,17 @@ function mySubmit(index) {
      					
 						<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart }">
-						<c:set var = "delprice" value = "${cart.goods_delprice}"/>
-						<c:set var = "price" value = "${cart.goods_price}"/>
 							<tr>
 								<td><input type="checkbox" name="chk"
 								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
+								<input type="hidden" name="goods_price" value="${cart.goods_price }">
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
 									</td>
 								<td>${cart.goods_price}</td>
 								<td>${cart.goods_delprice}</td>
 								<td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%; ">바로구매</a><p>
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
-								<!-- <input type="submit" value="바로구매" class="btn"
-									style="background-color: #63D297"><br> <input
-									type="submit" value="삭제" class="btn btn-danger"> --></td>
+								</td>
 							</tr>
 							<tr style="text-align:right;">
 								<th colspan="4" style="text-align:right;">상품 ${cart.goods_price}원 + 배송

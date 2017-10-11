@@ -27,10 +27,14 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<Cart> listOrders(String mem_id) {
 		return cd.listOrders(mem_id);
+	}	
+	@Override
+	public void delSelect(String arr) {
+		cd.delSelect(arr);
 	}
 	@Override
-	public void delSelect(String[] arr) {
-		cd.delSelect(arr);
+	public void ordersSelect(String arr) {
+		cd.ordersSelect(arr);
 	}
 
 }

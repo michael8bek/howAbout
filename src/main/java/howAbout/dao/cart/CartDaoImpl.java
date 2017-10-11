@@ -33,8 +33,12 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public Object delSelect(String[] arr) {
+	public Object delSelect(String arr) {
 		return sst.update("cartns.delSelect", arr);
+	}
+	@Override
+	public Object ordersSelect(String arr) {
+		return sst.update("cartns.ordersSelect", arr);
 	}
 	
 }
