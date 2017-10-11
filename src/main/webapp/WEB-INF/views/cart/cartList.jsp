@@ -20,7 +20,6 @@
 	justify-content: center;
 	align-items: center;
 }
-
 .container1_2 {
 	float: left;
 	width: 35%;
@@ -31,15 +30,18 @@
 	align-items: center;
 }
 </style>
-
 <script type="text/javascript">
 /* 개별 체크박스 클릭시 */
   function itemSum() {
 	var sum =0;
 	var count = frm.chk.length;
-	for (var i = 0; i < count; i++) {
-		if (frm.chk[i].checked == true) {
-			 sum += parseInt(frm.goods_price[i].value); 
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value);
+	} else {
+		for (var i = 0; i < count; i++) {
+			if (frm.chk[i].checked==true) {
+				 sum += parseInt(frm.goods_price[i].value);
+			}
 		}
 	}
 	frm.total_sum.value = sum;
@@ -64,24 +66,24 @@ function ckeckAll() {
 		frm.delprice.value="";
 	}
 }  
-
-function mySubmit(index) {
-    if (index == 1) {
-    	if($("input[name=chk]").prop("checked")){
-      document.frm.action='delSelect.do';}
-    	else{
-    		alert("삭제할 상품을 선택해주세요!");
-    	}
-    }
-    else if (index == 2) {
-    	if($("input[name=chk]").prop("checked")){
-      document.frm.action='ordersSelect.do';}
-    	else {
-    		alert("구매할 상품을 선택해주세요");
-    	}
-    }else{
+ function mySubmit(index) {
+	  var ck = false;
+	  for (var i = 0; i < frm.chk.length;i++) {
+		  if (frm.chk[i].checked==true) {
+			  ck = true; break;
+		  }
+	  }
+	  if (ck==false) {
+		  alert("선택후 작업하세요");
+		  return false;
+	  } 
+      if (index == 1) {
+        document.frm.action='delSelect.do';
+      }   else if (index == 2) {
+          document.frm.action='ordersSelect.do';
+       }  else{
     document.myForm.submit();}
-}
+} 
 
 
 </script>
