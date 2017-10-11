@@ -15,4 +15,13 @@ public class MemberServiceImpl implements MemberService{
 		return md.insert(member);
 	}
 
+	@Override
+	public Member select(String mem_id) {
+		return md.select(mem_id);
+	}
+
+	
+
+	
+
 }

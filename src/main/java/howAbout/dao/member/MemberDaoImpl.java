@@ -22,4 +22,9 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 
+	@Override
+	public Member select(String mem_id) {
+		return sst.selectOne("memberns.select", mem_id);
+	}
+
 }

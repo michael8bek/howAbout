@@ -20,7 +20,14 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
 	<context:component-scan base-package="howAbout" />
-
+	<beans:bean id="lc" class="howAbout.controller.LoginChk"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/cartList.do"/>
+			<mapping path="/indexManage.do"/>
+			<mapping path="/ordersList.do"/>
+			<beans:ref bean="lc" />
+		</interceptor>
+	</interceptors>	
 </beans:beans>

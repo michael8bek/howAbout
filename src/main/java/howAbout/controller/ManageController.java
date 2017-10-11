@@ -1,38 +1,57 @@
 package howAbout.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import howAbout.model.Goods;
+import howAbout.service.goods.GoodsService;
 
 @Controller
 public class ManageController {
+	@Autowired
+	private GoodsService cs;
 	
 	@RequestMapping("indexManage")
 	public String indexManage() {
 		return "/management/indexManage";
 	}
-	@RequestMapping("tableManage")
-	public String tableManage() {
-		return "/management/tableManage";
+	@RequestMapping("blank")
+	public String blank() {
+		return "/management/blank";
 	}
-	@RequestMapping("empty")
-	public String empty() {
-		return "/management/empty";
+	@RequestMapping("cards")
+	public String cards() {
+		return "/management/cards";
 	}
-	@RequestMapping("form")
-	public String form() {
-		return "/management/form";
+	@RequestMapping("charts")
+	public String charts() {
+		return "/management/charts";
 	}
-	@RequestMapping("table")
-	public String table() {
-		return "/management/table";
+	@RequestMapping("forgot-passord")
+	public String forgotpassord() {
+		return "/management/forgot-passord";
 	}
-	@RequestMapping("tabpanel")
-	public String tabpanel() {
-		return "/management/tabpanel";
+	@RequestMapping("loginManage")
+	public String loginManage() {
+		return "/management/loginManage";
 	}
-	@RequestMapping("uielements")
-	public String uielements() {
-		return "/management/uielements";
+	@RequestMapping("navbar")
+	public String navbar() {
+		return "/management/navbar";
+	}
+	@RequestMapping("register")
+	public String register() {
+		return "/management/register";
+	}
+	@RequestMapping("tables")
+	public String tables(Model model) {
+		List<Goods> listGoods = cs.list();
+		model.addAttribute("list", listGoods);
+		return "/management/tables";
 	}
 	
 }

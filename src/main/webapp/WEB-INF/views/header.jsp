@@ -1,3 +1,4 @@
+﻿<%@page import="howAbout.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,7 +9,7 @@
 <html>
 <head>
 <!-- 절대경로 -->
-<c:set var="path" value="${pageContext.request.contextPath }"
+<c:set var="path" value="${pageContext.request.contextPath}"
 	scope="application"></c:set>
 <c:set value="${path}" var="path" scope="application" />
 
@@ -24,36 +25,107 @@
 	color: red;
 }
 </style>
-<script src="${path}/js/jquery.js"></script>
+<script src="${path}/resources/js/jquery.js"></script>
 
 <!-- Bootstrap core CSS -->
 <script src="${path}/resources/vendor/bootstrap/css/bootstrap.min.css"></script>
 <!-- Custom styles for this template -->
 <script src="${path}/resources/css/modern-business.css"></script>
 
-<!-- small modal css,js -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-	integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-	crossorigin="anonymous"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-	crossorigin="anonymous"></script>
-	
 <title>How about</title>
+<script type="text/javascript">
+	
+</script>
 </head>
 <body>
 	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="main.do">How About Style</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- search 창 form -->
+			<form class="form-inline">
+				<div class="form-group">
+					<input type="text"
+						class="form-control form-row " id="search" placeholder="Search Items">
+				<button type="submit" class="btn btn-primary btn-md active">Search</button>
+				</div>
+				
+			</form>
+			<!-- /.search 창 form -->
+			
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+
+				<ul class="navbar-nav ml-auto">
+					<c:if test="${not empty member.mem_id }">
+						<li class="nav-item nav-link">${member.mem_name }</li>
+					</c:if>
+					<c:if test="${empty member.mem_id }">
+						<li class="nav-item nav-link">손님</li>
+					</c:if>
+					
+					<li class="nav-item"><a class="nav-link"
+						href="cartList.do?mem_id=${member.mem_id }">장바구니</a></li>
+					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 추천 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="listMdtext.do">MD추천</a> 
+							<a class="dropdown-item" href="portfolio-2-col.jsp">2
+								Column Portfolio</a> <a class="dropdown-item"
+								href="portfolio-3-col.jsp">3 Column Portfolio</a> <a
+								class="dropdown-item" href="portfolio-4-col.jsp">4 Column
+								Portfolio</a> <a class="dropdown-item" href="portfolio-item.jsp">Single
+								Portfolio Item</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Blog </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="blog-home-1.jsp">Blog Home 1</a> <a
+								class="dropdown-item" href="blog-home-2.jsp">Blog Home 2</a> <a
+								class="dropdown-item" href="blog-post.jsp">Blog Post</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Other Pages </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<c:if test="${empty member }">
+								<a class="dropdown-item" href="loginForm.do">로그인</a>
+							</c:if>
+							<c:if test="${not empty member }">
+								<a class="dropdown-item" href="logout.do">로그아웃</a>
+							</c:if>
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }">주문페이지</a> <a
+								class="dropdown-item" href="goodsList.do">상품페이지</a> <a
+								class="dropdown-item" href="joinForm.do">Join page</a>
+
+							<c:if test="${member.mem_name=='master' }">
+								<a class="dropdown-item" href="indexManage.do">Manager</a>
+							</c:if>
+						</div></li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<nav class="navbar  navbar-expand-lg navbar-gray bg-gray ">
 		<div class="container">
 			<a class="navbar-brand" href="main.do">MAIN</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -62,24 +134,20 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<!-- small modal 2017 09 27  -->
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target=".bd-example-modal-sm">Small modal</button>
+			<%-- <div class="collapse navbar-collapse" id="navbarResponsive">
 
-				<div class="modal fade bd-example-modal-sm" tabindex="-1"
-					role="dialog" aria-labelledby="mySmallModalLabel"
-					aria-hidden="true">
-					<div class="modal-dialog modal-sm">
-						<div class="modal-content">...</div>
-					</div>
-				</div>
-				<!-- small modal 2017 09 27  -->
 				<ul class="navbar-nav ml-auto">
+					<c:if test="${not empty member }">
+					<li class="nav-item"><a class="nav-link" href="">${member.mem_name }</a>
+					</li>
+					</c:if>
+					<c:if test="${empty member }">
+					 <li class="nav-item"><a class="nav-link" href="">손님</a>
+					</li> 
+					</c:if>
 					<li class="nav-item"><a class="nav-link" href="cartList.do">장바구니</a>
 					</li>
-
-					<li class="nav-item"><a class="nav-link" href="stylefeed.do">Services</a>
+					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
 					</li>
@@ -113,15 +181,22 @@
 							Other Pages </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="full-width.jsp">Full Width
-								Page</a> <a class="dropdown-item" href="sidebar.jsp">Sidebar
-								Page</a> <a class="dropdown-item" href="faq.jsp">FAQ</a> <a
+							<c:if test="${empty member }">
+							<a class="dropdown-item" href="loginForm.do">로그인</a> 
+							</c:if>
+							<c:if test="${not empty member }">
+							<a class="dropdown-item" href="logout.do">로그아웃</a> 
+							</c:if>
+							<a class="dropdown-item" href="faq.jsp">FAQ</a> <a
 								class="dropdown-item" href="404.jsp">404</a> <a
-								class="dropdown-item" href="joinForm.do">Join page</a> <a
-								class="dropdown-item" href="indexManage.do">Manager</a>
+								class="dropdown-item" href="joinForm.do">Join page</a> 
+								<c:if test="${member.mem_name==master }">
+								<a class="dropdown-item" href="indexManage.do">Manager</a>
+								</c:if>
 						</div></li>
+
 				</ul>
-			</div>
+			</div> --%>
 		</div>
 	</nav>
 
