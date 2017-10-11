@@ -57,4 +57,15 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:main.do";
 	}
+	@RequestMapping("idChk")
+	public String idChk(String mem_id, Model model) {
+		Member member = ms.select(mem_id);
+		String msg = "";
+		if(member == null)
+			msg = "사용가능 합니다.";
+		else
+			msg = "사용중인 아이디입니다.";
+		model.addAttribute("msg", msg);
+		return "member/idChk";
+	}
 }
