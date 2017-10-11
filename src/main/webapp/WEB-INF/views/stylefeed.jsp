@@ -265,7 +265,6 @@ a {
 						onclick="plusDivs(1)">&#10095;</button>
 				</div>
 			</div>
-
 		</section>
 
 

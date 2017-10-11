@@ -1,4 +1,4 @@
-ï»¿<%@page import="howAbout.model.Member"%>
+<%@page import="howAbout.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<!-- ì ˆëŒ€ê²½ë¡œ -->
+<!-- Àı´ë°æ·Î -->
 <c:set var="path" value="${pageContext.request.contextPath}"
 	scope="application"></c:set>
 <c:set value="${path}" var="path" scope="application" />
@@ -25,7 +25,7 @@
 	color: red;
 }
 </style>
-<script src="${path}/js/jquery.js"></script>
+<script src="${path}/resources/js/jquery.js"></script>
 
 <!-- Bootstrap core CSS -->
 <script src="${path}/resources/vendor/bootstrap/css/bootstrap.min.css"></script>
@@ -39,7 +39,8 @@
 </head>
 <body>
 	<!-- Navigation -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="main.do">How About Style</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -48,37 +49,43 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<!-- search Ã¢ form -->
+			<form class="form-inline">
+				<div class="form-group">
+					<input type="text"
+						class="form-control form-row " id="search" placeholder="Search Items">
+				<button type="submit" class="btn btn-primary btn-md active">Search</button>
+				</div>
+				
+			</form>
+			<!-- /.search Ã¢ form -->
+			
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 
 				<ul class="navbar-nav ml-auto">
-					<c:if test="${not empty member }">
-					<li class="nav-item nav-link">${member.mem_name }
-					</li>
+					<c:if test="${not empty member.mem_id }">
+						<li class="nav-item nav-link">${member.mem_name }</li>
 					</c:if>
-							<c:if test="${empty member }">
-							<a class="btn btn-info" href="loginForm.do" data-toggle="modal" data-target=".bd-example-modal-lg">ë¡œê·¸ì¸</a> 
-								<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	  								<div class="modal-dialog modal-lg">
-	    								<div class="modal-content">
-	      									<%@ include file="member/loginForm.jsp" %>
-	    								</div>
-	  								</div>
-								</div>
-							</c:if>
-					<li class="nav-item"><a class="nav-link" href="cartList.do?mem_id=${member.mem_id }">ì¥ë°”êµ¬ë‹ˆ</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="stylefeed.do">ìŠ¤íƒ€ì¼í”¼ë“œ</a>
+
+					<c:if test="${empty member.mem_id }">
+						<li class="nav-item nav-link">¼Õ´Ô</li>
+					</c:if>
+					
+					<li class="nav-item"><a class="nav-link"
+						href="cartList.do?mem_id=${member.mem_id }">Àå¹Ù±¸´Ï</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="stylefeed.do">½ºÅ¸ÀÏÇÇµå</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Portfolio </a>
+						aria-haspopup="true" aria-expanded="false"> ÃßÃµ </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="portfolio-1-col.jsp">1 Column
-								Portfolio</a> <a class="dropdown-item" href="portfolio-2-col.jsp">2
+							<a class="dropdown-item" href="listMdtext.do">MDÃßÃµ</a> 
+							<a class="dropdown-item" href="portfolio-2-col.jsp">2
 								Column Portfolio</a> <a class="dropdown-item"
 								href="portfolio-3-col.jsp">3 Column Portfolio</a> <a
 								class="dropdown-item" href="portfolio-4-col.jsp">4 Column
@@ -101,14 +108,16 @@
 							Other Pages </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-
-							<c:if test="${not empty member }">
-							<a class="dropdown-item" href="logout.do">ë¡œê·¸ì•„ì›ƒ</a> 
+							<c:if test="${empty member }">
+								<a class="dropdown-item" href="loginForm.do">·Î±×ÀÎ</a>
 							</c:if>
-							<a class="dropdown-item" href="orders.do">ì£¼ë¬¸í˜ì´ì§€</a> <a
-								class="dropdown-item" href="goodsList.do">ìƒí’ˆí˜ì´ì§€</a> <a
-								class="dropdown-item" href="joinForm.do">Join page</a> 
-								
+							<c:if test="${not empty member }">
+								<a class="dropdown-item" href="logout.do">·Î±×¾Æ¿ô</a>
+							</c:if>
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }">ÁÖ¹®ÆäÀÌÁö</a> <a
+								class="dropdown-item" href="goodsList.do">»óÇ°ÆäÀÌÁö</a> <a
+								class="dropdown-item" href="joinForm.do">Join page</a>
+
 							<c:if test="${member.mem_name=='master' }">
 								<a class="dropdown-item" href="indexManage.do">Manager</a>
 							</c:if>
@@ -135,12 +144,12 @@
 					</li>
 					</c:if>
 					<c:if test="${empty member }">
-					 <li class="nav-item"><a class="nav-link" href="">ì†ë‹˜</a>
+					 <li class="nav-item"><a class="nav-link" href="">¼Õ´Ô</a>
 					</li> 
 					</c:if>
-					<li class="nav-item"><a class="nav-link" href="cartList.do">ì¥ë°”êµ¬ë‹ˆ</a>
+					<li class="nav-item"><a class="nav-link" href="cartList.do">Àå¹Ù±¸´Ï</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="stylefeed.do">ìŠ¤íƒ€ì¼í”¼ë“œ</a>
+					<li class="nav-item"><a class="nav-link" href="stylefeed.do">½ºÅ¸ÀÏÇÇµå</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
 					</li>
@@ -175,10 +184,10 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<c:if test="${empty member }">
-							<a class="dropdown-item" href="loginForm.do">ë¡œê·¸ì¸</a> 
+							<a class="dropdown-item" href="loginForm.do">·Î±×ÀÎ</a> 
 							</c:if>
 							<c:if test="${not empty member }">
-							<a class="dropdown-item" href="logout.do">ë¡œê·¸ì•„ì›ƒ</a> 
+							<a class="dropdown-item" href="logout.do">·Î±×¾Æ¿ô</a> 
 							</c:if>
 							<a class="dropdown-item" href="faq.jsp">FAQ</a> <a
 								class="dropdown-item" href="404.jsp">404</a> <a

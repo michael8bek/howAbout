@@ -14,7 +14,7 @@ import howAbout.service.member.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService ms;
-	
+
 	@RequestMapping("main")
 	public String main() {
 		return "main";
@@ -31,7 +31,7 @@ public class MemberController {
 	public String join(Member member, Model model) {
 		int result = ms.insert(member);
 		model.addAttribute("result", result);
-		return "member/join";		
+		return "member/join";
 	}
 	@RequestMapping("loginForm")
 	public String loginForm() {
@@ -46,7 +46,7 @@ public class MemberController {
 			model.addAttribute("member", mem);
 			session.setAttribute("mem_id", mem.getMem_id());
 			session.setAttribute("member", mem);
-			return "main";
+			return "redirect:main.do";
 		}
 		model.addAttribute("result", result);
 		return "member/login";

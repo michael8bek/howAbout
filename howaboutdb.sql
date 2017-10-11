@@ -724,4 +724,7 @@ update cart set cart_state='y'  where cart_id='1';
 update cart set cart_state='y'  where cart_id='2';
 update cart set cart_state='y'  where cart_id='3';
 
+insert into orders values(1, now(), 'y', null, 1);
+insert into orders values(2, now(), 'y', null, 4);
 
+insert into cart values(5, now(), 'jeagong', 3, now(), 'put', 1);

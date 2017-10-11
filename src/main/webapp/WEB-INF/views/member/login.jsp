@@ -10,13 +10,13 @@
 <body>
 <c:if test="${result==0 }">
 	<script type="text/javascript">
-		alert("암호가 다릅니다");
+		alert("암호가 다릅니다.");
 		history.go(-1)
 	</script>
 </c:if>
 <c:if test="${result==-1 }">
 	<script type="text/javascript">
-		alert("누구냐 ?");
+		alert("없는 아이디 입니다.");
 		history.go(-1)
 	</script>
 </c:if>
