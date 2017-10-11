@@ -51,8 +51,8 @@ public class CartController {
 	}
 
 	@RequestMapping("ordersList")
-	public String ordersList(Model model, HttpSession session) {
-		List<Cart> listOrders = cs.listOrders((String) session.getAttribute("mem_id"));
+	public String ordersList(Model model, String mem_id, HttpSession session) {
+		List<Cart> listOrders = cs.listOrders("mem_id");
 		model.addAttribute("listOrders", listOrders);
 		return "cart/ordersList";
 	}

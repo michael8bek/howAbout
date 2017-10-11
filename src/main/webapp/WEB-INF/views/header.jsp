@@ -112,7 +112,7 @@
 							<c:if test="${not empty member }">
 								<a class="dropdown-item" href="logout.do">로그아웃</a>
 							</c:if>
-							<a class="dropdown-item" href="ordersList.do">주문페이지</a> <a
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }">주문페이지</a> <a
 								class="dropdown-item" href="goodsList.do">상품페이지</a> <a
 								class="dropdown-item" href="joinForm.do">Join page</a>
 
