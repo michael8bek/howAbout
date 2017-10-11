@@ -76,10 +76,6 @@
                     		</div>
                     	</div>
                     </c:if>
-					<c:if test="${empty member.mem_id }">
-						<li class="nav-item nav-link">손님</li>
-					</c:if>
-					
 					<li class="nav-item"><a class="nav-link"
 						href="cartList.do?mem_id=${member.mem_id }">장바구니</a></li>
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
