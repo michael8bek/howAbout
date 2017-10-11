@@ -42,14 +42,14 @@
 				<form action="registergoods.do" method="post" id="frm">
 					<table title="상품등록" class="tables">
 						<tr>
-							<td><input id="goods_id" value="0" hidden="true">
+							<td><input name="goods_id" value="0" hidden="true">
 							<label for="goods_bigc">대분류</label> <select
-								id="goods_bigc" title="goods_bigc">
+								name="goods_bigc" title="goods_bigc" >
 									<option value="men">남성용</option>
 									<option value="women">여성용</option>
 							</select></td>
 							<td><label for="goods_smc">소분류</label> <select
-								id="goods_smc" title="goods_smc">
+								name="goods_smc" title="goods_smc">
 									<option value="shirts">셔츠</option>
 									<option value="suit">정장</option>
 									<option value="t-shirts">티셔츠</option>
@@ -69,15 +69,15 @@
 						</tr>
 						<tr>
 							<td><label for="goods_price">가격</label> <input
-								required="required" class="form-control" id="goods_price"
+								required="required" class="form-control" name="goods_price"
 								type="text" placeholder="Enter Price"></td>
 							<td><label for="goods_brand">goods_brand</label> <input
-								required="required" class="form-control" id="goods_brand"
+								required="required" class="form-control" name="goods_brand"
 								type="text" placeholder="Enter Brand"></td>
 						</tr>
 						<tr>
 							<td><label for="goods_color">goods_color</label> <select
-								id="goods_bigc" title="색상">
+								name="goods_color" title="goods_color">
 									<option value="red">빨강</option>
 									<option value="orange">주황</option>
 									<option value="yellow">노랑</option>
@@ -90,7 +90,7 @@
 									<option value="burgundy">버건디</option>
 							</select></td>
 							<td><label for="goods_theme">goods_theme</label> <select
-								id="goods_theme" title="테마">
+								name="goods_theme" title="goods_theme">
 									<option value="office">직장</option>
 									<option value="student">학생</option>
 									<option value="picnic">소풍</option>
@@ -100,7 +100,7 @@
 						</tr>
 						<tr>
 							<td><label for="goods_size">goods_size</label> <select
-								id="goods_size" title="사이즈">
+								name="goods_size" title="goods_size">
 									<option value="0">Free</option>
 									<option value="44">Small(W)</option>
 									<option value="55">Medium(W)</option>
@@ -112,8 +112,8 @@
 									<option value="105">Large(M)</option>
 									<option value="110">X-Large(M)</option>
 							</select></td>
-							<td><label for="goods_patternis">goods_pattern</label> <select
-								id="goods_patternis" title="패턴">
+							<td><label for="goods_pat">goods_pattern</label> <select
+								name="goods_pat" title="goods_pat">
 									<option value="none">없음</option>
 									<option value="stripe">줄무늬</option>
 									<option value="dots">도트</option>
@@ -123,18 +123,18 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<form name="goods_img" id="goods_img" method="post"
-									enctype="multipart/form-data">
-									<input type="file" name="goods_img">
+								<!-- <form name="goods_img" name="goods_img" method="post"
+									enctype="multipart/form-data"> --><label for="goods_img">goods_img</label>
+									<input type="file" name="goods_img" >
 								</form>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="goods_name">상품명</label> <input
-								required="required" class="form-control" id="goods_name"
+								required="required" class="form-control" name="goods_name"
 								type="text" placeholder="Enter Goods name"></td>
 							<td><label for="goods_delprice">배송비</label> <input
-								required="required" class="form-control" id="goods_delprice"
+								required="required" class="form-control" name="goods_delprice"
 								type="text" placeholder="Enter 배송비"></td>
 						</tr>
 						<!-- 					<a class="btn btn-primary btn-block" href="loginManage.do">Register</a> -->
