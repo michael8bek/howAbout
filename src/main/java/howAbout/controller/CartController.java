@@ -28,8 +28,8 @@ public class CartController {
 	private MemberService ms;
 	
 	@RequestMapping("cartList")
-	public String cartList(Model model, HttpSession session) {
-		List<Cart> listCart = cs.list((String) session.getAttribute("mem_id"));
+	public String cartList(Model model, String mem_id, HttpSession session) {
+		List<Cart> listCart = cs.list(mem_id);
 		/*List<Goods> listGoods = gs.list();
 		model.addAttribute("listGoods", listGoods);*/
 		model.addAttribute("listCart", listCart);
