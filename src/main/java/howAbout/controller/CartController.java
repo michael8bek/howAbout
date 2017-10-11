@@ -1,6 +1,5 @@
 package howAbout.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +50,8 @@ public class CartController {
 	}
 
 	@RequestMapping("ordersList")
-	public String ordersList(Model model, HttpSession session) {
+	public String ordersList(String mem_id, Model model, HttpSession session) {
+		/*List<Cart> listOrders = cs.listOrders("mem_id");*/
 		List<Cart> listOrders = cs.listOrders((String) session.getAttribute("mem_id"));
 		model.addAttribute("listOrders", listOrders);
 		return "cart/ordersList";
@@ -60,26 +60,28 @@ public class CartController {
 	@RequestMapping("delSelect")
 	public String delSelect(HttpServletRequest request, Model model) throws Exception {
 		String arr[] = request.getParameterValues("chk");
+		int result = 0;
 		if (arr.length > 0) {
 			for (int i = 0; i < arr.length; i++) {
 				cs.delSelect(arr[i]);
 			}
-		}else{
-			System.out.println("123123123");
-			return "redirect:cartList.do";
+			result = 1;
 		}
-
-		return "redirect:cartList.do";
+		model.addAttribute("result", result);
+		return "cart/delSelect";
 	}
 	@RequestMapping("ordersSelect")
 	public String ordersSelect(HttpServletRequest request, Model model) throws Exception {
 		String arr[] = request.getParameterValues("chk");
+		int result = 0;
 		if (arr.length > 0) {
 			for (int i = 0; i < arr.length; i++) {
 				cs.ordersSelect(arr[i]);
 			}
+			result = 1;
 		}
-
-		return "redirect:ordersList.do";
+		model.addAttribute("result", result);
+		return "cart/ordersSelect";
+		
 	}
 }
