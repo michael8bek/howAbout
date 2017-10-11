@@ -33,7 +33,7 @@
 </style>
 
 <script type="text/javascript">
-
+/* 개별 체크박스 클릭시 */
   function itemSum() {
 	var sum =0;
 	var count = frm.chk.length;
@@ -45,8 +45,8 @@
 	frm.total_sum.value = sum;
 	 frm.total_sum1.value = sum; 
 }
+  /* 개별 체크박스 클릭시 */
 function ckeckAll() {
-	
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
@@ -69,10 +69,16 @@ function mySubmit(index) {
     if (index == 1) {
     	if($("input[name=chk]").prop("checked")){
       document.frm.action='delSelect.do';}
+    	else{
+    		alert("삭제할 상품을 선택해주세요!");
+    	}
     }
-    if (index == 2) {
+    else if (index == 2) {
     	if($("input[name=chk]").prop("checked")){
       document.frm.action='ordersSelect.do';}
+    	else {
+    		alert("구매할 상품을 선택해주세요");
+    	}
     }else{
     document.myForm.submit();}
 }
@@ -80,6 +86,7 @@ function mySubmit(index) {
 
 </script>
 </head>
+<body>
 <form name="frm" action="" method="post">
 	<div class="container">
 			<div class="container1">

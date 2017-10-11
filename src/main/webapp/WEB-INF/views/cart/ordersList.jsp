@@ -50,8 +50,20 @@
 	align-items: center;
 }
 </style>
+<script type="text/javascript">
+	window.onload = function() {
+		var sum = 0;
+		var count = frm.goods_price.length;
+		for(var i = 0; i< count; i++){
+			sum += parseInt(frm.goods_price[i].value);
+		}
+		frm.total_sum.value = sum;
+		frm.total_sum1.value = sum;
+	}
+</script>
 </head>
 <body>
+<form name="frm" action="" method="post">
 	<div class="container">
 		<div class="container1">
 			<div class="container1_1">
@@ -75,6 +87,7 @@
 					</tr>
 				<c:if test="${not empty listOrders }">
 				<c:forEach var="cart" items="${listOrders}">
+				<input type="hidden" name="goods_price" value="${cart.goods_price }">
 					<tr>
 						<td>${cart.goods_name}<p>
 							Color : ${cart.goods_color } / Size : ${cart.goods_size }
@@ -221,6 +234,7 @@
 			<input type="submit" value="주문하기"
 								style="width: 100%; height: 100%;" class="btn btn-info">
 		</div>
+</form>
 </body>
 <%@ include file="../footer.jsp"%>
 </html>
