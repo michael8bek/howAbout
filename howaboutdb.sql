@@ -708,7 +708,8 @@ insert into couponlist values(1, now(), '20180101', 'n', 'cp_bronze','moon1214')
 insert into goods values(1,'shirts','short_shirts', 10000, 'polo', 'white', 'office', 0 , 'stripe', 'img001');
 insert into goods values(2, 'skirt','long skirt', 20000, 'nike', 'red', 'nature', 100, 'dot', 'ima002');
 insert into goods values(3, 'skirt','long t-shirt', 39900, 'guess', 'pink', 'nature', 100, 'colour', 'ima003');
-
+INSERT INTO `goods` VALUES ('11','shirts','short_shirts',12345,'adidas','red','nature',50,'stripe','s01.jpg','짱셔츠',1000);
+INSERT INTO `goods` VALUES ('12','shirts','short_shirts',54321,'adidas','blue','nature',500,'stripe','s02.jpg','돌맹이셔츠',12345);
 insert into stock values(1,now(), now(), 'rent', 5, 1 );
 
 show tables;
