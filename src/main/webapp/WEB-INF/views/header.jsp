@@ -127,15 +127,15 @@
 			</div>
 		</div>
 	</nav>
-	<nav class="navbar  navbar-expand-lg navbar-gray bg-gray ">
+<!-- 	<nav class="navbar  navbar-expand-lg navbar-gray bg-gray ">
 		<div class="container">
-			<a class="navbar-brand" href="main.do">MAIN</a>
+ 			<a class="navbar-brand" href="main.do">MAIN</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
-			</button>
+			</button> -->
 			<%-- <div class="collapse navbar-collapse" id="navbarResponsive">
 
 				<ul class="navbar-nav ml-auto">
@@ -198,12 +198,12 @@
 						</div></li>
 
 				</ul>
-			</div> --%>
+			</div> 
 		</div>
-	</nav>
+	</nav>--%>
 
 	<header>
-		<div id="carouselExampleIndicators" class="carousel slide"
+<!-- 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#carouselExampleIndicators" data-slide-to="0"
@@ -212,10 +212,10 @@
 				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			</ol>
 			<div class="carousel-inner" role="listbox">
-				<!-- Slide One - Set the background image for this slide in the line below -->
-				<!-- img size 1900x1080 -->
+				Slide One - Set the background image for this slide in the line below
+				img size 1900x1080
 
-				<!-- Slide Two - Set the background image for this slide in the line below -->
+				Slide Two - Set the background image for this slide in the line below
 				<div class="carousel-item"
 					style="background-image: url('http://88nn.info/uploads/fotos/37/img_359482.jpg')">
 					<div class="carousel-caption d-none d-md-block">
@@ -223,7 +223,7 @@
 						<p>This is a description for the second slide.</p>
 					</div>
 				</div>
-				<!-- Slide Three - Set the background image for this slide in the line below -->
+				Slide Three - Set the background image for this slide in the line below
 				<div class="carousel-item"
 					style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRQrAexCob8coMCirC8mM3sK73lVzo-qSTrgSav59oefGHewVQ')">
 					<div class="carousel-caption d-none d-md-block">
@@ -241,7 +241,7 @@
 				class="carousel-control-next-icon" aria-hidden="true"></span> <span
 				class="sr-only">Next</span>
 			</a>
-		</div>
+		</div> -->
 	</header>
 
 </body>
