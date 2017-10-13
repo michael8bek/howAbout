@@ -77,7 +77,6 @@ function ckeckAll() {
  function mySubmit(index) {
 	  var count = frm.chk.length;
 	  var ck = false;
-	  
 	  for (var i = 0; i < frm.chk.length;i++) {
 		  if (frm.chk[i].checked==true) {
 			  ck = true; break;
@@ -106,18 +105,17 @@ function ckeckAll() {
 	 alert('더이상 줄일수 없습니다.');
 	 num =1;
 	 }
-	 $('#numberUpDown').text(num);
+	 $('#numberUpDown').val(num);
 	 });
 	 $('#increaseQuantity').click(function(e){
 	 e.preventDefault();
 	 var stat = $('#numberUpDown').val();
 	 var num = parseInt(stat,10);
 	 num++;
-
+	 
 	 $('#numberUpDown').val(num);
 	 });
 	 });
-
 </script>
 </head>
 <body>
@@ -146,16 +144,16 @@ function ckeckAll() {
 						<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart }">
 						<c:if test="${cart.goods_qty>0}"> 
+						<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
 							<tr>
 								<td><input type="checkbox" name="chk"
 								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
 								<input type="hidden" name="goods_price" value="${cart.goods_price }">
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
-						  		<a onclick="change(1)" class="goods_qty" id="increaseQuantity">▲</a>
-						  		 <input type="text" id="numberUpDown" name="goods_qty" value="1" style="width: 9%;"> 
-						  		<!-- <span id="numberUpDown">1</span> -->
-						  		<a onclick="change(-1)" class="goods_qty" id="decreaseQuantity" >▼</a>
-									</td>
+						  		<a onclick="" class="goods_qty" id="increaseQuantity">▲</a>
+						  		<input type="text" id="numberUpDown" name="qty" value="1" style="width: 9%;">
+						  		<a onclick="" class="goods_qty" id="decreaseQuantity" >▼</a>
+								</td>
 								<td>${cart.goods_price}</td>
 								<td>${cart.goods_delprice}</td>
 								<td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%; ">바로구매</a><p>

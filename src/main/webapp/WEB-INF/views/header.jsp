@@ -78,7 +78,7 @@
                     	</div>
                     </c:if>
 					<li class="nav-item"><a class="nav-link"
-						href="cartList.do?mem_id=${member.mem_id }">장바구니</a></li>
+						href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">장바구니</a></li>
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
@@ -116,7 +116,7 @@
 							<c:if test="${not empty member }">
 								<a class="dropdown-item" href="logout.do">로그아웃</a>
 							</c:if>
-							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }">주문페이지</a> <a
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">주문페이지</a> <a
 								class="dropdown-item" href="goodsList.do">상품페이지</a> 
 							<c:if test="${empty member }">
 								<a class="dropdown-item" href="joinForm.do">Join page</a>
