@@ -38,11 +38,11 @@
 
 	<div class="content-wrapper">
 	
-		<div class="card mx-auto mt-10 col-lg-10">
+		<div class="card mx-auto mt-10 col-lg-12">
 			<div class="card-header">상품 등록</div>
 			<div class="card-body">
 				<form action="registergoods.do" method="post" id="frm" class="col-lg-12">
-					<table title="상품등록" class="table col-lg-10 dataTable">
+					<table title="상품등록" class="table col-lg-12 dataTable">
 						<tr>
 							<td><input name="goods_id" value="0" hidden="true">
 							<label class="col-lg-4" for="goods_bigc">대분류</label></td><td> <select
