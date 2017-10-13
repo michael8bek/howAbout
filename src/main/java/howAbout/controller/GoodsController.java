@@ -40,4 +40,10 @@ public class GoodsController {
 	public String registerForm() {
 		return "/management/registerForm";
 	}
+	@RequestMapping("goodsMainList")
+	public String goodsMainList(Model model) {
+		List<Goods> list = gs.list();
+		model.addAttribute("list", list);
+		return "main";
+	}
 }
