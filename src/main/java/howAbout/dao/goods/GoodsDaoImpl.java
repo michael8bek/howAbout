@@ -17,5 +17,9 @@ public class GoodsDaoImpl implements GoodsDao {
 	public List<Goods> list() {
 		return sst.selectList("goodsns.list");
 	}
+	@Override
+	public Goods select(int goods_id) {
+		return sst.selectOne("goodsns.select", goods_id);
+	}
 
 }

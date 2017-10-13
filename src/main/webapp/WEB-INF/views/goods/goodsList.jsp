@@ -18,26 +18,30 @@
 			<c:forEach var="goods" items="${list}">
 				<div class="col-lg-4 col-sm-6 portfolio-item">
 					<div class="card h-100">
-						<a href="${goods.goods_id}"><img class="card-img-top"
+						<a href="view.do?goods_id=${goods.goods_id}"><img class="card-img-top" data-toggle="modal"
+							data-target=".bd-example-modal-lg"
 							src="${path}/goodsimages/${goods.goods_img}"></a>
+						   <div class="modal fade bd-example-modal-lg" tabindex="-1"
+							role="dialog" aria-labelledby="myLargeModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<%@ include file="view.jsp"%>
+								</div>
+							</div>
+						</div>
 						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">${goods.goods_name}</a>
-							</h4>
+							<h4 class="card-title">${goods.goods_name}</h4>
 							<p class="card-text">${goods.goods_price-goods.goods_delprice}</p>
-							<p class="card-text"><s>${goods.goods_price}</s></p>
+							<p class="card-text">
+								<s>${goods.goods_price}</s>
+							</p>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
 	</div>
-	<%-- 		<tr>
-			<td>${goods.goods_id}</td>
-			<td><img src="${goods.goods_img}" width="120px" height="100px"></td>
-			<td>${goods.goods_name}</td>
-			<td>${goods.goods_delprice}</td>
-		</tr> --%>
 </body>
 <%@ include file="../footer.jsp"%>
 </html>
