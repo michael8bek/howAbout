@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,10 +18,10 @@
 			<c:forEach var="goods" items="${list}">
 				<div class="col-lg-4 col-sm-6 portfolio-item">
 					<div class="card h-100">
-						<a href="view.do?goods_id=${goods.goods_id}"><img class="card-img-top" data-toggle="modal"
-							data-target=".bd-example-modal-lg"
+						<a href="view.do?goods_id=${goods.goods_id}" data-toggle="modal"
+							data-target=".bd-example-modal-lg"><img class="card-img-top"
 							src="${path}/goodsimages/${goods.goods_img}"></a>
-						   <div class="modal fade bd-example-modal-lg" tabindex="-1"
+						<div class="modal fade bd-example-modal-lg" tabindex="-1"
 							role="dialog" aria-labelledby="myLargeModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
@@ -34,7 +34,7 @@
 							<h4 class="card-title">${goods.goods_name}</h4>
 							<p class="card-text">${goods.goods_price-goods.goods_delprice}</p>
 							<p class="card-text">
-								<s>${goods.goods_price}</s>
+								<del>${goods.goods_price}</del>
 							</p>
 						</div>
 					</div>

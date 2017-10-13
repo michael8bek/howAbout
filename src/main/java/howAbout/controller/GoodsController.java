@@ -32,15 +32,15 @@ public class GoodsController {
 		return "goods/goodsList";
 	}
 
-	@RequestMapping(value="registergoods")
+/*	@RequestMapping(value="registergoods")
 	public String registerGoods(Goods goods,Model model){
 		int result = gs.register(goods);
 		model.addAttribute("result",result);
 		return "redirect:tables.do";
-	}
+	}*/
 	@RequestMapping("view")
 	public String view(int goods_id, Model model) {
-		Goods goods = cs.select(goods_id);
+		Goods goods = gs.select(goods_id);
 		model.addAttribute("goods", goods);
 		return "goods/view";
     }
