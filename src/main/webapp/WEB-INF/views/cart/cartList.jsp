@@ -120,6 +120,7 @@ function ckeckAll() {
      					
 						<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart }">
+						<c:if test="${cart.goods_qty>0}"> 
 							<tr>
 								<td><input type="checkbox" name="chk"
 								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
@@ -137,6 +138,18 @@ function ckeckAll() {
 									${cart.goods_delprice} =
 									${cart.goods_price+cart.goods_delprice}원</th>
 							</tr>
+						</c:if>
+						<c:if test="${cart.goods_qty==0}"> 
+							<tr>
+								<td>&nbsp;&nbsp;&nbsp;${cart.goods_name}<p>
+						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
+									</td>
+								<td colspan="3">
+									재고가없어요 ㅜㅜ
+								</td>
+							</tr>
+							
+						</c:if>
 						</c:forEach>
 						</c:if>
 						<c:if test="${empty listCart }">
