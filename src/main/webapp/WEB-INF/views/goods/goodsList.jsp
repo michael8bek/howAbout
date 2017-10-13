@@ -19,7 +19,7 @@
 				<div class="col-lg-4 col-sm-6 portfolio-item">
 					<div class="card h-100">
 						<a href="${goods.goods_id}"><img class="card-img-top"
-							src="${path}/goodsimages/${goods.goods_img}"></a>
+							src="${path}/resources/images/goods/${goods.goods_img}"></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="#">${goods.goods_name}</a>
