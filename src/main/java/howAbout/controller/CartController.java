@@ -82,6 +82,6 @@ public class CartController {
 		}
 		model.addAttribute("result", result);
 		return "cart/ordersSelect";
-		
+
 	}
 }

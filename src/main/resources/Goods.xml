@@ -11,20 +11,20 @@
 		<result property="goods_color" 		column="goods_color" />
 		<result property="goods_theme" 		column="goods_theme" />
 		<result property="goods_size" 		column="goods_size" />
-		<result property="goods_patternis" 		column="goods_patthernis" />
+		<result property="goods_pat" 		column="goods_pat" />
 		<result property="goods_img" 		column="goods_img" />
 		<result property="goods_name" 		column="goods_name" />
-		<result property="goods_delprice" 		column="goods_delprice" />
+		<result property="goods_delprice" 	column="goods_delprice" />
 	</resultMap>
 <select id="list" resultMap="goodsResult">
 	select * from goods
 </select>
-<insert id="registergoods" parameterType="goods">
-	<selectKey keyProperty="goods_id" resultType="Integer" order="BEFORE">
+<insert id="register" parameterType="goods">
+ 	<selectKey keyProperty="goods_id" resultType="Integer" order="BEFORE">
 		SELECT MAX(goods_id)+1 FROM goods
 	</selectKey>
 		insert into goods values(#{goods_id},#{goods_bigc},#{goods_smc},
-		#{goods_price},#{goods_color},#{goods_theme},#{goods_size},#{goods_patternis},
+		#{goods_price},#{goods_brand},#{goods_color},#{goods_theme},#{goods_size},#{goods_pat},
 		#{goods_img},#{goods_name},#{goods_delprice})
 </insert>
     <select id="select" parameterType="int" resultType="goods">

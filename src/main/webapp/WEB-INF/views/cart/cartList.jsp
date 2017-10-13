@@ -20,7 +20,6 @@
 	justify-content: center;
 	align-items: center;
 }
-
 .container1_2 {
 	float: left;
 	width: 35%;
@@ -30,26 +29,36 @@
 	justify-content: center;
 	align-items: center;
 }
+.goods_qty:hover {
+	cursor:pointer;
+	text-decoration: none;
+}
 </style>
-
 <script type="text/javascript">
 /* 개별 체크박스 클릭시 */
   function itemSum() {
 	var sum =0;
 	var count = frm.chk.length;
-	for (var i = 0; i < count; i++) {
-		if (frm.chk[i].checked == true) {
-			 sum += parseInt(frm.goods_price[i].value); 
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value);
+	} else {
+		for (var i = 0; i < count; i++) {
+			if (frm.chk[i].checked==true) {
+				 sum += parseInt(frm.goods_price[i].value);
+			}
 		}
 	}
 	frm.total_sum.value = sum;
 	 frm.total_sum1.value = sum; 
 }
-  /* 개별 체크박스 클릭시 */
+  /* 전체선택 체크박스 클릭시 */
 function ckeckAll() {
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value);
+	}
 	if ($("#checkbox_1").is(':checked')) {
 			$("input[name=chk]").prop("checked", true);
 		for (var i = 0; i < count; i++) {
@@ -64,26 +73,49 @@ function ckeckAll() {
 		frm.delprice.value="";
 	}
 }  
-
-function mySubmit(index) {
-    if (index == 1) {
-    	if($("input[name=chk]").prop("checked")){
-      document.frm.action='delSelect.do';}
-    	else{
-    		alert("삭제할 상품을 선택해주세요!");
-    	}
-    }
-    else if (index == 2) {
-    	if($("input[name=chk]").prop("checked")){
-      document.frm.action='ordersSelect.do';}
-    	else {
-    		alert("구매할 상품을 선택해주세요");
-    	}
-    }else{
-    document.myForm.submit();}
+  /*선택된 항목 삭제,구매  */
+ function mySubmit(index) {
+	  var count = frm.chk.length;
+	  var ck = false;
+	  for (var i = 0; i < frm.chk.length;i++) {
+		  if (frm.chk[i].checked==true) {
+			  ck = true; break;
+		  }
+	  }
+	  if (count == undefined){
+		  ck=true;
+	  }
+	  if (ck==false) {
+		  alert("선택후 작업하세요");
+		  return false;
+	  }
+      if (index == 1) {
+        document.frm.action='delSelect.do';
+      }else if (index == 2) {
+          document.frm.action='ordersSelect.do';
+      }else{}
 }
-
-
+ $(function(){
+	 $('#decreaseQuantity').click(function(e){
+	 e.preventDefault();
+	 var stat = $('#numberUpDown').val();
+	 var num = parseInt(stat,10);
+	 num--;
+	 if(num<=0){
+	 alert('더이상 줄일수 없습니다.');
+	 num =1;
+	 }
+	 $('#numberUpDown').val(num);
+	 });
+	 $('#increaseQuantity').click(function(e){
+	 e.preventDefault();
+	 var stat = $('#numberUpDown').val();
+	 var num = parseInt(stat,10);
+	 num++;
+	 
+	 $('#numberUpDown').val(num);
+	 });
+	 });
 </script>
 </head>
 <body>
@@ -111,12 +143,17 @@ function mySubmit(index) {
      					
 						<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart }">
+						<c:if test="${cart.goods_qty>0}"> 
+						<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
 							<tr>
 								<td><input type="checkbox" name="chk"
 								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
 								<input type="hidden" name="goods_price" value="${cart.goods_price }">
-						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
-									</td>
+						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
+						  		<a onclick="" class="goods_qty" id="increaseQuantity">▲</a>
+						  		<input type="text" id="numberUpDown" name="qty" value="1" style="width: 11%; text-align: center;">
+						  		<a onclick="" class="goods_qty" id="decreaseQuantity" >▼</a>
+								</td>
 								<td>${cart.goods_price}</td>
 								<td>${cart.goods_delprice}</td>
 								<td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%; ">바로구매</a><p>
@@ -128,6 +165,21 @@ function mySubmit(index) {
 									${cart.goods_delprice} =
 									${cart.goods_price+cart.goods_delprice}원</th>
 							</tr>
+						</c:if>
+						<c:if test="${cart.goods_qty==0}"> 
+							<tr>
+								<td>&nbsp;&nbsp;&nbsp;${cart.goods_name}<p>
+						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
+									</td>
+								<td colspan="2">
+									재고가없어요 ㅜㅜ
+								</td>
+								<td>
+									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
+								</td>
+							</tr>
+							
+						</c:if>
 						</c:forEach>
 						</c:if>
 						<c:if test="${empty listCart }">

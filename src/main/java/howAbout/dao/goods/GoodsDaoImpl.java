@@ -10,7 +10,7 @@ import howAbout.model.Goods;
 
 @Repository
 public class GoodsDaoImpl implements GoodsDao {
-	
+
 	@Autowired
 	private SqlSessionTemplate sst;
 	@Override

@@ -29,7 +29,7 @@
 					class="fa fa-fw fa-table"></i> <span class="nav-link-text">상품리스트</span>
 			</a></li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
-				title="FileUpload"><a class="nav-link" href="registergoods.do"> <i
+				title="FileUpload"><a class="nav-link" href="registerForm.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">상품입력</span>
 			</a></li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"

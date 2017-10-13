@@ -17,40 +17,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import howAbout.model.Goods;
-import howAbout.model.Member;
 import howAbout.service.goods.GoodsService;
 
 @Controller
 public class GoodsController {
 
 	@Autowired
-	private GoodsService cs;
-	
+	private GoodsService gs;
+
 	@RequestMapping("goodsList")
 	public String goodsList(Model model) {
-		List<Goods> list = cs.list();
+		List<Goods> list = gs.list();
 		model.addAttribute("list", list);
 		return "goods/goodsList";
 	}
-	@RequestMapping(value= {"registergoods"}, method=RequestMethod.GET)
-		public String registerGoods(){
-			return "management/fileUpLoad";
-			
-		}
-	
-	@RequestMapping(value="registergoods", method=RequestMethod.POST)
-	public String registerGoods(Goods goods, HttpServletRequest request) throws IOException {
-		if(!goods.getFile1().isEmpty()){		
-			String fname = goods.getFile1().getOriginalFilename();			
-			String path = request.getSession().getServletContext().getRealPath("/admin/upload");
-			String fpath = path + "\\" + fname;
-			
-			FileOutputStream fs = new FileOutputStream(fpath);
-			fs.write(goods.getFile1().getBytes());
-			fs.close();
-			
-			goods.setGoods_img(fname);
-		} 
+
+	@RequestMapping(value="registergoods")
+	public String registerGoods(Goods goods,Model model){
+		int result = gs.register(goods);
+		model.addAttribute("result",result);
 		return "redirect:tables.do";
 	}
 	@RequestMapping("view")
