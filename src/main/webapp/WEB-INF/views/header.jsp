@@ -38,6 +38,16 @@
 </script>
 </head>
 <body>
+<c:if test="${empty member }">
+                    	<a class="btn btn-info" href="loginForm.do" data-toggle="modal" data-target=".bd-example-modal-lg">로그인</a> 
+                    	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    		<div class="modal-dialog modal-lg">
+                    			<div class="modal-content">
+                    				<%@ include file="member/loginForm.jsp" %>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </c:if>
 	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -66,16 +76,7 @@
 					<c:if test="${not empty member.mem_id }">
 						<li class="nav-item nav-link">${member.mem_name }</li>
 					</c:if>
-					<c:if test="${empty member }">
-                    	<a class="btn btn-info" href="loginForm.do" data-toggle="modal" data-target=".bd-example-modal-lg">로그인</a> 
-                    	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    		<div class="modal-dialog modal-lg">
-                    			<div class="modal-content">
-                    				<%@ include file="member/loginForm.jsp" %>
-                    			</div>
-                    		</div>
-                    	</div>
-                    </c:if>
+					
 					<li class="nav-item"><a class="nav-link"
 						href="cartList.do?mem_id=${member.mem_id }">장바구니</a></li>
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>

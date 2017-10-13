@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Member;
 import howAbout.service.member.MemberService;
-import javafx.scene.control.Alert;
 
 @Controller
 public class MemberController {
