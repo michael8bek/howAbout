@@ -56,7 +56,7 @@
 							cellspacing="0">
 							<thead>
 								<tr>
-									<th>상품아이디</th>
+									<th>순번</th>
 									<th>대분류</th>
 									<th>소분류</th>
 									<th>가격</th>
@@ -64,7 +64,7 @@
 									<th>색상</th>
 									<th>테마</th>
 									<th>사이즈</th>
-									<!-- <th>패턴</th> -->
+									<th>패턴</th>
 									<th>사진</th>
 									<th>상품이름</th>
 									<th>배송비</th>
@@ -72,7 +72,7 @@
 							</thead>
 							<tfoot>
 								<tr>
-									<th>상품아이디</th>
+									<th>순번</th>
 									<th>대분류</th>
 									<th>소분류</th>
 									<th>가격</th>
@@ -80,7 +80,7 @@
 									<th>색상</th>
 									<th>테마</th>
 									<th>사이즈</th>
-									<!-- <th>패턴</th> -->
+									<th>패턴</th>
 									<th>사진</th>
 									<th>상품이름</th>
 									<th>배송비</th>
@@ -97,7 +97,7 @@
 										<td>${list.goods_color }</td>
 										<td>${list.goods_theme }</td>
 										<td>${list.goods_size }</td>
-										<%-- <td>${list.goods_pattern }</td> --%>
+										<td>${list.goods_pat }</td>
 										<td>${list.goods_img }</td>
 										<td>${list.goods_name }</td>
 										<td>${list.goods_delprice }</td>

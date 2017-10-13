@@ -210,6 +210,7 @@ a {
 		width: 24%;
 		margin-top: 15px;
 		margin-top: 0.750rem;
+	
 	}
 	.feed_list .feed:nth-child(3), .feed_list .feed:nth-child(4) {
 		margin-top: 0;
