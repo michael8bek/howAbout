@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Goods;
+import howAbout.model.Mdtext;
 import howAbout.model.Member;
 import howAbout.service.goods.GoodsService;
+import howAbout.service.mdtext.MdtextService;
 import howAbout.service.member.MemberService;
 
 @Controller
@@ -20,11 +22,16 @@ public class MemberController {
 	private MemberService ms;
 	@Autowired
 	private GoodsService gs;
+	@Autowired
+	private MdtextService mds;
 	
 	@RequestMapping("main")
 	public String main(Model model) {
 		List<Goods> list = gs.list();
 		model.addAttribute("list", list);
+		
+		List<Mdtext> best = mds.list();
+		model.addAttribute("best",best);
 		return "main";
 	}
 	@RequestMapping("about")
