@@ -151,7 +151,7 @@ function ckeckAll() {
 								<input type="hidden" name="goods_price" value="${cart.goods_price }">
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
 						  		<a onclick="" class="goods_qty" id="increaseQuantity">▲</a>
-						  		<input type="text" id="numberUpDown" name="qty" value="1" style="width: 9%;">
+						  		<input type="text" id="numberUpDown" name="qty" value="1" style="width: 11%; text-align: center;">
 						  		<a onclick="" class="goods_qty" id="decreaseQuantity" >▼</a>
 								</td>
 								<td>${cart.goods_price}</td>
