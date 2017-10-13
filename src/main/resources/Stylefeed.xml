@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stylefeedns">
+	<resultMap type="stylefeed" id="stylefeedResult">
+		<result property="ts_id" column="ts_id" />
+		<result property="ts_content" column="ts_content" />
+		<result property="ts_regdate" column="ts_regdate" />
+		<result property="ts_del" column="ts_del" />
+		<result property="mem_id" column="mem_id" />
+		<result property="mem_name" column="mem_name"/>
+		<result property="ts_readcount" column="ts_readcount" />
+		<result property="ts_img_path" column="ts_img_path"/>
+		<result property="ts_img_name" column="ts_img_name"/>
+	</resultMap>
+	<select id="feedlist" resultMap="stylefeedResult">
+		select * from trendshare where ts_del='n'
+	</select>
+	<insert id="feedWrite" parameterType="stylefeed">
+		insert into trendshare(ts_content,mem_id, mem_name, ts_img_name)
+		values(#{ts_content}, #{mem_id},#{mem_name},#{ts_img_name}) 
+	</insert>
+</mapper>
