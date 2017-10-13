@@ -47,11 +47,14 @@
 	frm.total_sum.value = sum;
 	 frm.total_sum1.value = sum; 
 }
-  /* 개별 체크박스 클릭시 */
+  /* 전체선택 체크박스 클릭시 */
 function ckeckAll() {
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value);
+	}
 	if ($("#checkbox_1").is(':checked')) {
 			$("input[name=chk]").prop("checked", true);
 		for (var i = 0; i < count; i++) {
@@ -67,11 +70,16 @@ function ckeckAll() {
 	}
 }  
  function mySubmit(index) {
+	  var count = frm.chk.length;
 	  var ck = false;
+	  
 	  for (var i = 0; i < frm.chk.length;i++) {
 		  if (frm.chk[i].checked==true) {
 			  ck = true; break;
 		  }
+	  }
+	  if (count == undefined) {
+		  ck=true;
 	  }
 	  if (ck==false) {
 		  alert("선택후 작업하세요");
@@ -81,8 +89,7 @@ function ckeckAll() {
         document.frm.action='delSelect.do';
       }   else if (index == 2) {
           document.frm.action='ordersSelect.do';
-       }  else{
-    document.myForm.submit();}
+       }  else{}
 } 
 
 
@@ -113,6 +120,7 @@ function ckeckAll() {
      					
 						<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart }">
+						<c:if test="${cart.goods_qty>0}"> 
 							<tr>
 								<td><input type="checkbox" name="chk"
 								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
@@ -130,6 +138,18 @@ function ckeckAll() {
 									${cart.goods_delprice} =
 									${cart.goods_price+cart.goods_delprice}원</th>
 							</tr>
+						</c:if>
+						<c:if test="${cart.goods_qty==0}"> 
+							<tr>
+								<td>&nbsp;&nbsp;&nbsp;${cart.goods_name}<p>
+						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
+									</td>
+								<td colspan="3">
+									재고가없어요 ㅜㅜ
+								</td>
+							</tr>
+							
+						</c:if>
 						</c:forEach>
 						</c:if>
 						<c:if test="${empty listCart }">

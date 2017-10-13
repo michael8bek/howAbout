@@ -89,7 +89,7 @@
 				<c:forEach var="cart" items="${listOrders}">
 				<input type="hidden" name="goods_price" value="${cart.goods_price }">
 					<tr>
-						<td>${cart.goods_name}<p>
+						<td>${cart.goods_name}==${cart.goods_qty }<p>
 							Color : ${cart.goods_color } / Size : ${cart.goods_size }
 						</td>
 						<td>${cart.goods_qty }</td>
