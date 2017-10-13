@@ -29,6 +29,7 @@
 </style>
 <script src="resources/js/jquery.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
+<script src="${path}/resources/js/jquery.js"></script>
 
 <!-- Bootstrap core CSS -->
 <script src="resources/css/bootstrap.min.css"></script>
@@ -41,6 +42,7 @@
 </script>
 </head>
 <body>
+
 	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -66,12 +68,19 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 
 				<ul class="navbar-nav ml-auto">
-					<c:if test="${not empty member }">
+					<c:if test="${not empty member.mem_id }">
 						<li class="nav-item nav-link">${member.mem_name }</li>
 					</c:if>
 					<c:if test="${empty member }">
-						<li class="nav-item nav-link">손님</li>
-					</c:if>
+                    	<a class="btn btn-info" href="loginForm.do" data-toggle="modal" data-target=".bd-example-modal-lg">로그인</a> 
+                    	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    		<div class="modal-dialog modal-lg">
+                    			<div class="modal-content">
+                    				<%@ include file="member/loginForm.jsp" %>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </c:if>
 					<li class="nav-item"><a class="nav-link"
 						href="cartList.do?mem_id=${member.mem_id }">장바구니</a></li>
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
@@ -108,16 +117,14 @@
 							Other Pages </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<c:if test="${empty member }">
-								<a class="dropdown-item" href="loginForm.do">로그인</a>
-							</c:if>
 							<c:if test="${not empty member }">
 								<a class="dropdown-item" href="logout.do">로그아웃</a>
 							</c:if>
-							<a class="dropdown-item" href="ordersList.do">주문페이지</a> <a
-								class="dropdown-item" href="goodsList.do">상품페이지</a> <a
-								class="dropdown-item" href="joinForm.do">Join page</a>
-
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }">주문페이지</a> <a
+								class="dropdown-item" href="goodsList.do">상품페이지</a> 
+							<c:if test="${empty member }">
+								<a class="dropdown-item" href="joinForm.do">Join page</a>
+							</c:if>
 							<c:if test="${member.mem_name=='master' }">
 								<a class="dropdown-item" href="indexManage.do">Manager</a>
 							</c:if>

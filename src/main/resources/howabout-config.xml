@@ -10,7 +10,7 @@
 		<typeAlias type="howAbout.model.Orders" alias="orders"/>
 		<typeAlias type="howAbout.model.Mdtext" alias="mdtext"/>
 		<typeAlias type="howAbout.model.Stylefeed" alias="stylefeed"/>
-		
+		<typeAlias type="howAbout.model.Payment" alias="payment"/>
 		<!-- <typeAlias type="howAbout.model.member.Member" alias="member" />
 		<typeAlias type="howAbout.model.cart.Cart" alias="cart"/>
 		<typeAlias type="howAbout.model.goods.Goods" alias="goods"/>
@@ -23,5 +23,6 @@
 		<mapper resource="Stylefeed.xml" />
 		<mapper resource="Orders.xml" />
 		<mapper resource="Mdtext.xml" />
+		<mapper resource="Payment.xml" />
 	</mappers>
 </configuration>
