@@ -40,4 +40,5 @@ public class GoodsController {
 	public String registerForm() {
 		return "/management/registerForm";
 	}
+	
 }

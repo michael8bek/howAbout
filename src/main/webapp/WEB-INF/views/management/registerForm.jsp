@@ -32,23 +32,25 @@
 <!-- Custom styles for this template-->
 <link href="${path}/resources/sbAdmin/css/sb-admin.css" rel="stylesheet">
 </head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<%@ include file="navigation.jsp" %>
 
-
-<body class="bg-dark">
-	<div class="container">
-		<div class="card card-register mx-auto mt-5">
+	<div class="content-wrapper">
+	
+		<div class="card mx-auto mt-10 col-lg-12">
 			<div class="card-header">상품 등록</div>
 			<div class="card-body">
-				<form action="registergoods.do" method="post" id="frm">
-					<table title="상품등록" class="tables">
+				<form action="registergoods.do" method="post" id="frm" class="col-lg-12">
+					<table title="상품등록" class="table col-lg-12 dataTable">
 						<tr>
 							<td><input name="goods_id" value="0" hidden="true">
-							<label for="goods_bigc">대분류</label> <select
-								name="goods_bigc" title="goods_bigc" >
+							<label class="col-lg-4" for="goods_bigc">대분류</label></td><td> <select
+								name="goods_bigc" title="goods_bigc" class="col-lg-6" >
 									<option value="men">남성용</option>
 									<option value="women">여성용</option>
 							</select></td>
-							<td><label for="goods_smc">소분류</label> <select
+							<td><label class="col-lg-4" for="goods_smc">소분류</label> </td><td><select class="col-lg-6"
 								name="goods_smc" title="goods_smc">
 									<option value="shirts">셔츠</option>
 									<option value="suit">정장</option>
@@ -68,16 +70,18 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td><label for="goods_price">가격</label> <input
-								required="required" class="form-control" name="goods_price"
+						
+						 <td ><label class="label col-lg-4" for="goods_price">가격</label></td><td> <input
+								required="required" class="dataTables_filter input form-control col-lg-6" name="goods_price"
 								type="text" placeholder="Enter Price"></td>
-							<td><label for="goods_brand">goods_brand</label> <input
-								required="required" class="form-control" name="goods_brand"
+							<td><label class="col-lg-4" for="goods_brand">브랜드</label></td><td> <input
+								required="required" class="form-control col-lg-6" name="goods_brand"
 								type="text" placeholder="Enter Brand"></td>
+								
 						</tr>
 						<tr>
-							<td><label for="goods_color">goods_color</label> <select
-								name="goods_color" title="goods_color">
+							<td><label class="label col-lg-4" for="goods_color">색상</label> </td><td><select
+								name="goods_color" class="col-lg-6" title="goods_color">
 									<option value="red">빨강</option>
 									<option value="orange">주황</option>
 									<option value="yellow">노랑</option>
@@ -89,8 +93,8 @@
 									<option value="ivory">아이보리</option>
 									<option value="burgundy">버건디</option>
 							</select></td>
-							<td><label for="goods_theme">goods_theme</label> <select
-								name="goods_theme" title="goods_theme">
+							<td><label for="goods_theme" class="col-lg-4">코디테마</label></td><td> <select
+								name="goods_theme"class="col-lg-6" title="goods_theme">
 									<option value="office">직장</option>
 									<option value="student">학생</option>
 									<option value="picnic">소풍</option>
@@ -99,8 +103,8 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td><label for="goods_size">goods_size</label> <select
-								name="goods_size" title="goods_size">
+							<td><label for="goods_size" class="col-lg-4">사이즈</label> </td><td><select
+								name="goods_size" class="col-lg-6" title="goods_size">
 									<option value="0">Free</option>
 									<option value="44">Small(W)</option>
 									<option value="55">Medium(W)</option>
@@ -112,8 +116,8 @@
 									<option value="105">Large(M)</option>
 									<option value="110">X-Large(M)</option>
 							</select></td>
-							<td><label for="goods_pat">goods_pattern</label> <select
-								name="goods_pat" title="goods_pat">
+							<td><label for="goods_pat" class="col-lg-4">패턴</label> </td><td><select
+								name="goods_pat" class="col-lg-6" title="goods_pat">
 									<option value="none">없음</option>
 									<option value="stripe">줄무늬</option>
 									<option value="dots">도트</option>
@@ -122,34 +126,36 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td colspan="2">
+							<td>
 								<!-- <form name="goods_img" name="goods_img" method="post"
-									enctype="multipart/form-data"> --><label for="goods_img">goods_img</label>
-									<input type="file" name="goods_img" >
+									enctype="multipart/form-data"> --><label for="goods_img" class="col-lg-4">이미지</label></td><td colspan="3">
+									<input type="file" class="col-lg-6" name="goods_img" >
 								</form>
 							</td>
 						</tr>
 						<tr>
-							<td><label for="goods_name">상품명</label> <input
-								required="required" class="form-control" name="goods_name"
+							<td><label for="goods_name" class="col-lg-4">상품명</label></td><td> <input 
+								required="required" class="form-control col-lg-6" name="goods_name"
 								type="text" placeholder="Enter Goods name"></td>
-							<td><label for="goods_delprice">배송비</label> <input
-								required="required" class="form-control" name="goods_delprice"
+							<td><label for="goods_delprice" class="col-lg-4">배송비</label></td><td> <input
+								required="required" class="form-control col-lg-6" name="goods_delprice"
 								type="text" placeholder="Enter 배송비"></td>
 						</tr>
 						<!-- 					<a class="btn btn-primary btn-block" href="loginManage.do">Register</a> -->
 					</table>
+					<div class="btn btn-block">
 					<input class="btn btn-primary btn-block" type="submit"
 						value="Register">
+					</div>
 				</form>
-				<div class="text-center">
-					<a class="d-block small mt-3" href="loginManage.do">Login Page</a>
-					<a class="d-block small" href="forgot-password.do">Forgot
-						Password?</a>
-				</div>
 			</div>
 		</div>
 	</div>
+	<footer class="sticky-footer">
+			<div class="text-center">
+				<small><%@ include file="footerText.jsp" %></small>
+			</div>
+	</footer>
 	<!-- Bootstrap core JavaScript-->
 	<script src="${path}/resources/sbAdmin/vendor/jquery/jquery.min.js"></script>
 	<script src="${path}/resources/sbAdmin/vendor/popper/popper.min.js"></script>

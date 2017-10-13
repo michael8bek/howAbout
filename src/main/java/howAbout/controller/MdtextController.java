@@ -23,8 +23,7 @@ public class MdtextController {
 	}
 	@RequestMapping("bestMdtext")
 	public String bestMdtext(Model model) {
-		List<Mdtext> best = mds.best();
-		model.addAttribute("best",best);
+		
 		return "main";
 	}
 }
