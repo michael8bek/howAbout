@@ -55,7 +55,7 @@
 			<h2>NEW ARRIVED</h2>
 
 			<div class="row">
-				<c:forEach var="goods" items="${list }">
+				<c:forEach var="goods" items="${list }" begin="0" end="5" step="1">
 				<div class="col-lg-4 col-sm-6 portfolio-item">
 					<div class="card h-100">
 						<!--img size 700x400 -->

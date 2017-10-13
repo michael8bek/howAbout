@@ -1,5 +1,7 @@
 package howAbout.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,16 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import howAbout.model.Goods;
 import howAbout.model.Member;
+import howAbout.service.goods.GoodsService;
 import howAbout.service.member.MemberService;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService ms;
-
+	@Autowired
+	private GoodsService gs;
+	
 	@RequestMapping("main")
-	public String main() {
+	public String main(Model model) {
+		List<Goods> list = gs.list();
+		model.addAttribute("list", list);
 		return "main";
 	}
 	@RequestMapping("about")
