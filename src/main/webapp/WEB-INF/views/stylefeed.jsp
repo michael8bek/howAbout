@@ -13,6 +13,10 @@
 <!-- <link href="resources/css/bootstrap.min.css" rel="stylesheet"> 
  -->
 <link href="resources/css/overlay.css" type="text/css" rel="stylesheet" />
+<script src="resources/css/bootstrap.min.css"></script>
+
+
+<script src="resources/js/bootstrap.min.js"></script>
 <style type="text/css">
 /*모바일용 css*/
 
