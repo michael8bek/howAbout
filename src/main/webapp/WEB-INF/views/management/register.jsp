@@ -29,9 +29,11 @@
 <link href="${path}/resources/sbAdmin/css/sb-admin.css" rel="stylesheet">
 </head>
 
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<%@ include file="navigation.jsp" %>
 
-<body class="bg-dark">
-  <div class="container">
+	<div class="content-wrapper">
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">Register an Account</div>
       <div class="card-body">
