@@ -29,6 +29,10 @@
 	justify-content: center;
 	align-items: center;
 }
+.goods_qty:hover {
+	cursor:pointer;
+	text-decoration: none;
+}
 </style>
 <script type="text/javascript">
 /* 개별 체크박스 클릭시 */
@@ -69,6 +73,7 @@ function ckeckAll() {
 		frm.delprice.value="";
 	}
 }  
+  /*선택된 항목 삭제,구매  */
  function mySubmit(index) {
 	  var count = frm.chk.length;
 	  var ck = false;
@@ -78,20 +83,40 @@ function ckeckAll() {
 			  ck = true; break;
 		  }
 	  }
-	  if (count == undefined) {
+	  if (count == undefined){
 		  ck=true;
 	  }
 	  if (ck==false) {
 		  alert("선택후 작업하세요");
 		  return false;
-	  } 
+	  }
       if (index == 1) {
         document.frm.action='delSelect.do';
-      }   else if (index == 2) {
+      }else if (index == 2) {
           document.frm.action='ordersSelect.do';
-       }  else{}
-} 
+      }else{}
+}
+ $(function(){
+	 $('#decreaseQuantity').click(function(e){
+	 e.preventDefault();
+	 var stat = $('#numberUpDown').val();
+	 var num = parseInt(stat,10);
+	 num--;
+	 if(num<=0){
+	 alert('더이상 줄일수 없습니다.');
+	 num =1;
+	 }
+	 $('#numberUpDown').text(num);
+	 });
+	 $('#increaseQuantity').click(function(e){
+	 e.preventDefault();
+	 var stat = $('#numberUpDown').val();
+	 var num = parseInt(stat,10);
+	 num++;
 
+	 $('#numberUpDown').val(num);
+	 });
+	 });
 
 </script>
 </head>
@@ -125,7 +150,11 @@ function ckeckAll() {
 								<td><input type="checkbox" name="chk"
 								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
 								<input type="hidden" name="goods_price" value="${cart.goods_price }">
-						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
+						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
+						  		<a onclick="change(1)" class="goods_qty" id="increaseQuantity">▲</a>
+						  		 <input type="text" id="numberUpDown" name="goods_qty" value="1" style="width: 9%;"> 
+						  		<!-- <span id="numberUpDown">1</span> -->
+						  		<a onclick="change(-1)" class="goods_qty" id="decreaseQuantity" >▼</a>
 									</td>
 								<td>${cart.goods_price}</td>
 								<td>${cart.goods_delprice}</td>
@@ -144,8 +173,11 @@ function ckeckAll() {
 								<td>&nbsp;&nbsp;&nbsp;${cart.goods_name}<p>
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
 									</td>
-								<td colspan="3">
+								<td colspan="2">
 									재고가없어요 ㅜㅜ
+								</td>
+								<td>
+									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
 							</tr>
 							
