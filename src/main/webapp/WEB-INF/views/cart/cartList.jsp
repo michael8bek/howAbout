@@ -47,11 +47,14 @@
 	frm.total_sum.value = sum;
 	 frm.total_sum1.value = sum; 
 }
-  /* 개별 체크박스 클릭시 */
+  /* 전체선택 체크박스 클릭시 */
 function ckeckAll() {
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value);
+	}
 	if ($("#checkbox_1").is(':checked')) {
 			$("input[name=chk]").prop("checked", true);
 		for (var i = 0; i < count; i++) {
@@ -67,11 +70,16 @@ function ckeckAll() {
 	}
 }  
  function mySubmit(index) {
+	  var count = frm.chk.length;
 	  var ck = false;
+	  
 	  for (var i = 0; i < frm.chk.length;i++) {
 		  if (frm.chk[i].checked==true) {
 			  ck = true; break;
 		  }
+	  }
+	  if (count == undefined) {
+		  ck=true;
 	  }
 	  if (ck==false) {
 		  alert("선택후 작업하세요");
@@ -81,8 +89,7 @@ function ckeckAll() {
         document.frm.action='delSelect.do';
       }   else if (index == 2) {
           document.frm.action='ordersSelect.do';
-       }  else{
-    document.myForm.submit();}
+       }  else{}
 } 
 
 
