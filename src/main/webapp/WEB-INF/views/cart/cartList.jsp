@@ -35,6 +35,11 @@
 }
 </style>
 <script type="text/javascript">
+	/* var qty = new Array();
+	<c:forEach var="cart1" items="${listCart}" varStatus="status">
+	qty.push("${cart1.goods_qty}");
+	</c:forEach> */
+
 /* 개별 체크박스 클릭시 */
   function itemSum() {
 	var sum =0;
@@ -44,7 +49,8 @@
 	} else {
 		for (var i = 0; i < count; i++) {
 			if (frm.chk[i].checked==true) {
-				 sum += parseInt(frm.goods_price[i].value);
+				 sum += parseInt(frm.goods_price[i].value*frm.qty[i].value);
+				
 			}
 		}
 	}
@@ -52,7 +58,7 @@
 	 frm.total_sum1.value = sum; 
 }
   /* 전체선택 체크박스 클릭시 */
-function ckeckAll() {
+function ckeckAll(index) {
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
@@ -62,7 +68,8 @@ function ckeckAll() {
 	if ($("#checkbox_1").is(':checked')) {
 			$("input[name=chk]").prop("checked", true);
 		for (var i = 0; i < count; i++) {
-			sum += parseInt(frm.goods_price[i].value);
+			sum += parseInt(frm.goods_price[i].value*frm.qty[i].value);
+			 
 		}
 		frm.total_sum.value = sum;
 		 frm.total_sum1.value = sum; 
@@ -70,7 +77,6 @@ function ckeckAll() {
 		$("input[name=chk]").prop("checked", false);
 		frm.total_sum.value ="";		
 		frm.total_sum1.value ="";
-		frm.delprice.value="";
 	}
 }  
   /*선택된 항목 삭제,구매  */
@@ -95,27 +101,34 @@ function ckeckAll() {
           document.frm.action='ordersSelect.do';
       }else{}
 }
- $(function(){
-	 $('#decreaseQuantity').click(function(e){
-	 e.preventDefault();
-	 var stat = $('#numberUpDown').val();
-	 var num = parseInt(stat,10);
-	 num--;
-	 if(num<=0){
-	 alert('더이상 줄일수 없습니다.');
-	 num =1;
-	 }
-	 $('#numberUpDown').val(num);
-	 });
-	 $('#increaseQuantity').click(function(e){
-	 e.preventDefault();
-	 var stat = $('#numberUpDown').val();
-	 var num = parseInt(stat,10);
-	 num++;
-	 
-	 $('#numberUpDown').val(num);
-	 });
-	 });
+ /* 클릭시 수량 변경  */
+function click_count(idx, n) {
+	var num = parseInt($("#numberUpDown" + idx).val(), 10) + n;
+	var num1 = parseInt($("#goods_qty" + idx).val(), 10);
+	if(num<1){
+		alert('더이상 줄일수 없습니다.');
+		num = 1;
+	} else if(num>num1) {
+		alert('더이상 늘릴수 없습니다.');
+		num = num1;
+	}
+	$("#numberUpDown" + idx).val(num);
+
+	var sum =0;
+	var count = frm.chk.length;
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value*frm.qty[i].value);
+	} else {
+		for (var i = 0; i < count; i++) {
+			if (frm.chk[i].checked==true) {
+				 sum += parseInt(frm.goods_price[i].value*frm.qty[i].value);
+				 
+			}
+		}
+	}
+	frm.total_sum.value = sum;
+	frm.total_sum1.value = sum; 
+}
 </script>
 </head>
 <body>
@@ -142,20 +155,21 @@ function ckeckAll() {
 
      					
 						<c:if test="${not empty listCart }">
-						<c:forEach var="cart" items="${listCart }">
+						<c:forEach var="cart" items="${listCart}" varStatus="status">
 						<c:if test="${cart.goods_qty>0}"> 
-						<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
+						<input type="hidden" name="goods_qty${status.count}" value="${cart.goods_qty }" id="goods_qty${status.count}">
+						<input type="hidden" name="goods_price" value="${cart.goods_price}" id="goods_price">
 							<tr>
 								<td><input type="checkbox" name="chk"
 								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
-								<input type="hidden" name="goods_price" value="${cart.goods_price }">
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
-						  		<a onclick="" class="goods_qty" id="increaseQuantity">▲</a>
-						  		<input type="text" id="numberUpDown" name="qty" value="1" style="width: 11%; text-align: center;">
-						  		<a onclick="" class="goods_qty" id="decreaseQuantity" >▼</a>
+						  		<!-- 수량 -->
+						  		<a onclick="click_count(${status.count}, 1)" class="goods_qty" id="">▲</a>
+						  		<input type="text" class="qty1" id="numberUpDown${status.count }" name="qty" value="1" style="width: 11%; text-align: center;">
+						  		<a onclick="click_count(${status.count}, -1)"  class="goods_qty" id="" >▼</a>
 								</td>
 								<td>${cart.goods_price}</td>
-								<td>${cart.goods_delprice}</td>
+								<td><span id="goods_delprice"></span></td>
 								<td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%; ">바로구매</a><p>
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
@@ -210,7 +224,6 @@ function ckeckAll() {
 						</tr>
 					</table>
 					<table class="table table-bordered">
-						<!-- style="margin-top: 5%; border: 5px solid #1993A8;" -->
 						<tr>
 							<th colspan="2">
 							<button onclick="mySubmit(2)" class="btn btn-info" style="width: 100%; height: 100%;">구매하기</button></th>

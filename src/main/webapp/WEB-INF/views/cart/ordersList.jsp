@@ -54,6 +54,9 @@
 	window.onload = function() {
 		var sum = 0;
 		var count = frm.goods_price.length;
+		if (count == undefined) {
+			sum += parseInt(frm.goods_price.value);
+		}
 		for(var i = 0; i< count; i++){
 			sum += parseInt(frm.goods_price[i].value);
 		}
