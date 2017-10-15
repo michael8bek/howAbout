@@ -12,11 +12,11 @@
 
 <!-- <link href="resources/css/bootstrap.min.css" rel="stylesheet">
  -->
-<link href="resources/css/overlay.css" type="text/css" rel="stylesheet" />
-<script src="resources/css/bootstrap.min.css"></script>
+<!-- <script src="resources/css/bootstrap.min.css"></script> -->
+<link href="resources/css/overlay.css" type="text/css" rel="stylesheet" /> 
 
 
-<script src="resources/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 /*모바일용 css*/
 
@@ -25,19 +25,16 @@ body {
 	background-color: #E3E3E3;
 }
 
-.container {
+/* .container {
 	width: 90%;
-}
+} */
 
-.wrap {
+/* .wrap {
 	width: auto;
 	margin: 0 auto;
 	max-width: 1140px;
-}
+} */
 
-.wrap section {
-	box-sizing: border-box;
-}
 /*이벤트 배너 캐러쉘*/
 .carousel {
 	position: relative
@@ -332,7 +329,8 @@ a {
  */
 	bottom: -70%;
 	width: 100%;
-	height: 30%;
+	height: 80px;
+	/* height: 30%; */
 	background:
 		url("https://farm2.staticflickr.com/1506/24777648315_4df8d88375_o.png")
 }
@@ -407,11 +405,10 @@ a {
 	z-index: 1000;
 }
 
-/*피드 상세페이지 새창(modal)*/
+/*피드 상세페이지 새창(overray)*/
 .feed_textarea {
 	width: 100%;
 	height: 400px;
-	border: 1px solid black;
 	padding: 10px;
 }
 
@@ -453,20 +450,17 @@ a {
 	display: flex;
 }
 
-.modal-img-slide {
+/* .modal-img-slide {
 	max-width: 600px;
-}
-
-.modal-img-slide>img {
+} */
+#myOverlay2>img {
 	width: 320px;
 	height: 320px;
 }
 
-.modal-side-position {
-	/* 	margin-right: -355px; */
-	padding-top: 20px;
-	padding-left: 20px;
-	padding-right: 20px;
+.myOberlay2-side-position {
+	padding-left: 10px;
+	padding-right: 10px;
 	padding-bottom: 20px;
 	width: 320px;
 }
@@ -580,10 +574,10 @@ a {
 		display: flex;
 		flex-flow: row wrap;
 	}
-	.modal-img-slide>img {
+/* 	#myOverlay2>img {
 		width: 420px;
 		height: 420px;
-	}
+	} */
 }
 
 /* pc(960px이상)*/
@@ -693,7 +687,6 @@ a {
 		padding: 3.750rem;
 		padding-top: 1.000rem;
 	}
-
 	.feed_list {
 		display: flex;
 		flex-wrap: wrap;
@@ -712,7 +705,7 @@ a {
 	.feed_list .feed:nth-child(-n+4) {
 		margin-top: 0;
 	}
-	.feed_date{
+	.feed_date {
 		font-size: 14px;
 	}
 	.feed_thumbnail {
@@ -825,7 +818,7 @@ a {
 							<div class="feed_writer"
 								style="width: 40%; height: 40px; float: left; margin-left: 5%; font-weight: bold;">${feed.mem_name }</div>
 							<div class="feed_date"
-								style="width: 37%; float: right; height: 40px; margin-right:3%;font-size: 15px;text-align: right;">${feed.ts_regdate }</div>
+								style="width: 20%; float: right; height: 40px; margin-right: 3%; font-size: 15px; text-align: right;">${feed.ts_regdate }</div>
 							<div class="feed_content"
 								style="width: 100%; height: 20%; color: #AAAAAA; float: left;">
 								${feed.ts_content }</div>
@@ -837,14 +830,13 @@ a {
 				</c:forEach>
 			</div>
 		</section>
-			<div class="write_btn">
-				<a class="feedpage" id="overlayTrigger2" href="#myOverlay3"
-					data-overlay-trigger>
-		<c:if test="${not empty member }">
+		<div class="write_btn">
+			<a class="feedpage" id="overlayTrigger2" href="#myOverlay3"
+				data-overlay-trigger> <c:if test="${not empty member }">
 					<button class="btn btn-success">글쓰기</button>
-		</c:if>
-				</a>
-			</div>
+				</c:if>
+			</a>
+		</div>
 	</div>
 
 
@@ -852,21 +844,28 @@ a {
 	<div style="display: none;">
 		<!-- Each overlay needs an id. The aria-labelledby is not required but is best practice -->
 		<div id="myOverlay2" aria-labelledby="myOverlay2Heading"
-			data-overlay-container-class="slide-down" role="region">
-			<div class="modal-img-slide">
-				<img class="feeddetail_img" alt=""
-					src="https://usercontents-c.styleshare.kr/images/22926901/640x640"
-					width="320" height="320">
-			</div>
-			<div class="modal-side-position">
+			data-overlay-container-class="slide-down" role="region" style="width: 320px;">
+			<img class="feeddetail_img" alt=""
+				src="https://usercontents-c.styleshare.kr/images/22926901/640x640"
+				width="320" height="320">
+			<div class="myOverlay2-side-position">
+			
 				<div class="feed_textarea">
 					<div class="feed_detail">
-						<div class="feed_writer_img"
-							style="width: 80px; border-right: 1px solid blue; float: left">작성자
-							사진</div>
-						<div class="feed_writer" style="width: 140px">작성자 이름</div>
+						<div class="feed_writer_info">
+							<div class="feed_writer_img"
+								style="width: 15%; height: 40px; float: left;">
+								<img alt=""
+									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
+									width="100%" height="100%">
+							</div>
+							<div class="feed_writer" style="width: 130px; margin-left: 20%;">작성자
+								이름</div>
+							<div class="feed_date"
+								style="width: 37%; float: right; height: 40px; margin-right: 3%; font-size: 15px; text-align: right;">${feed.ts_regdate }</div>
+						</div>
 						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; border: 1px solid black">피드
+							style="width: 100%; height: 20%; margin-top: 10px; display: flex;">피드
 							작성글 본문</div>
 					</div>
 					<div class="feed_reply"
@@ -874,7 +873,7 @@ a {
 						관련 댓글</div>
 				</div>
 			</div>
-			<div class="modal-body">
+			<div class="#myOverlay2-body">
 				<p>여기는 상품링크??</p>
 			</div>
 		</div>
@@ -929,7 +928,7 @@ a {
 
 
 	<script type="text/javascript" src="resources/js/Overlay.js"></script>
-
+	<script type="text/javascript" src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		/* 이벤트배너 슬라이드 */
 
@@ -1000,6 +999,7 @@ a {
 
 
 </body>
+
 <!-- footer -->
 <%@ include file="footer.jsp"%>
 </html>
