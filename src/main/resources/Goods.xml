@@ -27,5 +27,8 @@
 		#{goods_price},#{goods_brand},#{goods_color},#{goods_theme},#{goods_size},#{goods_pat},
 		#{goods_img},#{goods_name},#{goods_delprice})
 </insert>
+    <select id="select" parameterType="int" resultType="goods">
+        select * from goods where goods_id=#{goods_id}
+    </select>
 
 </mapper>
