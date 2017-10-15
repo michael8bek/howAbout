@@ -16,21 +16,14 @@ public class MdtextController {
 	private MdtextService mds;
 
 	@RequestMapping("listMdtext")
-	public String listMdtext(Model model) {
+	public String mdtext(Model model) {
 		List<Mdtext> list = mds.list();
 		model.addAttribute("list", list);
 		return "md/mdtext";
 	}
 	@RequestMapping("bestMdtext")
 	public String bestMdtext(Model model) {
-		List<Mdtext> best = mds.best();
-		model.addAttribute("best", best);
-		return "md/mdtext";
+		
+		return "main";
 	}
-	/*@RequestMapping("bestMdtext")
-	public String bestMdtext(Model model) {
-		List<Mdtext> best = mds.best();
-		model.addAttribute("best",best);
-		return "md/mdtext";
-	}*/
 }

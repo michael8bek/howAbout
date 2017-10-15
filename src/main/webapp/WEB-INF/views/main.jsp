@@ -50,24 +50,26 @@
 			<!-- /.row -->
 
 			<!-- Portfolio Section -->
-			<h2>Sub Section</h2>
+			<h2>NEW ARRIVED</h2>
 
 			<div class="row">
+				<c:forEach var="goods" items="${list }" begin="0" end="5" step="1">
 				<div class="col-lg-4 col-sm-6 portfolio-item">
 					<div class="card h-100">
 						<!--img size 700x400 -->
 						<a href="#"><img class="card-img-top"
-							src="https://s-media-cache-ak0.pinimg.com/originals/ba/2a/08/ba2a08774da8c13243a8b567d285b006.jpg"
+							src="${path}/resources/images/goods/${goods.goods_img}"
 							alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
-								<a href="#">SUB FIRST</a>
+								<a href="#">${goods.goods_name }</a>
 							</h4>
-							<p class="card-text">SUB FIRST TEXT</p>
+							<p class="card-text">${goods.goods_smc }</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-sm-6 portfolio-item">
+				</c:forEach>
+				<!-- <div class="col-lg-4 col-sm-6 portfolio-item">
 					<div class="card h-100">
 						<a href="#"><img class="card-img-top"
 							src="http://www.dineout.co.in/blog/wp-content/uploads/2017/04/ugesh-sarcar-700x400.jpg"
@@ -131,7 +133,7 @@
 							<p class="card-text">SUB 5TH TEXT</p>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 			<!-- /.row -->

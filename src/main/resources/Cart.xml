@@ -31,4 +31,10 @@
 	select * from cart c, goods g where cart_state='orders' 
 	and mem_id=#{mem_id} and c.goods_id = g.goods_id
 </select>
+<update id="delSelect" parameterType="int">
+	update cart set cart_state='del' where cart_id=#{cart_id}
+</update>
+<update id="ordersSelect" parameterType="int">
+	update cart set cart_state='orders' where cart_id=#{cart_id}
+</update>
 </mapper>

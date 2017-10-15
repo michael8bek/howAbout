@@ -1,7 +1,8 @@
 package howAbout.model;
 
+
 public class Goods {
-	private String goods_id;
+	private int goods_id;
 	private String goods_bigc;
 	private String goods_smc;
 	private int goods_price;
@@ -9,15 +10,15 @@ public class Goods {
 	private String goods_color;
 	private String goods_theme;
 	private int goods_size;
-	private String goods_patthern;
+	private String goods_pat;
 	private String goods_img;
 	private String goods_name;
 	private int goods_delprice;
-
-	public String getGoods_id() {
+	
+	public int getGoods_id() {
 		return goods_id;
 	}
-	public void setGoods_id(String goods_id) {
+	public void setGoods_id(int goods_id) {
 		this.goods_id = goods_id;
 	}
 	public String getGoods_bigc() {
@@ -62,11 +63,11 @@ public class Goods {
 	public void setGoods_size(int goods_size) {
 		this.goods_size = goods_size;
 	}
-	public String getGoods_patthern() {
-		return goods_patthern;
+	public String getGoods_pat() {
+		return goods_pat;
 	}
-	public void setGoods_patthern(String goods_patthern) {
-		this.goods_patthern = goods_patthern;
+	public void setGoods_pat(String goods_pat) {
+		this.goods_pat = goods_pat;
 	}
 	public String getGoods_img() {
 		return goods_img;

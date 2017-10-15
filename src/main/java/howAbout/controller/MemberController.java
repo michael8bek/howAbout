@@ -1,5 +1,7 @@
 package howAbout.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,17 +9,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import howAbout.model.Goods;
+import howAbout.model.Mdtext;
 import howAbout.model.Member;
+import howAbout.service.goods.GoodsService;
+import howAbout.service.mdtext.MdtextService;
 import howAbout.service.member.MemberService;
-import javafx.scene.control.Alert;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private GoodsService gs;
+	@Autowired
+	private MdtextService mds;
 	
 	@RequestMapping("main")
-	public String main() {
+	public String main(Model model) {
+		List<Goods> list = gs.list();
+		model.addAttribute("list", list);
+		
+		List<Mdtext> best = mds.list();
+		model.addAttribute("best",best);
 		return "main";
 	}
 	@RequestMapping("about")
@@ -32,7 +46,7 @@ public class MemberController {
 	public String join(Member member, Model model) {
 		int result = ms.insert(member);
 		model.addAttribute("result", result);
-		return "member/join";		
+		return "member/join";
 	}
 	@RequestMapping("loginForm")
 	public String loginForm() {
@@ -47,7 +61,7 @@ public class MemberController {
 			model.addAttribute("member", mem);
 			session.setAttribute("mem_id", mem.getMem_id());
 			session.setAttribute("member", mem);
-			return "main";
+			return "redirect:main.do";
 		}
 		model.addAttribute("result", result);
 		return "member/login";
@@ -56,5 +70,16 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:main.do";
+	}
+	@RequestMapping("idChk")
+	public String idChk(String mem_id, Model model) {
+		Member member = ms.select(mem_id);
+		String msg = "";
+		if(member == null)
+			msg = "사용가능 합니다.";
+		else
+			msg = "사용중인 아이디입니다.";
+		model.addAttribute("msg", msg);
+		return "member/idChk";
 	}
 }
