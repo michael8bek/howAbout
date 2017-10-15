@@ -42,8 +42,8 @@ public class StylefeedController {
 		//1.피드 이미지 등록	
 		//1-1.이미지 파일 저장
 		
-	//	String realPath = "C:/Users/Administrator/git/howAbout/src/main/webapp/resources/images/feeds/";
-		String realPath = request.getSession().getServletContext().getRealPath("resources/images/feeds/");
+		String realPath = "C:/Git/projects/src/main/webapp/resources/images/feeds/";
+		//String realPath = request.getSession().getServletContext().getRealPath("resources/images/feeds/");
 		/*String savePath = "resources/images/";*/
 		String originalFilename=input_img.getOriginalFilename(); //fileName.jpg
 		String onlyFileName = originalFilename.substring(0,originalFilename.indexOf("."));//fileName*/
