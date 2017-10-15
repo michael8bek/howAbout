@@ -7,18 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-* {
-	margin: 0;
-	padding: 0;
-}
 
+
+
+/* 공통  css*/
 body {
+	margin: 0px;
+	padding: 0px;
 	background-color: #E3E3E3;
 }
-
+/* 
 .container {
 	width: 90%;
-}
+} */
 
 .mypage_header {
 	order: 1;
@@ -60,16 +61,23 @@ body {
 	bottom: 0;
 }
 /*mypage body부분*/
+/* 피드 리스트 section css*/
+.feedlist_section {
+	order: 4;
+	padding: 20px;
+	padding: 1.250rem;
+}
+
 /* 피드 리스트 */
 .feed_imgbox {
 	position: relative;
 	overflow: hidden;
 }
 
-.feed_list img {
+.feed_list .feed-img {
 	width: 100%;
-	max-width: 100%;
-	border-radius: 5px;
+	height: 270px;
+	border-radius: 5px 5px 0px 0px;
 }
 
 .feed_imgbox .caption_box {
@@ -79,12 +87,14 @@ body {
  */
 	bottom: -70%;
 	width: 100%;
-	height: 30%;
+	height: 80px;
+	/* height: 30%; */
 	background:
 		url("https://farm2.staticflickr.com/1506/24777648315_4df8d88375_o.png")
 }
 
 .caption_box .title {
+	color: white;
 	position: absolute;
 	left: 0px;
 	bottom: 30px;
@@ -92,6 +102,7 @@ body {
 	font-size: 18px;
 	font-weight: bold;
 	padding: 10px;
+	position: absolute;
 }
 
 .caption_box .info {
@@ -130,6 +141,10 @@ body {
 	padding: 2%;
 }
 
+.feed_writer_img>img {
+	border-radius: 20px;
+}
+
 .feed .feed_comment {
 	position: relative;
 	height: 100px;
@@ -137,25 +152,67 @@ body {
 	padding: 2%;
 	border-radius: 0px 0px 5px 5px;
 }
+@media all and (max-width:767px) {
+	/*피드 상세페이지 새창(overray)*/
+	#myOverlay2 {
+		max-width: 310px;
+	}
+	.feeddetail_img {
+		width: 100%;
+		height: 310px;
+	}
+	/* 	.feed_detail {
+		width: 100%;
+		height: 25%;
+		display: inline;
+		border-bottom: 1px solid red;
+	}
+	.feed_textarea {
+		width: 100%;
+		height: 400px;
+		padding: 10px;
+	}
+	*/
+	.myOverlay2-side-position {
+		padding: 15px;
+		padding-bottom: 20px;
+		width: 320px;
+	}
+}
 
 /* 태블릿(768px이상)*/
-@media all and ( min-width : 768px) {
+@media all and ( min-width : 768px) and (max-width:991px) {
 	/* 피드 리스트 section css*/
 	.feedlist_section {
 		order: 4;
 		padding: 40px;
 		padding: 2.500rem;
+		padding-top: 1.000rem;
 	}
 	.feed_list {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: baseline;
 	}
 	.feed_list .feed {
-		width: 49%;
+		width: 49.2%;
+		/* min-width:300px; */
+		height: 500px;
+		margin-left: 1.6%;
+		/* 		margin-left: 1.000rem; */
 	}
-	.feed_list .feed:nth-child(2) {
+	.feed_list .feed:nth-child(2n-1) {
+		margin-left: 0px;
+		margin-left: 0rem;
+	}
+	.feed_list .feed:nth-child(-n+2) {
 		margin-top: 0;
+	}
+	.feed .feed_imgbox {
+		width: 100%;
+	}
+	.feed_list .feed-img {
+		width: 100%;
 	}
 	.feed_thumbnail {
 		margin-top: 0.25rem;
@@ -166,23 +223,51 @@ body {
 		width: 100%;
 		height: 120px;
 	}
+
+	/*피드 상세페이지*/
+	#myOverlay2 {
+		max-width: 700px;
+	}
+	.overlay-content {
+		display: flex;
+	}
+	.feeddetail_img {
+		width: 350px;
+		height: 350px;
+	}
+	.myOverlay2-side-position {
+		padding: 15px;
+		padding-bottom: 20px;
+		width: 320px;
+	}
 }
 
+
 /* pc(960px이상)*/
-@media all and ( min-width : 992px) {
+@media all and ( min-width : 992px) and ( max-width:1199px) {
 	/* 피드 리스트 section css*/
-	.mypage_body {
+	.feedlist_section {
 		order: 4;
 		padding: 60px;
 		padding: 3.750rem;
 		padding-top: 1.000rem;
 	}
+	.feed_list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: baseline;
+	}
 	.feed_list .feed {
-		width: 32%;
+		width: 32.3%;
 		margin-top: 15px;
 		margin-top: 0.750rem;
+		margin-left: 1.5%;
 	}
-	.feed_list .feed:nth-child(2), .feed_list .feed:nth-child(3) {
+	.feed_list .feed:nth-child(3n-2) {
+		margin-left: 0px;
+		margin-left: 0rem;
+	}
+	.feed_list .feed:nth-child(-n+3) {
 		margin-top: 0;
 	}
 	.feed_thumbnail {
@@ -193,24 +278,53 @@ body {
 	.feed .feed_comment {
 		width: 100%;
 		height: 150px;
+	}
+	/*피드 상세페이지*/
+	#myOverlay2 {
+		max-width: 700px;
+	}
+	.overlay-content {
+		display: flex;
+	}
+	.feeddetail_img {
+		width: 350px;
+		height: 350px;
+	}
+	.myOverlay2-side-position {
+		padding: 15px;
+		padding-bottom: 20px;
+		width: 320px;
 	}
 }
 /* pc 큰화면(1200px이상) */
 @media all and ( min-width : 1200px) {
 	/* 피드 리스트 section css*/
-	.mypage_body {
+	.feedlist_section {
 		order: 4;
 		padding: 60px;
 		padding: 3.750rem;
 		padding-top: 1.000rem;
 	}
+	.feed_list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: baseline;
+	}
 	.feed_list .feed {
-		width: 24%;
+		width: 23.8%;
 		margin-top: 15px;
 		margin-top: 0.750rem;
+		margin-left: 1.5%;
 	}
-	.feed_list .feed:nth-child(4) {
+	.feed_list .feed:nth-child(4n-3) {
+		margin-left: 0px;
+		margin-left: 0rem;
+	}
+	.feed_list .feed:nth-child(-n+4) {
 		margin-top: 0;
+	}
+	.feed_date {
+		font-size: 14px;
 	}
 	.feed_thumbnail {
 		margin-top: 0.25rem;
@@ -220,6 +334,22 @@ body {
 	.feed .feed_comment {
 		width: 100%;
 		height: 150px;
+	}
+	/*피드 상세페이지*/
+	#myOverlay2 {
+		max-width: 700px;
+	}
+	.overlay-content {
+		display: flex;
+	}
+	.feeddetail_img {
+		width: 350px;
+		height: 350px;
+	}
+	.myOverlay2-side-position {
+		padding: 15px;
+		padding-bottom: 20px;
+		width: 320px;
 	}
 }
 </style>
@@ -236,25 +366,32 @@ body {
 				<div class="mypage_header_right"></div>
 			</div>
 		</section>
-		<section class="mypage_body">
+		<section class="feedlist_section">
 			<div class="feed_list">
 				<c:forEach var="feed" items="${list }">
 					<div class="feed">
 						<div class="feed_imgbox">
-							<a class="feedpage" id="overlayTrigger2" href="#myOverlay2"
-								data-overlay-trigger><img class="card-img-top"
-								src="https://usercontents-c.styleshare.kr/images/22835340/440x440"
-								alt=""> <!-- 이미지 캡션 --> <span class="caption_box">
-									<span class="title">좋아요/공유/</span> <span class="info">캡션
-										내용</span>
+							<a class="feedpage" id="overlayTrigger2" data-seq="${feed.ts_id }"
+								data-overlay-trigger="myOverlay2"><img class="feed-img"
+								src="${feed.ts_img_path}${feed.ts_img_name}" alt=""> <!-- 이미지 캡션 -->
+								<span class="caption_box"> <span class="title">좋아요/공유/</span>
+									<span class="info">캡션 내용</span>
+							
 							</span> </a>
 						</div>
-						<div class="feed_thumbnail">
-							<div class="feed_writer_img" style="width: 80px; float: left">사진</div>
-							<div class="feed_writer"
-								style="width: 140px; height: 40px; margin-left: 80px; font-weight: bold;">${feed.mem_id }</div>
+						<div class="feed_thumbnail" style="flex: auto;">
+							<div class="feed_writer_img"
+								style="width: 15%; height: 40px; float: left;">
+								<img alt=""
+									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
+									width="100%" height="100%">
+							</div>
+							<div class="feed_writer" 
+								style="display: inline-block;float: left; margin-left: 5%; cursor:pointer ;font-weight: bold;" data-writer="${feed.mem_id }">${feed.mem_name }</div>
+							<div class="feed_date"
+								style="float: right; height: 40px; margin-right: 10px; font-size: 15px; text-align: right;">${feed.ts_regdate }</div>
 							<div class="feed_content"
-								style="width: 100%; height: 20%; color: #AAAAAA">
+								style="width: 100%; height: 20%; color: #AAAAAA; float: left;">
 								${feed.ts_content }</div>
 						</div>
 						<div class="feed_comment">

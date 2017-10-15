@@ -14,10 +14,16 @@
 		<result property="ts_img_name" column="ts_img_name"/>
 	</resultMap>
 	<select id="feedlist" resultMap="stylefeedResult">
-		select * from trendshare where ts_del='n'
+		select * from trendshare where ts_del='n' order by ts_regdate desc
+	</select>
+	<select id="myfeedlist" parameterType="String" resultMap="stylefeedResult">
+		select * from trendshare where ts_del='n'and mem_id=#{mem_id} order by ts_regdate desc
 	</select>
 	<insert id="feedWrite" parameterType="stylefeed">
 		insert into trendshare(ts_content,mem_id, mem_name, ts_img_name)
 		values(#{ts_content}, #{mem_id},#{mem_name},#{ts_img_name}) 
 	</insert>
+	<select id="feedDetail" parameterType="stylefeed" resultMap="stylefeedResult">
+		select * from trendshare where ts_del='n' and ts_id=#{ts_id}
+	</select>
 </mapper>
