@@ -148,7 +148,15 @@ function click_count(idx, n) {
  		  }
  	  }
  	  if (count == undefined){
- 		  ck=true;
+ 		 if (index == 1){
+ 	         document.frm.action='delSelect.do';
+ 		 }
+ 		 else if (index == 2){
+ 	         document.frm.action='ordersSelect.do';
+ 	 	 }else if (index == 3){
+ 	   		document.frm.action='buyOne.do?cart_id='+frm.chk.value+'&goods_qty='+frm.goods_qty.value;
+	     }
+ 		 ck = true;
  	  }
  	  if (ck==false) {
  		  alert("선택후 작업하세요");
@@ -159,7 +167,6 @@ function click_count(idx, n) {
        }else if (index == 2){
          document.frm.action='ordersSelect.do';
    	  }else if (index == 3){
-   		  alert(frm.goods_qty[num].value);
    		document.frm.action='buyOne.do?cart_id='+frm.chk[num].value+'&goods_qty='+frm.goods_qty[num].value;
    	  }else{}
        
@@ -213,11 +220,11 @@ function click_count(idx, n) {
 								</td>
 								
 							</tr>
-							<tr style="text-align:right;">
+							<%-- <tr style="text-align:right;">
 								<th colspan="4" style="text-align:right;">상품 ${cart.goods_price}원 + 배송
 									${cart.goods_delprice} =
 									${cart.goods_price+cart.goods_delprice}원</th>
-							</tr>
+							</tr> --%>
 						</c:if>
 						<c:if test="${cart.goods_qty==0}"> 
 							<tr>
