@@ -10,4 +10,6 @@ public interface GoodsService {
 
 	Goods select(int goods_id);
 
+	int register(Goods goods);
+
 }

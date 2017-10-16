@@ -31,17 +31,22 @@ public class GoodsController {
 		model.addAttribute("list", list);
 		return "goods/goodsList";
 	}
-
-/*	@RequestMapping(value="registergoods")
+	/*관리자페이지에서 상품등록*/
+	@RequestMapping(value="registergoods")
 	public String registerGoods(Goods goods,Model model){
 		int result = gs.register(goods);
 		model.addAttribute("result",result);
 		return "redirect:tables.do";
-	}*/
+	}
 	@RequestMapping("view")
 	public String view(int goods_id, Model model) {
 		Goods goods = gs.select(goods_id);
 		model.addAttribute("goods", goods);
 		return "goods/view";
     }
+	/*상품등록 폼*/
+	@RequestMapping("registerForm")
+	public String registerForm() {
+		return "/management/registerForm";
+	}
 }

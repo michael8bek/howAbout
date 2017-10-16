@@ -10,4 +10,6 @@ public interface GoodsDao {
 
 	Goods select(int goods_id);
 
+	int register(Goods goods);
+
 }
