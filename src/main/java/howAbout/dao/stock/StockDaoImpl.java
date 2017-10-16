@@ -1,0 +1,26 @@
+package howAbout.dao.stock;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import howAbout.model.Stock;
+
+@Repository
+public class StockDaoImpl implements StockDao {
+	@Autowired
+	private SqlSessionTemplate sst;
+
+	@Override
+	public int register(Stock stock) {
+		return sst.insert("stockns.register", stock);
+	}
+
+	@Override
+	public List<Stock> stockList() {
+		return sst.selectList("stockns.stockList");
+	}
+	
+}

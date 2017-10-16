@@ -68,6 +68,7 @@
 									<th>사진</th>
 									<th>상품이름</th>
 									<th>배송비</th>
+									<th>재고수량</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -84,6 +85,7 @@
 									<th>사진</th>
 									<th>상품이름</th>
 									<th>배송비</th>
+									<th>재고수량</th>
 								</tr>
 							</tfoot>
 							<tbody>
@@ -101,6 +103,11 @@
 										<td>${list.goods_img }</td>
 										<td>${list.goods_name }</td>
 										<td>${list.goods_delprice }</td>
+										<c:forEach var="stockList" items="${stockList }">
+										<c:if test="${list.goods_id} == ${stockList.goods_id }">
+											<td>${stockList.stock_qty }</td>
+										</c:if>
+										</c:forEach>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -108,7 +115,7 @@
 					</div>
 				</div>
 				<div class="card-footer small text-muted">
-					Update DATA :  <span id="dateInfo"></span>
+					Update DATA : <span id="dateInfo"></span>
 				</div>
 			</div>
 		</div>

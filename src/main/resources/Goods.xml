@@ -2,33 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="goodsns">
-	<resultMap type="goods" 			id="goodsResult">
-		<result property="goods_id" 	column="goods_id" />
-		<result property="goods_bigc" 	column="goods_bigc" />
-		<result property="goods_smc" 		column="goods_smc" />
-		<result property="goods_price" 		column="goods_price" />
-		<result property="goods_brand" 		column="goods_brand" />
-		<result property="goods_color" 		column="goods_color" />
-		<result property="goods_theme" 		column="goods_theme" />
-		<result property="goods_size" 		column="goods_size" />
-		<result property="goods_pat" 		column="goods_pat" />
-		<result property="goods_img" 		column="goods_img" />
-		<result property="goods_name" 		column="goods_name" />
-		<result property="goods_delprice" 	column="goods_delprice" />
+	<resultMap type="goods" id="goodsResult">
+		<result property="goods_id" column="goods_id" />
+		<result property="goods_bigc" column="goods_bigc" />
+		<result property="goods_smc" column="goods_smc" />
+		<result property="goods_price" column="goods_price" />
+		<result property="goods_brand" column="goods_brand" />
+		<result property="goods_color" column="goods_color" />
+		<result property="goods_theme" column="goods_theme" />
+		<result property="goods_size" column="goods_size" />
+		<result property="goods_pat" column="goods_pat" />
+		<result property="goods_img" column="goods_img" />
+		<result property="goods_name" column="goods_name" />
+		<result property="goods_delprice" column="goods_delprice" />
+		<!-- <result property="stock_qty" column="stock_qty" /> -->
 	</resultMap>
-<select id="list" resultMap="goodsResult">
-	select * from goods
-</select>
-<insert id="register" parameterType="goods">
- 	<selectKey keyProperty="goods_id" resultType="Integer" order="BEFORE">
-		SELECT MAX(goods_id)+1 FROM goods
-	</selectKey>
+	<!-- <select id="list" resultMap="goodsResult">
+		select * from goods, stock where goods.goods_id = stock.goods_id;
+	</select> -->
+	<select id="list" resultMap="goodsResult">
+		select * from goods
+	</select>
+	<insert id="register" parameterType="goods">
+		<selectKey keyProperty="goods_id" resultType="Integer"
+			order="BEFORE">
+			SELECT MAX(goods_id)+1 FROM goods
+		</selectKey>
 		insert into goods values(#{goods_id},#{goods_bigc},#{goods_smc},
 		#{goods_price},#{goods_brand},#{goods_color},#{goods_theme},#{goods_size},#{goods_pat},
 		#{goods_img},#{goods_name},#{goods_delprice})
-</insert>
-    <select id="select" parameterType="int" resultType="goods">
-        select * from goods where goods_id=#{goods_id}
-    </select>
+
+	</insert>
+	<select id="select" parameterType="int" resultType="goods">
+		select * from goods where goods_id=#{goods_id}
+	</select>
 
 </mapper>

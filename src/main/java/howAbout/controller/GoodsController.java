@@ -1,29 +1,24 @@
 package howAbout.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOError;
-import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import howAbout.model.Goods;
+import howAbout.model.Stock;
 import howAbout.service.goods.GoodsService;
-
+import howAbout.service.stock.StockService;
+/*상품, 제고 컨트롤러*/
 @Controller
 public class GoodsController {
 
 	@Autowired
 	private GoodsService gs;
+	@Autowired
+	private StockService ss;
 
 	@RequestMapping("goodsList")
 	public String goodsList(Model model) {
@@ -33,9 +28,11 @@ public class GoodsController {
 	}
 	/*관리자페이지에서 상품등록*/
 	@RequestMapping(value="registergoods")
-	public String registerGoods(Goods goods,Model model){
+	public String registerGoods(Goods goods, Stock stock,Model model){
 		int result = gs.register(goods);
 		model.addAttribute("result",result);
+		int regStock = ss.register(stock);
+		model.addAttribute("regStrock", regStock);
 		return "redirect:tables.do";
 	}
 	@RequestMapping("view")
