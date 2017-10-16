@@ -54,8 +54,8 @@ public class ManageController {
 	@RequestMapping("tables")
 	public String tables(Model model) {
 		List<Goods> listGoods = cs.list();
-		model.addAttribute("list", listGoods);
 		List<Stock> stockList = ss.stockList();
+		model.addAttribute("list", listGoods);
 		model.addAttribute("stockList", stockList);
 		return "/management/tables";
 	}

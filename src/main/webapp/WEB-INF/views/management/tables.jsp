@@ -69,6 +69,7 @@
 									<th>상품이름</th>
 									<th>배송비</th>
 									<th>재고수량</th>
+									<th>유형</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -86,6 +87,7 @@
 									<th>상품이름</th>
 									<th>배송비</th>
 									<th>재고수량</th>
+									<th>유형</th>
 								</tr>
 							</tfoot>
 							<tbody>
@@ -104,9 +106,11 @@
 										<td>${list.goods_name }</td>
 										<td>${list.goods_delprice }</td>
 										<c:forEach var="stockList" items="${stockList }">
-										<c:if test="${list.goods_id} == ${stockList.goods_id }">
-											<td>${stockList.stock_qty }</td>
-										</c:if>
+
+											<c:if test="${list.goods_id==stockList.goods_id }">
+												<td>${stockList.stock_qty }</td>
+												<td>${stockList.stock_sale }</td>
+											</c:if>
 										</c:forEach>
 									</tr>
 								</c:forEach>
