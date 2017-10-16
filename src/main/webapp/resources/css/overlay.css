@@ -32,6 +32,7 @@ body.overlay-visible  {
   -webkit-transition: opacity 0.5s;
   opacity: 0;
 }
+
 #overlayContainer #overlayFrame {
   position: relative;
   display: inline-block;
@@ -40,7 +41,7 @@ body.overlay-visible  {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  padding: 16px;
+  /* padding: 16px; */
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
