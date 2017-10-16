@@ -12,28 +12,36 @@
 
 <!-- <link href="resources/css/bootstrap.min.css" rel="stylesheet">
  -->
+<!-- <script src="resources/css/bootstrap.min.css"></script> -->
 <link href="resources/css/overlay.css" type="text/css" rel="stylesheet" />
+
+
+
 <style type="text/css">
 /*모바일용 css*/
 
 /* 공통  css*/
 body {
+	margin: 0px;
+	padding: 0px;
 	background-color: #E3E3E3;
 }
-
-.container {
-	width: 90%;
+textarea{
+	vertical-align: middle;
+	font-size: 1em;
+	color: #333;
 }
 
-.wrap {
+/* .container {
+	width: 90%;
+} */
+
+/* .wrap {
 	width: auto;
 	margin: 0 auto;
 	max-width: 1140px;
-}
+} */
 
-.wrap section {
-	box-sizing: border-box;
-}
 /*이벤트 배너 캐러쉘*/
 .carousel {
 	position: relative
@@ -328,7 +336,8 @@ a {
  */
 	bottom: -70%;
 	width: 100%;
-	height: 30%;
+	height: 80px;
+	/* height: 30%; */
 	background:
 		url("https://farm2.staticflickr.com/1506/24777648315_4df8d88375_o.png")
 }
@@ -403,70 +412,38 @@ a {
 	z-index: 1000;
 }
 
-/*피드 상세페이지 새창(modal)*/
-.feed_textarea {
-	width: 100%;
-	height: 400px;
-	border: 1px solid black;
-	padding: 10px;
+/*피드 글쓰기 창(#myOverlay3)*/
+#myOverlay3 {
+	width: 600px;
 }
 
-.feed_detail {
-	width: 100%;
-	height: 25%;
-	display: inline;
-	border-bottom: 1px solid red;
+@media all and (max-width:767px) {
+	/*피드 상세페이지 새창(overray)*/
+	#myOverlay2 {
+		max-width: 310px;
+	}
+	.feeddetail_img {
+		width: 100%;
+		height: 310px;
+	}
+	/* 	.feed_detail {
+		width: 100%;
+		height: 25%;
+		display: inline;
+		border-bottom: 1px solid red;
+	}
+	.feed_textarea {
+		width: 100%;
+		height: 400px;
+		padding: 10px;
+	}
+	*/
+	.myOverlay2-side-position {
+		padding: 15px;
+		padding-bottom: 20px;
+		width: 320px;
+	}
 }
-
-#overlayContainer #overlayFrame {
-	/* 	width: 370px; */
-	margin: 5px;
-	position: relative;
-	display: inline-block;
-	vertical-align: middle;
-	background-color: #F5F5F5;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	padding: 0;
-	border-radius: 8px;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	box-shadow: 0 0 16px #000000;
-	-moz-box-shadow: 0 0 16px #000000;
-	-webkit-box-shadow: 0 0 16px #000000;
-	text-align: left;
-	transition: top 0.5s, left 0.5s;
-	-moz-transition: top 0.5s, left 0.5s;
-	-webkit-transition: top 0.5s, left 0.5s;
-	outline: none;
-	position: relative;
-	position: relative;
-}
-
-#myOverlay2 {
-	flex-flow: column nowrap;
-	display: flex;
-}
-
-.modal-img-slide {
-	max-width: 600px;
-}
-
-.modal-img-slide>img {
-	width: 320px;
-	height: 320px;
-}
-
-.modal-side-position {
-	/* 	margin-right: -355px; */
-	padding-top: 20px;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-bottom: 20px;
-	width: 320px;
-}
-
 /* 태블릿(768px이상)*/
 @media all and ( min-width : 768px) and (max-width:991px) {
 	/*이벤트 배너 캐러쉘*/
@@ -567,23 +544,24 @@ a {
 		height: 120px;
 	}
 
-	/*피드 상세페이지(modal)*/
-	/* 	#overlayContainer #overlayFrame {
-		width: 740px;
-	} */
+	/*피드 상세페이지*/
 	#myOverlay2 {
-		position: relative;
+		max-width: 700px;
 		display: flex;
-		flex-flow: row wrap;
 	}
-	.modal-img-slide>img {
-		width: 420px;
-		height: 420px;
+	.feeddetail_img {
+		width: 350px;
+		height: 350px;
+	}
+	.myOverlay2-side-position {
+		padding: 15px;
+		padding-bottom: 20px;
+		width: 320px;
 	}
 }
 
 /* pc(960px이상)*/
-@media all and ( min-width : 992px) and (max-width:1199px) {
+@media all and ( min-width : 992px) and ( max-width:1199px) {
 	/*이벤트 배너 캐러쉘 section*/
 	.event_slide {
 		order: 1;
@@ -649,6 +627,20 @@ a {
 		width: 100%;
 		height: 150px;
 	}
+	/*피드 상세페이지*/
+	#myOverlay2 {
+		max-width: 700px;
+		display: flex;
+	}
+	.feeddetail_img {
+		width: 350px;
+		height: 350px;
+	}
+	.myOverlay2-side-position {
+		padding: 15px;
+		padding-bottom: 20px;
+		width: 320px;
+	}
 }
 /* pc 큰화면(1200px이상) */
 @media all and ( min-width : 1200px) {
@@ -689,7 +681,6 @@ a {
 		padding: 3.750rem;
 		padding-top: 1.000rem;
 	}
-
 	.feed_list {
 		display: flex;
 		flex-wrap: wrap;
@@ -708,7 +699,7 @@ a {
 	.feed_list .feed:nth-child(-n+4) {
 		margin-top: 0;
 	}
-	.feed_date{
+	.feed_date {
 		font-size: 14px;
 	}
 	.feed_thumbnail {
@@ -719,6 +710,20 @@ a {
 	.feed .feed_comment {
 		width: 100%;
 		height: 150px;
+	}
+	/*피드 상세페이지*/
+	#myOverlay2 {
+		max-width: 700px;
+		display: flex;
+	}
+	.feeddetail_img {
+		width: 350px;
+		height: 350px;
+	}
+	.myOverlay2-side-position {
+		padding: 15px;
+		padding-bottom: 20px;
+		width: 320px;
 	}
 }
 </style>
@@ -800,28 +805,32 @@ a {
 					style="font-weight: bold; font-size: 20px; margin-bottom: 1.000rem;">최신
 					트렌드</p>
 			</div>
+			<%-- onclick="location.href='feeddetail.do?mem_id=${feed.mem_id}'" --%>
 			<div class="feed_list">
 				<c:forEach var="feed" items="${list }">
 					<div class="feed">
 						<div class="feed_imgbox">
-							<a class="feedpage" id="overlayTrigger2" href="#myOverlay2"
-								data-overlay-trigger><img class="feed-img"
-								src="${feed.ts_img_path}${feed.ts_img_name}" alt=""> <!-- 이미지 캡션 -->
-								<span class="caption_box"> <span class="title">좋아요/공유/</span>
-									<span class="info">캡션 내용</span>
-							</span> </a>
+							<a class="feedpage" id="overlayTrigger2"
+								data-seq="${feed.ts_id }" data-overlay-trigger="myOverlay2"><img
+								class="feed-img" src="${feed.ts_img_path}${feed.ts_img_name}"
+								alt=""> <!-- 이미지 캡션 -->
+							</a>
+							<div class="caption_box">
+								<span class="title">좋아요/공유/</span> <span class="info">캡션내용</span>
+							</div> 
 						</div>
 						<div class="feed_thumbnail" style="flex: auto;">
 							<div class="feed_writer_img"
-								style="width: 15%; height: 40px; float: left;">
+								style="width: 40px; height: 40px; float: left;">
 								<img alt=""
 									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
 									width="100%" height="100%">
 							</div>
 							<div class="feed_writer"
-								style="width: 40%; height: 40px; float: left; margin-left: 5%; font-weight: bold;">${feed.mem_name }</div>
+								style="display: inline-block; float: left; margin-left: 5%; cursor: pointer; font-weight: bold;"
+								data-writer="${feed.mem_id }">${feed.mem_name }</div>
 							<div class="feed_date"
-								style="width: 37%; float: right; height: 40px; margin-right:3%;font-size: 15px;text-align: right;">${feed.ts_regdate }</div>
+								style="float: right; height: 40px; margin-right: 10px; font-size: 15px; text-align: right;">${feed.ts_regdate }</div>
 							<div class="feed_content"
 								style="width: 100%; height: 20%; color: #AAAAAA; float: left;">
 								${feed.ts_content }</div>
@@ -833,14 +842,13 @@ a {
 				</c:forEach>
 			</div>
 		</section>
-			<div class="write_btn">
-				<a class="feedpage" id="overlayTrigger2" href="#myOverlay3"
-					data-overlay-trigger>
-		<c:if test="${not empty member }">
+		<div class="write_btn">
+			<a class="feedwrite" id="overlayTrigger2" href="#myOverlay3"
+				data-overlay-trigger> <c:if test="${not empty member }">
 					<button class="btn btn-success">글쓰기</button>
-		</c:if>
-				</a>
-			</div>
+				</c:if>
+			</a>
+		</div>
 	</div>
 
 
@@ -849,37 +857,45 @@ a {
 		<!-- Each overlay needs an id. The aria-labelledby is not required but is best practice -->
 		<div id="myOverlay2" aria-labelledby="myOverlay2Heading"
 			data-overlay-container-class="slide-down" role="region">
-			<div class="modal-img-slide">
-				<img class="feeddetail_img" alt=""
-					src="https://usercontents-c.styleshare.kr/images/22926901/640x640"
-					width="320" height="320">
-			</div>
-			<div class="modal-side-position">
+			<img class="feeddetail_img" id="ts_img" alt="" src="">
+			<div class="myOverlay2-side-position">
 				<div class="feed_textarea">
 					<div class="feed_detail">
-						<div class="feed_writer_img"
-							style="width: 80px; border-right: 1px solid blue; float: left">작성자
-							사진</div>
-						<div class="feed_writer" style="width: 140px">작성자 이름</div>
-						<div class="feed_content"
-							style="width: 100%; height: 20%; margin-top: 10px; border: 1px solid black">피드
-							작성글 본문</div>
+						<div class="feed_writer_info" style="display: flex;">
+							<div class="feed_writer_img"
+								style="width: 40px; height: 40px; float: left;">
+								<img alt=""
+									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
+									width="100%" height="100%">
+							</div>
+							<div class="feed_writer" id="feed_writer"
+								style="display: inline-block; font-weight: bold; cursor: pointer; margin-left: 20px;"
+								data-writer="">
+								<!-- 								<div class="feed_writer" id ="feed_writer" style="width: 130px; margin-left: 20px; font-weight: bold;" data-writer=""> -->
+							</div>
+							<div class="feed_date" id="ts_regdate"
+								style="width: 37%; float: right; height: 40px; margin-left: 70px; margin-right: 0px; font-size: 15px; text-align: right;"></div>
+						</div>
+						<div class="feed_content" id="ts_content"
+							style="width: 100%; height: 20%; margin-top: 10px; display: flex;">피드
+						</div>
 					</div>
 					<div class="feed_reply"
 						style="border-top: 1px solid red; margin-top: 10px">여기는 피드 글
 						관련 댓글</div>
 				</div>
 			</div>
-			<div class="modal-body">
+			<div class="#myOverlay2-body" style="display: none;">
 				<p>여기는 상품링크??</p>
 			</div>
+			<%-- <%@ include file="feeddetail.jsp" %> --%>
 		</div>
 	</div>
 	<!-- 피드 글쓰기창(새창) -->
 	<div style="display: none;">
 		<div id="myOverlay3" aria-labelledby="myOverlay2Heading"
 			data-overlay-container-class="slide-down" role="region"
-			style="width: 600px">
+			style="width: 600px; height: 340px">
 			<div class="feedwrite_head"
 				style="width: 100%; height: 40px; border-bottom: 1px solid grey; padding-left: 15px; line-height: 35px">
 				<span style="font-weight: bold;">패션 공유 업로드</span>
@@ -908,8 +924,7 @@ a {
 						<div class="content_upload"
 							style="width: 320px; height: 50px; margin: 10px;">
 							<textarea class="content_upload_text" name="input_content"
-								rows="8" cols="45" placeholder="피드에 작성할 내용을 입력하세요"
-								required="required">
+								rows="8" cols="45">
 						</textarea>
 						</div>
 						<div class="content_upload_btn"
@@ -925,77 +940,155 @@ a {
 
 
 	<script type="text/javascript" src="resources/js/Overlay.js"></script>
-
+	<script type="text/javascript"
+		src="resources/vendor/bootstrap/js/bootstrap.js"></script>
+	<!-- <script src="resources/js/jquery.js"></script> -->
+	<script type="text/javascript"
+		src="resources/vendor/jquery/jquery.min.js"></script>
+	-->
 	<script type="text/javascript">
-		/* 이벤트배너 슬라이드 */
+		$(document).ready(
+				function() {
+					/* 이벤트배너 슬라이드 */
 
-		/* 캐러쉘*/
-		$('.carousel').carousel();
+					/* 캐러쉘*/
+					$('.carousel').carousel();
 
-		/* 이미지 마우스 갖다 되면 투명하게 */
-		$(".feedpage").hover(function() {
-			$(this).toggleClass("feedpage_hover");
-		});
+					/* 이미지 마우스 갖다 되면 투명하게 */
+					$(".feedpage").hover(function() {
+						$(this).toggleClass("feedpage_hover");
+					});
 
-		/* 피드 새창 띄울 시 배경(body)스크롤 막기*/
-		/* 피드 새글 작성시 이미지 업로드 미리보기*/
-		var sel_file;
-		$(document).ready(function() {
-			$("#input_img").on("change", handleImgFileSelect);
-		})
-		function handleImgFileSelect(e) {
-			var files = e.target.files;
-			var filesArr = Array.prototype.slice.call(files);
+					/* 피드 새창 띄울 시 배경(body)스크롤 막기*/
+					/* 피드 새글 작성시 이미지 업로드 미리보기*/
+					var sel_file;
 
-			filesArr.forEach(function(f) {
-				if (!f.type.match("image.*")) {
-					alert("이미지 확장자만 업로드 가능합니다.");
-					return;
-				}
-				sel_file = f;
+					$("#input_img").on("change", handleImgFileSelect);
 
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$("#img").attr("src", e.target.result);
-				}
-				reader.readAsDataURL(f);
-			});
-		}
+					function handleImgFileSelect(e) {
+						var files = e.target.files;
+						var filesArr = Array.prototype.slice.call(files);
 
-		/* 피드 새글 작성시 이미지 업로드 취소버튼*/
-		var inputBtn = $("#input_img");
-		var clearBtn = $("#clear");
+						filesArr.forEach(function(f) {
+							if (!f.type.match("image.*")) {
+								alert("이미지 확장자만 업로드 가능합니다.");
+								return;
+							}
+							sel_file = f;
 
-		//사진초기화 버튼 함수
-		clearBtn.on("click", function() {
-			if (/(MSIE|Trident)/.test(navigator.userAgent)) {
-				// ie 일때 input[type=file] init.
-				$("#input_img").replaceWith($("#input_img").clone(true));
-			} else {
-				// other browser 일때 input[type=file] init.
-				$("#input_img").val("");
-			}
-			$("#img").removeAttr("src");
-		});
+							var reader = new FileReader();
+							reader.onload = function(e) {
+								$("#img").attr("src", e.target.result);
+							}
+							reader.readAsDataURL(f);
+						});
+					}
 
-		/* 	clearBtn.on("click", function(){
-			inputBtn.replaceWith(inputBtn.val('').clone(true));
-			//초기화 시킨 후 다시 사진 업로드 할 수 있는 상태로 되돌림
-			$("#input_img").on("change", handleImgFileSelect);
-		}); */
+					/* 피드 새글 작성시 이미지 업로드 취소버튼*/
+					var inputBtn = $("#input_img");
+					var clearBtn = $("#clear");
 
-		inputBtn.on({
-			change : function() {
-				console.log("Changed")
-			},
-			focus : function() {
-				console.log("Focus")
-			}
-		});
+					//사진초기화 버튼 함수
+					clearBtn.on("click", function() {
+						if (/(MSIE|Trident)/.test(navigator.userAgent)) {
+							// ie 일때 input[type=file] init.
+							$("#input_img").replaceWith(
+									$("#input_img").clone(true));
+						} else {
+							// other browser 일때 input[type=file] init.
+							$("#input_img").val("");
+						}
+						console.log("사진초기화 버튼 클릭");
+						$("#img").removeAttr("src");
+					});
+
+					/* 	clearBtn.on("click", function(){
+						inputBtn.replaceWith(inputBtn.val('').clone(true));
+						//초기화 시킨 후 다시 사진 업로드 할 수 있는 상태로 되돌림
+						$("#input_img").on("change", handleImgFileSelect);
+					}); */
+
+					inputBtn.on({
+						change : function() {
+							console.log("Changed")
+						},
+						focus : function() {
+							console.log("Focus")
+						}
+					});
+
+					//피드 클릭시 새창 띄우며 ajax로 데이터 불러오기 (jsonview?)
+					$(".feedpage").bind(
+							"click",
+							function() {
+								var ts_id = $(this).data('seq');
+
+								console.log("ts_id:" + ts_id);
+								console.log("피드페이지 클릭");
+								$.ajax({
+									url : "feeddetail.do",
+									type : "POST",
+									data : {
+										ts_id : ts_id
+									},
+									async : true,
+									dataType : "json",
+									beforeSend : function() {
+										console.log("ajax함수 실행전");
+									},
+									success : function(data) {
+										var mem_id = "";
+										var mem_name = "";
+										var ts_content = "";
+										var ts_img = ""; /*ts_img_path+ts_img_name*/
+										var ts_regdate = "";
+										$.each(data, function(index, feed) {
+											console.log("success");
+											/* 						var datatostring = JSON.stringify(data); 
+											 console.log(datatostring); 
+											 console.log(datatostring.ts_id);*/
+											console.log(feed);
+											console.log("ts_id는" + feed.ts_id);
+											mem_id = feed.mem_id;
+											mem_name = feed.mem_name;
+											ts_content = feed.ts_content;
+											ts_regdate = feed.ts_regdate;
+											ts_img = feed.ts_img_path
+													+ feed.ts_img_name;
+										});
+										console.log("이름:" + mem_name);
+										$('#feed_writer').html(mem_name);
+										$('#feed_writer').attr('data-writer',
+												mem_id)
+										$('#ts_content').html(ts_content);
+										$('#ts_regdate').html(ts_regdate);
+										$('#ts_img').attr("src", ts_img);
+									},
+									complete : function(data) {
+										console.log("complete함수");
+									},
+									error : function(request, status, error) {
+										console.log("code:" + request.status
+												+ "\n" + "message:"
+												+ request.responseText + "\n"
+												+ "error:" + error);
+									}
+								});
+							});
+
+					/*닉네임 클릭하면 mypage로 이동*/
+					$(".feed_writer").bind("click", function() {
+						var mem_id = $(this).data('writer');
+						console.log("mem_id는" + mem_id);
+						location.href = 'mypage.do?mem_id=' + mem_id
+					});
+
+				})
 	</script>
 
 
 </body>
+
 <!-- footer -->
 <%@ include file="footer.jsp"%>
 </html>

@@ -9,7 +9,11 @@
 
 	<!-- Page Content -->
 	<div class="container">
-
+	<h4>test3</h4>
+		<%-- ${list.mdtext_content} --%>
+		<c:forEach var="b" items="${best }">
+			${b.mdtext_content}
+		</c:forEach>
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
 			MD 추천 <small></small>

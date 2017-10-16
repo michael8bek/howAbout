@@ -213,11 +213,11 @@ function click_count(idx, n) {
 								</td>
 								
 							</tr>
-							<tr style="text-align:right;">
+							<%-- <tr style="text-align:right;">
 								<th colspan="4" style="text-align:right;">상품 ${cart.goods_price}원 + 배송
 									${cart.goods_delprice} =
 									${cart.goods_price+cart.goods_delprice}원</th>
-							</tr>
+							</tr> --%>
 						</c:if>
 						<c:if test="${cart.goods_qty==0}"> 
 							<tr>

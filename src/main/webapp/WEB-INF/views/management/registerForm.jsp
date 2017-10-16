@@ -127,11 +127,15 @@
 						</tr>
 						<tr>
 							<td>
-								<!-- <form name="goods_img" name="goods_img" method="post"
-									enctype="multipart/form-data"> --><label for="goods_img" class="col-lg-4">이미지</label></td><td colspan="3">
-									<input type="file" class="col-lg-6" name="goods_img" >
-								</form>
-							</td>
+								<label for="stock_qty" class="col-lg-4">재고수량</label></td><td> <input
+								required="required" class="form-control col-lg-6" name="stock_qty"
+								type="number" placeholder="Enter 재고수량"></td>
+								<td><label for="stock_sale" class="col-lg-4">(판매/대여)</label> </td><td><select
+								name="stock_sale" class="col-lg-6" title="stock_sale">
+									<option value="sale">판매</option>
+									<option value="rent">대여</option>
+									<option value="event">이벤트</option>
+							</select></td>	
 						</tr>
 						<tr>
 							<td><label for="goods_name" class="col-lg-4">상품명</label></td><td> <input 
@@ -140,6 +144,13 @@
 							<td><label for="goods_delprice" class="col-lg-4">배송비</label></td><td> <input
 								required="required" class="form-control col-lg-6" name="goods_delprice"
 								type="text" placeholder="Enter 배송비"></td>
+						</tr>
+						<tr>
+							<td>
+								<!-- <form name="goods_img" name="goods_img" method="post"
+									enctype="multipart/form-data"> --><label for="goods_img" class="col-lg-4">이미지</label></td><td colspan="3">
+									<input type="file" class="col-lg-6" name="goods_img" >
+							</td>
 						</tr>
 						<!-- 					<a class="btn btn-primary btn-block" href="loginManage.do">Register</a> -->
 					</table>

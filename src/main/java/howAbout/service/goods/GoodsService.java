@@ -8,6 +8,8 @@ public interface GoodsService {
 
 	List<Goods> list();
 
+	Goods select(int goods_id);
+
 	int register(Goods goods);
 
 }
