@@ -38,22 +38,25 @@
 	<c:forEach var="cart1" items="${listCart}" varStatus="status">
 	qty.push("${cart1.goods_qty}");
 	</c:forEach> */
-
+	/*개별 체크 박스 클릭시  */
   function itemSum() {
 	var sum =0;
+	var sum1 = 0;
 	var count = frm.chk.length;
 	if (count == undefined) {
 		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+		sum1 += parseInt(frm.goods_delprice.value);
 	} else {
 		for (var i = 0; i < count; i++) {
 			if (frm.chk[i].checked==true) {
 				 sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
-				
+				 sum1 += parseInt(frm.goods_delprice[i].value);
 			}
 		}
 	}
 	frm.total_sum.value = sum;
-	 frm.total_sum1.value = sum; 
+	frm.delprice.value = sum1; 
+	frm.total_sum1.value = sum+sum1;
 }
   /* 전체선택 체크박스 클릭시 */
 function ckeckAll(index) {
@@ -62,48 +65,25 @@ function ckeckAll(index) {
 	var count = frm.chk.length;
 	if (count == undefined) {
 		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+		sum1 += parseInt(frm.goods_delprice.value);
 	}
 	if ($("#checkbox_1").is(':checked')) {
 			$("input[name=chk]").prop("checked", true);
 		for (var i = 0; i < count; i++) {
 			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+			sum1 += parseInt(frm.goods_delprice[i].value);
 		}
 		frm.total_sum.value = sum;
-		 frm.total_sum1.value = sum; 
+		frm.delprice.value = sum1; 
+		frm.total_sum1.value = sum+sum1;
 	}else {
 		$("input[name=chk]").prop("checked", false);
 		frm.total_sum.value ="";		
 		frm.total_sum1.value ="";
+		frm.delprice.value = ""; 
 	}
 }  
-  /*선택된 항목 삭제,구매  */
- function mySubmit(index) {
-	  var count = frm.chk.length;
-	  var ck = false;
-	  var num = 0;
-	  for (var i = 0; i < frm.chk.length;i++) {
-		  if (frm.chk[i].checked==true) {
-			  num=i;
-			  ck = true; break;
-		  }
-	  }
-	  if (count == undefined){
-		  ck=true;
-	  }
-	  if (ck==false) {
-		  alert("선택후 작업하세요");
-		  return false;
-	  }
-      if (index == 1){
-        document.frm.action='delSelect.do';
-      }else if (index == 2){
-        document.frm.action='ordersSelect.do';
-  	  }else if (index == 3){
-  		  alert(frm.goods_qty[num].value);
-  		document.frm.action='buyOne.do?cart_id='+frm.chk[num].value+'&goods_qty='+frm.goods_qty[num].value;
-  	  }else{}
-      
-}
+  
  /* 클릭시 수량 변경  */
 function click_count(idx, n) {
 	var num = parseInt($("#numberUpDown" + idx).val(), 10) + n;
@@ -117,32 +97,73 @@ function click_count(idx, n) {
 	}
 	$("#numberUpDown" + idx).val(num);
 	var sum =0;
+	var sum1 = 0;
 	var count = frm.chk.length;
 	if (count == undefined) {
 		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+		sum1 += parseInt(frm.goods_delprice.value);
+		
 	} else {
 		for (var i = 0; i < count; i++) {
 			if (frm.chk[i].checked==true) {
 				 sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+				 sum1 += parseInt(frm.goods_delprice[i].value);
 			}
 		}
 	}
 	frm.total_sum.value = sum;
-	frm.total_sum1.value = sum; 
+	frm.delprice.value = sum1; 
+	frm.total_sum1.value = sum+sum1;
 }
  /* 장바구니 팝업시 상품이 모두 체크 */
-/* window.onload = function() {
+  window.onload = function() {
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
-$("input[name=chk]").prop("checked", true);
-for (var i = 0; i < count; i++) {
-	sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
-}
-frm.total_sum.value = sum;
- frm.total_sum1.value = sum; 
+	$("input[name=chk]").prop("checked", true);
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+		sum1 += parseInt(frm.goods_delprice.value);
+	}else{
+		for (var i = 0; i < count; i++) {
+			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+			sum1 += parseInt(frm.goods_delprice[i].value);
+		}
+	}
+	frm.total_sum.value = sum;
+ 	frm.delprice.value = sum1;
+ 	frm.total_sum1.value = sum+sum1;
 		
-}  */ 
+} 
+ 
+  /*선택된 항목 삭제,구매  */
+  function mySubmit(index) {
+ 	  var count = frm.chk.length;
+ 	  var ck = false;
+ 	  var num = 0;
+ 	  for (var i = 0; i < frm.chk.length;i++) {
+ 		  if (frm.chk[i].checked==true) {
+ 			  num=i;
+ 			  ck = true; break;
+ 		  }
+ 	  }
+ 	  if (count == undefined){
+ 		  ck=true;
+ 	  }
+ 	  if (ck==false) {
+ 		  alert("선택후 작업하세요");
+ 		  return false;
+ 	  }
+       if (index == 1){
+         document.frm.action='delSelect.do';
+       }else if (index == 2){
+         document.frm.action='ordersSelect.do';
+   	  }else if (index == 3){
+   		  alert(frm.goods_qty[num].value);
+   		document.frm.action='buyOne.do?cart_id='+frm.chk[num].value+'&goods_qty='+frm.goods_qty[num].value;
+   	  }else{}
+       
+ }
 </script>
 </head>
 <body>
@@ -155,7 +176,7 @@ frm.total_sum.value = sum;
 					<p>
 					<table class="table table-bordered" style="">
 						<tr>
-							<th colspan="3"><input id="checkbox_1" type="checkbox"
+							<th colspan="3"><input id="checkbox_1" type="checkbox" checked="checked"
 								onclick="ckeckAll()" value="">전체선택</th>
 							<th><button onclick="mySubmit(1)" class="btn btn-info" style="">선택삭제</button></th>
 						</tr>
@@ -173,8 +194,9 @@ frm.total_sum.value = sum;
 						<input type="hidden" name="goods_qty${status.count}" value="${cart.goods_qty }" id="goods_qty${status.count}">
 						<input type="hidden" name="goods_price" value="${cart.goods_price}" id="goods_price">
 						<input type="hidden" name="cart_id" value="${cart.cart_id }">
+						<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
 							<tr>
-								<td><input type="checkbox" name="chk"
+								<td><input type="checkbox" name="chk" checked="checked"
 								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
 						  		<!-- 수량 -->
@@ -183,10 +205,10 @@ frm.total_sum.value = sum;
 						  		<a onclick="click_count(${status.count}, -1)"  class="goods_qty1" id="" >▼</a>
 								</td>
 								<td>${cart.goods_price}</td>
-								<td><span id="goods_delprice"></span></td>
+								<td>${cart.goods_delprice }</td>
 								<%-- <td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" onclick="mySubmit(3)"  id="buyOne" data-qty="" style="width: 100%; ">바로구매</a><p> --%> 
 								<!-- <td><a href="" class="btn btn-success" onclick="mySubmit(3)" style="width: 100%;">바로구매</a><p> -->
-								<td><button onclick="mySubmit(3)" style="width: 100%;">바로구매</button><p>
+								<td><button onclick="mySubmit(3)" style="width: 100%;" class="btn btn-success">바로구매</button><p>
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
 								
@@ -226,10 +248,6 @@ frm.total_sum.value = sum;
 						<tr>
 							<th style="width:55%; ">총 상품금액</th>
 							<th><input name="total_sum" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
-						</tr>
-						<tr>	
-							<th>할인 금액</th>
-							<th></th>
 						</tr>
 						<tr>
 							<th>총 배송비</th>
