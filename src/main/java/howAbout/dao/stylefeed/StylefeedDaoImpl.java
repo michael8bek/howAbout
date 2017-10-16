@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import howAbout.model.Member;
 import howAbout.model.Stylefeed;
+import howAbout.model.Tsreply;
 
 @Repository
 public class StylefeedDaoImpl implements StylefeedDao{
@@ -16,21 +17,32 @@ public class StylefeedDaoImpl implements StylefeedDao{
 
 	@Override
 	public List<Stylefeed> feedlist() {
-		return sst.selectList("feedlist");
+		return sst.selectList("stylefeedns.feedlist");
 	}
 
 	@Override
 	public int feedWrite(Stylefeed sf) {
-		return sst.insert("feedWrite",sf);
+		return sst.insert("stylefeedns.feedWrite",sf);
 	}
 
 	@Override
 	public List<Stylefeed> feedDetail(int ts_id) {
-		return sst.selectList("feedDetail", ts_id);
+		return sst.selectList("stylefeedns.feedDetail", ts_id);
 	}
 
 	@Override
 	public List<Stylefeed> myfeedlist(String mem_id) {
-		return sst.selectList("myfeedlist",mem_id);
+		return sst.selectList("stylefeedns.myfeedlist",mem_id);
+	}
+
+	@Override
+	public List<Stylefeed> feedlist_orderLike() {
+		return sst.selectList("stylefeedns.feedlist_orderLike");
+	}
+
+	@Override
+	public int feedReplyWrite(Tsreply tr) {
+		sst.insert("tsreplyns.ts_reply",tr);
+		return sst.insert("tsreplyns.feedreplyWrite",tr);
 	}
 }

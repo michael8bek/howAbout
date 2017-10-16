@@ -14,7 +14,10 @@
 		<result property="ts_img_name" column="ts_img_name"/>
 	</resultMap>
 	<select id="feedlist" resultMap="stylefeedResult">
-		select * from trendshare where ts_del='n' order by ts_regdate desc
+		select * from trendshare where ts_del='n'
+	</select>
+	<select id="feedlist_orderLike" resultMap="stylefeedResult">
+		select * from trendshare where ts_del='n' order by ts_like desc
 	</select>
 	<select id="myfeedlist" parameterType="String" resultMap="stylefeedResult">
 		select * from trendshare where ts_del='n'and mem_id=#{mem_id} order by ts_regdate desc

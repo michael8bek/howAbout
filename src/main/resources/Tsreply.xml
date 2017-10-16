@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tsreplyns">
+	<resultMap type="tsreply" id="tsreplyResult">
+		<result property="ts_id" column="ts_id" />
+		<result property="reply_id" column="reply_id" />
+		<result property="reply_type" column="reply_type" />
+		<result property="reply_content" column="reply_content" />
+		<result property="mem_id" column="mem_id" />
+	</resultMap>
+	<insert id="feedreplyWrite" parameterType="tsreply">
+		insert into reply(reply_type, reply_content, mem_id)
+		values(#{reply_type},#{reply_content},#{mem_id}) 
+	</insert>
+	<insert id="ts_reply" parameterType="tsreply">
+		insert into ts_reply(ts_id, reply_id)
+		values(#{ts_id},#{reply_id}) 
+	</insert>
+	
+
+</mapper>

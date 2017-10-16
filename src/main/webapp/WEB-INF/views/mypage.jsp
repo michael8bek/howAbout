@@ -13,7 +13,7 @@
 /* 공통  css*/
 body {
 	margin: 0px;
-	padding: 0px;
+	padding: 75px;
 	background-color: #E3E3E3;
 }
 /* 
