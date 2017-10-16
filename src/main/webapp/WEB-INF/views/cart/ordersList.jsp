@@ -98,7 +98,7 @@
 						<td>${cart.goods_qty }</td>
 						<td>${cart.goods_price }</td>
 						<td>상품할인</td>
-						<td>${cart.goods_price }-상품할인</td>
+						<td>${cart.goods_price*cart.goods_qty}-상품할인</td>
 						<td>${cart.goods_delprice }</td>
 					</tr>
 				</c:forEach>
