@@ -20,7 +20,7 @@
 					<div class="card h-100">
 						<a href="view.do?goods_id=${goods.goods_id}" data-toggle="modal"
 							data-target=".bd-example-modal-lg"><img class="card-img-top"
-							src="${path}/goodsimages/${goods.goods_img}"></a>
+							src="${path}/resources/images/goods/${goods.goods_img}"></a>
 						<div class="modal fade bd-example-modal-lg" tabindex="-1"
 							role="dialog" aria-labelledby="myLargeModalLabel"
 							aria-hidden="true">
