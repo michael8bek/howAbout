@@ -51,26 +51,54 @@
 }
 </style>
 <script type="text/javascript">
+
 	window.onload = function() {
 		var sum = 0;
 		var sum1 = 0;
+		var salesum = 0;
 		var count = frm.goods_price.length;
 		if (count == undefined) {
 			sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
 			sum1 += parseInt(frm.goods_delprice.value);
+			salesum += parseInt(frm.couponlist_benefit.value);
 		}
 		for(var i = 0; i< count; i++){
 			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
-			 sum1 += parseInt(frm.goods_delprice[i].value);
+			sum1 += parseInt(frm.goods_delprice[i].value);
+			salesum += parseInt(frm.couponlist_benefit[i].value);
 		}
 		frm.total_sum.value = sum;
 		frm.delprice.value = sum1; 
-		frm.total_sum1.value = sum+sum1;
+		frm.pay_total.value = sum+sum1-salesum;
+		frm.saleprice.value = salesum;
 	}
+	
+	$(function() {
+		$('.steelcut').click(function() {
+			$.ajax({
+				url : 'im2.jsp',
+				dataType : 'html',
+				success : function(data) {
+					$('#wrapper').remove();
+					$('#disp1').html($(data).find('#wrapper'));
+				}
+			});
+		});
+		$('.steelcut2').click(function() {
+			$.ajax({
+				url : 'slider2.jsp',
+				dataType : 'html',
+				success : function(data) {
+					$('#wrapper').remove();
+					$('#disp1').html(data);
+				}
+			});
+		});
+	});
 </script>
 </head>
 <body>
-<form name="frm" action="" method="post">
+<form name="frm" action="payInsert.do" method="post">
 	<div class="container">
 		<div class="container1">
 			<div class="container1_1">
@@ -97,17 +125,20 @@
 				<input type="hidden" name="goods_price" value="${cart.goods_price }">
 				<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
 				<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
-					<tr>
-						<td>${cart.goods_name}<p>
+				<input type="hidden" name="couponlist_benefit" value="${cart.couponlist_benefit }">
+				<input type="hidden" name="cart_id" value="${cart.cart_id }">
+				<input type="hidden" name="goods_id" value="${cart.goods_id }">
+					<tr >
+						<td style="vertical-align: middle;">${cart.goods_name}<p>
 							Color : ${cart.goods_color } / Size : ${cart.goods_size }
 						</td>
-						<td>${cart.goods_qty }</td>
-						<td>${cart.goods_price }</td>
-						<td>상품할인</td>
-						<td>${cart.goods_price*cart.goods_qty}-상품할인</td>
-						<td>${cart.goods_delprice }</td>
+						<td style="vertical-align: middle;">${cart.goods_qty }</td>
+						<td style="vertical-align: middle;">${cart.goods_price }</td>
+						<td style="vertical-align: middle;">${cart.couponlist_benefit }</td>
+						<td style="vertical-align: middle;">${cart.goods_price*cart.goods_qty-cart.couponlist_benefit}</td>
+						<td style="vertical-align: middle;">${cart.goods_delprice }</td>
 					</tr>
-				</c:forEach>
+					</c:forEach>
 				</c:if>
 				<c:if test="${empty listOrders }">
 					<tr>
@@ -119,18 +150,14 @@
 		</div>
 		<div class="container3">			
 			<div class="container1_3">
-				<h5>2. 쿠폰/추가 할인</h5>
-				<table class="table table-bordered" style="">
-					<tr><th>쿠폰 선택</th>
-						<th><select>
-							<option value="">브론즈</option>
-							<option value="">실버</option>
-							<option value="">골드</option>
+				<h5>2. 쿠폰 할인</h5>
+				<table class="table" style="width: 100%;">
+					<tr><th style="width: 25%;">쿠폰 선택</th>
+						<th ><select>
+						<c:forEach var="couponlist" items="${listCoupon }">
+							<option value="${couponlist.cp_id }">${couponlist.cp_id }</option>
+						</c:forEach>
 						</select></th>
-					</tr>
-					<tr>
-						<th>쿠폰 입력</th>
-						<th><input type="text">&nbsp;<a href="" class="btn success" style="color: #1993A8; border: 1px solid #1993A8;">사용하기</a></th>
 					</tr>
 					<tr>
 						<th>마일리지 사용</th>
@@ -144,18 +171,18 @@
 						</th>
 					</tr>
 				</table>
-				<h5 style="margin-top: 4%;">3. 주문자 정보</h5>
-				<table class="table table-bordered" style="">
-					<tr><th>이름 *</th>
-						<th><input type="text"></th>
+				<h5 style="margin-top: 4%;">3. 주문자 정보</h5><input type="checkbox">주문자 정보와 동일
+				<table class="table" style="width: 100%; float: left;">
+					<tr><th style="width: 25%;">이름 *</th>
+						<th><input type="text" required="required" name="pay_name"></th>
 					</tr>
 					<tr>
 						<th>연락처 *</th>
-						<th><input type="tel"></th>
+						<th><input type="tel" required="required" name="pay_phone"></th>
 					</tr>
 					<tr>
 						<th>이메일 *</th>
-						<th><input type="email"></th>
+						<th><input type="email" required="required" name="pay_email"></th>
 					</tr>
 					<tr>
 						<th colspan="2">
@@ -165,17 +192,17 @@
 					</tr>
 				</table>
 				<h5 style="margin-top: 4%;">4. 배송지 정보</h5><input type="checkbox">주문자 정보와 동일
-				<table class="table table-bordered" style="">
-					<tr><th>받는분 *</th>
-						<th><input type="text"></th>
+				<table class="table" style="width: 100%;">
+					<tr><th style="width: 25%;">받는분 *</th>
+						<th><input type="text" required="required" name="pay_rename"></th>
 					</tr>
 					<tr>
 						<th>배송주소 *</th>
-						<th><input type="tel"></th>
+						<th><input type="text" required="required" name="pay_addr"></th>
 					</tr>
 					<tr>
 						<th>연락처 *</th>
-						<th><input type="tel"></th>
+						<th><input type="tel" required="required" name="pay_rephone"></th>
 					</tr>
 					<tr>
 						<th>배송 요청사항</th>
@@ -189,16 +216,16 @@
 					</tr>
 				</table>
 				<h5 style="margin-top: 4%;">5. 결제수단 선택</h5>
-				<table class="table table-bordered" style="">
-					<tr><th colspan="2"><input type="radio" value="">무통장</th>
+				<table class="table" style="width: 100%;">
+					<tr><th colspan="2"><input type="radio" value="" checked="checked">무통장</th>
 					</tr>
 					<tr>
-						<th>입금자명 *</th>
-						<th><input type="tel"></th>
+						<th style="width: 25%;">입금자명 *</th>
+						<th><input type="tel" required="required"></th>
 					</tr>
 					<tr>
 						<th>입금은행 *</th>
-						<th><input type="tel"></th>
+						<th><input type="tel" required="required"></th>
 					</tr>
 					<tr>
 						<th colspan="2">
@@ -211,7 +238,7 @@
 			</div>
 			<div class="container1_4">
 			<h5>결제내역</h5>
-			<table class="table table-striped"
+			<table class="table"
 						style="margin-top: 5%; border: 5px solid #1993A8;">
 						<tr>
 							<th style="width:55%; ">총 상품금액</th>
@@ -219,7 +246,7 @@
 						</tr>
 						<tr>	
 							<th>할인 금액</th>
-							<th></th>
+							<th><input name="saleprice" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
 						<tr>
 							<th>총 배송비</th>
@@ -227,10 +254,10 @@
 						</tr>
 						<tr>
 							<th>총 결제금액</th>
-							<th><input name="total_sum1" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
+							<th><input name="pay_total" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
 					</table>
-					<table class="table table-bordered">
+					<table class="table">
 						<!-- style="margin-top: 5%; border: 5px solid #1993A8;" -->
 						<tr>
 							<th colspan="2"><input type="submit" value="주문하기"
@@ -240,8 +267,8 @@
 			</div>
 			</div>
 			
-			<input type="submit" value="주문하기"
-								style="width: 100%; height: 100%;" class="btn btn-info">
+			<div align="center"><input type="submit" value="주문하기"
+								style="width: 20%; height: 100%;" class="btn btn-info"></div>
 		</div>
 </form>
 </body>

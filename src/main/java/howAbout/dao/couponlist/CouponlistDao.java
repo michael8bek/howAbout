@@ -1,0 +1,11 @@
+package howAbout.dao.couponlist;
+
+import java.util.List;
+
+import howAbout.model.Couponlist;
+
+public interface CouponlistDao {
+
+	List<Couponlist> listCoupon(String mem_id);
+
+}

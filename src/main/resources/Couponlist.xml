@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="couponlistns">
+	<resultMap type="couponlist" id="couponlistResult">
+		<result property="cplist_id" column="cplist_id" />
+		<result property="cplist_regdate" column="cplist_regdate" />
+		<result property="cplist_expire" column="cplist_expire" />
+		<result property="cplist_use" column="cplist_use" />
+		<result property="cp_id" column="cp_id" />
+		<result property="mem_id" column="mem_id" />
+		 <result property="cp_benefit" column="cp_benefit" /> 
+	</resultMap>
+	<select id="listCoupon" resultMap="couponlistResult">
+		select * from couponlist where mem_id=#{mem_id} and cplist_use = 'n' 
+	</select>
+</mapper>

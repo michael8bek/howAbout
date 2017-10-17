@@ -81,7 +81,7 @@ function ckeckAll(index) {
 		frm.total_sum.value ="";		
 		frm.total_sum1.value ="";
 		frm.delprice.value = ""; 
-	}
+	}q
 }  
   
  /* 클릭시 수량 변경  */
@@ -181,15 +181,17 @@ function click_count(idx, n) {
 					<h2 class="text-primary" style="padding-top: 3%;">장바구니 목록</h2>
 					담아둔 상품이 품절됐을 시 장바구니에서 자동 삭제되오니 참고 바랍니다.
 					<p>
-					<table class="table table-bordered" style="">
+					<div style="display:table">
+					<div style="display:table-cell; vertical-align: middle; ">
+					<table class="table table-bordered" style="float: left; width: 100%; ">
 						<tr>
-							<th colspan="3"><input id="checkbox_1" type="checkbox" checked="checked"
+							<th colspan="5"><input id="checkbox_1" type="checkbox" checked="checked"
 								onclick="ckeckAll()" value="">전체선택</th>
 							<th><button onclick="mySubmit(1)" class="btn btn-info" style="">선택삭제</button></th>
 						</tr>
 						
 							<tr style="background-color: #E7E7E7;">
-								<th style="width: 40%">주문상품</th>
+								<th colspan="3" style="width: %">주문상품</th>
 								<th>상품금액</th>
 								<th>배송비</th>
 								<th style="width: 15%">주문관리</th>
@@ -202,29 +204,24 @@ function click_count(idx, n) {
 						<input type="hidden" name="goods_price" value="${cart.goods_price}" id="goods_price">
 						<input type="hidden" name="cart_id" value="${cart.cart_id }">
 						<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
-							<tr>
-								<td><input type="checkbox" name="chk" checked="checked"
-								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
-						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
+							<tr style="width: 100%; vertical-align: middle;">
+								<td style="border-right: 1px solid #FFFFFF; vertical-align: middle;"><input type="checkbox" name="chk" checked="checked"
+								value="${cart.cart_id}" onclick="itemSum()"></td>
+								<td style="border-right: 1px solid #FFFFFF; width: 15%; vertical-align: middle;"><img src="resources/images/goods/${cart.goods_img }" style="width:100%; float: left;"></td>
+								<td style="width:40%; ">${cart.goods_name}<p>
+						  		Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
 						  		<!-- 수량 -->
 						  		<a onclick="click_count(${status.count}, 1)" class="goods_qty1" id="">▲</a>
 						  		<input type="text" class="qty1" id="numberUpDown${status.count }" name="goods_qty" value="1" style="width: 11%; text-align: center;">
 						  		<a onclick="click_count(${status.count}, -1)"  class="goods_qty1" id="" >▼</a>
 								</td>
-								<td>${cart.goods_price}</td>
-								<td>${cart.goods_delprice }</td>
-								<%-- <td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" onclick="mySubmit(3)"  id="buyOne" data-qty="" style="width: 100%; ">바로구매</a><p> --%> 
-								<!-- <td><a href="" class="btn btn-success" onclick="mySubmit(3)" style="width: 100%;">바로구매</a><p> -->
-								<td><button onclick="mySubmit(3)" style="width: 100%;" class="btn btn-success">바로구매</button><p>
+								<td style="width: 15%; vertical-align: middle;">${cart.goods_price}</td>
+								<td style="width: 15%; vertical-align: middle;">${cart.goods_delprice }</td>
+								<td style="vertical-align: middle;"><button onclick="mySubmit(3)" style="width: 100%;" class="btn btn-warning">바로구매</button><p>
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
 								
 							</tr>
-							<%-- <tr style="text-align:right;">
-								<th colspan="4" style="text-align:right;">상품 ${cart.goods_price}원 + 배송
-									${cart.goods_delprice} =
-									${cart.goods_price+cart.goods_delprice}원</th>
-							</tr> --%>
 						</c:if>
 						<c:if test="${cart.goods_qty==0}"> 
 							<tr>
@@ -247,7 +244,7 @@ function click_count(idx, n) {
 								<td colspan="4">장바구니에 담긴 상품이 없습니다.</td>
 							</tr>
 						</c:if>
-					</table>
+					</table></div></div>
 				</div>
 				<div class="container1_2">
 					<table class="table table-striped"
@@ -267,7 +264,7 @@ function click_count(idx, n) {
 					</table>
 					<table class="table table-bordered">
 						<tr>
-							<th colspan="2">
+							<th colspan="2" style="border: 1px solid #FFFFFF;">
 							<button onclick="mySubmit(2)" class="btn btn-info" style="width: 100%; height: 100%;">구매하기</button></th>
 						</tr>
 					</table>

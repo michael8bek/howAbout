@@ -17,7 +17,21 @@ public class Cart {
 	private String goods_color;
 	private String goods_size;
 	private String goods_img;
+	private String grade_name;
+	private String couponlist_benefit;
 	
+	public String getCouponlist_benefit() {
+		return couponlist_benefit;
+	}
+	public void setCouponlist_benefit(String couponlist_benefit) {
+		this.couponlist_benefit = couponlist_benefit;
+	}
+	public String getGrade_name() {
+		return grade_name;
+	}
+	public void setGrade_name(String grade_name) {
+		this.grade_name = grade_name;
+	}
 	public int getGoods_qty() {
 		return goods_qty;
 	}

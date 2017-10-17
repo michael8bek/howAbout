@@ -1,6 +1,5 @@
 package howAbout.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Cart;
-import howAbout.model.Member;
-import howAbout.model.Orders;
+import howAbout.model.Couponlist;
 import howAbout.service.cart.CartService;
-import howAbout.service.goods.GoodsService;
-import howAbout.service.member.MemberService;
+import howAbout.service.couponlist.CouponlistService;
 
 @Controller
 public class CartController {
@@ -27,10 +24,8 @@ public class CartController {
 	@Autowired
 	private CartService cs;
 	@Autowired
-	private GoodsService gs;
-	@Autowired
-	private MemberService ms;
-
+	private CouponlistService cls;
+	
 	@RequestMapping("cartList")
 	public String cartList(String mem_id, Model model, HttpSession session) {
 		/*List<Cart> listCart = cs.list((String) session.getAttribute("mem_id"));*/
@@ -71,7 +66,9 @@ public class CartController {
 	public String ordersList(String mem_id, Model model, HttpSession session) {
 		/*List<Cart> listOrders = cs.listOrders("mem_id");*/
 		List<Cart> listOrders = cs.listOrders((String) session.getAttribute("mem_id"));
+		List<Couponlist> listCoupon = cls.listCoupon((String) session.getAttribute("mem_id"));
 		model.addAttribute("listOrders", listOrders);
+		model.addAttribute("listCoupon", listCoupon);
 		return "cart/ordersList";
 	}
 

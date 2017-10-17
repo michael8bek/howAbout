@@ -16,10 +16,12 @@
 		<result property="goods_color" 		column="goods_color" />
 		<result property="goods_size" 		column="goods_size" />
 		<result property="goods_img" 		column="goods_img" />
+		<result property="grade_name" 		column="grade_name" />
+		<result property="couponlist_benefit" 		column="couponlist_benefit" />		
 	</resultMap>
 <select id="list" resultMap="cartResult">
-	select * from cart c, goods g where cart_state='put' 
-	and mem_id=#{mem_id} and c.goods_id = g.goods_id
+	select * from cart c, goods g where c.cart_state='put' 
+	and c.mem_id=#{mem_id} and c.goods_id = g.goods_id 
 </select>
 <update id="delete" parameterType="int">
 	update cart set cart_state='del' where cart_id=#{cart_id}
@@ -28,8 +30,8 @@
 	update cart set cart_state='orders', goods_qty=#{goods_qty} where cart_id=#{cart_id}
 </update>
 <select id="listOrders" resultMap="cartResult">
-	select * from cart c, goods g where cart_state='orders' 
-	and mem_id=#{mem_id} and c.goods_id = g.goods_id
+	select * from cart c, goods g, member m where c.cart_state='orders' 
+	and c.mem_id=#{mem_id} and c.goods_id = g.goods_id and c.mem_id = m.mem_id
 </select>
 <update id="delSelect" parameterType="int">
 	update cart set cart_state='del' where cart_id=#{cart_id}

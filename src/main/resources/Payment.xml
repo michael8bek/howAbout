@@ -13,10 +13,16 @@
 		<result property="pay_addr" column="pay_addr" />
 		<result property="pay_rename" column="pay_rename" />
 		<result property="pay_rephone" column="pay_rephone" />
-		<result property="pay_readdr" column="pay_readdr" />
+		<result property="pay_required" column="pay_required" />
 		<result property="pay_total" column="pay_total" />
-		<result property="cplist_id" column="cplist_id" />
 	</resultMap>
-	<select id="">
-	</select>
+	<insert id="insert" parameterType="payment">
+		<selectKey keyProperty="pay_id" resultType="Integer"
+			order="BEFORE">
+			SELECT MAX(pay_id)+1 FROM payment
+		</selectKey>
+		insert into payment values (#{pay_id},#{goods_id}, #{goods_qty},
+		 #{mem_id},	#{pay_name}, #{pay_phone}, #{pay_email}, #{pay_addr},
+		  #{pay_rename}, #{pay_rephone}, #{pay_required}, #{pay_total})
+	</insert>
 </mapper>
