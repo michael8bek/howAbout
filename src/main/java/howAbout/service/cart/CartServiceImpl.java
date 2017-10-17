@@ -18,7 +18,7 @@ public class CartServiceImpl implements CartService {
 		return cd.list(mem_id);
 	}
 	@Override
-	public int delete(String cart_id) {
+	public int delete(int cart_id) {
 		return cd.delete(cart_id);
 	}
 	@Override
@@ -37,6 +37,10 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void ordersSelect(Map<String, Integer> map) {
 		cd.ordersSelect(map);
+	}
+	@Override
+	public int insert(Cart cart) {
+		return cd.insert(cart);
 	}
 	
 	

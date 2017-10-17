@@ -18,21 +18,21 @@
 				재고수량 ${stock.stock_qty}<br>
 			</div>
 			<div class="card-body">
-				<form name="form1" method="post" action="${path}.do">
-					<input type="hidden" name="goodsId" value="${goods.goods_id}" >
+				<form name="form1" method="post" action="cartinsert.do">
+					<input type="hidden" name="goods_id" value="${goods.goods_id}" >
 					<c:choose>
 						<c:when test="${stock.stock_qty == 0}">
 								수량이 없습니다.
 						</c:when>
 						<c:when test="${stock.stock_qty >= 10}">
-							<select name="amount">
+							<select name="goods_qty">
 								<c:forEach begin="1" end="10" var="sto">
 									<option value="${sto}">${sto}</option>
 								</c:forEach>
 							</select>&nbsp;개 <input type="submit" value="장바구니에 담기">
 						</c:when>
 						<c:when test="${stock.stock_qty < 10}">
-							<select name="amount">
+							<select name="goods_qty">
 								<c:forEach begin="1" end="${stock.stock_qty}" var="sto">
 									<option value="${sto}">${sto}</option>
 								</c:forEach>

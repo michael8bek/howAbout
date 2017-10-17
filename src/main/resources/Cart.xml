@@ -2,39 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cartns">
-	<resultMap type="cart" 			id="cartResult">
-		<result property="cart_id" 	column="cart_id" />
-		<result property="cart_date" 	column="cart_date" />
-		<result property="cart_editdate" 		column="cart_editdate" />
-		<result property="cart_state" 		column="cart_state" />
-		<result property="goods_qty" 		column="goods_qty" />
-		<result property="mem_id" 		column="mem_id" />
-		<result property="goods_id" 		column="goods_id" />
-		<result property="goods_name" 		column="goods_name" />
-		<result property="goods_price" 		column="goods_price" />
-		<result property="goods_delprice" 		column="goods_delprice" />
-		<result property="goods_color" 		column="goods_color" />
-		<result property="goods_size" 		column="goods_size" />
-		<result property="goods_img" 		column="goods_img" />
+	<resultMap type="cart" id="cartResult">
+		<result property="cart_id" column="cart_id" />
+		<result property="cart_date" column="cart_date" />
+		<result property="cart_editdate" column="cart_editdate" />
+		<result property="cart_state" column="cart_state" />
+		<result property="goods_qty" column="goods_qty" />
+		<result property="mem_id" column="mem_id" />
+		<result property="goods_id" column="goods_id" />
+		<result property="goods_name" column="goods_name" />
+		<result property="goods_price" column="goods_price" />
+		<result property="goods_delprice" column="goods_delprice" />
+		<result property="goods_color" column="goods_color" />
+		<result property="goods_size" column="goods_size" />
+		<result property="goods_img" column="goods_img" />
 	</resultMap>
-<select id="list" resultMap="cartResult">
-	select * from cart c, goods g where cart_state='put' 
-	and mem_id=#{mem_id} and c.goods_id = g.goods_id
-</select>
-<update id="delete" parameterType="int">
-	update cart set cart_state='del' where cart_id=#{cart_id}
-</update>
-<update id="buyOne" parameterType="HashMap">
-	update cart set cart_state='orders', goods_qty=#{goods_qty} where cart_id=#{cart_id}
-</update>
-<select id="listOrders" resultMap="cartResult">
-	select * from cart c, goods g where cart_state='orders' 
-	and mem_id=#{mem_id} and c.goods_id = g.goods_id
-</select>
-<update id="delSelect" parameterType="int">
-	update cart set cart_state='del' where cart_id=#{cart_id}
-</update>
-<update id="ordersSelect" parameterType="HashMap">
-	update cart set cart_state='orders', goods_qty =#{goods_qty} where cart_id=#{cart_id}
-</update>
+	<select id="list" resultMap="cartResult">
+		select * from cart c, goods g where
+		cart_state='put'
+		and mem_id=#{mem_id} and c.goods_id = g.goods_id
+	</select>
+	<update id="delete" parameterType="int">
+		update cart set
+		cart_state='del' where cart_id=#{cart_id}
+	</update>
+	<update id="buyOne" parameterType="HashMap">
+		update cart set
+		cart_state='orders', goods_qty=#{goods_qty} where
+		cart_id=#{cart_id}
+	</update>
+	<select id="listOrders" resultMap="cartResult">
+		select * from cart c, goods g
+		where cart_state='orders'
+		and mem_id=#{mem_id} and c.goods_id =
+		g.goods_id
+	</select>
+	<update id="delSelect" parameterType="int">
+		update cart set
+		cart_state='del' where cart_id=#{cart_id}
+	</update>
+	<update id="ordersSelect" parameterType="HashMap">
+		update cart set
+		cart_state='orders', goods_qty =#{goods_qty} where
+		cart_id=#{cart_id}
+	</update>
+	<insert id="cartinsert" parameterType="cart">
+		<selectKey keyProperty="cart_id" resultType="Integer"
+			order="BEFORE">
+			SELECT MAX(cart_id)+1 FROM cart
+		</selectKey>
+		insert into cart (cart_id, cart_date, mem_id, goods_id, cart_editdate,
+		cart_state, goods_qty) values (#{cart_id}, now(), #{mem_id},
+		#{goods_id}, now(), 'put', #{goods_qty})
+	</insert>
 </mapper>

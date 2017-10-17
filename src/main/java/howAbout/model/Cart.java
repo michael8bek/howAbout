@@ -4,7 +4,7 @@ package howAbout.model;
 import java.sql.Date;
 
 public class Cart {
-	private String cart_id;
+	private int cart_id;
 	private Date cart_date;
 	private Date cart_editdate;
 	private String cart_state;
@@ -60,10 +60,10 @@ public class Cart {
 	public void setGoods_price(int goods_price) {
 		this.goods_price = goods_price;
 	}
-	public String getCart_id() {
+	public int getCart_id() {
 		return cart_id;
 	}
-	public void setCart_id(String cart_id) {
+	public void setCart_id(int cart_id) {
 		this.cart_id = cart_id;
 	}
 	public Date getCart_date() {

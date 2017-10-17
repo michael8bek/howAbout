@@ -20,7 +20,7 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public int delete(String cart_id) {
+	public int delete(int cart_id) {
 		return sst.update("cartns.delete", cart_id);
 	}
 	@Override
@@ -41,6 +41,11 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public Object ordersSelect(Map<String, Integer> map) {
 		return sst.update("cartns.ordersSelect", map);
+	}
+
+	@Override
+	public int insert(Cart cart) {
+		return sst.insert("cartns.cartinsert", cart);
 	}
 	
 	

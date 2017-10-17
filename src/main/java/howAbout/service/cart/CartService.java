@@ -9,7 +9,7 @@ public interface CartService {
 
 	List<Cart> list(String mem_id);
 
-	int delete(String cart_id);
+	int delete(int cart_id);
 
 	int buyOne(Map<String, Integer> map);
 
@@ -18,6 +18,8 @@ public interface CartService {
 	void delSelect(String arr);
 
 	void ordersSelect(Map<String, Integer> map);
+
+	int insert(Cart cart);
 
 
 }
