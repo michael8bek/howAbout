@@ -1113,13 +1113,9 @@ a {
 							}); */
 
 							//피드 리스트 인기순(DB의 ts_like순) 정렬
-							$("#order_like")
-									.bind(
-											"click",
-											function() {
+							$("#order_like").bind("click",function() {
 												console.log("인기순정렬 JS함수 실행");
-												$
-														.ajax({
+												$.ajax({
 															url : "feedorder.do",
 															type : "POST",
 															data : {
@@ -1127,61 +1123,44 @@ a {
 															},
 															async : true,
 															dataType : "json",
-															success : function(
-																	data) {
-																console
-																		.log("인기순 정렬 ajax 함수 success");
-																console
-																		.log(data);
+															success : function(data) {
+																console.log("인기순 정렬 ajax 함수 success");
+																/*ajax로 데이터 가져온 후 append 함수로 tag 입력시 JavaScript 이벤트 동작 안하는 문제 해결*/
+																var jquery = document.createElement('script');
+																jquery.src = "/howAbout/resources/js/Overlay.js";
+																document.getElementsByTagName('head')[0].appendChild(jquery);
+																console.log(data);
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
-																$("#user_feed")
-																		.html(
-																				" ");
-																$
-																		.each(
-																				data,
-																				function(
-																						index,
-																						feed) {
-																					for (var i = 0; i < data.length; i++) {
-																						$(
-																								"#user_feed")
-																								.html(
-																										'<div class="feed">'
+																$("#user_feed").html(" ");
+																$.each(data,function(index,feed) {
+																						$("#user_feed").append('<div class="feed">'
 																												+ '<div class="feed_imgbox">'
-																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+feed.ts_id+'"data-overlay-trigger="myOverlay2">'
-																												+ '<img class="feed-img" src="'+feed.ts_img_path+feed.ts_img_name+'"alt=""></a>'
+																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+																												+ '<img class="feed-img" src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
 																												+ '<div class="caption_box">'
 																												+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
 																												+ '</div></div>'
 																												+ '<div class="feed_thumbnail">'
 																												+ '<div class="feed_writer_img">'
 																												+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
-																												+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+feed.mem_id+'">'
-																												+ feed.mem_name
+																												+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
+																												+ $(feed).attr('mem_name')
 																												+ '</div>'
 																												+ '<div class="feed_date" id="feedlist_date">'
-																												+ feed.ts_regdate
+																												+ $(feed).attr('ts_regdate')
 																												+ '</div>'
 																												+ '<div class="feed_content" id="feedlist_content">'
-																												+ feed.ts_content
+																												+ $(feed).attr('ts_content')
 																												+ '</div></div>'
 																												+ '<div class="feed_comment">'
 																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
-																					}
 																				});
-															},
-															error : function(
-																	request,
-																	status,
-																	error) {
-																console
-																		.log("code:"
-																				+ request.status
+															},error : function(request,status,error) {
+																console.log("code:"+ request.status
 																				+ "\n"
 																				+ "message:"
 																				+ request.responseText
@@ -1192,107 +1171,46 @@ a {
 														})
 											});
 
-							//피드 클릭시 새창 띄우며 ajax로 데이터 불러오기 
-							$(document)
-									.on(
-											'click',
-											'.feedpage',
-											function() {
-												//이미지에 보이는 캡션영역 숨기기
-												//$('.caption_box').css('bottom','-70%');
-												//ajax
+							//피드 클릭시 새창 띄우며 ajax로 데이터 불러오기$(".feedpage").bind("click",function() {
+							$(document).on('click','.feedpage',function() {
+								console.log("피드창 띄우기");
+								/* var jquery = document.createElement('script');
+								jquery.src = "/howAbout/resources/js/Overlay.js";
+								document.getElementsByTagName('head')[0].appendChild(jquery); */
 												var ts_id = $(this).data('seq');
-
-												console.log("ts_id:" + ts_id);
 												console.log("피드페이지 클릭");
-												$.ajax({
-															url : "feeddetail.do",
-															type : "POST",
-															data : {
-																ts_id : ts_id
-															},
+												$.ajax({url : "feeddetail.do",
+														type : "POST",
+														data : {ts_id : ts_id},
 															async : true,
 															dataType : "json",
-															beforeSend : function() {
-																console
-																		.log("ajax함수 실행전");
-															},
-															success : function(
-																	data) {
+															success : function(data) {
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
 																var ts_id="";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
-																$
-																		.each(
-																				data,
-																				function(
-																						index,
-																						feed) {
-																					console
-																							.log("success");
-																					console
-																							.log(feed);
-																					console
-																							.log("ts_id는"
-																									+ feed.ts_id);
+																$.each(data,function(index,feed) {
+																					console.log("success");
 																					mem_id = feed.mem_id;
 																					mem_name = feed.mem_name;
 																					ts_content = feed.ts_content;
 																					ts_id=feed.ts_id;
 																					ts_regdate = feed.ts_regdate;
 																					ts_img = feed.ts_img_path
-																							+ feed.ts_img_name;
-																				});
-																console
-																		.log("이름:"
-																				+ mem_name);
-																$(
-																		'#feedpage_writer')
-																		.html(
-																				mem_name);
-																$(
-																		'#feedpage_writer')
-																		.attr(
-																				'data-writer',
-																				mem_id)
-																$(
-																		'#feeedpage_content')
-																		.html(
-																				ts_content);
-																$('#ts_regdate')
-																		.html(
-																				ts_regdate);
-																$('#ts_img')
-																		.attr(
-																				"src",
-																				ts_img);
-																$('#ts_id')
-																.val(ts_id);
-															},
-															complete : function(
-																	data) {
-																console
-																		.log("complete함수");
-															},
-															error : function(
-																	request,
-																	status,
-																	error) {
-																console
-																		.log("code:"
-																				+ request.status
-																				+ "\n"
-																				+ "message:"
-																				+ request.responseText
-																				+ "\n"
-																				+ "error:"
-																				+ error);
+																							+ feed.ts_img_name;});
+																$('#feedpage_writer')
+																		.html(mem_name);
+																$('#feedpage_writer')
+																		.attr('data-writer',mem_id)
+																$('#feeedpage_content').html(ts_content);
+																$('#ts_regdate').html(ts_regdate);
+																$('#ts_img').attr("src",ts_img);
+																$('#ts_id').val(ts_id);
 															}
 														});
-											});
+							});
 
 							/*피드 상세페이지 내 댓글작성 및 출력(ajax)*/
 							$("#feed_reply_btn").bind("click", function() {
