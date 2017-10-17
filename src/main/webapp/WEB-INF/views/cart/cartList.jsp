@@ -38,6 +38,7 @@
 	<c:forEach var="cart1" items="${listCart}" varStatus="status">
 	qty.push("${cart1.goods_qty}");
 	</c:forEach> */
+	
 	/*개별 체크 박스 클릭시  */
   function itemSum() {
 	var sum =0;
