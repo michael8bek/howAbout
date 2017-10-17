@@ -318,6 +318,27 @@ a {
 	padding: 1.250rem;
 }
 
+/*피드 로딩 이미지효과 관련*/
+.feed_loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.2); /*not in ie */
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
+}
+.feed_loading div{ /*로딩 이미지*/
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-left: -21px;
+    margin-top: -21px;
+}
+.display-none{ 
+        display:none;
+}
+
 /* 피드 리스트 */
 .feed_imgbox {
 	position: relative;
@@ -851,6 +872,9 @@ a {
 					style="display: inline-block; float: right; margin-right: 10px; font-weight: bold;">인기순</div>
 			</div>
 			<%-- onclick="location.href='feeddetail.do?mem_id=${feed.mem_id}'" --%>
+				<div class="feed_loading display-none">
+					 <div><img src="resources/images/icons/ajax_loading.gif" /></div>
+				</div>
 			<div class="feed_list" id="user_feed">
 				<c:forEach var="feed" items="${list }">
 					<div class="feed">
@@ -1123,20 +1147,23 @@ a {
 															},
 															async : true,
 															dataType : "json",
+															timeout:100000,
 															success : function(data) {
 																console.log("인기순 정렬 ajax 함수 success");
-																/*ajax로 데이터 가져온 후 append 함수로 tag 입력시 JavaScript 이벤트 동작 안하는 문제 해결*/
-																var jquery = document.createElement('script');
-																jquery.src = "/howAbout/resources/js/Overlay.js";
-																document.getElementsByTagName('head')[0].appendChild(jquery);
+																/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
+																var overlayjs = document.createElement('script');
+																overlayjs.src = "/howAbout/resources/js/Overlay.js";
+																document.getElementsByTagName('head')[0].appendChild(overlayjs);
+																/*ajxx밭은 data 출력하기*/
 																console.log(data);
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
-																$("#user_feed").html(" ");
-																$.each(data,function(index,feed) {
+																	$.each(data,function(index,feed) {
+																		setTimeout(function(){
+																			
 																						$("#user_feed").append('<div class="feed">'
 																												+ '<div class="feed_imgbox">'
 																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
@@ -1158,7 +1185,15 @@ a {
 																												+ '</div></div>'
 																												+ '<div class="feed_comment">'
 																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
-																				});
+																		}, 800);
+																		});
+															},beforeSend:function(){
+																$("#user_feed").html(" ");
+														        $('.feed_loading').removeClass('display-none');
+														    },complete:function(){
+														    	setTimeout(function(){
+														    	$('.feed_loading').addClass('display-none');
+														    	},800);
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -1168,7 +1203,77 @@ a {
 																				+ "error:"
 																				+ error);
 															}
-														})
+														});
+											});
+							
+							//피드 리스트 최신순(DB의 ts_regdate순) 정렬
+							$("#order_recent").bind("click",function() {
+												console.log("최신순정렬 JS함수 실행");
+												$.ajax({
+															url : "feedorder.do",
+															type : "POST",
+															data : {
+																listType : "recent"
+															},
+															async : true,
+															dataType : "json",
+															timeout:100000,
+															success : function(data) {
+																console.log("최신순 정렬 ajax 함수 success");
+																/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
+																var overlayjs = document.createElement('script');
+																overlayjs.src = "/howAbout/resources/js/Overlay.js";
+																document.getElementsByTagName('head')[0].appendChild(overlayjs);
+																/*ajxx밭은 data 출력하기*/
+																console.log(data);
+																var mem_id = "";
+																var mem_name = "";
+																var ts_content = "";
+																var ts_img = ""; /*ts_img_path+ts_img_name*/
+																var ts_regdate = "";
+																	$.each(data,function(index,feed) {
+																		setTimeout(function(){
+																			
+																						$("#user_feed").append('<div class="feed">'
+																												+ '<div class="feed_imgbox">'
+																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+																												+ '<img class="feed-img" src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
+																												+ '<div class="caption_box">'
+																												+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
+																												+ '</div></div>'
+																												+ '<div class="feed_thumbnail">'
+																												+ '<div class="feed_writer_img">'
+																												+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
+																												+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
+																												+ $(feed).attr('mem_name')
+																												+ '</div>'
+																												+ '<div class="feed_date" id="feedlist_date">'
+																												+ $(feed).attr('ts_regdate')
+																												+ '</div>'
+																												+ '<div class="feed_content" id="feedlist_content">'
+																												+ $(feed).attr('ts_content')
+																												+ '</div></div>'
+																												+ '<div class="feed_comment">'
+																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
+																		}, 800);
+																		});
+															},beforeSend:function(){
+																$("#user_feed").html(" ");
+														        $('.feed_loading').removeClass('display-none');
+														    },complete:function(){
+														    	setTimeout(function(){
+														    	$('.feed_loading').addClass('display-none');
+														    	},800);
+															},error : function(request,status,error) {
+																console.log("code:"+ request.status
+																				+ "\n"
+																				+ "message:"
+																				+ request.responseText
+																				+ "\n"
+																				+ "error:"
+																				+ error);
+															}
+														});
 											});
 
 							//피드 클릭시 새창 띄우며 ajax로 데이터 불러오기$(".feedpage").bind("click",function() {

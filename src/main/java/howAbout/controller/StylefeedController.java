@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.net.SyslogAppender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,11 +51,15 @@ public class StylefeedController {
 	// 피드 리스트 정렬(인기순, 최신순(기본값))
 	@RequestMapping(value = "feedorder", method = RequestMethod.POST)
 	public @ResponseBody List feedorder(@RequestParam("listType") String listType, Model model) {
-		System.out.println("정렬타입:" + listType);
-		List<Stylefeed> list_orderLike = ss.feedlist_orderLike();
-
-		return list_orderLike;
-
+		List<Stylefeed> list = null;
+		if(listType.equals("like")){
+			System.out.println("정렬타입:" + listType);
+			list = ss.feedlist_orderLike();
+		}else if(listType.equals("recent")) {
+			System.out.println("정렬타입:" + listType);
+			list = ss.feedlist_orderRecent();
+		};
+		return list;
 	}
 
 	// 스타일피드 글 등록

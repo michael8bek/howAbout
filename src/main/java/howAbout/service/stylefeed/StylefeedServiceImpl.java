@@ -45,4 +45,10 @@ public class StylefeedServiceImpl implements StylefeedService {
 	public int feedReplyWrite(Tsreply tr) {
 		return sd.feedReplyWrite(tr);
 	}
+
+	@Override
+	public List<Stylefeed> feedlist_orderRecent() {
+		// TODO Auto-generated method stub
+		return sd.feedlist_orderRecent();
+	}
 }

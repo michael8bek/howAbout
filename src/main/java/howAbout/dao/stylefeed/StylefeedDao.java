@@ -20,4 +20,6 @@ public interface StylefeedDao {
 
 	int feedReplyWrite(Tsreply tr);
 
+	List<Stylefeed> feedlist_orderRecent();
+
 }
