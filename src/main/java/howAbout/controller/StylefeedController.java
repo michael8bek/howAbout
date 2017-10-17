@@ -50,7 +50,7 @@ public class StylefeedController {
 
 	// 피드 리스트 정렬(인기순, 최신순(기본값))
 	@RequestMapping(value = "feedorder", method = RequestMethod.POST)
-	public @ResponseBody List feedorder(@RequestParam("listType") String listType, Model model) {
+	public @ResponseBody List<Stylefeed> feedorder(@RequestParam("listType") String listType, Model model) {
 		List<Stylefeed> list = null;
 		if(listType.equals("like")){
 			System.out.println("정렬타입:" + listType);
@@ -59,6 +59,12 @@ public class StylefeedController {
 			System.out.println("정렬타입:" + listType);
 			list = ss.feedlist_orderRecent();
 		};
+		
+		try {
+			Thread.sleep(650);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 
@@ -133,12 +139,11 @@ public class StylefeedController {
 		System.out.println(reply_content);
 		
 		Tsreply tr = new Tsreply();
-//		tr.setTs_id(ts_id);
+		tr.setTs_id(ts_id);
 		tr.setMem_id(mem_id);
 		tr.setReply_content(reply_content);
 		tr.setReply_type("feed");
-		int result = ss.feedReplyWrite(tr);
-		System.out.println("댓글등록결과:"+result);
+		ss.feedReplyWrite(tr);
 		
 	}
 	// 마이페이지

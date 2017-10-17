@@ -23,7 +23,6 @@
 /* 공통  css*/
 body {
 	margin: 0px;
-	padding: 50px;
 	background-color: #E3E3E3;
 }
 
@@ -31,6 +30,10 @@ textarea {
 	vertical-align: middle;
 	font-size: 1em;
 	color: #333;
+}
+
+::-webkit-scrollbar {
+display:none;
 }
 
 /* .container {
@@ -417,10 +420,14 @@ a {
 
 #feedlist_content {
 	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:auto;
 	width: 100%;
-	height: 20%;
+	height: 75px;
 	color: #AAAAAA;
 	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
 }
 
 #feedlist_date {
@@ -435,11 +442,32 @@ a {
 	background-color: white;
 	margin-top: 0.25rem;
 	width: 100%;
-	height: 100px;
+	height: 160px;
 	padding: 2%;
 	flex: auto;
 }
+.feed_icon_area {
+    word-wrap: break-word;
+    width: 100%;
+    height: 20%;
+    color: #AAAAAA;
+    float: left;
+}
+.feed_icon{
+	margin:5px;
+	height:24px;
+	float:left;
+	margin-right: 15%;
+}
 
+.icon_img{
+	margin-right: 5px;
+	float:left;
+}
+
+.icon_txt{
+	float: left;
+}
 .feed_writer_img>img {
 	border-radius: 20px;
 }
@@ -473,7 +501,14 @@ a {
 	height: 130px;
 }
 
+#feeedpage_content{
+    display: inline-block;
+    overflow-y: scroll;
+    height: 70px;
+}
+
 @media all and (max-width:767px) {
+
 	/*피드 상세페이지 새창(overray)*/
 	#myOverlay2 {
 		max-width: 310px;
@@ -505,6 +540,8 @@ a {
 		padding-bottom: 20px;
 		width: 320px;
 	}
+	
+	
 }
 /* 태블릿(768px이상)*/
 @media all and ( min-width : 768px) and (max-width:991px) {
@@ -537,7 +574,7 @@ a {
 	.event_slide {
 		order: 1;
 		padding: 40px;
-		padding: 2.500rem;
+		padding: 2.000rem;
 		padding-bottom: 1.000rem;
 		padding-top: 2%;
 	}
@@ -545,8 +582,7 @@ a {
 	/* mdfeed 리스트 section css*/
 	.mdfeed_section {
 		order: 2;
-		padding: 40px;
-		padding: 2.500rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 		padding-bottom: 1.000rem;
 	}
@@ -565,10 +601,10 @@ a {
 	}
 
 	/* 피드 리스트 section css*/
+	
 	.feedlist_section {
 		order: 4;
-		padding: 40px;
-		padding: 2.500rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 	}
 	.feed_list {
@@ -579,7 +615,9 @@ a {
 	.feed_list .feed {
 		width: 49.2%;
 		/* min-width:300px; */
-		height: 500px;
+				margin-top: 15px;
+		margin-top: 0.750rem;
+		/* height: 500px; */
 		margin-left: 1.6%;
 		/* 		margin-left: 1.000rem; */
 	}
@@ -599,7 +637,7 @@ a {
 	.feed_thumbnail {
 		margin-top: 0.25rem;
 		width: 100%;
-		height: 120px;
+		height: 160px;
 	}
 	.feed .feed_comment {
 		width: 100%;
@@ -627,8 +665,7 @@ a {
 	/*이벤트 배너 캐러쉘 section*/
 	.event_slide {
 		order: 1;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-bottom: 1.000rem;
 		padding-top: 2%;
 	}
@@ -636,8 +673,7 @@ a {
 	/* mdfeed 리스트 section css*/
 	.mdfeed_section {
 		order: 2;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 		padding-bottom: 1.000rem;
 	}
@@ -656,10 +692,11 @@ a {
 	}
 
 	/* 피드 리스트 section css*/
+	
+	
 	.feedlist_section {
 		order: 4;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 	}
 	.feed_list {
@@ -683,7 +720,7 @@ a {
 	.feed_thumbnail {
 		margin-top: 0.25rem;
 		width: 100%;
-		height: 150px;
+		height: 160px;
 	}
 	.feed .feed_comment {
 		width: 100%;
@@ -709,8 +746,7 @@ a {
 	/*이벤트 배너 캐러쉘 section*/
 	.event_slide {
 		order: 1;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-bottom: 1.000rem;
 		padding-top: 2%;
 	}
@@ -718,8 +754,7 @@ a {
 	/* mdfeed 리스트 section css*/
 	.mdfeed_section {
 		order: 2;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 		padding-bottom: 1.000rem;
 	}
@@ -739,8 +774,7 @@ a {
 	/* 피드 리스트 section css*/
 	.feedlist_section {
 		order: 4;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 	}
 	.feed_list {
@@ -767,7 +801,7 @@ a {
 	.feed_thumbnail {
 		margin-top: 0.25rem;
 		width: 100%;
-		height: 150px;
+		height: 160px;
 	}
 	.feed .feed_comment {
 		width: 100%;
@@ -876,7 +910,7 @@ a {
 					 <div><img src="resources/images/icons/ajax_loading.gif" /></div>
 				</div>
 			<div class="feed_list" id="user_feed">
-				<c:forEach var="feed" items="${list }">
+				<c:forEach var="feed" items="${list }" varStatus="status">
 					<div class="feed">
 						<div class="feed_imgbox">
 							<a class="feedpage" id="overlayTrigger2"
@@ -885,7 +919,7 @@ a {
 								alt=""> <!-- 이미지 캡션 --> </a>
 							<div class="caption_box">
 								<a><img class="feed_icon"
-									src="resouces/images/icons/feed_heart.png"></a>
+									src="resources/images/icons/feed_heart.png"></a>
 							</div>
 						</div>
 						<div class="feed_thumbnail">
@@ -899,6 +933,16 @@ a {
 							<div class="feed_date" id="feedlist_date">${feed.ts_regdate }</div>
 							<div class="feed_content" id="feedlist_content">
 								${feed.ts_content }</div>
+							<div class="feed_icon_area" id="feed_icon">
+								<div class="feed_icon">
+									<img class="icon_img" src="resources/images/icons/feed_heart.png">
+									<p class="icon_txt">${feed.ts_like }</p>
+								</div>
+								<div class="feed_icon">
+									<img class="icon_img" src="resources/images/icons/feed_msg.png">
+									<p class="icon_txt">0</p>
+								</div>
+							</div>
 						</div>
 						<div class="feed_comment">
 							<p class="card-text">피드 관련 댓글</p>
@@ -906,6 +950,9 @@ a {
 					</div>
 				</c:forEach>
 			</div>
+			<div class="feed_more" style="text-align: center;">
+				<button class="btn btn-danger" id="feed_more_btn" data-ts_id="${feed.ts_id }">more</button>
+			</div> 
 		</section>
 		<div class="write_btn">
 			<a class="feedwrite" id="overlayTrigger2" href="#myOverlay3"
@@ -943,7 +990,6 @@ a {
 					</div>
 					<div class="feed_reply" style="margin-top: 10px;">
 						<form name="feed_reply_write">
-
 							<input type="hidden" value="" id="ts_id" name="ts_id"> <input
 								type="hidden" value="${member.mem_id}" name="mem_id"> <input
 								type="hidden" value="${member.mem_name}" name="mem_name">
@@ -1056,7 +1102,7 @@ a {
 						function() {
 							/* 이벤트배너 슬라이드 */
 
-							/* 캐러쉘*/
+							/* 캐러쉘 광고 슬라이드*/
 							$('.carousel').carousel();
 
 							/* 이미지 마우스 갖다 되면 투명하게 */
@@ -1162,8 +1208,6 @@ a {
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
 																	$.each(data,function(index,feed) {
-																		setTimeout(function(){
-																			
 																						$("#user_feed").append('<div class="feed">'
 																												+ '<div class="feed_imgbox">'
 																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
@@ -1182,18 +1226,23 @@ a {
 																												+ '</div>'
 																												+ '<div class="feed_content" id="feedlist_content">'
 																												+ $(feed).attr('ts_content')
-																												+ '</div></div>'
+																												+ '</div>'
+																												+ '<div class="feed_icon_area" id="feed_icon">'
+																												+ '<div class="feed_icon">'
+																												+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																												+ '</p></div><div class="feed_icon">'
+																												+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																												+ '</p></div></div></div>'
 																												+ '<div class="feed_comment">'
 																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
-																		}, 800);
 																		});
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
 														    },complete:function(){
-														    	setTimeout(function(){
 														    	$('.feed_loading').addClass('display-none');
-														    	},800);
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -1232,8 +1281,6 @@ a {
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
 																	$.each(data,function(index,feed) {
-																		setTimeout(function(){
-																			
 																						$("#user_feed").append('<div class="feed">'
 																												+ '<div class="feed_imgbox">'
 																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
@@ -1252,18 +1299,23 @@ a {
 																												+ '</div>'
 																												+ '<div class="feed_content" id="feedlist_content">'
 																												+ $(feed).attr('ts_content')
-																												+ '</div></div>'
+																												+ '</div>'
+																												+ '<div class="feed_icon_area" id="feed_icon">'
+																												+ '<div class="feed_icon">'
+																												+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																												+ '</p></div><div class="feed_icon">'
+																												+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																												+ '</p></div></div></div>'
 																												+ '<div class="feed_comment">'
 																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
-																		}, 800);
 																		});
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
 														    },complete:function(){
-														    	setTimeout(function(){
 														    	$('.feed_loading').addClass('display-none');
-														    	},800);
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -1347,21 +1399,27 @@ a {
 									
 							});
 						});
+							
+							/*피드 더보기 기능(ajax)*/
+							$("#feed_more_btn").bind("click",function(){
+								var ts_id = $(".feed_list > .feed:last-child").data('seq');
+								console.log("더보기 클릭"+ts_id);
+							});
+							
+							
 							/*닉네임 클릭하면 mypage로 이동*/
 							$(".feed_writer").bind("click", function() {
 								var mem_id = $(this).data('writer');
 								console.log("mem_id는" + mem_id);
 								location.href = 'mypage.do?mem_id=' + mem_id
 							});
-
 							/*피드 마우스엔터시 캡션박스 활성화/비활성화*/
-							$('.feed_imgbox').mouseenter(
-									function() {
+/* 							$('.feed_imgbox').mouseenter(
+ */							$(document).on('mouseenter','.feed_imgbox',function() {
 										$(this).find('.caption_box').addClass("active");
 									
 								});
-							$('.feed_imgbox').mouseleave(
-									function() {
+							$(document).on('mouseleave','.feed_imgbox',function() {
 										$(this).find('.caption_box')
 												.removeClass("active");
 									});
