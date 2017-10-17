@@ -53,15 +53,19 @@
 <script type="text/javascript">
 	window.onload = function() {
 		var sum = 0;
+		var sum1 = 0;
 		var count = frm.goods_price.length;
 		if (count == undefined) {
-			sum += parseInt(frm.goods_price.value);
+			sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+			sum1 += parseInt(frm.goods_delprice.value);
 		}
 		for(var i = 0; i< count; i++){
-			sum += parseInt(frm.goods_price[i].value);
+			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+			 sum1 += parseInt(frm.goods_delprice[i].value);
 		}
 		frm.total_sum.value = sum;
-		frm.total_sum1.value = sum;
+		frm.delprice.value = sum1; 
+		frm.total_sum1.value = sum+sum1;
 	}
 </script>
 </head>
@@ -91,6 +95,8 @@
 				<c:if test="${not empty listOrders }">
 				<c:forEach var="cart" items="${listOrders}">
 				<input type="hidden" name="goods_price" value="${cart.goods_price }">
+				<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
+				<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
 					<tr>
 						<td>${cart.goods_name}<p>
 							Color : ${cart.goods_color } / Size : ${cart.goods_size }
@@ -213,11 +219,11 @@
 						</tr>
 						<tr>	
 							<th>할인 금액</th>
-							<th><input name="delprice" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
+							<th></th>
 						</tr>
 						<tr>
 							<th>총 배송비</th>
-							<th></th>
+							<th><input name="delprice" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
 						<tr>
 							<th>총 결제금액</th>

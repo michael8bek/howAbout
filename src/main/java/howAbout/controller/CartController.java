@@ -48,18 +48,18 @@ public class CartController {
 	}
 
 	@RequestMapping("buyOne")
-	public String buyOne(String cart_id, String goods_qty, HttpServletRequest request, Model model) throws Exception {
+	public String buyOne(HttpServletRequest request, Model model) throws Exception {
 		/*int result = cs.buyOne(cart);
 		model.addAttribute("result", result);
 		return "cart/buyOne";*/
-		String cart_id1 = request.getParameter("cart_id");
-		String goods_qty1 = request.getParameter("goods_qty");
+		String cart_id = request.getParameter("cart_id");
+		String goods_qty = request.getParameter("goods_qty");
 		int result = 0;
 		Map<String,Integer> map = null;
-		if (cart_id1.length() > 0) {
+		if (cart_id.length() > 0) {
 				map = new HashMap<String,Integer>();
-				map.put("cart_id",Integer.parseInt(cart_id1));
-				map.put("goods_qty",Integer.parseInt(goods_qty1));
+				map.put("cart_id",Integer.parseInt(cart_id));
+				map.put("goods_qty",Integer.parseInt(goods_qty));
 				cs.buyOne(map);
 				result = 1;
 			}
