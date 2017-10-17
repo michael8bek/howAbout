@@ -1,6 +1,7 @@
 package howAbout.service.cart;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,10 @@ public class CartServiceImpl implements CartService {
 		return cd.delete(cart_id);
 	}
 	@Override
-	public int buyOne(String cart_id) {
-		return cd.buyOne(cart_id);
+	public int buyOne(Map<String, Integer> map) {
+		return cd.buyOne(map);
 	}
+	
 	@Override
 	public List<Cart> listOrders(String mem_id) {
 		return cd.listOrders(mem_id);
@@ -33,8 +35,10 @@ public class CartServiceImpl implements CartService {
 		cd.delSelect(arr);
 	}
 	@Override
-	public void ordersSelect(String arr) {
-		cd.ordersSelect(arr);
+	public void ordersSelect(Map<String, Integer> map) {
+		cd.ordersSelect(map);
 	}
+	
+	
 
 }

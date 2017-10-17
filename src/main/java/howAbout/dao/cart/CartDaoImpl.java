@@ -1,6 +1,7 @@
 package howAbout.dao.cart;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class CartDaoImpl implements CartDao {
 		return sst.update("cartns.delete", cart_id);
 	}
 	@Override
-	public int buyOne(String cart_id) {
-		return sst.update("cartns.buyOne", cart_id);
+	public int buyOne(Map<String, Integer> map) {
+		return sst.update("cartns.buyOne", map);
 	}
 
 	@Override
@@ -36,9 +37,11 @@ public class CartDaoImpl implements CartDao {
 	public Object delSelect(String arr) {
 		return sst.update("cartns.delSelect", arr);
 	}
+
 	@Override
-	public Object ordersSelect(String arr) {
-		return sst.update("cartns.ordersSelect", arr);
+	public Object ordersSelect(Map<String, Integer> map) {
+		return sst.update("cartns.ordersSelect", map);
 	}
+	
 	
 }
