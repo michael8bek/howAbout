@@ -867,9 +867,9 @@ a {
 					style="font-weight: bold; font-size: 20px; vertical-align: super;; display: inline-block;">최신
 					트렌드</div>
 				<div class="list_option" id="order_recent"
-					style="display: inline-block; float: right; margin-right: 10px; font-weight: bold;">최신순</div>
+					style="display: inline-block; float: right; margin-right: 10px; font-weight: bold; cursor: pointer;">최신순</div>
 				<div class="list_option" id="order_like"
-					style="display: inline-block; float: right; margin-right: 10px; font-weight: bold;">인기순</div>
+					style="display: inline-block; float: right; margin-right: 10px; font-weight: bold; cursor: pointer;">인기순</div>
 			</div>
 			<%-- onclick="location.href='feeddetail.do?mem_id=${feed.mem_id}'" --%>
 				<div class="feed_loading display-none">
