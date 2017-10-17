@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,43 +9,39 @@
 </head>
 <body>
 
-	<div class="container">
-		<h2>상품 상세정보</h2>
-		<table border="1">
-			<tr>
-				<td><img src="${path}/goodsimages/${goods.goods_img}"
-					width="340" height="300"></td>
-				<td>
-					<table border="1" style="height: 300px; width: 400px;">
-						<tr align="center">
-							<td>상품명</td>
-							<td>${goods.goods_name}</td>
-						</tr>
-						<tr align="center">
-							<td>가격</td>
-							<td>${goods.goods_price}</td>
-						</tr>
-						<tr align="center">
-							<td>상품소개</td>
-							<td>${goods.goods_name}</td>
-						</tr>
-						<%-- 					<tr align="center">
-						<td colspan="2">
-							<form name="form1" method="post"
-								action="${path}/shop/cart/insert.do">
-								<input type="hidden" name="productId" value="${vo.goods_id}">
-								<select name="amount">
-									<c:forEach begin="1" end="10" var="i">
-										<option value="${i}">${i}</option>
-									</c:forEach>
-								</select>&nbsp;개 <input type="submit" value="장바구니에 담기">
-							</form> <a href="${path}/shop/product/list.do">상품목록</a>
-						</td>
-					</tr> --%>
-					</table>
-				</td>
-			</tr>
-		</table>
+	<div class="view_container">
+		<div class="row">
+			<div class="card h-100">
+				<img src="${path}/resources/images/goods/${goods.goods_img}"><br>
+				상품명 ${goods.goods_name}<br> 상품브랜드 ${goods.goods_brand}<br>
+				가격 ${goods.goods_price}<br> 배송비 ${goods.goods_delprice}<br>
+				재고수량 ${stock.stock_qty}<br>
+			</div>
+			<div class="card-body">
+				<form name="form1" method="post" action="${path}.do">
+					<input type="hidden" name="goodsId" value="${goods.goods_id}" >
+					<c:choose>
+						<c:when test="${stock.stock_qty == 0}">
+								수량이 없습니다.
+						</c:when>
+						<c:when test="${stock.stock_qty >= 10}">
+							<select name="amount">
+								<c:forEach begin="1" end="10" var="sto">
+									<option value="${sto}">${sto}</option>
+								</c:forEach>
+							</select>&nbsp;개 <input type="submit" value="장바구니에 담기">
+						</c:when>
+						<c:when test="${stock.stock_qty < 10}">
+							<select name="amount">
+								<c:forEach begin="1" end="${stock.stock_qty}" var="sto">
+									<option value="${sto}">${sto}</option>
+								</c:forEach>
+							</select>&nbsp;개 <input type="submit" value="장바구니에 담기">
+						</c:when>
+					</c:choose>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -10,4 +10,6 @@ public interface StockService {
 
 	List<Stock> stockList();
 
+	Stock select(int goods_id);
+
 }
