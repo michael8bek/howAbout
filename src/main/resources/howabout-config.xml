@@ -12,6 +12,7 @@
 		<typeAlias type="howAbout.model.Payment" alias="payment"/>
 		<typeAlias type="howAbout.model.Stylefeed" alias="stylefeed"/>
 		<typeAlias type="howAbout.model.Stock" alias="stock"/>
+		<typeAlias type="howAbout.model.Tsreply" alias="tsreply"/>
 		<!-- <typeAlias type="howAbout.model.member.Member" alias="member" />
 		<typeAlias type="howAbout.model.cart.Cart" alias="cart"/>
 		<typeAlias type="howAbout.model.goods.Goods" alias="goods"/>
@@ -26,5 +27,6 @@
 		<mapper resource="Payment.xml" />
 		<mapper resource="Stylefeed.xml"/>
 		<mapper resource="Stock.xml"/>
+		<mapper resource="Tsreply.xml"/>
 	</mappers>
 </configuration>

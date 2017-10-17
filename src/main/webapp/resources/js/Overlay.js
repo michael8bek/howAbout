@@ -476,6 +476,7 @@ var Overlay = (function(){
 				$("#input_img").val("");
 			}
 				$("#img").removeAttr("src");
+				
 			//여기까지
 			return false;
 		},

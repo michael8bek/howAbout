@@ -4,6 +4,7 @@ import java.util.List;
 
 import howAbout.model.Member;
 import howAbout.model.Stylefeed;
+import howAbout.model.Tsreply;
 
 public interface StylefeedService {
 
@@ -13,5 +14,8 @@ public interface StylefeedService {
 	int feedWrite(Stylefeed sf);
 
 	List<Stylefeed> feedDetail(int ts_id);
+	List<Stylefeed> feedlist_orderLike();
+	int feedReplyWrite(Tsreply tr);
+	List<Stylefeed> feedlist_orderRecent();
 
 }

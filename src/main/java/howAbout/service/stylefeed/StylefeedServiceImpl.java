@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import howAbout.dao.stylefeed.StylefeedDao;
 import howAbout.model.Member;
 import howAbout.model.Stylefeed;
+import howAbout.model.Tsreply;
 
 
 @Service
@@ -33,5 +34,21 @@ public class StylefeedServiceImpl implements StylefeedService {
 	@Override
 	public List<Stylefeed> myfeedlist(String mem_id) {
 		return sd.myfeedlist(mem_id);
+	}
+
+	@Override
+	public List<Stylefeed> feedlist_orderLike() {
+		return sd.feedlist_orderLike();
+	}
+
+	@Override
+	public int feedReplyWrite(Tsreply tr) {
+		return sd.feedReplyWrite(tr);
+	}
+
+	@Override
+	public List<Stylefeed> feedlist_orderRecent() {
+		// TODO Auto-generated method stub
+		return sd.feedlist_orderRecent();
 	}
 }
