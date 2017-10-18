@@ -2,6 +2,8 @@ package howAbout.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,5 +37,13 @@ public class MdtextController {
 		List<Goods> list = gs.list();
 		model.addAttribute("list", list);
 		return "md/mdtextInsertForm";
+	}
+	@RequestMapping("mdtextInsert")
+	public String mdtextInsert(Mdtext mdtext,HttpSession session, Model model) {
+		mdtext.setMem_id((String)session.getAttribute("mem_id"));
+		int result = mds.register(mdtext);
+
+		model.addAttribute("result", result);
+		return "redirect:listMdtext.do";
 	}
 }
