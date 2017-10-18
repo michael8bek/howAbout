@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Cart;
 import howAbout.model.Couponlist;
+import howAbout.model.Stock;
 import howAbout.service.cart.CartService;
 import howAbout.service.couponlist.CouponlistService;
+import howAbout.service.stock.StockService;
 
 @Controller
 public class CartController {
@@ -25,11 +27,15 @@ public class CartController {
 	private CartService cs;
 	@Autowired
 	private CouponlistService cls;
+	@Autowired
+	private StockService ss;
 	
 	@RequestMapping("cartList")
 	public String cartList(String mem_id, Model model, HttpSession session) {
 		/*List<Cart> listCart = cs.list((String) session.getAttribute("mem_id"));*/
 		List<Cart> listCart = cs.list(mem_id);
+		List<Stock> listStock = ss.stockList();
+		model.addAttribute("listStock", listStock);
 		model.addAttribute("listCart", listCart);
 		return "cart/cartList";
 	}
@@ -87,7 +93,7 @@ public class CartController {
 	}
 	@RequestMapping("ordersSelect")
 	public String ordersSelect(HttpServletRequest request, Model model) throws Exception {
-		String arr[] = request.getParameterValues("chk");
+		String arr[] = request.getParameterValues("cart_id");
 		String qty[] = request.getParameterValues("goods_qty");
 		int result = 0;
 		Map<String,Integer> map = null;

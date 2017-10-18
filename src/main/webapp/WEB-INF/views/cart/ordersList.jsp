@@ -73,7 +73,7 @@
 		frm.saleprice.value = salesum;
 	}
 	
-	$(function() {
+/* 	$(function() {
 		$('.steelcut').click(function() {
 			$.ajax({
 				url : 'im2.jsp',
@@ -94,7 +94,7 @@
 				}
 			});
 		});
-	});
+	}); */
 </script>
 </head>
 <body>
@@ -206,7 +206,7 @@
 					</tr>
 					<tr>
 						<th>배송 요청사항</th>
-						<th><textarea rows="3"></textarea></th>
+						<th><textarea rows="3" name="pay_required"></textarea></th>
 					</tr>
 					<tr>
 						<th colspan="2">
@@ -221,11 +221,11 @@
 					</tr>
 					<tr>
 						<th style="width: 25%;">입금자명 *</th>
-						<th><input type="tel" required="required"></th>
+						<th><input type="text"></th>
 					</tr>
 					<tr>
 						<th>입금은행 *</th>
-						<th><input type="tel" required="required"></th>
+						<th><input type="text"></th>
 					</tr>
 					<tr>
 						<th colspan="2">

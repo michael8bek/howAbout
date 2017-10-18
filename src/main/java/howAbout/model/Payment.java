@@ -1,5 +1,7 @@
 package howAbout.model;
 
+import java.sql.Date;
+
 public class Payment {
 	private int pay_id;
 	private int goods_id;
@@ -13,9 +15,7 @@ public class Payment {
 	private String pay_rephone;
 	private String pay_required;
 	private int pay_total;
-	
-	
-	
+	private Date pay_time;
 	public int getPay_id() {
 		return pay_id;
 	}
@@ -76,10 +76,10 @@ public class Payment {
 	public void setPay_rephone(String pay_rephone) {
 		this.pay_rephone = pay_rephone;
 	}
-	public String getpay_required() {
+	public String getPay_required() {
 		return pay_required;
 	}
-	public void setpay_required(String pay_required) {
+	public void setPay_required(String pay_required) {
 		this.pay_required = pay_required;
 	}
 	public int getPay_total() {
@@ -87,6 +87,12 @@ public class Payment {
 	}
 	public void setPay_total(int pay_total) {
 		this.pay_total = pay_total;
+	}
+	public Date getPay_time() {
+		return pay_time;
+	}
+	public void setPay_time(Date pay_time) {
+		this.pay_time = pay_time;
 	}
 	
 	

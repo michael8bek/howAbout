@@ -38,6 +38,10 @@ public class CartServiceImpl implements CartService {
 	public void ordersSelect(Map<String, Integer> map) {
 		cd.ordersSelect(map);
 	}
+	@Override
+	public void payment(String cart_id) {
+		cd.payment(cart_id);
+	}
 	
 	
 

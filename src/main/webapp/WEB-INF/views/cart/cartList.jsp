@@ -34,10 +34,7 @@
 }
 </style>
 <script type="text/javascript">
-	/* var qty = new Array();
-	<c:forEach var="cart1" items="${listCart}" varStatus="status">
-	qty.push("${cart1.goods_qty}");
-	</c:forEach> */
+
 	/*개별 체크 박스 클릭시  */
   function itemSum() {
 	var sum =0;
@@ -81,13 +78,13 @@ function ckeckAll(index) {
 		frm.total_sum.value ="";		
 		frm.total_sum1.value ="";
 		frm.delprice.value = ""; 
-	}q
+	}
 }  
   
  /* 클릭시 수량 변경  */
 function click_count(idx, n) {
 	var num = parseInt($("#numberUpDown" + idx).val(), 10) + n;
-	var num1 = parseInt($("#goods_qty" + idx).val(), 10);
+	var num1 = parseInt($("#stock_qty" + idx).val(), 10);
 	if(num<1){
 		alert('더이상 줄일수 없습니다.');
 		num = 1;
@@ -171,6 +168,7 @@ function click_count(idx, n) {
    	  }else{}
        
  }
+  
 </script>
 </head>
 <body>
@@ -181,9 +179,7 @@ function click_count(idx, n) {
 					<h2 class="text-primary" style="padding-top: 3%;">장바구니 목록</h2>
 					담아둔 상품이 품절됐을 시 장바구니에서 자동 삭제되오니 참고 바랍니다.
 					<p>
-					<div style="display:table">
-					<div style="display:table-cell; vertical-align: middle; ">
-					<table class="table table-bordered" style="float: left; width: 100%; ">
+					<table class="table table-bordered" style="width: 100%; ">
 						<tr>
 							<th colspan="5"><input id="checkbox_1" type="checkbox" checked="checked"
 								onclick="ckeckAll()" value="">전체선택</th>
@@ -199,20 +195,22 @@ function click_count(idx, n) {
 
 						<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart}" varStatus="status">
-						<c:if test="${cart.goods_qty>0}"> 
+						<c:forEach var="stock" items="${listStock }" varStatus="status">
+						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty>0 }"> 
 						<input type="hidden" name="goods_qty${status.count}" value="${cart.goods_qty }" id="goods_qty${status.count}">
 						<input type="hidden" name="goods_price" value="${cart.goods_price}" id="goods_price">
 						<input type="hidden" name="cart_id" value="${cart.cart_id }">
 						<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
+						<input type="hidden" name="stock_qty${status.count}" value="${stock.stock_qty}" id="stock_qty${status.count}">
 							<tr style="width: 100%; vertical-align: middle;">
 								<td style="border-right: 1px solid #FFFFFF; vertical-align: middle;"><input type="checkbox" name="chk" checked="checked"
 								value="${cart.cart_id}" onclick="itemSum()"></td>
-								<td style="border-right: 1px solid #FFFFFF; width: 15%; vertical-align: middle;"><img src="resources/images/goods/${cart.goods_img }" style="width:100%; float: left;"></td>
+								<td style="border-right: 1px solid #FFFFFF; width: 15%; vertical-align: middle;"><img src="resources/images/goods/${cart.goods_img }" style="width:100%;"></td>
 								<td style="width:40%; ">${cart.goods_name}<p>
 						  		Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
 						  		<!-- 수량 -->
 						  		<a onclick="click_count(${status.count}, 1)" class="goods_qty1" id="">▲</a>
-						  		<input type="text" class="qty1" id="numberUpDown${status.count }" name="goods_qty" value="1" style="width: 11%; text-align: center;">
+						  		<input type="text" class="qty1" id="numberUpDown${status.count }" name="goods_qty" value="${cart.goods_qty }" style="width: 11%; text-align: center;">
 						  		<a onclick="click_count(${status.count}, -1)"  class="goods_qty1" id="" >▼</a>
 								</td>
 								<td style="width: 15%; vertical-align: middle;">${cart.goods_price}</td>
@@ -223,9 +221,11 @@ function click_count(idx, n) {
 								
 							</tr>
 						</c:if>
-						<c:if test="${cart.goods_qty==0}"> 
+						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty==0}"> 
 							<tr>
-								<td>&nbsp;&nbsp;&nbsp;${cart.goods_name}<p>
+								<td style="border-right: 1px solid #FFFFFF;"></td>
+								<td style="border-right: 1px solid #FFFFFF;  width: 15%;"></td>
+								<td style="width:40%;">&nbsp;&nbsp;&nbsp;${cart.goods_name}<p>
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
 									</td>
 								<td colspan="2">
@@ -238,13 +238,15 @@ function click_count(idx, n) {
 							
 						</c:if>
 						</c:forEach>
+						</c:forEach>
 						</c:if>
 						<c:if test="${empty listCart }">
-							<tr>
-								<td colspan="4">장바구니에 담긴 상품이 없습니다.</td>
+							<tr style="width: 100%; vertical-align: middle;">
+								<td colspan="6" style="width: 100%; vertical-align: middle;">장바구니에 담긴 상품이 없습니다.</td>
 							</tr>
 						</c:if>
-					</table></div></div>
+						
+					</table>
 				</div>
 				<div class="container1_2">
 					<table class="table table-striped"

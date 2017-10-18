@@ -19,5 +19,7 @@ public interface CartService {
 
 	void ordersSelect(Map<String, Integer> map);
 
+	void payment(String cart_id);
+
 
 }

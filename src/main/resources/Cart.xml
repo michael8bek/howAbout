@@ -39,4 +39,7 @@
 <update id="ordersSelect" parameterType="HashMap">
 	update cart set cart_state='orders', goods_qty =#{goods_qty} where cart_id=#{cart_id}
 </update>
+<update id="payment" parameterType="int">
+	update cart set cart_state='done' where cart_id=#{cart_id}
+</update>
 </mapper>
