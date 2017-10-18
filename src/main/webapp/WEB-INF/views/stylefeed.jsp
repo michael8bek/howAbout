@@ -1185,6 +1185,7 @@ a {
 							}); */
 
 							//피드 리스트 인기순(DB의 ts_like순) 정렬
+							var errImg = "'http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png'";
 							$("#order_like").bind("click",function() {
 												console.log("인기순정렬 JS함수 실행");
 												$.ajax({
@@ -1213,7 +1214,9 @@ a {
 																						$("#user_feed").append('<div class="feed">'
 																												+ '<div class="feed_imgbox">'
 																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
-																												+ '<img class="feed-img" src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
+																												+ '<img class="feed-img" '
+																												+ 'onerror="this.src='+errImg+';"'
+																												+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
 																												+ '<div class="caption_box">'
 																												+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
 																												+ '</div></div>'
@@ -1258,6 +1261,7 @@ a {
 											});
 							
 							//피드 리스트 최신순(DB의 ts_regdate순) 정렬
+							
 							$("#order_recent").bind("click",function() {
 												console.log("최신순정렬 JS함수 실행");
 												$.ajax({
@@ -1286,7 +1290,9 @@ a {
 																						$("#user_feed").append('<div class="feed">'
 																												+ '<div class="feed_imgbox">'
 																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
-																												+ '<img class="feed-img" src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
+																												+ '<img class="feed-img" '
+																												+ 'onerror="this.src='+errImg+';"'
+																												+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
 																												+ '<div class="caption_box">'
 																												+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
 																												+ '</div></div>'
