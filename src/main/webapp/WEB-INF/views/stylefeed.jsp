@@ -423,7 +423,7 @@ a {
 	display:inline-block;
 	overflow-y:auto;
 	width: 100%;
-	height: 75px;
+	height: 80px;
 	color: #AAAAAA;
 	float: left;
 	padding-left: 2.5%;
@@ -915,7 +915,7 @@ a {
 						<div class="feed_imgbox">
 							<a class="feedpage" id="overlayTrigger2"
 								data-seq="${feed.ts_id }" data-overlay-trigger="myOverlay2"><img
-								class="feed-img" src="${feed.ts_img_path}${feed.ts_img_name}"
+								class="feed-img" onerror="this.src='http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png';" src="${feed.ts_img_path}${feed.ts_img_name}"
 								alt=""> <!-- 이미지 캡션 --> </a>
 							<div class="caption_box">
 								<a><img class="feed_icon"
@@ -1063,6 +1063,8 @@ a {
 	<!-- <script src="resources/js/jquery.js"></script> -->
 	<script type="text/javascript"
 		src="resources/vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="resources/js/trendshare.js"></script>
 	<script type="text/javascript">
 		//피드 업로드할 사진 선택안하고 글 올릴 시 alert 
 		function uploadChk() {
@@ -1413,16 +1415,6 @@ a {
 								console.log("mem_id는" + mem_id);
 								location.href = 'mypage.do?mem_id=' + mem_id
 							});
-							/*피드 마우스엔터시 캡션박스 활성화/비활성화*/
-/* 							$('.feed_imgbox').mouseenter(
- */							$(document).on('mouseenter','.feed_imgbox',function() {
-										$(this).find('.caption_box').addClass("active");
-									
-								});
-							$(document).on('mouseleave','.feed_imgbox',function() {
-										$(this).find('.caption_box')
-												.removeClass("active");
-									});
 
 						})
 	</script>

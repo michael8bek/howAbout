@@ -36,6 +36,15 @@ public class StylefeedController {
 	@Autowired
 	private StylefeedService ss;
 
+	//테스트용 검색결과
+	@RequestMapping("search")
+	public String search(@RequestParam String search, HttpServletRequest request,Model model) {
+	System.out.println(search);
+	model.addAttribute("search",search);
+	return "searchresult";	
+	}
+	
+	
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
 	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {

@@ -51,13 +51,12 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<!-- search 창 form -->
-			<form class="form-inline">
+			<form class="form-inline" action="search.do" method="post">
 				<div class="form-group">
 					<input type="text"
-						class="form-control form-row " id="search" placeholder="Search Items">
+						class="form-control form-row " name="search" id="search" placeholder="Search Items">
 				<button type="submit" class="btn btn-primary btn-md active">Search</button>
 				</div>
-				
 			</form>
 			<!-- /.search 창 form -->
 			
