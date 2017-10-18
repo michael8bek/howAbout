@@ -42,8 +42,8 @@
 <update id="payment" parameterType="int">
 	update cart set cart_state='done' where cart_id=#{cart_id}
 </update>
-<select id="listOrders" resultMap="cartResult">
-	select * from cart c, goods g where c.cart_state='done' 
-	and c.mem_id=#{mem_id} and c.goods_id = g.goods_id 
+<select id="payList" resultMap="cartResult">
+	select * from cart c, goods g, member m where c.cart_state='done' 
+	and c.mem_id=#{mem_id} and c.goods_id = g.goods_id and c.mem_id = m.mem_id
 </select>
 </mapper>

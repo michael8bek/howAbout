@@ -47,6 +47,11 @@ public class CartDaoImpl implements CartDao {
 	public void payment(String cart_id) {
 		sst.update("cartns.payment", cart_id);
 	}
+
+	@Override
+	public List<Cart> payList(String mem_id) {
+		return sst.selectList("cartns.payList", mem_id);
+	}
 	
 	
 }

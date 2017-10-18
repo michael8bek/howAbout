@@ -42,6 +42,10 @@ public class CartServiceImpl implements CartService {
 	public void payment(String cart_id) {
 		cd.payment(cart_id);
 	}
+	@Override
+	public List<Cart> payList(String mem_id) {
+		return cd.payList(mem_id);
+	}
 	
 	
 

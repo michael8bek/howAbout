@@ -117,8 +117,8 @@
 						<th>수량</th>
 						<th>상품금액</th>
 						<th>상품할인</th>
-						<th>주문금액</th>
 						<th>배송비</th>
+						<th>주문금액</th>
 					</tr>
 				<c:if test="${not empty listOrders }">
 				<c:forEach var="cart" items="${listOrders}">
@@ -135,8 +135,8 @@
 						<td style="vertical-align: middle;">${cart.goods_qty }</td>
 						<td style="vertical-align: middle;">${cart.goods_price }</td>
 						<td style="vertical-align: middle;">${cart.couponlist_benefit }</td>
-						<td style="vertical-align: middle;">${cart.goods_price*cart.goods_qty-cart.couponlist_benefit}</td>
 						<td style="vertical-align: middle;">${cart.goods_delprice }</td>
+						<td style="vertical-align: middle;">${cart.goods_price*cart.goods_qty-cart.couponlist_benefit +cart.goods_delprice}</td>
 					</tr>
 					</c:forEach>
 				</c:if>

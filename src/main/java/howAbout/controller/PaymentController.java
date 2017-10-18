@@ -41,8 +41,8 @@ public class PaymentController {
 	}
 	@RequestMapping("payList")
 	public String payList(Model model, HttpSession session) {
-		List<Cart> listOrders = cs.listOrders((String) session.getAttribute("mem_id"));
-		model.addAttribute("listOrders",listOrders);
+		List<Cart> payList = cs.payList((String) session.getAttribute("mem_id"));
+		model.addAttribute("payList",payList);
 		return "pay/payList";
 		
 	}

@@ -141,6 +141,15 @@
 							</c:if>
 							<c:if test="${not empty member }">
 								<a class="dropdown-item"
+									href="cartList.do?mem_id=${member.mem_id }">장바구니</a>
+							</c:if>
+							<c:if test="${ empty member }">
+								<a class="dropdown-item"
+									href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal"
+									data-target=".bd-example-modal-lg">장바구니</a>
+							</c:if>
+							<c:if test="${not empty member }">
+								<a class="dropdown-item"
 									href="ordersList.do?mem_id=${member.mem_id }">주문정보</a>
 							</c:if>
 							<c:if test="${empty member }">
@@ -148,14 +157,15 @@
 									href="ordersList.do?mem_id=${member.mem_id }"
 									data-toggle="modal" data-target=".bd-example-modal-lg">주문정보</a>
 							</c:if>
+							
 							<c:if test="${not empty member }">
 								<a class="dropdown-item"
-									href="cartList.do?mem_id=${member.mem_id }">장바구니</a>
+									href="payList.do?mem_id=${member.mem_id }">결제내역</a>
 							</c:if>
 							<c:if test="${ empty member }">
 								<a class="dropdown-item"
-									href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal"
-									data-target=".bd-example-modal-lg">장바구니</a>
+									href="payList.do?mem_id=${member.mem_id }" data-toggle="modal"
+									data-target=".bd-example-modal-lg">결제내역</a>
 							</c:if>
 							<!-- <a class="dropdown-item" href="goodsList.do">상품페이지</a> -->
 							<%-- <c:if test="${empty member }">

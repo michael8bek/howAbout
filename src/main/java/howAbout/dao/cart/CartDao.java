@@ -21,4 +21,6 @@ public interface CartDao {
 
 	void payment(String cart_id);
 
+	List<Cart> payList(String mem_id);
+
 }
