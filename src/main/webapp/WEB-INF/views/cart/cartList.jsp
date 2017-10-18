@@ -40,6 +40,7 @@
 	var sum =0;
 	var sum1 = 0;
 	var count = frm.chk.length;
+	
 	if (count == undefined) {
 		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
 		sum1 += parseInt(frm.goods_delprice.value);
@@ -207,7 +208,9 @@ function click_count(idx, n) {
 								value="${cart.cart_id}" onclick="itemSum()"></td>
 								<td style="border-right: 1px solid #FFFFFF; width: 15%; vertical-align: middle;"><img src="resources/images/goods/${cart.goods_img }" style="width:100%;"></td>
 								<td style="width:40%; ">${cart.goods_name}<p>
-						  		Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
+						  		Color : ${cart.goods_color } / 
+						  		<c:if test="${cart.goods_size ==0 }"> Size : Free<p></c:if>
+						  		<c:if test="${cart.goods_size > 0 }"> Size : ${cart.goods_size }<p></c:if>
 						  		<!-- 수량 -->
 						  		<a onclick="click_count(${status.count}, 1)" class="goods_qty1" id="">▲</a>
 						  		<input type="text" class="qty1" id="numberUpDown${status.count }" name="goods_qty" value="${cart.goods_qty }" style="width: 11%; text-align: center;">
