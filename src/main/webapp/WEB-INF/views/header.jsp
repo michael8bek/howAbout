@@ -37,7 +37,7 @@
 
 <title>How about</title>
 <script type="text/javascript">
-	
+
 </script>
 </head>
 <body>
@@ -101,7 +101,7 @@
 					<li class="nav-item">
 					<a class="dropdown-item" href="goodsList.do">상품페이지</a>
 					</li>
-					
+
                     <c:if test="${not empty member }">
 					<li class="nav-item"><a class="nav-link"
 						href="cartList.do?mem_id=${member.mem_id }">장바구니</a></li>
@@ -120,7 +120,7 @@
 						aria-haspopup="true" aria-expanded="false"> 추천 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="listMdtext.do">MD추천</a> 
+							<a class="dropdown-item" href="listMdtext.do">MD추천</a>
 							<a class="dropdown-item" href="mdtextInsertForm.do">MD추천 입력</a>
 							<a class="dropdown-item" href="portfolio-3-col.jsp">3
 								Column Portfolio</a> <a class="dropdown-item"
@@ -142,19 +142,19 @@
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							마이페이지</a>
-							
+
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<c:if test="${not empty member }">
 								<a class="dropdown-item" href="logout.do">로그아웃</a>
 							</c:if>
 							<c:if test="${not empty member }">
-							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }">주문페이지</a> 
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }">주문페이지</a>
 							</c:if>
 							<c:if test="${empty member }">
-							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">주문페이지</a> 
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">주문페이지</a>
 							</c:if>
-							<a class="dropdown-item" href="goodsList.do">상품페이지</a> 
+							<a class="dropdown-item" href="goodsList.do">상품페이지</a>
 							<%-- <c:if test="${empty member }">
 								<a class="dropdown-item" href="joinForm.do">Join page</a>
 							</c:if> --%>
@@ -163,7 +163,7 @@
 							</c:if>
 						</div></li>
 					<c:if test="${empty member }">
-                    	<a class="btn btn-info" href="loginForm.do" data-toggle="modal" data-target=".bd-example-modal-lg">로그인</a> 
+                    	<a class="btn btn-info" href="loginForm.do" data-toggle="modal" data-target=".bd-example-modal-lg">로그인</a>
                     	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     		<div class="modal-dialog modal-lg">
                     			<div class="modal-content">
