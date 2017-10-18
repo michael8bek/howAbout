@@ -12,6 +12,8 @@
 		<result property="ts_readcount" column="ts_readcount" />
 		<result property="ts_img_path" column="ts_img_path"/>
 		<result property="ts_img_name" column="ts_img_name"/>
+		<result property="ts_like" column="ts_like"/>
+		
 	</resultMap>
 	<select id="feedlist" resultMap="stylefeedResult">
 		select * from trendshare where ts_del='n' order by ts_regdate desc

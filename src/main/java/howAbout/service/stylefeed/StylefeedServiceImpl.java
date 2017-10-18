@@ -42,13 +42,13 @@ public class StylefeedServiceImpl implements StylefeedService {
 	}
 
 	@Override
-	public int feedReplyWrite(Tsreply tr) {
-		return sd.feedReplyWrite(tr);
+	public void feedReplyWrite(Tsreply tr) {
+		sd.feedReplyWrite(tr);
+		sd.ts_reply(tr);
 	}
 
 	@Override
 	public List<Stylefeed> feedlist_orderRecent() {
-		// TODO Auto-generated method stub
 		return sd.feedlist_orderRecent();
 	}
 }

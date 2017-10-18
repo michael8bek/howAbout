@@ -10,6 +10,13 @@ public class Stylefeed {
 	private String ts_del;
 	private String mem_id;
 	private String mem_name;
+	private int ts_like;
+	public int getTs_like() {
+		return ts_like;
+	}
+	public void setTs_like(int ts_like) {
+		this.ts_like = ts_like;
+	}
 	public String getMem_name() {
 		return mem_name;
 	}

@@ -41,13 +41,18 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	}
 
 	@Override
-	public int feedReplyWrite(Tsreply tr) {
-		sst.insert("tsreplyns.ts_reply",tr);
-		return sst.insert("tsreplyns.feedreplyWrite",tr);
+	public void feedReplyWrite(Tsreply tr) {
+		sst.insert("tsreplyns.feedreplyWrite",tr);
 	}
 
 	@Override
 	public List<Stylefeed> feedlist_orderRecent() {
 		return sst.selectList("stylefeedns.feedlist_orderRecent");
+	}
+
+	@Override
+	public void ts_reply(Tsreply tr) {
+		sst.insert("tsreplyns.ts_reply",tr);
+		
 	}
 }

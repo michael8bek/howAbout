@@ -10,13 +10,15 @@
 		<result property="mem_id" column="mem_id" />
 	</resultMap>
 	<insert id="feedreplyWrite" parameterType="tsreply">
-		insert into reply(reply_type, reply_content, mem_id)
-		values(#{reply_type},#{reply_content},#{mem_id}) 
+		insert into
+		reply(reply_type, reply_content, mem_id)
+		values(#{reply_type},#{reply_content},#{mem_id});
+		insert into re_ply(reply_id)
+		select(reply_id) from reply
+		
 	</insert>
 	<insert id="ts_reply" parameterType="tsreply">
-		insert into ts_reply(ts_id, reply_id)
-		values(#{ts_id},#{reply_id}) 
-	</insert>
-	
-
+		insert into ts_reply(ts_id)
+		values(#{ts_id}) where 
+	</insert> 
 </mapper>
