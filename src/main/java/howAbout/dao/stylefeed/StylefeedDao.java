@@ -18,10 +18,10 @@ public interface StylefeedDao {
 
 	List<Stylefeed> feedlist_orderLike();
 
-	void feedReplyWrite(Tsreply tr);
+	int feedReplyWrite(Tsreply tr);
 
 	List<Stylefeed> feedlist_orderRecent();
 
-	void ts_reply(Tsreply tr);
+	List tsReplyList();
 
 }

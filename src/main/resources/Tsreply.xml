@@ -8,17 +8,18 @@
 		<result property="reply_type" column="reply_type" />
 		<result property="reply_content" column="reply_content" />
 		<result property="mem_id" column="mem_id" />
+		<result property="reply_regdate" column="reply_regdate" />
 	</resultMap>
-	<insert id="feedreplyWrite" parameterType="tsreply">
+	<insert id="feedreplyWrite" useGeneratedKeys="true" keyProperty="reply_id"
+		parameterType="tsreply">
 		insert into
 		reply(reply_type, reply_content, mem_id)
-		values(#{reply_type},#{reply_content},#{mem_id});
-		insert into re_ply(reply_id)
-		select(reply_id) from reply
-		
+		values(#{reply_type},#{reply_content},#{mem_id})
 	</insert>
-	<insert id="ts_reply" parameterType="tsreply">
-		insert into ts_reply(ts_id)
-		values(#{ts_id}) where 
-	</insert> 
+	<insert id="tsreply_write" parameterType="tsreply">
+	insert into
+		ts_reply(ts_id, reply_id)
+		values(#{ts_id},#{reply_id})
+	</insert>
+
 </mapper>

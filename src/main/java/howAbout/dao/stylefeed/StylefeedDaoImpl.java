@@ -41,8 +41,9 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	}
 
 	@Override
-	public void feedReplyWrite(Tsreply tr) {
-		sst.insert("tsreplyns.feedreplyWrite",tr);
+	public int feedReplyWrite(Tsreply tr) {
+		sst.insert("feedreplyWrite",tr);
+		return sst.insert("tsreplyns.tsreply_write",tr);
 	}
 
 	@Override
@@ -51,8 +52,7 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	}
 
 	@Override
-	public void ts_reply(Tsreply tr) {
-		sst.insert("tsreplyns.ts_reply",tr);
-		
+	public List tsReplyList() {
+		return sst.selectList("stylefeedns.tsReplyList");
 	}
 }

@@ -474,10 +474,54 @@ a {
 
 .feed .feed_comment {
 	position: relative;
-	height: 100px;
 	background-color: #F7F7F7;
-	padding: 2%;
 	border-radius: 0px 0px 5px 5px;
+}
+.comment_list{
+	display: flex;
+	height: 35px;
+}
+.feed_list #feedreply_writer {
+	display: inline-block;
+	font-size: 13px;
+	cursor: pointer;
+	margin-left:5px;
+	font-weight: bold;
+	width:75px;
+	padding-top: 9px;
+}
+.feed_comment .feed_writer_img {
+	padding-top:5px;
+	padding-left:5px;
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+.feed_comment .feed_writer_img > img{
+	width:30px;
+	height: 30px;
+}
+.feed_list .comment_txt{
+	position:absolute;
+	padding-top:9px;
+	right:0;
+	width:185px;
+	height:40px;
+	font-size:13px;
+	display: inline-block;
+	overflow-y:auto; 
+}
+
+.feed_list #feedreply_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:auto;
+	width: 100%;
+	height: 80px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
 }
 
 /*피드 글쓰기 버튼*/
@@ -639,11 +683,11 @@ a {
 		width: 100%;
 		height: 160px;
 	}
-	.feed .feed_comment {
+/* 	.feed .feed_comment {
 		width: 100%;
 		height: 120px;
 	}
-
+ */
 	/*피드 상세페이지*/
 	#myOverlay2 {
 		max-width: 700px;
@@ -722,10 +766,10 @@ a {
 		width: 100%;
 		height: 160px;
 	}
-	.feed .feed_comment {
+/* 	.feed .feed_comment {
 		width: 100%;
 		height: 150px;
-	}
+	} */
 	/*피드 상세페이지*/
 	#myOverlay2 {
 		max-width: 700px;
@@ -746,7 +790,7 @@ a {
 	/*이벤트 배너 캐러쉘 section*/
 	.event_slide {
 		order: 1;
-		padding: 2.000rem;
+		padding: 1.000rem;
 		padding-bottom: 1.000rem;
 		padding-top: 2%;
 	}
@@ -754,7 +798,7 @@ a {
 	/* mdfeed 리스트 section css*/
 	.mdfeed_section {
 		order: 2;
-		padding: 2.000rem;
+		padding: 1.000rem;
 		padding-top: 1.000rem;
 		padding-bottom: 1.000rem;
 	}
@@ -774,7 +818,7 @@ a {
 	/* 피드 리스트 section css*/
 	.feedlist_section {
 		order: 4;
-		padding: 2.000rem;
+		padding: 1.000rem;
 		padding-top: 1.000rem;
 	}
 	.feed_list {
@@ -803,10 +847,27 @@ a {
 		width: 100%;
 		height: 160px;
 	}
-	.feed .feed_comment {
+/* 	.feed .feed_comment {
 		width: 100%;
 		height: 150px;
-	}
+	} */
+	
+	
+	.feed_list #feedreply_writer {
+	font-size: 13px;
+	margin-left:10px;
+	font-weight: bold;
+	width:70px;
+	padding-top: 9px;
+    }
+    .feed_list .comment_txt{
+	padding-top:9px;
+	width:150px;
+	height:40px;
+	font-size:13px;
+	display: inline-block;
+	overflow-y:auto; 
+}
 	/*피드 상세페이지*/
 	#myOverlay2 {
 		max-width: 700px;
@@ -929,7 +990,8 @@ a {
 									width="100%" height="100%">
 							</div>
 							<div class="feed_writer" id="feedlist_writer"
-								data-writer="${feed.mem_id }">${feed.mem_name }</div>
+								data-writer="${feed.mem_id }">${feed.mem_name }
+							</div>
 							<div class="feed_date" id="feedlist_date">${feed.ts_regdate }</div>
 							<div class="feed_content" id="feedlist_content">
 								${feed.ts_content }</div>
@@ -945,7 +1007,26 @@ a {
 							</div>
 						</div>
 						<div class="feed_comment">
-							<p class="card-text">피드 관련 댓글</p>
+						<c:forEach var="reply" items="${reply}" begin="0" end="3"> 
+							<c:if test="${feed.ts_id==reply.ts_id }">
+							<div class="comment_list">
+								<div class="feed_writer_img">
+									<img alt=""
+									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
+									width="100%" height="100%">
+								</div>
+								<div class="feed_writer" id="feedreply_writer"
+								data-writer="">${reply.mem_name}
+								</div>
+								<div class="comment_txt" style="padding-top: 9px">
+								<c:if test="${empty reply.reply_content}">
+									댓글이 없습니다.
+								</c:if>
+								${reply.reply_content }
+								</div>							
+							</div>
+							</c:if>
+						</c:forEach> 
 						</div>
 					</div>
 				</c:forEach>
@@ -955,8 +1036,8 @@ a {
 			</div> 
 		</section>
 		<div class="write_btn">
-			<a class="feedwrite" id="overlayTrigger2" href="#myOverlay3"
-				data-overlay-trigger> <c:if test="${not empty member }">
+			<a class="feedwrite" id="overlayTrigger2"
+				data-overlay-trigger="myOverlay3"> <c:if test="${not empty member }">
 					<button class="btn btn-success">글쓰기</button>
 				</c:if>
 			</a>
@@ -969,7 +1050,7 @@ a {
 		<!-- Each overlay needs an id. The aria-labelledby is not required but is best practice -->
 		<div id="myOverlay2" aria-labelledby="myOverlay2Heading"
 			data-overlay-container-class="slide-down" role="region">
-			<img class="feeddetail_img" id="ts_img" alt="" src="">
+			<img class="feeddetail_img" id="ts_img" onerror="this.src='http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png';" alt="" src="">
 			<div class="myOverlay2-side-position">
 				<div class="feed_textarea">
 					<div class="feed_detail">

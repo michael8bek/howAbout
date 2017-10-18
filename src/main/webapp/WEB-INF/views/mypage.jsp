@@ -410,7 +410,7 @@ display:none;
 	/* 피드 리스트 section css*/
 	.feedlist_section {
 		order: 4;
-		padding: 2.000rem;
+		padding: 1.000rem;
 		padding-top: 1.000rem;
 	}
 	.feed_list {
