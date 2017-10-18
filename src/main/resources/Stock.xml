@@ -21,4 +21,7 @@
 		INSERT INTO stock VALUES (#{stock_id}, (select max(goods_id) from goods),
 		#{stock_qty}, now(), now(), #{stock_sale});
 	</insert>
+		<select id="select" parameterType="int" resultType="stock">
+		select * from stock where goods_id=#{goods_id}
+	</select>
 </mapper>

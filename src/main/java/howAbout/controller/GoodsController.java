@@ -39,6 +39,8 @@ public class GoodsController {
 	public String view(int goods_id, Model model) {
 		Goods goods = gs.select(goods_id);
 		model.addAttribute("goods", goods);
+		Stock stock = ss.select(goods_id);
+		model.addAttribute("stock", stock);
 		return "goods/view";
     }
 	/*상품등록 폼*/

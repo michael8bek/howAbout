@@ -1,5 +1,6 @@
 package howAbout.dao.cart;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,11 +17,11 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public List<Cart> list(String mem_id) {
 		return sst.selectList("cartns.list", mem_id);
-		
+
 	}
 
 	@Override
-	public int delete(String cart_id) {
+	public int delete(int cart_id) {
 		return sst.update("cartns.delete", cart_id);
 	}
 	@Override
@@ -44,6 +45,11 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
+	public int insert(Cart cart) {
+		return sst.insert("cartns.cartinsert", cart);
+	}
+
+	@Override
 	public void payment(String cart_id) {
 		sst.update("cartns.payment", cart_id);
 	}
@@ -53,5 +59,11 @@ public class CartDaoImpl implements CartDao {
 		return sst.selectList("cartns.payList", mem_id);
 	}
 	
-	
+
+	public int countcart(int goods_id, String mem_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("goods_id", goods_id);
+		map.put("mem_id", mem_id);
+		return sst.selectOne("cartns.countcart", map);
+	}
 }

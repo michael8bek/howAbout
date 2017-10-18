@@ -22,5 +22,10 @@ public class StockServiceImpl implements StockService{
 	public List<Stock> stockList() {
 		return sd.stockList();
 	}
+
+	@Override
+	public Stock select(int goods_id) {
+		return sd.select(goods_id);
+	}
 	
 }

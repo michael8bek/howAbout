@@ -9,7 +9,7 @@ public interface CartDao {
 
 	List<Cart> list(String mem_id);
 
-	int delete(String cart_id);
+	int delete(int cart_id);
 
 	int buyOne(Map<String, Integer> map);
 
@@ -22,5 +22,9 @@ public interface CartDao {
 	void payment(String cart_id);
 
 	List<Cart> payList(String mem_id);
+
+	int insert(Cart cart);
+
+	int countcart(int goods_id, String mem_id);
 
 }

@@ -22,5 +22,10 @@ public class StockDaoImpl implements StockDao {
 	public List<Stock> stockList() {
 		return sst.selectList("stockns.stockList");
 	}
+
+	@Override
+	public Stock select(int goods_id) {
+		return sst.selectOne("stockns.select", goods_id);
+	}
 	
 }
