@@ -6,6 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<!-- <script type="text/javascript">
+	$(function() {
+		$('#cart').click(function() {
+			var sendData = "goods_id=" + $('#goods_id').val();
+			$.post('countcart.do', sendData, function(data) {
+				$('#result').text(data);
+			});
+		});
+	});
+</script> -->
 </head>
 <body>
 
@@ -19,20 +29,20 @@
 			</div>
 			<div class="card-body">
 				<form name="form1" method="post" action="cartinsert.do">
-					<input type="hidden" name="goods_id" value="${goods.goods_id}" >
+					<input type="hidden" name="goods_id" id="goods_id" value="${goods.goods_id}" >
 					<c:choose>
 						<c:when test="${stock.stock_qty == 0}">
 								수량이 없습니다.
 						</c:when>
 						<c:when test="${stock.stock_qty >= 10}">
-							<select name="goods_qty">
+							<select name="goods_qty"  id="cart">
 								<c:forEach begin="1" end="10" var="sto">
 									<option value="${sto}">${sto}</option>
 								</c:forEach>
 							</select>&nbsp;개 <input type="submit" value="장바구니에 담기">
 						</c:when>
 						<c:when test="${stock.stock_qty < 10}">
-							<select name="goods_qty">
+							<select name="goods_qty"  id="cart">
 								<c:forEach begin="1" end="${stock.stock_qty}" var="sto">
 									<option value="${sto}">${sto}</option>
 								</c:forEach>
@@ -40,6 +50,7 @@
 						</c:when>
 					</c:choose>
 				</form>
+				<span id="result"></span>
 			</div>
 		</div>
 	</div>

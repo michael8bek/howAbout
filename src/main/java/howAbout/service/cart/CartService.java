@@ -22,5 +22,7 @@ public interface CartService {
 	void payment(String cart_id);
 	int insert(Cart cart);
 
+	int countcart(int goods_id, String mem_id);
+
 
 }

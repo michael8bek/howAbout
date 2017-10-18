@@ -12,7 +12,7 @@
 </c:if>
 <c:if test="${result <= 0 }">
 	<script type="text/javascript">
-		alert("삭제실ㄹ패 ㅠㅠ!");
+		alert("실패");
 		history.go(-1);
 	</script>
 </c:if>

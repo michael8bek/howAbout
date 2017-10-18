@@ -10,7 +10,7 @@ public class Cart {
 	private String cart_state;
 	private String mem_id;
 	private int goods_qty;
-	private String goods_id;
+	private int goods_id;
 	private String goods_name;
 	private int goods_price;
 	private int goods_delprice;
@@ -104,10 +104,10 @@ public class Cart {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
-	public String getGoods_id() {
+	public int getGoods_id() {
 		return goods_id;
 	}
-	public void setGoods_id(String goods_id) {
+	public void setGoods_id(int goods_id) {
 		this.goods_id = goods_id;
 	}
 }

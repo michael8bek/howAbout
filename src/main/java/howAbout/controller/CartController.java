@@ -1,6 +1,5 @@
 package howAbout.controller;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Cart;
+import howAbout.model.Couponlist;
 import howAbout.model.Goods;
 import howAbout.model.Member;
 import howAbout.model.Orders;
@@ -115,12 +115,41 @@ public class CartController {
 
 	}
 
-	@RequestMapping("cartinsert")
-	public String registerGoods(Cart cart, Model model, HttpSession session){
+/*	@RequestMapping("cartinsert")
+	public String cartinsert(Cart cart, Model model, HttpSession session) {
 		String mem_id = (String) session.getAttribute("mem_id");
 		cart.setMem_id(mem_id);
 		int result = cs.insert(cart);
-		model.addAttribute("result",result);
+		model.addAttribute("result", result);
 		return "cart/productInsert";
+	}
+	@RequestMapping("countcart")
+	public String countcart(Cart cart, Model model, HttpSession session) {
+		String msg = "";
+		String mem_id = (String) session.getAttribute("mem_id");
+		cart.setMem_id(mem_id);
+		int count = cs.countcart(cart.getGoods_id(), mem_id);
+		if (count != 0) {
+			msg = "이미 장바구니에 있습니다.";
+			model.addAttribute("msg", msg);
+			return "cart/cartChk";
+		} else {
+			msg = "";
+			model.addAttribute("msg", msg);
+			return "cart/cartChk";
+		}
+	}*/
+	@RequestMapping("cartinsert")
+	public String cartinsert(Cart cart, Model model, HttpSession session){
+		String mem_id = (String) session.getAttribute("mem_id");
+		cart.setMem_id(mem_id);
+		int count = cs.countcart(cart.getGoods_id(), mem_id);
+		if (count == 0) {			
+			int result = cs.insert(cart);
+			model.addAttribute("result",result);
+			return "cart/productInsert";
+		} else {
+			return "cart/cartChk";
+		}
 	}
 }
