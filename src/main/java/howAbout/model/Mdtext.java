@@ -4,18 +4,19 @@ import java.sql.Date;
 
 
 public class Mdtext {
-	private String mdtext_id; 
+	private int mdtext_id; 
 	private String mdtext_type; 
+	private String mdtext_goods; 
 	private String mdtext_content; 
 	private Date mdtext_regdate; 
 	private String mdtext_del; 
 	private String mem_id; 
 	private int mdtext_readcount;
 	
-	public String getMdtext_id() {
+	public int getMdtext_id() {
 		return mdtext_id;
 	}
-	public void setMdtext_id(String mdtext_id) {
+	public void setMdtext_id(int mdtext_id) {
 		this.mdtext_id = mdtext_id;
 	}
 	public String getMdtext_type() {
@@ -55,6 +56,11 @@ public class Mdtext {
 		this.mdtext_readcount = mdtext_readcount;
 	}
 	
-	
+	public String getMdtext_goods() {
+		return mdtext_goods;
+	}
+	public void setMdtext_goods(String mdtext_goods) {
+		this.mdtext_goods = mdtext_goods;
+	}
 	
 }

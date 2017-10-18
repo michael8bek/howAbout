@@ -8,4 +8,5 @@ public interface MdtextService {
 
 	List<Mdtext> list();
 	List<Mdtext> best();
+	int register(Mdtext mdtext);
 }

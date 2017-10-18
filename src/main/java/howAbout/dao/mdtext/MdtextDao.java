@@ -10,4 +10,6 @@ public interface MdtextDao {
 
 	List<Mdtext> best();
 
+	int register(Mdtext mdtext);
+
 }
