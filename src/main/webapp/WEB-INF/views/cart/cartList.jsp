@@ -23,7 +23,7 @@
 	float: left;
 	width: 35%;
 	padding: 5%;
-	margin-top: 3.5%;	
+	margin-top: 3.5%;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
@@ -52,7 +52,7 @@
 		}
 	}
 	frm.total_sum.value = sum;
-	frm.delprice.value = sum1; 
+	frm.delprice.value = sum1;
 	frm.total_sum1.value = sum+sum1;
 }
   /* 전체선택 체크박스 클릭시 */
@@ -71,16 +71,16 @@ function ckeckAll(index) {
 			sum1 += parseInt(frm.goods_delprice[i].value);
 		}
 		frm.total_sum.value = sum;
-		frm.delprice.value = sum1; 
+		frm.delprice.value = sum1;
 		frm.total_sum1.value = sum+sum1;
 	}else {
 		$("input[name=chk]").prop("checked", false);
-		frm.total_sum.value ="";		
+		frm.total_sum.value ="";
 		frm.total_sum1.value ="";
-		frm.delprice.value = ""; 
+		frm.delprice.value = "";
 	}
-}  
-  
+}
+
  /* 클릭시 수량 변경  */
 function click_count(idx, n) {
 	var num = parseInt($("#numberUpDown" + idx).val(), 10) + n;
@@ -99,7 +99,7 @@ function click_count(idx, n) {
 	if (count == undefined) {
 		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
 		sum1 += parseInt(frm.goods_delprice.value);
-		
+
 	} else {
 		for (var i = 0; i < count; i++) {
 			if (frm.chk[i].checked==true) {
@@ -109,7 +109,7 @@ function click_count(idx, n) {
 		}
 	}
 	frm.total_sum.value = sum;
-	frm.delprice.value = sum1; 
+	frm.delprice.value = sum1;
 	frm.total_sum1.value = sum+sum1;
 }
  /* 장바구니 팝업시 상품이 모두 체크 */
@@ -130,9 +130,9 @@ function click_count(idx, n) {
 	frm.total_sum.value = sum;
  	frm.delprice.value = sum1;
  	frm.total_sum1.value = sum+sum1;
-		
-} 
- 
+
+}
+
   /*선택된 항목 삭제,구매  */
   function mySubmit(index) {
  	  var count = frm.chk.length;
@@ -166,9 +166,9 @@ function click_count(idx, n) {
    	  }else if (index == 3){
    		document.frm.action='buyOne.do?cart_id='+frm.chk[num].value+'&goods_qty='+frm.goods_qty[num].value;
    	  }else{}
-       
+
  }
-  
+
 </script>
 </head>
 <body>
@@ -185,7 +185,7 @@ function click_count(idx, n) {
 								onclick="ckeckAll()" value="">전체선택</th>
 							<th><button onclick="mySubmit(1)" class="btn btn-info" style="">선택삭제</button></th>
 						</tr>
-						
+
 							<tr style="background-color: #E7E7E7;">
 								<th colspan="3" style="width: %">주문상품</th>
 								<th>상품금액</th>
@@ -196,7 +196,7 @@ function click_count(idx, n) {
 						<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart}" varStatus="status">
 						<c:forEach var="stock" items="${listStock }" varStatus="status">
-						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty>0 }"> 
+						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty>0 }">
 						<input type="hidden" name="goods_qty${status.count}" value="${cart.goods_qty }" id="goods_qty${status.count}">
 						<input type="hidden" name="goods_price" value="${cart.goods_price}" id="goods_price">
 						<input type="hidden" name="cart_id" value="${cart.cart_id }">
@@ -218,10 +218,10 @@ function click_count(idx, n) {
 								<td style="vertical-align: middle;"><button onclick="mySubmit(3)" style="width: 100%;" class="btn btn-warning">바로구매</button><p>
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
-								
+
 							</tr>
 						</c:if>
-						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty==0}"> 
+						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty==0}">
 							<tr>
 								<td style="border-right: 1px solid #FFFFFF;"></td>
 								<td style="border-right: 1px solid #FFFFFF;  width: 15%;"></td>
@@ -235,7 +235,7 @@ function click_count(idx, n) {
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
 							</tr>
-							
+
 						</c:if>
 						</c:forEach>
 						</c:forEach>
@@ -245,7 +245,7 @@ function click_count(idx, n) {
 								<td colspan="6" style="width: 100%; vertical-align: middle;">장바구니에 담긴 상품이 없습니다.</td>
 							</tr>
 						</c:if>
-						
+
 					</table>
 				</div>
 				<div class="container1_2">
