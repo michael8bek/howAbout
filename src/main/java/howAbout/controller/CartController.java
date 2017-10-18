@@ -1,5 +1,6 @@
 package howAbout.controller;
 
+import java.awt.DisplayMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import howAbout.model.Cart;
 import howAbout.model.Couponlist;
@@ -20,7 +22,9 @@ import howAbout.model.Orders;
 import howAbout.model.Stock;
 import howAbout.service.cart.CartService;
 import howAbout.service.couponlist.CouponlistService;
+import howAbout.service.member.MemberService;
 import howAbout.service.stock.StockService;
+import scala.util.parsing.json.JSONObject;
 
 @Controller
 public class CartController {
@@ -31,6 +35,8 @@ public class CartController {
 	private CouponlistService cls;
 	@Autowired
 	private StockService ss;
+	@Autowired
+	private MemberService ms;
 
 	@RequestMapping("cartList")
 	public String cartList(String mem_id, Model model, HttpSession session) {
@@ -114,6 +120,13 @@ public class CartController {
 		return "cart/ordersSelect";
 
 	}
+	@RequestMapping(value = "memorders", method=RequestMethod.GET)
+		public Member memorders(String mem_id, Model model, HttpSession session) {
+			/*Member mem = ms.select((String)session.getAttribute("mem_id"));*/
+		Member mem = ms.select("mem_id");
+		return mem;
+		
+	}
 
 /*	@RequestMapping("cartinsert")
 	public String cartinsert(Cart cart, Model model, HttpSession session) {
@@ -144,7 +157,7 @@ public class CartController {
 		String mem_id = (String) session.getAttribute("mem_id");
 		cart.setMem_id(mem_id);
 		int count = cs.countcart(cart.getGoods_id(), mem_id);
-		if (count == 0) {			
+		if (count == 0 ) {
 			int result = cs.insert(cart);
 			model.addAttribute("result",result);
 			return "cart/productInsert";
