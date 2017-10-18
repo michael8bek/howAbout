@@ -11,4 +11,4 @@
 		location.href = "main.do";
 	</script>
 </body>
-</html>	
+</html>

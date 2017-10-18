@@ -22,5 +22,10 @@ public class MdtextServiceImpl implements MdtextService{
 	public List<Mdtext> best() {
 		return md.best();
 	}
+
+	@Override
+	public int register(Mdtext mdtext) {
+		return md.register(mdtext);
+	}
 	
 }

@@ -1,6 +1,5 @@
 package howAbout.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +19,8 @@ import howAbout.model.Member;
 import howAbout.model.Orders;
 import howAbout.model.Stock;
 import howAbout.service.cart.CartService;
-import howAbout.service.goods.GoodsService;
-import howAbout.service.member.MemberService;
+import howAbout.service.couponlist.CouponlistService;
+import howAbout.service.stock.StockService;
 
 @Controller
 public class CartController {
@@ -29,14 +28,16 @@ public class CartController {
 	@Autowired
 	private CartService cs;
 	@Autowired
-	private GoodsService gs;
+	private CouponlistService cls;
 	@Autowired
-	private MemberService ms;
+	private StockService ss;
 
 	@RequestMapping("cartList")
 	public String cartList(String mem_id, Model model, HttpSession session) {
 		/* List<Cart> listCart = cs.list((String) session.getAttribute("mem_id")); */
 		List<Cart> listCart = cs.list(mem_id);
+		List<Stock> listStock = ss.stockList();
+		model.addAttribute("listStock", listStock);
 		model.addAttribute("listCart", listCart);
 		return "cart/cartList";
 	}
@@ -74,7 +75,9 @@ public class CartController {
 	public String ordersList(String mem_id, Model model, HttpSession session) {
 		/* List<Cart> listOrders = cs.listOrders("mem_id"); */
 		List<Cart> listOrders = cs.listOrders((String) session.getAttribute("mem_id"));
+		List<Couponlist> listCoupon = cls.listCoupon((String) session.getAttribute("mem_id"));
 		model.addAttribute("listOrders", listOrders);
+		model.addAttribute("listCoupon", listCoupon);
 		return "cart/ordersList";
 	}
 
@@ -94,7 +97,7 @@ public class CartController {
 
 	@RequestMapping("ordersSelect")
 	public String ordersSelect(HttpServletRequest request, Model model) throws Exception {
-		String arr[] = request.getParameterValues("chk");
+		String arr[] = request.getParameterValues("cart_id");
 		String qty[] = request.getParameterValues("goods_qty");
 		int result = 0;
 		Map<String, Integer> map = null;

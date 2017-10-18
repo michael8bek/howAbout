@@ -25,11 +25,11 @@ public class CartServiceImpl implements CartService {
 	public int buyOne(Map<String, Integer> map) {
 		return cd.buyOne(map);
 	}
-	
+
 	@Override
 	public List<Cart> listOrders(String mem_id) {
 		return cd.listOrders(mem_id);
-	}	
+	}
 	@Override
 	public void delSelect(String arr) {
 		cd.delSelect(arr);
@@ -39,10 +39,12 @@ public class CartServiceImpl implements CartService {
 		cd.ordersSelect(map);
 	}
 	@Override
+	public void payment(String cart_id) {
+		cd.payment(cart_id);
 	public int insert(Cart cart) {
 		return cd.insert(cart);
 	}
-	
-	
+
+
 
 }

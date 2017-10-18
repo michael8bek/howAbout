@@ -19,6 +19,8 @@ public interface CartDao {
 
 	Object ordersSelect(Map<String, Integer> map);
 
+	void payment(String cart_id);
+
 	int insert(Cart cart);
 
 }

@@ -16,7 +16,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public List<Cart> list(String mem_id) {
 		return sst.selectList("cartns.list", mem_id);
-		
+
 	}
 
 	@Override
@@ -46,7 +46,10 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public int insert(Cart cart) {
 		return sst.insert("cartns.cartinsert", cart);
+		
+	public void payment(String cart_id) {
+		sst.update("cartns.payment", cart_id);
 	}
-	
-	
+
+
 }
