@@ -18,13 +18,14 @@ public class Cart {
 	private String goods_size;
 	private String goods_img;
 	private String grade_name;
-	private String couponlist_benefit;
+	private String cp_benefit;
 	
-	public String getCouponlist_benefit() {
-		return couponlist_benefit;
+	
+	public String getCp_benefit() {
+		return cp_benefit;
 	}
-	public void setCouponlist_benefit(String couponlist_benefit) {
-		this.couponlist_benefit = couponlist_benefit;
+	public void setCp_benefit(String cp_benefit) {
+		this.cp_benefit = cp_benefit;
 	}
 	public String getGrade_name() {
 		return grade_name;

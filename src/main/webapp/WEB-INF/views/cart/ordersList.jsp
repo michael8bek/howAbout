@@ -60,41 +60,44 @@
 		if (count == undefined) {
 			sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
 			sum1 += parseInt(frm.goods_delprice.value);
-			salesum += parseInt(frm.couponlist_benefit.value);
+			salesum += parseInt(frm.cp_benefit.value);
 		}
 		for(var i = 0; i< count; i++){
 			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
 			sum1 += parseInt(frm.goods_delprice[i].value);
-			salesum += parseInt(frm.couponlist_benefit[i].value);
+			salesum += parseInt(frm.cp_benefit[i].value);
 		}
 		frm.total_sum.value = sum;
 		frm.delprice.value = sum1; 
-		frm.pay_total.value = sum+sum1-salesum;
 		frm.saleprice.value = salesum;
+		frm.pay_total.value = sum+sum1-salesum-frm.couponsale.value;
+		
+		
 	}
 	
-/* 	$(function() {
-		$('.steelcut').click(function() {
-			$.ajax({
-				url : 'im2.jsp',
-				dataType : 'html',
-				success : function(data) {
-					$('#wrapper').remove();
-					$('#disp1').html($(data).find('#wrapper'));
-				}
-			});
-		});
-		$('.steelcut2').click(function() {
-			$.ajax({
-				url : 'slider2.jsp',
-				dataType : 'html',
-				success : function(data) {
-					$('#wrapper').remove();
-					$('#disp1').html(data);
-				}
-			});
-		});
-	}); */
+	 function coupon(val) {
+		frm.couponsale.value = val;
+		var sum = 0;
+		var sum1 = 0;
+		var salesum = 0;
+		var count = frm.goods_price.length;
+		if (count == undefined) {
+			sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+			sum1 += parseInt(frm.goods_delprice.value);
+			salesum += parseInt(frm.cp_benefit.value);
+		}
+		for(var i = 0; i< count; i++){
+			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+			sum1 += parseInt(frm.goods_delprice[i].value);
+			salesum += parseInt(frm.cp_benefit[i].value);
+		}
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1; 
+		frm.saleprice.value = salesum;
+		frm.pay_total.value = sum+sum1-salesum-frm.couponsale.value;
+		
+	} 
+
 </script>
 </head>
 <body>
@@ -125,7 +128,7 @@
 				<input type="hidden" name="goods_price" value="${cart.goods_price }">
 				<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
 				<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
-				<input type="hidden" name="couponlist_benefit" value="${cart.couponlist_benefit }">
+				<input type="hidden" name="cp_benefit" value="${cart.cp_benefit }"> 
 				<input type="hidden" name="cart_id" value="${cart.cart_id }">
 				<input type="hidden" name="goods_id" value="${cart.goods_id }">
 					<tr >
@@ -134,9 +137,9 @@
 						</td>
 						<td style="vertical-align: middle;">${cart.goods_qty }</td>
 						<td style="vertical-align: middle;">${cart.goods_price }</td>
-						<td style="vertical-align: middle;">${cart.couponlist_benefit }</td>
+						<td style="vertical-align: middle;">${cart.cp_benefit }</td>
 						<td style="vertical-align: middle;">${cart.goods_delprice }</td>
-						<td style="vertical-align: middle;">${cart.goods_price*cart.goods_qty-cart.couponlist_benefit +cart.goods_delprice}</td>
+						<td style="vertical-align: middle;">${cart.goods_price*cart.goods_qty-cart.cp_benefit +cart.goods_delprice}</td>
 					</tr>
 					</c:forEach>
 				</c:if>
@@ -153,9 +156,9 @@
 				<h5>2. 쿠폰 할인</h5>
 				<table class="table" style="width: 100%;">
 					<tr><th style="width: 25%;">쿠폰 선택</th>
-						<th ><select>
-						<c:forEach var="couponlist" items="${listCoupon }">
-							<option value="${couponlist.cp_id }">${couponlist.cp_id }</option>
+						<th ><select onclick="coupon(this.value);" >
+						<c:forEach var="couponlist" items="${listCoupon }" varStatus="status">
+							<option value="${couponlist.cp_benefit }">${couponlist.cp_id }</option>
 						</c:forEach>
 						</select></th>
 					</tr>
@@ -245,8 +248,12 @@
 							<th><input name="total_sum" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
 						<tr>	
-							<th>할인 금액</th>
+							<th>총 상품할인</th>
 							<th><input name="saleprice" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
+						</tr>
+						<tr>	
+							<th>쿠폰할인</th>
+							<th><input name="couponsale" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
 						<tr>
 							<th>총 배송비</th>

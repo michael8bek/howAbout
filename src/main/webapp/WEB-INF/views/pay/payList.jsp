@@ -28,9 +28,9 @@
 						</td>
 						<td style="vertical-align: middle;">${payList.goods_qty }</td>
 						<td style="vertical-align: middle;">${payList.goods_price }</td>
-						<td style="vertical-align: middle;">${payList.couponlist_benefit }</td>
+						<td style="vertical-align: middle;">${payList.cp_benefit }</td>
 						<td style="vertical-align: middle;">${payList.goods_delprice}</td>
-						<td style="vertical-align: middle;">${payList.goods_price*payList.goods_qty-payList.couponlist_benefit +payList.goods_delprice}</td>
+						<td style="vertical-align: middle;">${payList.goods_price*payList.goods_qty-payList.cp_benefit +payList.goods_delprice}</td>
 					</tr>
 					</c:forEach>
 				</c:if>

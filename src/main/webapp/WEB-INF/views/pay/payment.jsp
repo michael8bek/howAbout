@@ -7,7 +7,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("결제성공");
-		location.href="main.do";
+		location.href="payList.do?mem_id=${member.mem_id }";
 	</script>
 </c:if>
 <c:if test="${result <= 0 }">
