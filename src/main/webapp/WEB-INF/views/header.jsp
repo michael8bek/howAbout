@@ -98,17 +98,8 @@
 				<c:if test="${not empty member.mem_id }">
 						<li class="nav-item nav-link">${member.mem_name }</li>
 					</c:if>
-                    <c:if test="${not empty member }">
-					<li class="nav-item"><a class="nav-link"
-						href="cartList.do?mem_id=${member.mem_id }">장바구니</a></li>
-					</c:if>
-					 <c:if test="${ empty member }">
-					<li class="nav-item"><a class="nav-link"
-						href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">장바구니</a></li>
-					</c:if>
+                    
 					<li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -127,16 +118,6 @@
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Blog </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="blog-home-1.jsp">Blog Home 1</a> <a
-								class="dropdown-item" href="blog-home-2.jsp">Blog Home 2</a> <a
-								class="dropdown-item" href="blog-post.jsp">Blog Post</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Other Pages </a>
 							
 						<div class="dropdown-menu dropdown-menu-right"
@@ -150,7 +131,13 @@
 							<c:if test="${empty member }">
 							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">주문페이지</a> 
 							</c:if>
-							<a class="dropdown-item" href="goodsList.do">상품페이지</a> 
+							<a class="dropdown-item" href="goodsList.do">상품페이지</a>
+							 <c:if test="${not empty member }">
+							<a class="dropdown-item" href="cartList.do?mem_id=${member.mem_id }">장바구니</a>
+							</c:if>
+							<c:if test="${ empty member }">
+							<a class="dropdown-item" href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">장바구니</a>
+							</c:if>
 							<c:if test="${empty member }">
 								<a class="dropdown-item" href="joinForm.do">Join page</a>
 							</c:if>
