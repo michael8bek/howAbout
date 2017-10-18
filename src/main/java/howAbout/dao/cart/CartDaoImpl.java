@@ -48,13 +48,18 @@ public class CartDaoImpl implements CartDao {
 	public int insert(Cart cart) {
 		return sst.insert("cartns.cartinsert", cart);
 	}
-	
+
 	@Override
 	public void payment(String cart_id) {
 		sst.update("cartns.payment", cart_id);
 	}
 
 	@Override
+	public List<Cart> payList(String mem_id) {
+		return sst.selectList("cartns.payList", mem_id);
+	}
+	
+
 	public int countcart(int goods_id, String mem_id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("goods_id", goods_id);

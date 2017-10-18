@@ -1,5 +1,7 @@
 package howAbout.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import howAbout.model.Cart;
 import howAbout.model.Payment;
 import howAbout.service.cart.CartService;
 import howAbout.service.payment.PaymentService;
@@ -34,7 +37,13 @@ public class PaymentController {
 		int result = ps.insert(payment);
 		model.addAttribute("result", result);
 		model.addAttribute("result1", result1);
-		return "cart/payment";
+		return "pay/payment";
+	}
+	@RequestMapping("payList")
+	public String payList(Model model, HttpSession session) {
+		List<Cart> payList = cs.payList((String) session.getAttribute("mem_id"));
+		model.addAttribute("payList",payList);
+		return "pay/payList";
 		
 	}
 }

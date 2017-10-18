@@ -24,5 +24,7 @@ public interface CartService {
 
 	int countcart(int goods_id, String mem_id);
 
+	List<Cart> payList(String mem_id);
+
 
 }
