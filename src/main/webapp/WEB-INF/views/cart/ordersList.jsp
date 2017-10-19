@@ -58,9 +58,9 @@
 		var salesum = 0;
 		var count = frm.goods_price.length;
 		if (count == undefined) {
-			sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
-			sum1 += parseInt(frm.goods_delprice.value);
-			salesum += parseInt(frm.cp_benefit.value*frm.goods_qty.value);
+			sum = parseInt(frm.goods_price.value*frm.goods_qty.value);
+			sum1 = parseInt(frm.goods_delprice.value);
+			salesum = parseInt(frm.cp_benefit.value*frm.goods_qty.value);
 		}
 		for(var i = 0; i< count; i++){
 			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
@@ -68,14 +68,20 @@
 			salesum += parseInt(frm.cp_benefit[i].value*frm.goods_qty[i].value);
 		}
 		if(sum >=50000){
-			sum1 = "0";
-		}
+			sum1 = "무료배송";
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1; 
+			frm.saleprice.value = salesum;
+			frm.pay_total.value = sum-salesum-frm.couponsale.value; 
+		}else{
 		frm.total_sum.value = sum;
 		frm.delprice.value = sum1; 
 		frm.saleprice.value = salesum;
-		frm.pay_total.value = sum+sum1-salesum-frm.couponsale.value;
-		
-		
+		frm.pay_total.value = sum + sum1-salesum-frm.couponsale.value; 
+		}
+		if(frm.pay_total.value < 0){
+			frm.pay_total.value = 0;
+		}
 	}
 	/* 쿠폰 클릭시 가격이 계산됨 */
 	 function coupon(val) {
@@ -85,9 +91,9 @@
 		var salesum = 0;
 		var count = frm.goods_price.length;
 		if (count == undefined) {
-			sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
-			sum1 += parseInt(frm.goods_delprice.value);
-			salesum += parseInt(frm.cp_benefit.value*frm.goods_qty.value);
+			sum = parseInt(frm.goods_price.value*frm.goods_qty.value);
+			sum1 = parseInt(frm.goods_delprice.value);
+			salesum = parseInt(frm.cp_benefit.value*frm.goods_qty.value);
 		}
 		for(var i = 0; i< count; i++){
 			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
@@ -95,13 +101,24 @@
 			salesum += parseInt(frm.cp_benefit[i].value*frm.goods_qty[i].value);
 		}
 		if(sum >=50000){
-			sum1 = "0";
-		}
+			sum1 = "무료배송";
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1; 
+			frm.saleprice.value = salesum;
+			frm.pay_total.value = sum-salesum-frm.couponsale.value;
+			if(frm.pay_total.value < 0){
+				frm.pay_total.value = 0;
+			}
+		}else{
 		frm.total_sum.value = sum;
 		frm.delprice.value = sum1; 
 		frm.saleprice.value = salesum;
-		frm.pay_total.value = sum+sum1-salesum-frm.couponsale.value;
+		 frm.pay_total.value = sum + sum1-salesum-frm.couponsale.value;  
+		 if(frm.pay_total.value < 0){
+				frm.pay_total.value = 0;
+			}
 		
+	}
 	}
 	
 	/* 주문자 정보 ajax */
@@ -154,13 +171,23 @@
 				}
 			}
 		});
-	} 
-	 
+	}
+	  /* $(function() {
+	         $("#submitid").click(function() {
+	         
+	            var element = $(this);
+	            var img= element.val().split('-')[0];
+	            var id= element.val().split('-')[1];
+	            $('#goods_id').val(img);
+	            $('#goods_img').val(id);
+	         });
+	      }); */
 
 </script>
 </head>
 <body>
-<form name="frm" action="payInsert.do" method="post">
+<form name="frm" action="payInsert.do" method="post" id="submitid">
+	<input type="hidden" name="cp_id" value="">
 	<div class="container">
 		<div class="container1">
 			<div class="container1_1">
@@ -221,10 +248,10 @@
 				<h5>2. 쿠폰 할인</h5>
 				<table class="table" style="width: 100%;">
 					<tr><th style="width: 25%;">쿠폰 선택</th>
-						<th ><select onclick="coupon(this.value);" >
+						<th ><select onclick="coupon(this.value);" name="cp_id">
+							<option value="0" style="text-align: center;">사용안함</option>
 						<c:forEach var="couponlist" items="${listCoupon }" varStatus="status">
-							<option value="${couponlist.cp_benefit }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
-						<%-- <input type="hidden" name="cp_id" value="${couponlist.cp_id}"> --%>
+							<option value="${couponlist.cp_benefit }" data-cp_id="${couponlist.cp_id}">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
 						</c:forEach>
 						</select></th>
 					</tr>
@@ -340,7 +367,7 @@
 			</div>
 			</div>
 			
-			<div align="center"><input type="submit" value="주문하기"
+			<div align="center"><input type="submit" value="주문하기" id=""
 								style="width: 20%; height: 100%;" class="btn btn-info"></div>
 		</div>
 </form>

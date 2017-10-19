@@ -58,11 +58,16 @@
 		}
 	}
 	if(sum >= 50000){
-		sum1 = "0";
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
 	}
-	frm.total_sum.value = sum;
-	frm.delprice.value = sum1;
-	frm.total_sum1.value = sum+sum1;
+	
 	
 }
   /* 전체선택 체크박스 클릭시 */
@@ -81,11 +86,15 @@ function ckeckAll(index) {
 			sum1 += parseInt(frm.goods_delprice[i].value);
 		}
 		if(sum >= 50000){
-			sum1 = "0";
+			sum1 = "무료배송";
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.total_sum1.value = sum;
+		}else{
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.total_sum1.value = sum+sum1;
 		}
-		frm.total_sum.value = sum;
-		frm.delprice.value = sum1;
-		frm.total_sum1.value = sum+sum1;
 		
 	}else {
 		$("input[name=chk]").prop("checked", false);
@@ -95,7 +104,7 @@ function ckeckAll(index) {
 	}
 }
 
- /* 클릭시 수량 변경  */
+ /* 클릭시 수량 변경 -> 수량에 따라 가격 변동  */
 function click_count(idx, n) {
 	var num = parseInt($("#numberUpDown" + idx).val(), 10) + n;
 	var num1 = parseInt($("#stock_qty" + idx).val(), 10);
@@ -123,11 +132,15 @@ function click_count(idx, n) {
 		}
 	}
 	if(sum >= 50000){
-		sum1 = "0";
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
 	}
-	frm.total_sum.value = sum;
-	frm.delprice.value = sum1;
-	frm.total_sum1.value = sum+sum1;
 	
 }
  /* 장바구니 팝업시 상품이 모두 체크 */
@@ -146,11 +159,15 @@ function click_count(idx, n) {
 		}
 	}
 	if(sum >= 50000){
-		sum1 = "0";
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
 	}
-	frm.total_sum.value = sum;
- 	frm.delprice.value = sum1;
- 	frm.total_sum1.value = sum+sum1;
  	
 
 }
@@ -194,7 +211,7 @@ function click_count(idx, n) {
 </script>
 </head>
 <body>
-<form name="frm" action="" method="post">
+<form name="frm" action="" method="post" >
 	<div class="container">
 			<div class="container1">
 				<div class="container1_1">
