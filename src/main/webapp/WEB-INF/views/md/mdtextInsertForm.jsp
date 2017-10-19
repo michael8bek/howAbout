@@ -27,7 +27,7 @@
 				<div class="col-md-5">
 					<div class="image">
 						<img class="img-fluid rounded mb-3 mb-md-0" id="goodsImg" 
-							src="${path }/resources/images/goods/Blank.png"
+							src="http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png"
 							style="width: 100%">
 						<!-- <input hidden="true" id="goodsId" value="a"> -->
 						
