@@ -121,8 +121,11 @@
 						aria-haspopup="true" aria-expanded="false"> 추천 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="listMdtext.do">MD추천</a> <a
-								class="dropdown-item" href="mdtextInsertForm.do">MD추천 입력</a> <a
+							<a class="dropdown-item" href="listMdtext.do">MD추천</a> 
+							<c:if test="${member.mem_name=='master' }">
+							<a
+								class="dropdown-item" href="mdtextInsertForm.do">MD추천 입력</a> 
+								</c:if><a
 								class="dropdown-item" href="portfolio-3-col.jsp">3 Column
 								Portfolio</a> <a class="dropdown-item" href="portfolio-4-col.jsp">4
 								Column Portfolio</a> <a class="dropdown-item"
