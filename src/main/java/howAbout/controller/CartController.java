@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import howAbout.model.Cart;
 import howAbout.model.Couponlist;
@@ -103,7 +104,7 @@ public class CartController {
 
 	@RequestMapping("ordersSelect")
 	public String ordersSelect(HttpServletRequest request, Model model) throws Exception {
-		String arr[] = request.getParameterValues("cart_id");
+		String arr[] = request.getParameterValues("chk");
 		String qty[] = request.getParameterValues("goods_qty");
 		int result = 0;
 		Map<String, Integer> map = null;
@@ -113,6 +114,7 @@ public class CartController {
 				map.put("cart_id", Integer.parseInt(arr[i]));
 				map.put("goods_qty", Integer.parseInt(qty[i]));
 				cs.ordersSelect(map);
+				System.out.println(map);
 			}
 			result = 1;
 		}
@@ -121,9 +123,8 @@ public class CartController {
 
 	}
 	@RequestMapping(value = "memorders", method=RequestMethod.GET)
-		public Member memorders(String mem_id, Model model, HttpSession session) {
-			/*Member mem = ms.select((String)session.getAttribute("mem_id"));*/
-		Member mem = ms.select("mem_id");
+		public @ResponseBody Member memorders(String mem_id, Model model, HttpSession session) {
+		Member mem = ms.select((String)session.getAttribute("mem_id"));
 		return mem;
 		
 	}

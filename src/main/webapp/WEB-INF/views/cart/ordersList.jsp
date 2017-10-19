@@ -114,6 +114,24 @@
 				$("#mem_email").val(data.mem_email);
 			}
 		});
+	}
+	function memajax() {
+		$.ajax({
+			type : "GET",
+			url  : "memorders.do",
+			async: false,
+			dataType:"json",
+			contentType: 'application/json; charset=utf-8',
+			error : function(request) {
+				alert("[[error]]"+request.responseText);
+				event.preventDefault();
+			},
+			success : function(data) {
+				$("#mem_id").val(data.mem_id);
+				$("#mem_phone").val(data.mem_phone);
+				$("#mem_email").val(data.mem_email);
+			}
+		});
 	} 
 	 
 
@@ -213,7 +231,7 @@
 						</th>
 					</tr>
 				</table>
-				<h5 style="margin-top: 4%;">4. 배송지 정보</h5><input type="checkbox">주문자 정보와 동일
+				<h5 style="margin-top: 4%;">4. 배송지 정보</h5><input type="checkbox" onclick="memajax1();">주문자 정보와 동일
 				<table class="table" style="width: 100%;">
 					<tr><th style="width: 25%;">받는분 *</th>
 						<th><input type="text" required="required" name="pay_rename"></th>

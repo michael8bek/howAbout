@@ -204,8 +204,8 @@ function click_count(idx, n) {
 						<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
 						<input type="hidden" name="stock_qty${status.count}" value="${stock.stock_qty}" id="stock_qty${status.count}">
 							<tr style="width: 100%; vertical-align: middle;">
-								<td style="border-right: 1px solid #FFFFFF; vertical-align: middle;"><input type="checkbox" name="chk" checked="checked"
-								value="${cart.cart_id}" onclick="itemSum()"></td>
+								<td style="border-right: 1px solid #FFFFFF; vertical-align: middle;">
+								<input type="checkbox" name="chk" value="${cart.cart_id}" onclick="itemSum()"></td>
 								<td style="border-right: 1px solid #FFFFFF; width: 15%; vertical-align: middle;"><img src="resources/images/goods/${cart.goods_img }" style="width:100%;"></td>
 								<td style="width:40%; ">${cart.goods_name}<p>
 						  		Color : ${cart.goods_color } / 
