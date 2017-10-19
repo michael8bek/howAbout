@@ -506,7 +506,7 @@ a {
 	padding-top:9px;
 	right:0;
 	width:185px;
-	height:40px;
+	height:30px;
 	font-size:13px;
 	display: inline-block;
 	overflow-y:auto; 
@@ -861,9 +861,8 @@ a {
 	padding-top: 9px;
     }
     .feed_list .comment_txt{
-	padding-top:9px;
 	width:150px;
-	height:40px;
+	height:30px;
 	font-size:13px;
 	display: inline-block;
 	overflow-y:auto; 
@@ -1016,7 +1015,7 @@ a {
 									width="100%" height="100%">
 								</div>
 								<div class="feed_writer" id="feedreply_writer"
-								data-writer="">${reply.mem_name}
+								data-writer="${feed.mem_id }">${reply.mem_name}
 								</div>
 								<div class="comment_txt" style="padding-top: 9px">
 								<c:if test="${empty reply.reply_content}">
@@ -1121,7 +1120,7 @@ a {
 					<div class="text_upload_area" style="width: 340px; height: 220px;">
 						<div class="content_upload"
 							style="width: 320px; height: 50px; margin: 10px;">
-							<textarea class="content_upload_text" id="input_content"
+							<textarea class="content_upload_text" placeholder="내용을 입력" id="input_content"
 								name="input_content" rows="8" cols="45">
 						</textarea>
 						</div>
@@ -1284,14 +1283,13 @@ a {
 																var overlayjs = document.createElement('script');
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
 																document.getElementsByTagName('head')[0].appendChild(overlayjs);
-																/*ajxx밭은 data 출력하기*/
-																console.log(data);
+																/**/
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
-																	$.each(data,function(index,feed) {
+																	$.each(data.list, function(index, feed) {
 																						$("#user_feed").append('<div class="feed">'
 																												+ '<div class="feed_imgbox">'
 																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
@@ -1321,8 +1319,26 @@ a {
 																												+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
 																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
 																												+ '</p></div></div></div>'
-																												+ '<div class="feed_comment">'
-																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
+																												+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
+																												+ '"></div>');
+																												
+																					$.each(data.rlist, function(index, reply) {
+																						if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
+																								console.log($(feed).attr('ts_id')+"반복 시작");
+																								console.log($(feed).attr('ts_id')+"의 reply_id:"+$(reply).attr('reply_id'));
+																								console.log($(feed).attr('ts_id')+"반복 종료");
+																						 $(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list">'
+																						+ '<div class="feed_writer_img">'
+																						+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
+																						+ 'width="100%" height="100%"></div>'
+																						+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(feed).attr("mem_id")
+																						+ '">'+$(reply).attr("mem_name")
+																						+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
+																						+'">'
+																						+ $(reply).attr("reply_content")+'</div></div>'); 
+																						}
+																					});
+																	
 																		});
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
@@ -1361,45 +1377,62 @@ a {
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
 																document.getElementsByTagName('head')[0].appendChild(overlayjs);
 																/*ajxx밭은 data 출력하기*/
-																console.log(data);
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
-																	$.each(data,function(index,feed) {
-																						$("#user_feed").append('<div class="feed">'
-																												+ '<div class="feed_imgbox">'
-																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
-																												+ '<img class="feed-img" '
-																												+ 'onerror="this.src='+errImg+';"'
-																												+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
-																												+ '<div class="caption_box">'
-																												+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
-																												+ '</div></div>'
-																												+ '<div class="feed_thumbnail">'
-																												+ '<div class="feed_writer_img">'
-																												+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
-																												+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
-																												+ $(feed).attr('mem_name')
-																												+ '</div>'
-																												+ '<div class="feed_date" id="feedlist_date">'
-																												+ $(feed).attr('ts_regdate')
-																												+ '</div>'
-																												+ '<div class="feed_content" id="feedlist_content">'
-																												+ $(feed).attr('ts_content')
-																												+ '</div>'
-																												+ '<div class="feed_icon_area" id="feed_icon">'
-																												+ '<div class="feed_icon">'
-																												+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
-																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
-																												+ '</p></div><div class="feed_icon">'
-																												+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
-																												+ '</p></div></div></div>'
-																												+ '<div class="feed_comment">'
-																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
-																		});
+																$.each(data.list, function(index, feed) {
+																	$("#user_feed").append('<div class="feed">'
+																							+ '<div class="feed_imgbox">'
+																							+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+																							+ '<img class="feed-img" '
+																							+ 'onerror="this.src='+errImg+';"'
+																							+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
+																							+ '<div class="caption_box">'
+																							+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
+																							+ '</div></div>'
+																							+ '<div class="feed_thumbnail">'
+																							+ '<div class="feed_writer_img">'
+																							+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
+																							+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
+																							+ $(feed).attr('mem_name')
+																							+ '</div>'
+																							+ '<div class="feed_date" id="feedlist_date">'
+																							+ $(feed).attr('ts_regdate')
+																							+ '</div>'
+																							+ '<div class="feed_content" id="feedlist_content">'
+																							+ $(feed).attr('ts_content')
+																							+ '</div>'
+																							+ '<div class="feed_icon_area" id="feed_icon">'
+																							+ '<div class="feed_icon">'
+																							+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+																							+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																							+ '</p></div><div class="feed_icon">'
+																							+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+																							+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																							+ '</p></div></div></div>'
+																							+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
+																							+ '"></div>');
+																							
+																$.each(data.rlist, function(index, reply) {
+																	if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
+																			console.log($(feed).attr('ts_id')+"반복 시작");
+																			console.log($(feed).attr('ts_id')+"의 reply_id:"+$(reply).attr('reply_id'));
+																			console.log($(feed).attr('ts_id')+"반복 종료");
+																	 $(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list">'
+																	+ '<div class="feed_writer_img">'
+																	+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
+																	+ 'width="100%" height="100%"></div>'
+																	+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(feed).attr("mem_id")
+																	+ '">'+$(reply).attr("mem_name")
+																	+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
+																	+'">'
+																	+ $(reply).attr("reply_content")+'</div></div>'); 
+																	}
+																});
+												
+														});
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');

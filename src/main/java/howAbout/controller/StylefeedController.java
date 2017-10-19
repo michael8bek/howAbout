@@ -48,9 +48,9 @@ public class StylefeedController {
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
 	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println("스타일피드 메인페이지");
 		List list = ss.feedlist();
 		List rlist = ss.tsReplyList();
-		System.out.println(rlist);
 		model.addAttribute("reply", rlist);
 		model.addAttribute("list", list);
 		Member member = (Member) session.getAttribute("member");
@@ -60,14 +60,25 @@ public class StylefeedController {
 
 	// 피드 리스트 정렬(인기순, 최신순(기본값))
 	@RequestMapping(value = "feedorder", method = RequestMethod.POST)
-	public @ResponseBody List<Stylefeed> feedorder(@RequestParam("listType") String listType, Model model) {
-		List<Stylefeed> list = null;
-		if(listType.equals("like")){
+	public @ResponseBody Map<String,List> feedorder(@RequestParam("listType") String listType, Model model) {
+		System.out.println("피드정렬 컨트롤러 실행");
+		List list = null;
+		List rlist = null;
+		rlist = ss.tsReplyList();
+		System.out.println("댓글리스트"+rlist);
+		HashMap<String, List> map = new HashMap<String, List>();
+		if(listType.equals("like")){  //인기순
 			System.out.println("정렬타입:" + listType);
 			list = ss.feedlist_orderLike();
-		}else if(listType.equals("recent")) {
+			rlist = ss.tsReplyList();
+			map.put("list", list);
+			map.put("rlist", rlist);
+		}else if(listType.equals("recent")) {  //최근등록순
 			System.out.println("정렬타입:" + listType);
 			list = ss.feedlist_orderRecent();
+			rlist = ss.tsReplyList();
+			map.put("list", list);
+			map.put("rlist", rlist);
 		};
 		
 		try {
@@ -75,7 +86,7 @@ public class StylefeedController {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return list;
+		return map;
 	}
 
 	// 스타일피드 글 등록
@@ -130,7 +141,7 @@ public class StylefeedController {
 	// 피드페이지
 	@RequestMapping(value = "feeddetail", method = RequestMethod.POST)
 	public @ResponseBody List<Stylefeed> feeddetail(@RequestParam("ts_id") int ts_id) {
-		System.out.println("스타일피드 컨트롤러 실행");
+		System.out.println("피드상세페이지 컨트롤러 실행");
 		// int ts_id = Integer.parseInt(request.getParameter("ts_id"));
 		List<Stylefeed> feed = ss.feedDetail(ts_id);
 		return feed;

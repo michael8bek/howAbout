@@ -38,7 +38,6 @@
 	<select id="feedDetail" parameterType="stylefeed" resultMap="stylefeedResult">
 		select * from trendshare where ts_del='n' and ts_id=#{ts_id}
 	</select>
-	
 	<select id="tsReplyList" resultMap="stylefeedResult">
 		<!-- select tr.ts_id, r.reply_id, r.reply_content, r.mem_id, r.reply_regdate from reply r, ts_reply tr where r.reply_id = tr.reply_id and reply_del='n' -->
 		select tr.ts_id, r.reply_id, r.reply_content, t.mem_name, r.reply_regdate from trendshare t, reply r, ts_reply tr where r.reply_id = tr.reply_id and t.mem_id = r.mem_id and t.ts_id = tr.ts_id and reply_del='n'
