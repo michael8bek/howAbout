@@ -176,14 +176,7 @@ public class StylefeedController {
 		tr.setMem_id(mem_id);
 		tr.setReply_content(reply_content);
 		tr.setReply_type("feed");
-		int replyResult = ss.feedReplyWrite(tr);
-		if(replyResult==1) {
-			System.out.println("트렌드쉐어 댓글 등록 성공");
-		}else {
-			System.out.println("트렌드쉐어 댓글 등록 실패");
-		}
-		System.out.println("insert후 reply_id뽑기:"+tr.getReply_id());
-		System.out.println("insert후 ts_id뽑기:"+tr.getTs_id());
+		ss.feedReplyWrite(tr);
 
 	}
 	// 마이페이지

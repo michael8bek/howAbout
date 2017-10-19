@@ -39,7 +39,8 @@ public class MdtextController {
 		return "md/mdtextInsertForm";
 	}
 	@RequestMapping("mdtextInsert")
-	public String mdtextInsert(Mdtext mdtext,HttpSession session, Model model) {
+	public String mdtextInsert(Mdtext mdtext,Goods goods,HttpSession session, Model model) {
+			
 		mdtext.setMem_id((String)session.getAttribute("mem_id"));
 		int result = mds.register(mdtext);
 

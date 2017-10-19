@@ -32,7 +32,9 @@
 				title="FileUpload"><a class="nav-link" href="registerForm.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">상품입력</span>
 			</a></li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+			
+			<!-- 메뉴 예제 샘플 -->
+			<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="Components"><a
 				class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 				href="#collapseComponents" data-parent="#exampleAccordion"> <i
@@ -54,8 +56,10 @@
 					<li><a href="register.do">Registration Page</a></li>
 					<li><a href="forgot-password.do">Forgot Password Page</a></li>
 					<li><a href="blank.do">Blank Page</a></li>
-				</ul></li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+				</ul></li> -->
+				
+				<!-- Menu Levels 메뉴  -->
+			<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="Menu Levels"><a
 				class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 				href="#collapseMulti" data-parent="#exampleAccordion"> <i
@@ -73,10 +77,12 @@
 							<li><a href="#">Third Level Item</a></li>
 							<li><a href="#">Third Level Item</a></li>
 						</ul></li>
-				</ul></li>
+				</ul></li> -->
+				<!-- /. Menu Levels 메뉴  -->
+				
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
-				title="Link"><a class="nav-link" href="#"> <i
-					class="fa fa-fw fa-link"></i> <span class="nav-link-text">Link</span>
+				title="Link"><a class="nav-link" href="main.do"> <i
+					class="fa fa-fw fa-link"></i> <span class="nav-link-text">Main화면</span>
 			</a></li>
 		</ul>
 		<ul class="navbar-nav sidenav-toggler">

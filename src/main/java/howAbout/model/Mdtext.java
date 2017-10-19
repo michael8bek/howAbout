@@ -6,7 +6,8 @@ import java.sql.Date;
 public class Mdtext {
 	private int mdtext_id; 
 	private String mdtext_type; 
-	private String mdtext_goods; 
+	private int mdtext_goods_id; 
+	private String mdtext_goods_img; 
 	private String mdtext_content; 
 	private Date mdtext_regdate; 
 	private String mdtext_del; 
@@ -24,6 +25,18 @@ public class Mdtext {
 	}
 	public void setMdtext_type(String mdtext_type) {
 		this.mdtext_type = mdtext_type;
+	}
+	public int getMdtext_goods_id() {
+		return mdtext_goods_id;
+	}
+	public void setMdtext_goods_id(int mdtext_goods_id) {
+		this.mdtext_goods_id = mdtext_goods_id;
+	}
+	public String getMdtext_goods_img() {
+		return mdtext_goods_img;
+	}
+	public void setMdtext_goods_img(String mdtext_goods_img) {
+		this.mdtext_goods_img = mdtext_goods_img;
 	}
 	public String getMdtext_content() {
 		return mdtext_content;
@@ -56,11 +69,5 @@ public class Mdtext {
 		this.mdtext_readcount = mdtext_readcount;
 	}
 	
-	public String getMdtext_goods() {
-		return mdtext_goods;
-	}
-	public void setMdtext_goods(String mdtext_goods) {
-		this.mdtext_goods = mdtext_goods;
-	}
 	
 }
