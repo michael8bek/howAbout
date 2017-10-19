@@ -37,7 +37,7 @@
 
 <title>How about</title>
 <script type="text/javascript">
-	
+
 </script>
 </head>
 <body>
@@ -92,7 +92,17 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!--./창 줄어들었을때 나오는 버튼 -->
+			<!-- search 창 form -->
+			<form class="form-inline" action="search.do" method="post">
+				<div class="form-group">
+					<input type="text"
+						class="form-control form-row " name="search" id="search" placeholder="Search Items">
+				<button type="submit" class="btn btn-primary btn-md active">Search</button>
+				</div>
+			</form>
+			<!-- /.search 창 form -->
+
+			<div class="collapse navbar-collapse" id="navbarResponsive">
 
 			<div class="collapse col-lg-7 navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
@@ -157,7 +167,7 @@
 									href="ordersList.do?mem_id=${member.mem_id }"
 									data-toggle="modal" data-target=".bd-example-modal-lg">주문정보</a>
 							</c:if>
-							
+
 							<c:if test="${not empty member }">
 								<a class="dropdown-item"
 									href="payList.do?mem_id=${member.mem_id }">결제내역</a>

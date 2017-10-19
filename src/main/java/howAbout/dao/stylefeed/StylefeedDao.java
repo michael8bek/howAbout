@@ -22,4 +22,8 @@ public interface StylefeedDao {
 
 	List<Stylefeed> feedlist_orderRecent();
 
+	List tsReplyList();
+
+	List<Stylefeed> feedReplyList(int ts_id);
+
 }

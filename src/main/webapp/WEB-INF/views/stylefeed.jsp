@@ -23,7 +23,6 @@
 /* 공통  css*/
 body {
 	margin: 0px;
-	padding: 50px;
 	background-color: #E3E3E3;
 }
 
@@ -31,6 +30,10 @@ textarea {
 	vertical-align: middle;
 	font-size: 1em;
 	color: #333;
+}
+
+::-webkit-scrollbar {
+display:none;
 }
 
 /* .container {
@@ -417,10 +420,14 @@ a {
 
 #feedlist_content {
 	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:auto;
 	width: 100%;
-	height: 20%;
+	height: 80px;
 	color: #AAAAAA;
 	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
 }
 
 #feedlist_date {
@@ -435,21 +442,86 @@ a {
 	background-color: white;
 	margin-top: 0.25rem;
 	width: 100%;
-	height: 100px;
+	height: 160px;
 	padding: 2%;
 	flex: auto;
 }
+.feed_icon_area {
+    word-wrap: break-word;
+    width: 100%;
+    height: 20%;
+    color: #AAAAAA;
+    float: left;
+}
+.feed_icon{
+	margin:5px;
+	height:24px;
+	float:left;
+	margin-right: 15%;
+}
 
+.icon_img{
+	margin-right: 5px;
+	float:left;
+}
+
+.icon_txt{
+	float: left;
+}
 .feed_writer_img>img {
 	border-radius: 20px;
 }
 
 .feed .feed_comment {
 	position: relative;
-	height: 100px;
 	background-color: #F7F7F7;
-	padding: 2%;
 	border-radius: 0px 0px 5px 5px;
+}
+.comment_list{
+	display: flex;
+	height: 35px;
+}
+.feed_list #feedreply_writer {
+	display: inline-block;
+	font-size: 13px;
+	cursor: pointer;
+	margin-left:5px;
+	font-weight: bold;
+	width:75px;
+	padding-top: 9px;
+}
+.feed_comment .feed_writer_img {
+	padding-top:5px;
+	padding-left:5px;
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+.feed_comment .feed_writer_img > img{
+	width:30px;
+	height: 30px;
+}
+.feed_list .comment_txt{
+	position:absolute;
+	padding-top:9px;
+	right:0;
+	width:185px;
+	height:30px;
+	font-size:13px;
+	display: inline-block;
+	overflow-y:auto; 
+}
+
+.feed_list #feedreply_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:auto;
+	width: 100%;
+	height: 80px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
 }
 
 /*피드 글쓰기 버튼*/
@@ -473,7 +545,39 @@ a {
 	height: 130px;
 }
 
+
+#feedpage_replyList{
+	margin-top: 5px;
+	font-size:13px;
+	display: flex;
+	height: 20px;
+}
+#feedpage_replyList .replywriter_img {
+	width: 25px;
+	height: 25px;
+}
+.replywriter_img>img{
+	border-radius:20px;
+}
+#feeedpage_content{
+    display: inline-block;
+    overflow-y: scroll;
+    height: 70px;
+}
+#feedpage_replyList .feed_writer{
+	overflow: hidden;
+	max-width: 80px;
+	margin-left: 5px;
+}
+#feedpage_replyList .feedreply_text{
+	font-size: 13px;
+	overflow: auto;
+	position: relative;
+	margin-left:15px;
+}
+
 @media all and (max-width:767px) {
+
 	/*피드 상세페이지 새창(overray)*/
 	#myOverlay2 {
 		max-width: 310px;
@@ -505,6 +609,8 @@ a {
 		padding-bottom: 20px;
 		width: 320px;
 	}
+	
+	
 }
 /* 태블릿(768px이상)*/
 @media all and ( min-width : 768px) and (max-width:991px) {
@@ -537,7 +643,7 @@ a {
 	.event_slide {
 		order: 1;
 		padding: 40px;
-		padding: 2.500rem;
+		padding: 2.000rem;
 		padding-bottom: 1.000rem;
 		padding-top: 2%;
 	}
@@ -545,8 +651,7 @@ a {
 	/* mdfeed 리스트 section css*/
 	.mdfeed_section {
 		order: 2;
-		padding: 40px;
-		padding: 2.500rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 		padding-bottom: 1.000rem;
 	}
@@ -565,10 +670,10 @@ a {
 	}
 
 	/* 피드 리스트 section css*/
+	
 	.feedlist_section {
 		order: 4;
-		padding: 40px;
-		padding: 2.500rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 	}
 	.feed_list {
@@ -579,7 +684,9 @@ a {
 	.feed_list .feed {
 		width: 49.2%;
 		/* min-width:300px; */
-		height: 500px;
+				margin-top: 15px;
+		margin-top: 0.750rem;
+		/* height: 500px; */
 		margin-left: 1.6%;
 		/* 		margin-left: 1.000rem; */
 	}
@@ -599,13 +706,13 @@ a {
 	.feed_thumbnail {
 		margin-top: 0.25rem;
 		width: 100%;
-		height: 120px;
+		height: 160px;
 	}
-	.feed .feed_comment {
+/* 	.feed .feed_comment {
 		width: 100%;
 		height: 120px;
 	}
-
+ */
 	/*피드 상세페이지*/
 	#myOverlay2 {
 		max-width: 700px;
@@ -627,8 +734,7 @@ a {
 	/*이벤트 배너 캐러쉘 section*/
 	.event_slide {
 		order: 1;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-bottom: 1.000rem;
 		padding-top: 2%;
 	}
@@ -636,8 +742,7 @@ a {
 	/* mdfeed 리스트 section css*/
 	.mdfeed_section {
 		order: 2;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 		padding-bottom: 1.000rem;
 	}
@@ -656,10 +761,11 @@ a {
 	}
 
 	/* 피드 리스트 section css*/
+	
+	
 	.feedlist_section {
 		order: 4;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 2.000rem;
 		padding-top: 1.000rem;
 	}
 	.feed_list {
@@ -683,12 +789,12 @@ a {
 	.feed_thumbnail {
 		margin-top: 0.25rem;
 		width: 100%;
-		height: 150px;
+		height: 160px;
 	}
-	.feed .feed_comment {
+/* 	.feed .feed_comment {
 		width: 100%;
 		height: 150px;
-	}
+	} */
 	/*피드 상세페이지*/
 	#myOverlay2 {
 		max-width: 700px;
@@ -709,8 +815,7 @@ a {
 	/*이벤트 배너 캐러쉘 section*/
 	.event_slide {
 		order: 1;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 1.000rem;
 		padding-bottom: 1.000rem;
 		padding-top: 2%;
 	}
@@ -718,8 +823,7 @@ a {
 	/* mdfeed 리스트 section css*/
 	.mdfeed_section {
 		order: 2;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 1.000rem;
 		padding-top: 1.000rem;
 		padding-bottom: 1.000rem;
 	}
@@ -739,8 +843,7 @@ a {
 	/* 피드 리스트 section css*/
 	.feedlist_section {
 		order: 4;
-		padding: 60px;
-		padding: 3.750rem;
+		padding: 1.000rem;
 		padding-top: 1.000rem;
 	}
 	.feed_list {
@@ -767,12 +870,28 @@ a {
 	.feed_thumbnail {
 		margin-top: 0.25rem;
 		width: 100%;
-		height: 150px;
+		height: 160px;
 	}
-	.feed .feed_comment {
+/* 	.feed .feed_comment {
 		width: 100%;
 		height: 150px;
-	}
+	} */
+	
+	
+	.feed_list #feedreply_writer {
+	font-size: 13px;
+	margin-left:10px;
+	font-weight: bold;
+	width:70px;
+	padding-top: 9px;
+    }
+    .feed_list .comment_txt{
+	width:150px;
+	height:30px;
+	font-size:13px;
+	display: inline-block;
+	overflow-y:auto; 
+}
 	/*피드 상세페이지*/
 	#myOverlay2 {
 		max-width: 700px;
@@ -876,16 +995,16 @@ a {
 					 <div><img src="resources/images/icons/ajax_loading.gif" /></div>
 				</div>
 			<div class="feed_list" id="user_feed">
-				<c:forEach var="feed" items="${list }">
+				<c:forEach var="feed" items="${list }" varStatus="status">
 					<div class="feed">
 						<div class="feed_imgbox">
 							<a class="feedpage" id="overlayTrigger2"
 								data-seq="${feed.ts_id }" data-overlay-trigger="myOverlay2"><img
-								class="feed-img" src="${feed.ts_img_path}${feed.ts_img_name}"
+								class="feed-img" onerror="this.src='http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png';" src="${feed.ts_img_path}${feed.ts_img_name}"
 								alt=""> <!-- 이미지 캡션 --> </a>
 							<div class="caption_box">
 								<a><img class="feed_icon"
-									src="resouces/images/icons/feed_heart.png"></a>
+									src="resources/images/icons/feed_heart.png"></a>
 							</div>
 						</div>
 						<div class="feed_thumbnail">
@@ -895,21 +1014,51 @@ a {
 									width="100%" height="100%">
 							</div>
 							<div class="feed_writer" id="feedlist_writer"
-								data-writer="${feed.mem_id }">${feed.mem_name }</div>
+								data-writer="${feed.mem_id }">${feed.mem_name }
+							</div>
 							<div class="feed_date" id="feedlist_date">${feed.ts_regdate }</div>
 							<div class="feed_content" id="feedlist_content">
 								${feed.ts_content }</div>
+							<div class="feed_icon_area" id="feed_icon">
+								<div class="feed_icon">
+									<img class="icon_img" src="resources/images/icons/feed_heart.png">
+									<p class="icon_txt">${feed.ts_like }</p>
+								</div>
+								<div class="feed_icon">
+									<img class="icon_img" src="resources/images/icons/feed_msg.png">
+									<p class="icon_txt">0</p>
+								</div>
+							</div>
 						</div>
 						<div class="feed_comment">
-							<p class="card-text">피드 관련 댓글</p>
+						<c:forEach var="reply" items="${reply}" begin="0" end="3"> 
+							<c:if test="${feed.ts_id==reply.ts_id }">
+							<div class="comment_list">
+								<div class="feed_writer_img">
+									<img alt=""
+									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
+									width="100%" height="100%">
+								</div>
+								<div class="feed_writer" id="feedreply_writer"
+								data-writer="${feed.mem_id }">${reply.mem_name}
+								</div>
+								<div class="comment_txt" style="padding-top: 9px">
+								${reply.reply_content }
+								</div>							
+							</div>
+							</c:if>
+						</c:forEach> 
 						</div>
 					</div>
 				</c:forEach>
 			</div>
+			<div class="feed_more" style="text-align: center;">
+				<button class="btn btn-danger" id="feed_more_btn" data-ts_id="${feed.ts_id }">more</button>
+			</div> 
 		</section>
 		<div class="write_btn">
-			<a class="feedwrite" id="overlayTrigger2" href="#myOverlay3"
-				data-overlay-trigger> <c:if test="${not empty member }">
+			<a class="feedwrite" id="overlayTrigger2"
+				data-overlay-trigger="myOverlay3"> <c:if test="${not empty member }">
 					<button class="btn btn-success">글쓰기</button>
 				</c:if>
 			</a>
@@ -922,7 +1071,7 @@ a {
 		<!-- Each overlay needs an id. The aria-labelledby is not required but is best practice -->
 		<div id="myOverlay2" aria-labelledby="myOverlay2Heading"
 			data-overlay-container-class="slide-down" role="region">
-			<img class="feeddetail_img" id="ts_img" alt="" src="">
+			<img class="feeddetail_img" id="ts_img" onerror="this.src='http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png';" alt="" src="">
 			<div class="myOverlay2-side-position">
 				<div class="feed_textarea">
 					<div class="feed_detail">
@@ -941,9 +1090,8 @@ a {
 						</div>
 						<div class="feed_content" id="feeedpage_content">피드</div>
 					</div>
-					<div class="feed_reply" style="margin-top: 10px;">
+					<div class="feed_reply" style="margin-top: 10px; height:180px;">
 						<form name="feed_reply_write">
-
 							<input type="hidden" value="" id="ts_id" name="ts_id"> <input
 								type="hidden" value="${member.mem_id}" name="mem_id"> <input
 								type="hidden" value="${member.mem_name}" name="mem_name">
@@ -952,8 +1100,20 @@ a {
 								placeholder="댓글을 입력하세요"> <input type="button"
 								class="btn btn-danger" id="feed_reply_btn" value="확인"
 								style="width: 50px; height: 33px; font-size: 12px">
-
 						</form>
+							<div id="feedpage_replyList">
+								<div class="feed_writer_img" style="width: 30px; height: 30px;">
+									<img alt=""
+									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
+									width="100%" height="100%">
+								</div>
+								<div class="feed_writer" id="feedreply_writer"
+								data-writer="${feed.mem_id }">문지민
+								</div>
+								<div class="feedreply_text">
+									댓글창 출력 폼 구하기
+								</div>							
+						  </div>
 					</div>
 				</div>
 			</div>
@@ -994,7 +1154,7 @@ a {
 					<div class="text_upload_area" style="width: 340px; height: 220px;">
 						<div class="content_upload"
 							style="width: 320px; height: 50px; margin: 10px;">
-							<textarea class="content_upload_text" id="input_content"
+							<textarea class="content_upload_text" placeholder="내용을 입력" id="input_content"
 								name="input_content" rows="8" cols="45">
 						</textarea>
 						</div>
@@ -1017,6 +1177,8 @@ a {
 	<!-- <script src="resources/js/jquery.js"></script> -->
 	<script type="text/javascript"
 		src="resources/vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="resources/js/trendshare.js"></script>
 	<script type="text/javascript">
 		//피드 업로드할 사진 선택안하고 글 올릴 시 alert 
 		function uploadChk() {
@@ -1056,7 +1218,7 @@ a {
 						function() {
 							/* 이벤트배너 슬라이드 */
 
-							/* 캐러쉘*/
+							/* 캐러쉘 광고 슬라이드*/
 							$('.carousel').carousel();
 
 							/* 이미지 마우스 갖다 되면 투명하게 */
@@ -1137,6 +1299,7 @@ a {
 							}); */
 
 							//피드 리스트 인기순(DB의 ts_like순) 정렬
+							var errImg = "'http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png'";
 							$("#order_like").bind("click",function() {
 												console.log("인기순정렬 JS함수 실행");
 												$.ajax({
@@ -1154,20 +1317,19 @@ a {
 																var overlayjs = document.createElement('script');
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
 																document.getElementsByTagName('head')[0].appendChild(overlayjs);
-																/*ajxx밭은 data 출력하기*/
-																console.log(data);
+																/**/
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
-																	$.each(data,function(index,feed) {
-																		setTimeout(function(){
-																			
+																	$.each(data.list, function(index, feed) {
 																						$("#user_feed").append('<div class="feed">'
 																												+ '<div class="feed_imgbox">'
 																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
-																												+ '<img class="feed-img" src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
+																												+ '<img class="feed-img" '
+																												+ 'onerror="this.src='+errImg+';"'
+																												+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
 																												+ '<div class="caption_box">'
 																												+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
 																												+ '</div></div>'
@@ -1182,18 +1344,41 @@ a {
 																												+ '</div>'
 																												+ '<div class="feed_content" id="feedlist_content">'
 																												+ $(feed).attr('ts_content')
-																												+ '</div></div>'
-																												+ '<div class="feed_comment">'
-																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
-																		}, 800);
+																												+ '</div>'
+																												+ '<div class="feed_icon_area" id="feed_icon">'
+																												+ '<div class="feed_icon">'
+																												+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																												+ '</p></div><div class="feed_icon">'
+																												+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																												+ '</p></div></div></div>'
+																												+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
+																												+ '"></div>');
+																												
+																					$.each(data.rlist, function(index, reply) {
+																						if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
+																								console.log($(feed).attr('ts_id')+"반복 시작");
+																								console.log($(feed).attr('ts_id')+"의 reply_id:"+$(reply).attr('reply_id'));
+																								console.log($(feed).attr('ts_id')+"반복 종료");
+																						 $(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list">'
+																						+ '<div class="feed_writer_img">'
+																						+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
+																						+ 'width="100%" height="100%"></div>'
+																						+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(feed).attr("mem_id")
+																						+ '">'+$(reply).attr("mem_name")
+																						+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
+																						+'">'
+																						+ $(reply).attr("reply_content")+'</div></div>'); 
+																						}
+																					});
+																	
 																		});
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
 														    },complete:function(){
-														    	setTimeout(function(){
 														    	$('.feed_loading').addClass('display-none');
-														    	},800);
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -1207,6 +1392,7 @@ a {
 											});
 							
 							//피드 리스트 최신순(DB의 ts_regdate순) 정렬
+							
 							$("#order_recent").bind("click",function() {
 												console.log("최신순정렬 JS함수 실행");
 												$.ajax({
@@ -1225,45 +1411,67 @@ a {
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
 																document.getElementsByTagName('head')[0].appendChild(overlayjs);
 																/*ajxx밭은 data 출력하기*/
-																console.log(data);
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
-																	$.each(data,function(index,feed) {
-																		setTimeout(function(){
-																			
-																						$("#user_feed").append('<div class="feed">'
-																												+ '<div class="feed_imgbox">'
-																												+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
-																												+ '<img class="feed-img" src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
-																												+ '<div class="caption_box">'
-																												+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
-																												+ '</div></div>'
-																												+ '<div class="feed_thumbnail">'
-																												+ '<div class="feed_writer_img">'
-																												+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
-																												+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
-																												+ $(feed).attr('mem_name')
-																												+ '</div>'
-																												+ '<div class="feed_date" id="feedlist_date">'
-																												+ $(feed).attr('ts_regdate')
-																												+ '</div>'
-																												+ '<div class="feed_content" id="feedlist_content">'
-																												+ $(feed).attr('ts_content')
-																												+ '</div></div>'
-																												+ '<div class="feed_comment">'
-																												+ '<p class="card-text">피드 관련 댓글</p></div></div>')
-																		}, 800);
-																		});
+																$.each(data.list, function(index, feed) {
+																	$("#user_feed").append('<div class="feed">'
+																							+ '<div class="feed_imgbox">'
+																							+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+																							+ '<img class="feed-img" '
+																							+ 'onerror="this.src='+errImg+';"'
+																							+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
+																							+ '<div class="caption_box">'
+																							+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
+																							+ '</div></div>'
+																							+ '<div class="feed_thumbnail">'
+																							+ '<div class="feed_writer_img">'
+																							+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
+																							+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
+																							+ $(feed).attr('mem_name')
+																							+ '</div>'
+																							+ '<div class="feed_date" id="feedlist_date">'
+																							+ $(feed).attr('ts_regdate')
+																							+ '</div>'
+																							+ '<div class="feed_content" id="feedlist_content">'
+																							+ $(feed).attr('ts_content')
+																							+ '</div>'
+																							+ '<div class="feed_icon_area" id="feed_icon">'
+																							+ '<div class="feed_icon">'
+																							+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+																							+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																							+ '</p></div><div class="feed_icon">'
+																							+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+																							+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																							+ '</p></div></div></div>'
+																							+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
+																							+ '"></div>');
+																							
+																$.each(data.rlist, function(index, reply) {
+																	if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
+																			console.log($(feed).attr('ts_id')+"반복 시작");
+																			console.log($(feed).attr('ts_id')+"의 reply_id:"+$(reply).attr('reply_id'));
+																			console.log($(feed).attr('ts_id')+"반복 종료");
+																	 $(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list">'
+																	+ '<div class="feed_writer_img">'
+																	+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
+																	+ 'width="100%" height="100%"></div>'
+																	+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(feed).attr("mem_id")
+																	+ '">'+$(reply).attr("mem_name")
+																	+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
+																	+'">'
+																	+ $(reply).attr("reply_content")+'</div></div>'); 
+																	}
+																});
+												
+														});
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
 														    },complete:function(){
-														    	setTimeout(function(){
 														    	$('.feed_loading').addClass('display-none');
-														    	},800);
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -1296,8 +1504,13 @@ a {
 																var ts_id="";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
+																console.log("data:"+data);
+																console.log("data.list:"+data.list);
+																console.log("data.rlist:"+data.list);
+																
 																$.each(data,function(index,feed) {
 																					console.log("success");
+																					console.log(feed);
 																					mem_id = feed.mem_id;
 																					mem_name = feed.mem_name;
 																					ts_content = feed.ts_content;
@@ -1347,24 +1560,20 @@ a {
 									
 							});
 						});
+							
+							/*피드 더보기 기능(ajax)*/
+							$("#feed_more_btn").bind("click",function(){
+								var ts_id = $(".feed_list > .feed:last-child").data('seq');
+								console.log("더보기 클릭"+ts_id);
+							});
+							
+							
 							/*닉네임 클릭하면 mypage로 이동*/
 							$(".feed_writer").bind("click", function() {
 								var mem_id = $(this).data('writer');
 								console.log("mem_id는" + mem_id);
 								location.href = 'mypage.do?mem_id=' + mem_id
 							});
-
-							/*피드 마우스엔터시 캡션박스 활성화/비활성화*/
-							$('.feed_imgbox').mouseenter(
-									function() {
-										$(this).find('.caption_box').addClass("active");
-									
-								});
-							$('.feed_imgbox').mouseleave(
-									function() {
-										$(this).find('.caption_box')
-												.removeClass("active");
-									});
 
 						})
 	</script>

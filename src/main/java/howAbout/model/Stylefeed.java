@@ -10,15 +10,46 @@ public class Stylefeed {
 	private String ts_del;
 	private String mem_id;
 	private String mem_name;
+	private int ts_like;
+	private int ts_readcount;
+	private String ts_img_path;
+	private String ts_img_name;
+	
+	private int reply_id;
+	private String reply_content;
+	private Date reply_regdate;
+	
+	
+	public int getReply_id() {
+		return reply_id;
+	}
+	public void setReply_id(int reply_id) {
+		this.reply_id = reply_id;
+	}
+	public String getReply_content() {
+		return reply_content;
+	}
+	public void setReply_content(String reply_content) {
+		this.reply_content = reply_content;
+	}
+	public Date getReply_regdate() {
+		return reply_regdate;
+	}
+	public void setReply_regdate(Date reply_regdate) {
+		this.reply_regdate = reply_regdate;
+	}
+	public int getTs_like() {
+		return ts_like;
+	}
+	public void setTs_like(int ts_like) {
+		this.ts_like = ts_like;
+	}
 	public String getMem_name() {
 		return mem_name;
 	}
 	public void setMem_name(String mem_name) {
 		this.mem_name = mem_name;
 	}
-	private int ts_readcount;
-	private String ts_img_path;
-	private String ts_img_name;
 	public String getTs_img_path() {
 		return ts_img_path;
 	}

@@ -17,5 +17,7 @@ public interface StylefeedService {
 	List<Stylefeed> feedlist_orderLike();
 	int feedReplyWrite(Tsreply tr);
 	List<Stylefeed> feedlist_orderRecent();
+	List tsReplyList();
+	List<Stylefeed> feedReplyList(int ts_id);
 
 }

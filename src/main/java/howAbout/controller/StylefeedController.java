@@ -36,30 +36,72 @@ public class StylefeedController {
 	@Autowired
 	private StylefeedService ss;
 
+	//테스트용 검색결과
+	@RequestMapping("search")
+	public String search(@RequestParam String search, HttpServletRequest request,Model model) {
+	System.out.println(search);
+	model.addAttribute("search",search);
+	return "searchresult";
+	}
+
+
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
 	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {
-		List<Stylefeed> list = ss.feedlist();
-/*		Stylefeed stylefeed = new Stylefeed();
-		System.out.println(list.get(5).getMem_name());*/
+		String pType = (String) session.getAttribute("pType");
+		System.out.println("페이지타입(pType):"+pType);
+		List list = null;
+		List rlist = null;
+		if(pType == null || pType.equals("default")) {
+			list = ss.feedlist();
+			rlist = ss.tsReplyList();
+			session.setAttribute("pType", "default");
+		}else if(pType=="likeOrder") {
+			list = ss.feedlist_orderLike();
+			rlist = ss.tsReplyList();
+		}else if(pType=="recentOrder") {
+			list = ss.feedlist_orderRecent();
+			rlist = ss.tsReplyList();
+		}
+
+		model.addAttribute("reply", rlist);
+		model.addAttribute("list", list);
 		Member member = (Member) session.getAttribute("member");
 		model.addAttribute("member", member);
-		model.addAttribute("list", list);
 		return "stylefeed";
 	}
 
 	// 피드 리스트 정렬(인기순, 최신순(기본값))
 	@RequestMapping(value = "feedorder", method = RequestMethod.POST)
-	public @ResponseBody List feedorder(@RequestParam("listType") String listType, Model model) {
-		List<Stylefeed> list = null;
-		if(listType.equals("like")){
+	public @ResponseBody Map<String,List> feedorder(@RequestParam("listType") String listType, Model model, HttpSession session) {
+		System.out.println("피드정렬 컨트롤러 실행");
+		List list = null;
+		List rlist = null;
+		rlist = ss.tsReplyList();
+		System.out.println("댓글리스트"+rlist);
+		HashMap<String, List> map = new HashMap<String, List>();
+		if(listType.equals("like")){  //인기순
 			System.out.println("정렬타입:" + listType);
 			list = ss.feedlist_orderLike();
-		}else if(listType.equals("recent")) {
+			rlist = ss.tsReplyList();
+			map.put("list", list);
+			map.put("rlist", rlist);
+			session.setAttribute("pType", "likeOrder");
+		}else if(listType.equals("recent")) {  //최근등록순
 			System.out.println("정렬타입:" + listType);
 			list = ss.feedlist_orderRecent();
+			rlist = ss.tsReplyList();
+			map.put("list", list);
+			map.put("rlist", rlist);
+			session.setAttribute("pType", "recentOrder");
 		};
-		return list;
+
+		try {
+			Thread.sleep(650);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return map;
 	}
 
 	// 스타일피드 글 등록
@@ -111,34 +153,37 @@ public class StylefeedController {
 		return "redirect:/stylefeed.do"; // 피드 등록 후 스타일피드 메인으로?
 	}
 
-	// 피드페이지
+	// 피드상세페이지
 	@RequestMapping(value = "feeddetail", method = RequestMethod.POST)
-	public @ResponseBody List<Stylefeed> feeddetail(@RequestParam("ts_id") int ts_id) {
-		System.out.println("스타일피드 컨트롤러 실행");
-		// int ts_id = Integer.parseInt(request.getParameter("ts_id"));
-		List<Stylefeed> feed = ss.feedDetail(ts_id);
-		return feed;
+	public @ResponseBody Map<String,List> feeddetail(@RequestParam("ts_id") int ts_id) {
+		System.out.println("피드상세페이지 컨트롤러 실행");
+		HashMap<String, List> map = new HashMap<String,List>();
+		List feed = ss.feedDetail(ts_id);
+		List rlist = ss.feedReplyList(ts_id);
+		map.put("list", feed);
+		map.put("rlist", rlist);
+		return map;
 	}
 	//피드 댓글 등록
 	@RequestMapping(value = "feedreplywrite", method = RequestMethod.POST)
-	public void feedreplywrite(HttpServletRequest request) {
+	public void feedreplywrite(HttpServletRequest request, Model model) {
 		System.out.println("스타일피드 댓글 작성 컨트롤러 실행");
 		int ts_id = Integer.parseInt(request.getParameter("ts_id"));
 		String mem_id= request.getParameter("mem_id");
-		String mem_name=request.getParameter("mem_name");
 		String reply_content=request.getParameter("reply_content");
-		System.out.println(ts_id);
-		System.out.println(mem_id);
-		System.out.println(mem_name);
-		System.out.println(reply_content);
-
 		Tsreply tr = new Tsreply();
-//		tr.setTs_id(ts_id);
+		tr.setTs_id(ts_id);
 		tr.setMem_id(mem_id);
 		tr.setReply_content(reply_content);
 		tr.setReply_type("feed");
-		int result = ss.feedReplyWrite(tr);
-		System.out.println("댓글등록결과:"+result);
+		int replyResult = ss.feedReplyWrite(tr);
+		if(replyResult==1) {
+			System.out.println("트렌드쉐어 댓글 등록 성공");
+		}else {
+			System.out.println("트렌드쉐어 댓글 등록 실패");
+		}
+		System.out.println("insert후 reply_id뽑기:"+tr.getReply_id());
+		System.out.println("insert후 ts_id뽑기:"+tr.getTs_id());
 
 	}
 	// 마이페이지
