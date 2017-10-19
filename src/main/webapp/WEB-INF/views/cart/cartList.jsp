@@ -41,8 +41,14 @@
 	var sum1 = 0;
 	var count = frm.chk.length;
 	if (count == undefined) {
+		if($("input[name=chk]").prop("checked")){
 		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
 		sum1 += parseInt(frm.goods_delprice.value);
+		}else{
+			sum = "";
+			sum1 = "";
+		}
+			
 	} else {
 		for (var i = 0; i < count; i++) {
 			if (frm.chk[i].checked==true) {
