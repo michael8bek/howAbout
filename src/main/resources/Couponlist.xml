@@ -12,6 +12,6 @@
 		 <result property="cp_benefit" column="cp_benefit" /> 
 	</resultMap>
 	<select id="listCoupon" resultMap="couponlistResult">
-		select * from couponlist where mem_id=#{mem_id} and cplist_use = 'n' 
+		select * from couponlist where mem_id=#{mem_id} and cplist_use = 'n' order by cp_benefit 
 	</select>
 </mapper>

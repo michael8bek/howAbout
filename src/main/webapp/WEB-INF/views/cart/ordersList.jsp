@@ -173,15 +173,16 @@
 			<div class="container2">			
 			<div class="container1_2">
 				<h5>1. 주문상품 내역</h5>
-				<table class="table table-bordered" style="">					
-					<tr style="background-color: #E7E7E7;">
-						<th>주문상품</th>
-						<th>수량</th>
-						<th>상품금액</th>
-						<th>상품할인</th>
-						<th>배송비</th>
-						<th>주문금액</th>
-						<th>주문관리</th>
+				<table class="table" style="text-align: center;">					
+					<tr style="background-color: #E7E7E7; ">
+						<td style="border-right: 1px solid #EAEAEA; width: 10%; vertical-align: middle;">
+						<th style="text-align: center;">주문상품</th>
+						<th style="text-align: center;">수량</th>
+						<th style="text-align: center;">상품금액</th>
+						<th style="text-align: center;">상품할인</th>
+						<th style="text-align: center;">배송비</th>
+						<th style="text-align: center;">주문금액</th>
+						<th style="text-align: center;">주문관리</th>
 					</tr>
 				<c:if test="${not empty listOrders }">
 				<c:forEach var="cart" items="${listOrders}" varStatus="status">
@@ -191,7 +192,8 @@
 				<input type="hidden" name="cp_benefit" value="${cart.cp_benefit }"> 
 				<input type="hidden" name="cart_id" value="${cart.cart_id }">
 				<input type="hidden" name="goods_id" value="${cart.goods_id }">
-					<tr >
+					<tr>
+						<td style="border-right: 1px solid #FFFFFF; width: 10%; vertical-align: middle;"><img src="resources/images/goods/${cart.goods_img }" style="width:100%;"></td>
 						<td style="vertical-align: middle;">${cart.goods_name}<p>
 							Color : ${cart.goods_color } / Size : ${cart.goods_size }
 						</td>
@@ -202,6 +204,7 @@
 						<td style="vertical-align: middle;">${cart.goods_price*cart.goods_qty-cart.cp_benefit*cart.goods_qty+cart.goods_delprice}</td>
 						<td style="vertical-align: middle; width: 10%;">
 						<a href="ordersDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" >삭제</a></td>
+						
 					</tr>
 					</c:forEach>
 				</c:if>
@@ -220,7 +223,8 @@
 					<tr><th style="width: 25%;">쿠폰 선택</th>
 						<th ><select onclick="coupon(this.value);" >
 						<c:forEach var="couponlist" items="${listCoupon }" varStatus="status">
-							<option value="${couponlist.cp_benefit }">${couponlist.cp_id }</option>
+							<option value="${couponlist.cp_benefit }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
+						<%-- <input type="hidden" name="cp_id" value="${couponlist.cp_id}"> --%>
 						</c:forEach>
 						</select></th>
 					</tr>

@@ -21,9 +21,9 @@
 		<!-- <selectKey keyProperty="pay_id" resultType="int">
 			SELECT MAX(pay_id)+1 FROM payment
 		</selectKey> -->
-		insert into payment(pay_id,goods_id,goods_qty,mem_id,pay_name,pay_phone,pay_email,
+		insert into payment(goods_id,goods_qty,mem_id,pay_name,pay_phone,pay_email,
 		pay_addr,pay_rename,pay_rephone,pay_required,pay_total,pay_time)
-		 values (#{pay_id},#{goods_id}, #{goods_qty},
+		 values (#{goods_id}, #{goods_qty},
 		 #{mem_id},	#{pay_name}, #{pay_phone}, #{pay_email}, #{pay_addr},
 		  #{pay_rename}, #{pay_rephone}, #{pay_required}, #{pay_total}, now())
 	</insert>
