@@ -545,10 +545,35 @@ a {
 	height: 130px;
 }
 
+
+#feedpage_replyList{
+	margin-top: 5px;
+	font-size:13px;
+	display: flex;
+	height: 20px;
+}
+#feedpage_replyList .replywriter_img {
+	width: 25px;
+	height: 25px;
+}
+.replywriter_img>img{
+	border-radius:20px;
+}
 #feeedpage_content{
     display: inline-block;
     overflow-y: scroll;
     height: 70px;
+}
+#feedpage_replyList .feed_writer{
+	overflow: hidden;
+	max-width: 80px;
+	margin-left: 5px;
+}
+#feedpage_replyList .feedreply_text{
+	font-size: 13px;
+	overflow: auto;
+	position: relative;
+	margin-left:15px;
 }
 
 @media all and (max-width:767px) {
@@ -1018,9 +1043,6 @@ a {
 								data-writer="${feed.mem_id }">${reply.mem_name}
 								</div>
 								<div class="comment_txt" style="padding-top: 9px">
-								<c:if test="${empty reply.reply_content}">
-									댓글이 없습니다.
-								</c:if>
 								${reply.reply_content }
 								</div>							
 							</div>
@@ -1068,7 +1090,7 @@ a {
 						</div>
 						<div class="feed_content" id="feeedpage_content">피드</div>
 					</div>
-					<div class="feed_reply" style="margin-top: 10px;">
+					<div class="feed_reply" style="margin-top: 10px; height:180px;">
 						<form name="feed_reply_write">
 							<input type="hidden" value="" id="ts_id" name="ts_id"> <input
 								type="hidden" value="${member.mem_id}" name="mem_id"> <input
@@ -1078,8 +1100,20 @@ a {
 								placeholder="댓글을 입력하세요"> <input type="button"
 								class="btn btn-danger" id="feed_reply_btn" value="확인"
 								style="width: 50px; height: 33px; font-size: 12px">
-
 						</form>
+							<div id="feedpage_replyList">
+								<div class="feed_writer_img" style="width: 30px; height: 30px;">
+									<img alt=""
+									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
+									width="100%" height="100%">
+								</div>
+								<div class="feed_writer" id="feedreply_writer"
+								data-writer="${feed.mem_id }">문지민
+								</div>
+								<div class="feedreply_text">
+									댓글창 출력 폼 구하기
+								</div>							
+						  </div>
 					</div>
 				</div>
 			</div>
@@ -1470,8 +1504,13 @@ a {
 																var ts_id="";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
+																console.log("data:"+data);
+																console.log("data.list:"+data.list);
+																console.log("data.rlist:"+data.list);
+																
 																$.each(data,function(index,feed) {
 																					console.log("success");
+																					console.log(feed);
 																					mem_id = feed.mem_id;
 																					mem_name = feed.mem_name;
 																					ts_content = feed.ts_content;

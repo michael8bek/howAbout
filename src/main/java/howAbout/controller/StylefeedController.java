@@ -48,9 +48,22 @@ public class StylefeedController {
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
 	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {
-		System.out.println("스타일피드 메인페이지");
-		List list = ss.feedlist();
-		List rlist = ss.tsReplyList();
+		String pType = (String) session.getAttribute("pType");
+		System.out.println("페이지타입(pType):"+pType);
+		List list = null;
+		List rlist = null;
+		if(pType == null || pType.equals("default")) {
+			list = ss.feedlist();
+			rlist = ss.tsReplyList();
+			session.setAttribute("pType", "default");
+		}else if(pType=="likeOrder") {
+			list = ss.feedlist_orderLike();
+			rlist = ss.tsReplyList();
+		}else if(pType=="recentOrder") {
+			list = ss.feedlist_orderRecent();
+			rlist = ss.tsReplyList();
+		}
+
 		model.addAttribute("reply", rlist);
 		model.addAttribute("list", list);
 		Member member = (Member) session.getAttribute("member");
@@ -60,7 +73,7 @@ public class StylefeedController {
 
 	// 피드 리스트 정렬(인기순, 최신순(기본값))
 	@RequestMapping(value = "feedorder", method = RequestMethod.POST)
-	public @ResponseBody Map<String,List> feedorder(@RequestParam("listType") String listType, Model model) {
+	public @ResponseBody Map<String,List> feedorder(@RequestParam("listType") String listType, Model model, HttpSession session) {
 		System.out.println("피드정렬 컨트롤러 실행");
 		List list = null;
 		List rlist = null;
@@ -73,12 +86,14 @@ public class StylefeedController {
 			rlist = ss.tsReplyList();
 			map.put("list", list);
 			map.put("rlist", rlist);
+			session.setAttribute("pType", "likeOrder");
 		}else if(listType.equals("recent")) {  //최근등록순
 			System.out.println("정렬타입:" + listType);
 			list = ss.feedlist_orderRecent();
 			rlist = ss.tsReplyList();
 			map.put("list", list);
 			map.put("rlist", rlist);
+			session.setAttribute("pType", "recentOrder");
 		};
 		
 		try {
@@ -138,13 +153,16 @@ public class StylefeedController {
 		return "redirect:/stylefeed.do"; // 피드 등록 후 스타일피드 메인으로?
 	}
 
-	// 피드페이지
+	// 피드상세페이지
 	@RequestMapping(value = "feeddetail", method = RequestMethod.POST)
-	public @ResponseBody List<Stylefeed> feeddetail(@RequestParam("ts_id") int ts_id) {
+	public @ResponseBody Map<String,List> feeddetail(@RequestParam("ts_id") int ts_id) {
 		System.out.println("피드상세페이지 컨트롤러 실행");
-		// int ts_id = Integer.parseInt(request.getParameter("ts_id"));
-		List<Stylefeed> feed = ss.feedDetail(ts_id);
-		return feed;
+		HashMap<String, List> map = new HashMap<String,List>();
+		List feed = ss.feedDetail(ts_id);
+		List rlist = ss.feedReplyList(ts_id);
+		map.put("list", feed);
+		map.put("rlist", rlist);
+		return map;
 	}
 	//피드 댓글 등록
 	@RequestMapping(value = "feedreplywrite", method = RequestMethod.POST)

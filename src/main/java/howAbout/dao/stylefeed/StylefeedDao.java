@@ -24,4 +24,6 @@ public interface StylefeedDao {
 
 	List tsReplyList();
 
+	List<Stylefeed> feedReplyList(int ts_id);
+
 }

@@ -42,4 +42,8 @@
 		<!-- select tr.ts_id, r.reply_id, r.reply_content, r.mem_id, r.reply_regdate from reply r, ts_reply tr where r.reply_id = tr.reply_id and reply_del='n' -->
 		select tr.ts_id, r.reply_id, r.reply_content, t.mem_name, r.reply_regdate from trendshare t, reply r, ts_reply tr where r.reply_id = tr.reply_id and t.mem_id = r.mem_id and t.ts_id = tr.ts_id and reply_del='n'
 	</select>
+	<select id="feedReplyList" resultMap="stylefeedResult">
+		<!-- select tr.ts_id, r.reply_id, r.reply_content, r.mem_id, r.reply_regdate from reply r, ts_reply tr where r.reply_id = tr.reply_id and reply_del='n' -->
+		select tr.ts_id, r.reply_id, r.reply_content, t.mem_name, r.reply_regdate from trendshare t, reply r, ts_reply tr where r.reply_id = tr.reply_id and t.mem_id = r.mem_id and t.ts_id=#{ts_id} and t.ts_id = tr.ts_id and reply_del='n'
+	</select>
 </mapper>

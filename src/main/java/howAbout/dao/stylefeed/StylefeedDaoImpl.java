@@ -55,4 +55,9 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	public List tsReplyList() {
 		return sst.selectList("stylefeedns.tsReplyList");
 	}
+
+	@Override
+	public List<Stylefeed> feedReplyList(int ts_id) {
+		return sst.selectList("stylefeedns.feedReplyList", ts_id);
+	}
 }
