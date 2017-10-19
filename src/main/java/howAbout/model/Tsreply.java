@@ -10,6 +10,13 @@ public class Tsreply {
 	private String reply_type;
 	private String reply_content;
 	private String mem_id;
+	private String mem_name;
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
 	private Date reply_regdate;
 	
 	public Date getReply_regdate() {

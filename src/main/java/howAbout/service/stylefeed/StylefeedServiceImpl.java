@@ -61,4 +61,9 @@ public class StylefeedServiceImpl implements StylefeedService {
 		return sd.feedReplyList(ts_id);
 	}
 
+	@Override
+	public List feedReply(Stylefeed sf) {
+		return sd.feedReply(sf);
+	}
+
 }

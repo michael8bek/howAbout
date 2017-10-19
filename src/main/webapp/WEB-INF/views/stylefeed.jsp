@@ -490,6 +490,7 @@ a {
 	width:75px;
 	padding-top: 9px;
 }
+
 .feed_comment .feed_writer_img {
 	padding-top:5px;
 	padding-left:5px;
@@ -542,19 +543,63 @@ a {
 /*피드 상세페이지 공통*/
 .feed_detail {
 	border-bottom: 2px solid #7F7F7F;
-	height: 130px;
+	height: 100px;
 }
 
 
+.feed_writer_img{
+width: 40px; 
+height: 40px;
+float: left;
+
+}
+.feed_writer_info{
+	display: flex;
+}
+
+#feedpage_writer{
+ display: inline-block; 
+ font-weight: bold; 
+ cursor: pointer; 
+ margin-left: 20px;
+}
+
+#ts_regdate{
+ width: 37%; 
+ float: right; 
+ height: 40px; 
+ margin-left: 70px; 
+ margin-right: 0px; 
+ font-size: 15px; 
+ text-align: right;
+}
+
+.feed_reply{
+margin-top: 10px; 
+height:180px;
+}
 #feedpage_replyList{
 	margin-top: 5px;
 	font-size:13px;
 	display: flex;
 	height: 20px;
 }
+
+#feed_reply_content{
+ width: 270px;
+ height: 33px; 
+ vertical-align: middle;
+
+}
 #feedpage_replyList .replywriter_img {
 	width: 25px;
 	height: 25px;
+}
+
+#feed_reply_btn{
+ width: 50px; 
+ height: 33px; 
+ font-size: 12px;
 }
 .replywriter_img>img{
 	border-radius:20px;
@@ -591,13 +636,11 @@ a {
 		height: 25%;
 		display: inline;
 		border-bottom: 1px solid red;
-	}
+	}*/
 	.feed_textarea {
-		width: 100%;
-		height: 400px;
 		padding: 10px;
 	}
-	*/
+	
 	#feeedpage_content {
 		width: 100%;
 		height: 20%;
@@ -1071,9 +1114,9 @@ a {
 		<!-- Each overlay needs an id. The aria-labelledby is not required but is best practice -->
 		<div id="myOverlay2" aria-labelledby="myOverlay2Heading"
 			data-overlay-container-class="slide-down" role="region">
-			<img class="feeddetail_img" id="ts_img" onerror="this.src='http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png';" alt="" src="">
+<%--  			<img class="feeddetail_img" id="ts_img" onerror="this.src='http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png';" alt="" src="">
 			<div class="myOverlay2-side-position">
-				<div class="feed_textarea">
+ 				<div class="feed_textarea">
 					<div class="feed_detail">
 						<div class="feed_writer_info" style="display: flex;">
 							<div class="feed_writer_img"
@@ -1090,7 +1133,6 @@ a {
 						</div>
 						<div class="feed_content" id="feeedpage_content">피드</div>
 					</div>
-					<div class="feed_reply" style="margin-top: 10px; height:180px;">
 						<form name="feed_reply_write">
 							<input type="hidden" value="" id="ts_id" name="ts_id"> <input
 								type="hidden" value="${member.mem_id}" name="mem_id"> <input
@@ -1101,6 +1143,7 @@ a {
 								class="btn btn-danger" id="feed_reply_btn" value="확인"
 								style="width: 50px; height: 33px; font-size: 12px">
 						</form>
+					<div class="feed_reply" style="margin-top: 10px; height:180px;">
 							<div id="feedpage_replyList">
 								<div class="feed_writer_img" style="width: 30px; height: 30px;">
 									<img alt=""
@@ -1113,10 +1156,10 @@ a {
 								<div class="feedreply_text">
 									댓글창 출력 폼 구하기
 								</div>							
-						  </div>
+						  	</div>
 					</div>
-				</div>
-			</div>
+				</div> 
+			</div>  --%>
 			<div class="#myOverlay2-body" style="display: none;">
 				<p>여기는 상품링크??</p>
 			</div>
@@ -1180,6 +1223,21 @@ a {
 	<script type="text/javascript"
 		src="resources/js/trendshare.js"></script>
 	<script type="text/javascript">
+		//피드 리플 달때 체크 함수
+				function replyuploadChk() {
+			console.log("replyuploadChk함수 실행");
+			var fr = document.feed_reply_write;
+			console.log(fr);
+
+			var reply_content = document.getElementById('feed_reply_content').value; //리플 내용 값 
+			if (reply_content == "") {
+				alert("댓긍을 입력하세요");
+				return false;
+			}
+		};
+	
+	
+	
 		//피드 업로드할 사진 선택안하고 글 올릴 시 alert 
 		function uploadChk() {
 			console.log("uploadchk함수 실행");
@@ -1212,6 +1270,7 @@ a {
 				return false;
 			} */
 		};
+
 
 		$(document)
 				.ready(
@@ -1508,32 +1567,48 @@ a {
 																console.log("data.list:"+data.list);
 																console.log("data.rlist:"+data.list);
 																
-																$.each(data,function(index,feed) {
-																					console.log("success");
-																					console.log(feed);
-																					mem_id = feed.mem_id;
-																					mem_name = feed.mem_name;
-																					ts_content = feed.ts_content;
-																					ts_id=feed.ts_id;
-																					ts_regdate = feed.ts_regdate;
-																					ts_img = feed.ts_img_path
-																							+ feed.ts_img_name;});
-																$('#feedpage_writer')
-																		.html(mem_name);
-																$('#feedpage_writer')
-																		.attr('data-writer',mem_id)
-																$('#feeedpage_content').html(ts_content);
-																$('#ts_regdate').html(ts_regdate);
-																$('#ts_img').attr("src",ts_img);
-																$('#ts_id').val(ts_id);
+																$.each(data.list,function(index,feed) {
+																	$("#myOverlay2").html('<img class="feeddetail_img" id="ts_img"'
+																		+'onerror="this.src='+errImg+';"'  
+																		+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt="">'
+																		+'<div class="feed_textarea" style="padding:10px;">'
+																		+'<div class="feed_detail"><div class="feed_writer_info">'
+																		+'<div class="feed_writer_img">'
+																		+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
+																		+'</div><div class="feed_writer" id="feedpage_writer" data-writer="'+$(feed).attr('mem_id')+'">'+$(feed).attr('mem_name')+'</div>'
+																		+'<div class="feed_date" id="ts_regdate">'+$(feed).attr('ts_regdate')+'</div>'
+																		+'</div><div class="feed_content" id="feeedpage_content">'+$(feed).attr('ts_content')+'</div></div>'
+																		+'<form name="feed_reply_write"><input type="hidden" value="'+$(feed).attr('ts_id')+'" id="ts_id" name="ts_id">'
+																		+'<input type="hidden" value="${member.mem_id}" name="mem_id"> <input type="hidden" value="${member.mem_name}" name="mem_name">' 
+																		+'<c:if test="${not empty member }">'
+																		+'<input type="text" id="feed_reply_content" name="reply_content"  placeholder="댓글을 입력하세요">'
+																		+'<input type="button" class="btn btn-danger" id="feed_reply_btn" onClick="return replyuploadChk();" value="확인">' 
+																		+'</c:if>'
+																		+'<c:if test="${empty member }">'
+																		+'<input type="text" id="feed_reply_content" name="reply_content" style="width:100%;" placeholder="댓글을 입력하려면 로그인하세요.">'
+																		+'</c:if>'
+																		+'</form><div class="feed_reply"></div>');
+																		/* +'<input type="text" id="feed_reply_content" name="reply_content"  placeholder="댓글을 입력하세요">'
+																		+'<input type="button" class="btn btn-danger" id="feed_reply_btn" onClick="return replyuploadChk();" value="확인">' */
+																	
+																	$.each(data.rlist, function(index, reply) {
+																		 $(".feed_reply").append('<div id="feedpage_replyList">'
+																		+'<div class="feed_writer_img" style="width: 30px; height: 30px;">'
+																		+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
+																		+'</div><div class="feed_writer" id="feedreply_writer" data-writer="${feed.mem_id }">'+$(reply).attr('mem_name')+'</div>'
+																		+'<div class="feedreply_text">'+$(reply).attr('reply_content')+'</div>'							
+																		+'</div></div></div>');
+																	});
+																		
+																		
+																});
 															}
-														});
+												});
 							});
-
 							/*피드 상세페이지 내 댓글작성 및 출력(ajax)*/
-							$("#feed_reply_btn").bind("click", function() {
+							$(document).on('click','#feed_reply_btn',function() {
 								var feedReplyData = $("form[name=feed_reply_write]").serialize();
-								console.log(feedReplyData);
+								console.log("댓글입력내용들"+feedReplyData);
 								$.ajax({
 									url : "feedreplywrite.do",
 									type : "POST",
@@ -1541,7 +1616,16 @@ a {
 									async : true,
 									dataType : "json",
 									success : function(data){
-										console("댓글등록ajax메소드");
+										console.log("댓글등록ajax메소드");
+										console.log(data)
+										$.each(data, function(index, reply) {
+											 $(".feed_reply").prepend('<div id="feedpage_replyList">'
+											+'<div class="feed_writer_img" style="width: 30px; height: 30px;">'
+											+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
+											+'</div><div class="feed_writer" id="feedreply_writer" data-writer="${feed.mem_id }">'+$(reply).attr('mem_name')+'</div>'
+											+'<div class="feedreply_text">'+$(reply).attr('reply_content')+'</div>'							
+											+'</div></div></div>');
+										});
 									},
 									error : function(
 											request,
