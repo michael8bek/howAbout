@@ -63,16 +63,13 @@
 
          <!-- search 창 form -->
          <div class="collapse col-lg-3 navbar-collapse">
-            <form class="form-inline my-2 my-lg-0 mr-lg-2">
-               <div class="input-group ">
-                  <input class="form-control" type="text"
-                     placeholder="Search for..."> <span
-                     class="input-group-btn">
-                     <button class="btn btn-primary" type="button" value="">Search
-                     </button>
-                  </span>
-               </div>
-            </form>
+            <form class="form-inline" action="search.do" method="post">
+            <div class="form-group">
+               <input type="text"
+                  class="form-control form-row " name="search" id="search" placeholder="Search Items">
+            <button type="submit" class="btn btn-primary btn-md active">Search</button>
+            </div>
+         </form>
          </div>
          <%-- <div class="collapse navbar-collapse" id="searchResponsive">
             <form class="form-inline sm-auto">
@@ -144,15 +141,6 @@
                      </c:if>
                      <c:if test="${not empty member }">
                         <a class="dropdown-item"
-                           href="ordersList.do?mem_id=${member.mem_id }">주문정보</a>
-                     </c:if>
-                     <c:if test="${empty member }">
-                        <a class="dropdown-item"
-                           href="ordersList.do?mem_id=${member.mem_id }"
-                           data-toggle="modal" data-target=".bd-example-modal-lg">주문정보</a>
-                     </c:if>
-                     <c:if test="${not empty member }">
-                        <a class="dropdown-item"
                            href="cartList.do?mem_id=${member.mem_id }">장바구니</a>
                      </c:if>
                      <c:if test="${ empty member }">
@@ -160,6 +148,25 @@
                            href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal"
                            data-target=".bd-example-modal-lg">장바구니</a>
                      </c:if>
+                     <c:if test="${not empty member }">
+                        <a class="dropdown-item"
+                           href="ordersList.do?mem_id=${member.mem_id }">주문정보</a>
+                     </c:if>
+                     <c:if test="${empty member }">
+                        <a class="dropdown-item"
+                           href="ordersList.do?mem_id=${member.mem_id }"
+                           data-toggle="modal" data-target=".bd-example-modal-lg">주문정보</a>
+                     </c:if>
+                      <c:if test="${not empty member }">
+                        <a class="dropdown-item"
+                           href="payList.do?mem_id=${member.mem_id }">결제내역</a>
+                     </c:if>
+                     <c:if test="${empty member }">
+                        <a class="dropdown-item"
+                            href="payList.do?mem_id=${member.mem_id }"
+                           data-toggle="modal" data-target=".bd-example-modal-lg">결제내역</a>
+                     </c:if>
+                     
                      <!-- <a class="dropdown-item" href="goodsList.do">상품페이지</a> -->
                      <%-- <c:if test="${empty member }">
                         <a class="dropdown-item" href="joinForm.do">Join page</a>
