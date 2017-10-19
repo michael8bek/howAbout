@@ -70,7 +70,7 @@ public class CartController {
 		 * int result = cs.buyOne(cart); model.addAttribute("result", result); return
 		 * "cart/buyOne";
 		 */
-		String cart_id = request.getParameter("cart_id");
+		String cart_id = request.getParameter("chk");
 		String goods_qty = request.getParameter("goods_qty");
 		int result = 0;
 		Map<String, Integer> map = null;

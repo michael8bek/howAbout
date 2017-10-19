@@ -11,9 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Cart;
+import howAbout.model.Goods;
 import howAbout.model.Payment;
+import howAbout.model.Stock;
 import howAbout.service.cart.CartService;
 import howAbout.service.payment.PaymentService;
+import howAbout.service.stock.StockService;
 
 @Controller
 public class PaymentController {
@@ -21,6 +24,8 @@ public class PaymentController {
 	private PaymentService ps;
 	@Autowired
 	private CartService cs;
+	@Autowired
+	private StockService ss;
 	
 	@RequestMapping("payInsert")
 	public String payInsert(Payment payment, Model model, HttpSession session,HttpServletRequest request ) {
@@ -37,6 +42,8 @@ public class PaymentController {
 		int result = ps.insert(payment);
 		model.addAttribute("result", result);
 		model.addAttribute("result1", result1);
+		int result3 = ss.update(payment);
+		model.addAttribute("result3", result3);
 		return "pay/payment";
 	}
 	@RequestMapping("payList")
