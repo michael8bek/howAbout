@@ -26,7 +26,7 @@
 .container1_1 {
 	float: left;
 	width: 100%;
-	
+
 }
 
 .container1_2 {
@@ -68,13 +68,12 @@
 			salesum += parseInt(frm.cp_benefit[i].value);
 		}
 		frm.total_sum.value = sum;
-		frm.delprice.value = sum1; 
+		frm.delprice.value = sum1;
 		frm.saleprice.value = salesum;
 		frm.pay_total.value = sum+sum1-salesum-frm.couponsale.value;
-		
-		
+
+
 	}
-	
 	 function coupon(val) {
 		frm.couponsale.value = val;
 		var sum = 0;
@@ -92,7 +91,7 @@
 			salesum += parseInt(frm.cp_benefit[i].value);
 		}
 		frm.total_sum.value = sum;
-		frm.delprice.value = sum1; 
+		frm.delprice.value = sum1;
 		frm.saleprice.value = salesum;
 		frm.pay_total.value = sum+sum1-salesum-frm.couponsale.value;
 		
@@ -115,8 +114,8 @@
 			}
 		});
 	} 
-	 
-
+	}
+	
 </script>
 </head>
 <body>
@@ -130,10 +129,10 @@
 				<p>
 			</div>
 			</div>
-			<div class="container2">			
+			<div class="container2">
 			<div class="container1_2">
 				<h5>1. 주문상품 내역</h5>
-				<table class="table table-bordered" style="">					
+				<table class="table table-bordered" style="">
 					<tr style="background-color: #E7E7E7;">
 						<th>주문상품</th>
 						<th>수량</th>
@@ -147,7 +146,7 @@
 				<input type="hidden" name="goods_price" value="${cart.goods_price }">
 				<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
 				<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
-				<input type="hidden" name="cp_benefit" value="${cart.cp_benefit }"> 
+				<input type="hidden" name="cp_benefit" value="${cart.cp_benefit }">
 				<input type="hidden" name="cart_id" value="${cart.cart_id }">
 				<input type="hidden" name="goods_id" value="${cart.goods_id }">
 					<tr >
@@ -170,7 +169,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="container3">			
+		<div class="container3">
 			<div class="container1_3">
 				<h5>2. 쿠폰 할인</h5>
 				<table class="table" style="width: 100%;">
@@ -193,10 +192,11 @@
 						</th>
 					</tr>
 				</table>
-				<h5 style="margin-top: 4%;">3. 주문자 정보</h5><input type="checkbox" onclick="memajax();">주문자 정보와 동일
+				<h5 style="margin-top: 4%;">3. 주문자 정보</h5><input type="checkbox" id="memberimpo">주문자 정보와 동일
 				<table class="table" style="width: 100%; float: left;">
 					<tr><th style="width: 25%;">이름 *</th>
-						<th><input type="text" required="required" name="pay_name" id="mem_id"></th>
+						<th><input type="text" required="required" name="pay_name" id="mem_name"></th>
+
 					</tr>
 					<tr>
 						<th>연락처 *</th>
@@ -266,11 +266,11 @@
 							<th style="width:55%; ">총 상품금액</th>
 							<th><input name="total_sum" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
-						<tr>	
+						<tr>
 							<th>총 상품할인</th>
 							<th><input name="saleprice" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
-						<tr>	
+						<tr>
 							<th>쿠폰할인</th>
 							<th><input name="couponsale" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
 						</tr>
@@ -292,7 +292,7 @@
 					</table>
 			</div>
 			</div>
-			
+
 			<div align="center"><input type="submit" value="주문하기"
 								style="width: 20%; height: 100%;" class="btn btn-info"></div>
 		</div>
