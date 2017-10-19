@@ -13,3 +13,10 @@ $(document).on('mouseenter', '#feedlist_content', function() {
 $(document).on('mouseleave', '#feedlist_content', function() {
 	$(this).css('background-color', '');
 });
+
+
+$(document).on('mouseenter', '#feedreply_writer', function() {
+	console.log("ㅁㅇㄴㅇㄴ");
+	$(this).css('overflow', 'visible');
+	$('.comment_txt').css('visibility','hidden');
+});
