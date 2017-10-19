@@ -22,11 +22,7 @@ public class MdtextDaoImpl implements MdtextDao {
 	}
 	@Override
 	public int register(Mdtext mdtext) {
-		System.out.println("Mdtext_id : "+mdtext.getMdtext_id()+1);
-		System.out.println("Mdtext_type : "+mdtext.getMdtext_type());
-		System.out.println("mdtext_goods : "+mdtext.getMdtext_goods());
-		System.out.println("Mdtext_content : "+mdtext.getMdtext_content());
-		System.out.println("Mem_id : "+mdtext.getMem_id());
+		
 		return sst.insert("mdtextns.register", mdtext);
 	}
 

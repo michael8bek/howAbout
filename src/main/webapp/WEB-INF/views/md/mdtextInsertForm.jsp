@@ -4,13 +4,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<script type="text/javascript">
-	$("#goods_img").bind("click", function() {
-		$("<b>New World</b>").replaceAll("div.imgArea");
-	});
-</script>
-<body>
 
+<body>
 	<!-- Page Content -->
 	<div class="container">
 		<%-- ${list.mdtext_content} --%>
@@ -27,13 +22,15 @@
 		<!-- Project One -->
 
 		<!-- Project Two -->
-		<form action="mdtextInsert.do">
+		<form action="mdtextInsert.do?mdtext_goods_id=selId">
 			<div class="row">
 				<div class="col-md-5">
 					<div class="image">
-						<img class="img-fluid rounded mb-3 mb-md-0" id="goodsImg"
+						<img class="img-fluid rounded mb-3 mb-md-0" id="goodsImg" 
 							src="${path }/resources/images/goods/Blank.png"
 							style="width: 100%">
+						<!-- <input hidden="true" id="goodsId" value="a"> -->
+						
 					</div>
 				</div>
 				<div class="col-md-7">
@@ -41,12 +38,12 @@
 					<table class="table">
 						<tr>
 							<td>추천타입</td>
-							<td colspan="2"><input style="width: 100%" type="text" id="mdtext_type"
+							<td colspan="2"><input style="width: 100%" type="text" id="mdtext_type" required="required"
 								name="mdtext_type" placeholder="추천 테마를 입력하세요" ></td>
 						</tr>
 						<tr>
 							<td>추천상품</td>
-							<td><select onchange="changeFunc();" id="selectBox" name="mdtext_goods">
+							<td><select onchange="changeFunc();" id="selectBox" name="mdtext_goods_img">
 
 									<optgroup label="[ 추천 상품을 선택하세요 ]">
 										<c:forEach var="list" items="${list }">
@@ -56,12 +53,13 @@
 									</optgroup>
 							</select>
 							
-							 <input class="btn btn" id="bt1" type="button" value="이미지보기"></td>
+<!--						 <input class="btn btn" id="bt1" data-moon="112" type="button" value="이미지보기"></td> --> 
+							   <input class="btn btn" id="bt1" type="button" value="이미지보기"></td>
 						</tr>
 						<tr>
 							<td>추천내용</td>
 							<td colspan="2"><textarea style="width: 100%" id="mdtext_content" cols="30" rows="10"
-									name="mdtext_content"></textarea></td>
+									name="mdtext_content" placeholder="추천내용을 입력하세요" required="required"></textarea></td>
 					</table>
 					<div class="card">
 						<input class="btn btn-primary" type="submit" value="MD추천 입력"> <span
@@ -100,9 +98,16 @@
 				.bind(
 						"click",
 						function changeFunc() {
+							/* var jiin = $(this).data('moon'); */
 							var selectBox = document
 									.getElementById("selectBox");
 							var selectedImg = selectBox.options[selectBox.selectedIndex].value;
+							/* selectedImg = selectedImg.split(" ");
+							var selImg = selectedImg.slice(0,1);
+							var selId = selectedImg.slice(1,2); */
+							/* ${mdtext_goods_img} = selImg;
+							${mdtext_goods_id} = selId; */
+							/* alert("img = "+selImg+" id = "+selId) */
 							$("#goodsImg").attr(
 									"src",
 									"${path }/resources/images/goods/"
