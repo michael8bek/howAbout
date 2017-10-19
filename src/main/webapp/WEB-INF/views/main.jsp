@@ -9,48 +9,31 @@
 	<!-- Page Content -->
 	<div class="container">
 
-		<h1 class="my-4">MAIN</h1>
-
+		<!-- <h1 class="my-4">MAIN</h1> -->
+<p>
 		<!-- Marketing Icons Section -->
 		<div class="row">
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
+			<div class="col-lg-12 mb-12">
+				<div class="card h-200">
 					<h4 class="card-header">MD추천</h4>
 					<div class="card-body">
+					 <a href="listMdtext.do">
+					 <img src="http://www.bangaloreshoppingfestival.com/Images/Shopping.jpg" width="100%" alt="쇼핑추천" >
+					 
+					 </a>
 							<!-- 추천수 가장많은 내용을 보여준다. 왜 안나와 ㅜㅜ -->
 							<%-- <p class="card-text">${best[0].mdtext_content}</p> --%>
 					</div>
 					<div class="card-footer">
-						<a href="listMdtext.do" class="btn btn-primary">추천보기</a>
+					<!-- 	<a href="listMdtext.do" class="btn btn-primary" style="width: 100%">추천보기</a> -->
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">SECOND</h4>
-					<div class="card-body">
-						<p class="card-text">SECOND TEXT</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">SECOND GO</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">THIRD</h4>
-					<div class="card-body">
-						<p class="card-text">THIRD TEXT</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">THIRD GO</a>
-					</div>
-				</div>
-			</div>
+			
 			<!-- /.row -->
-
+<div><p><br><hr></p></div>
 			<!-- Portfolio Section -->
-			<h2>NEW ARRIVED</h2>
+			<h3>NEW ARRIVED</h3>
 
 			<div class="row">
 				<c:forEach var="goods" items="${list }" begin="0" end="5" step="1">
