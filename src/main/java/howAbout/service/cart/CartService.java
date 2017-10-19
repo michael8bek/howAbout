@@ -26,5 +26,4 @@ public interface CartService {
 
 	List<Cart> payList(String mem_id);
 
-
 }

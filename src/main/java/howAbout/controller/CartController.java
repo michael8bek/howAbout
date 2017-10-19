@@ -144,7 +144,7 @@ public class CartController {
 		String mem_id = (String) session.getAttribute("mem_id");
 		cart.setMem_id(mem_id);
 		int count = cs.countcart(cart.getGoods_id(), mem_id);
-		if (count == 0 && cart.getCart_state() !="put" ) {			
+		if (count == 0) {			
 			int result = cs.insert(cart);
 			model.addAttribute("result",result);
 			return "cart/productInsert";
