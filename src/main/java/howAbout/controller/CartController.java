@@ -56,6 +56,13 @@ public class CartController {
 		return "cart/cartDelete";
 
 	}
+	@RequestMapping("ordersDelete")
+	public String ordersDelete(int cart_id, Model model) {
+		int result = cs.delete(cart_id);
+		model.addAttribute("result", result);
+		return "cart/ordersDelete";
+
+	}
 
 	@RequestMapping("buyOne")
 	public String buyOne(HttpServletRequest request, Model model) throws Exception {

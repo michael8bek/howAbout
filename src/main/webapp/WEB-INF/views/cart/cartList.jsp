@@ -40,7 +40,6 @@
 	var sum =0;
 	var sum1 = 0;
 	var count = frm.chk.length;
-	
 	if (count == undefined) {
 		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
 		sum1 += parseInt(frm.goods_delprice.value);
@@ -52,9 +51,13 @@
 			}
 		}
 	}
+	if(sum >= 50000){
+		sum1 = "0";
+	}
 	frm.total_sum.value = sum;
 	frm.delprice.value = sum1;
 	frm.total_sum1.value = sum+sum1;
+	
 }
   /* 전체선택 체크박스 클릭시 */
 function ckeckAll(index) {
@@ -71,9 +74,13 @@ function ckeckAll(index) {
 			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
 			sum1 += parseInt(frm.goods_delprice[i].value);
 		}
+		if(sum >= 50000){
+			sum1 = "0";
+		}
 		frm.total_sum.value = sum;
 		frm.delprice.value = sum1;
 		frm.total_sum1.value = sum+sum1;
+		
 	}else {
 		$("input[name=chk]").prop("checked", false);
 		frm.total_sum.value ="";
@@ -109,9 +116,13 @@ function click_count(idx, n) {
 			}
 		}
 	}
+	if(sum >= 50000){
+		sum1 = "0";
+	}
 	frm.total_sum.value = sum;
 	frm.delprice.value = sum1;
 	frm.total_sum1.value = sum+sum1;
+	
 }
  /* 장바구니 팝업시 상품이 모두 체크 */
   window.onload = function() {
@@ -128,9 +139,13 @@ function click_count(idx, n) {
 			sum1 += parseInt(frm.goods_delprice[i].value);
 		}
 	}
+	if(sum >= 50000){
+		sum1 = "0";
+	}
 	frm.total_sum.value = sum;
  	frm.delprice.value = sum1;
  	frm.total_sum1.value = sum+sum1;
+ 	
 
 }
 

@@ -51,7 +51,7 @@
 }
 </style>
 <script type="text/javascript">
-
+/* 페이지 로딩시 결제내역에 계산됨 */
 	window.onload = function() {
 		var sum = 0;
 		var sum1 = 0;
@@ -60,12 +60,15 @@
 		if (count == undefined) {
 			sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
 			sum1 += parseInt(frm.goods_delprice.value);
-			salesum += parseInt(frm.cp_benefit.value);
+			salesum += parseInt(frm.cp_benefit.value*frm.goods_qty.value);
 		}
 		for(var i = 0; i< count; i++){
 			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
 			sum1 += parseInt(frm.goods_delprice[i].value);
-			salesum += parseInt(frm.cp_benefit[i].value);
+			salesum += parseInt(frm.cp_benefit[i].value*frm.goods_qty[i].value);
+		}
+		if(sum >=50000){
+			sum1 = "0";
 		}
 		frm.total_sum.value = sum;
 		frm.delprice.value = sum1; 
@@ -74,7 +77,7 @@
 		
 		
 	}
-	
+	/* 쿠폰 클릭시 가격이 계산됨 */
 	 function coupon(val) {
 		frm.couponsale.value = val;
 		var sum = 0;
@@ -84,12 +87,15 @@
 		if (count == undefined) {
 			sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
 			sum1 += parseInt(frm.goods_delprice.value);
-			salesum += parseInt(frm.cp_benefit.value);
+			salesum += parseInt(frm.cp_benefit.value*frm.goods_qty.value);
 		}
 		for(var i = 0; i< count; i++){
 			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
 			sum1 += parseInt(frm.goods_delprice[i].value);
-			salesum += parseInt(frm.cp_benefit[i].value);
+			salesum += parseInt(frm.cp_benefit[i].value*frm.goods_qty[i].value);
+		}
+		if(sum >=50000){
+			sum1 = "0";
 		}
 		frm.total_sum.value = sum;
 		frm.delprice.value = sum1; 
@@ -97,6 +103,8 @@
 		frm.pay_total.value = sum+sum1-salesum-frm.couponsale.value;
 		
 	}
+	
+	/* 주문자 정보 ajax */
 	function memajax() {
 		$.ajax({
 			type : "GET",
@@ -109,13 +117,21 @@
 				event.preventDefault();
 			},
 			success : function(data) {
-				$("#mem_id").val(data.mem_id);
-				$("#mem_phone").val(data.mem_phone);
-				$("#mem_email").val(data.mem_email);
+				if($("input[name=chk]").prop("checked")){
+					$("#mem_id").val(data.mem_id);
+					$("#mem_phone").val(data.mem_phone);
+					$("#mem_email").val(data.mem_email);
+				}else{
+					$("#mem_id").val("");
+					$("#mem_phone").val("");
+					$("#mem_email").val("");	
+				}
+					
 			}
 		});
 	}
-	function memajax() {
+	/* 배송지 정보 ajax */
+	function memajax1() {
 		$.ajax({
 			type : "GET",
 			url  : "memorders.do",
@@ -127,9 +143,15 @@
 				event.preventDefault();
 			},
 			success : function(data) {
-				$("#mem_id").val(data.mem_id);
-				$("#mem_phone").val(data.mem_phone);
-				$("#mem_email").val(data.mem_email);
+				if($("input[name=chk1]").prop("checked")){
+					$("#delmem_id").val(data.mem_id);
+					$("#delmem_addr").val(data.mem_addr);
+					$("#delmem_phone").val(data.mem_phone);
+				}else{
+					$("#delmem_id").val("");
+					$("#delmem_addr").val("");
+					$("#delmem_phone").val("");
+				}
 			}
 		});
 	} 
@@ -159,9 +181,10 @@
 						<th>상품할인</th>
 						<th>배송비</th>
 						<th>주문금액</th>
+						<th>주문관리</th>
 					</tr>
 				<c:if test="${not empty listOrders }">
-				<c:forEach var="cart" items="${listOrders}">
+				<c:forEach var="cart" items="${listOrders}" varStatus="status">
 				<input type="hidden" name="goods_price" value="${cart.goods_price }">
 				<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
 				<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
@@ -174,15 +197,17 @@
 						</td>
 						<td style="vertical-align: middle;">${cart.goods_qty }</td>
 						<td style="vertical-align: middle;">${cart.goods_price }</td>
-						<td style="vertical-align: middle;">${cart.cp_benefit }</td>
+						<td style="vertical-align: middle;">${cart.cp_benefit*cart.goods_qty}</td>
 						<td style="vertical-align: middle;">${cart.goods_delprice }</td>
-						<td style="vertical-align: middle;">${cart.goods_price*cart.goods_qty-cart.cp_benefit +cart.goods_delprice}</td>
+						<td style="vertical-align: middle;">${cart.goods_price*cart.goods_qty-cart.cp_benefit*cart.goods_qty+cart.goods_delprice}</td>
+						<td style="vertical-align: middle; width: 10%;">
+						<a href="ordersDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" >삭제</a></td>
 					</tr>
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty listOrders }">
 					<tr>
-						<td colspan="6">주문상품 내역이 아직없어요. 구매해주세요 ㅜㅜ</td>
+						<td colspan="7">주문상품 내역이 아직없어요. 구매해주세요 ㅜㅜ</td>
 					</tr>
 				</c:if>
 				</table>
@@ -211,7 +236,7 @@
 						</th>
 					</tr>
 				</table>
-				<h5 style="margin-top: 4%;">3. 주문자 정보</h5><input type="checkbox" onclick="memajax();">주문자 정보와 동일
+				<h5 style="margin-top: 4%;">3. 주문자 정보</h5><input type="checkbox" onclick="memajax();" name="chk">주문자 정보와 동일
 				<table class="table" style="width: 100%; float: left;">
 					<tr><th style="width: 25%;">이름 *</th>
 						<th><input type="text" required="required" name="pay_name" id="mem_id"></th>
@@ -231,18 +256,18 @@
 						</th>
 					</tr>
 				</table>
-				<h5 style="margin-top: 4%;">4. 배송지 정보</h5><input type="checkbox" onclick="memajax1();">주문자 정보와 동일
+				<h5 style="margin-top: 4%;">4. 배송지 정보</h5><input type="checkbox" onclick="memajax1();" name="chk1">주문자 정보와 동일
 				<table class="table" style="width: 100%;">
 					<tr><th style="width: 25%;">받는분 *</th>
-						<th><input type="text" required="required" name="pay_rename"></th>
+						<th><input type="text" required="required" name="pay_rename" id = "delmem_id"></th>
 					</tr>
 					<tr>
 						<th>배송주소 *</th>
-						<th><input type="text" required="required" name="pay_addr"></th>
+						<th><input type="text" required="required" name="pay_addr" id="delmem_addr"></th>
 					</tr>
 					<tr>
 						<th>연락처 *</th>
-						<th><input type="tel" required="required" name="pay_rephone"></th>
+						<th><input type="tel" required="required" name="pay_rephone" id="delmem_phone"></th>
 					</tr>
 					<tr>
 						<th>배송 요청사항</th>
@@ -255,7 +280,7 @@
 						</th>
 					</tr>
 				</table>
-				<h5 style="margin-top: 4%;">5. 결제수단 선택</h5>
+				<!-- <h5 style="margin-top: 4%;">5. 결제수단 선택</h5>
 				<table class="table" style="width: 100%;">
 					<tr><th colspan="2"><input type="radio" value="" checked="checked">무통장</th>
 					</tr>
@@ -274,7 +299,7 @@
 						· 사업자, 현금영수증카드, 휴대폰 번호가 유효하지 않으면 발급되지 않습니다.
 						</th>
 					</tr>
-				</table>
+				</table> -->
 			</div>
 			<div class="container1_4">
 			<h5>결제내역</h5>
