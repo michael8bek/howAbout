@@ -56,6 +56,4 @@ public class CartServiceImpl implements CartService {
 		return cd.countcart(goods_id, mem_id);
 	}
 
-
-
 }

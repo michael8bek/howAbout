@@ -28,7 +28,7 @@ public class GoodsController {
 	}
 	/*관리자페이지에서 상품등록*/
 	@RequestMapping(value="registergoods")
-	public String registerGoods(Goods goods, Stock stock,Model model){
+	public String registerGoods(Goods goods, Stock stock, Model model){
 		int result = gs.register(goods);
 		model.addAttribute("result",result);
 		int regStock = ss.register(stock);

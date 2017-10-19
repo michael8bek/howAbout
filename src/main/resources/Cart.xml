@@ -56,6 +56,6 @@
 </insert>
 <select id="countcart" resultType="Integer">
   SELECT COUNT(*) FROM cart
-  WHERE mem_id = #{mem_id} AND goods_id = #{goods_id}
+  WHERE mem_id = #{mem_id} AND goods_id = #{goods_id} AND cart_state = 'put'
 </select>
 </mapper>

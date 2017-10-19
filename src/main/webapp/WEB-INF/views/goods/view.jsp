@@ -6,19 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- <script type="text/javascript">
-	$(function() {
-		$('#cart').click(function() {
-			var sendData = "goods_id=" + $('#goods_id').val();
-			$.post('countcart.do', sendData, function(data) {
-				$('#result').text(data);
-			});
-		});
-	});
-</script> -->
 </head>
 <body>
-
 	<div class="view_container">
 		<div class="row">
 			<div class="card h-100">

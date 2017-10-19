@@ -24,4 +24,9 @@
 		<select id="select" parameterType="int" resultType="stock">
 		select * from stock where goods_id=#{goods_id}
 	</select>
+	    <update id="imsupdate">
+        UPDATE stock 
+        SET stock_qty = stock_qty - #{goods_qty} 
+        WHERE goods_id= #{goods_id}
+    </update>
 </mapper>
