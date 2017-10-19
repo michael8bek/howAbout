@@ -7,6 +7,7 @@ import javax.rmi.ssl.SslRMIClientSocketFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthScrollBarUI;
 
 import org.apache.log4j.net.SyslogAppender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,18 +49,18 @@ public class StylefeedController {
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
 	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {
-		String pType = (String) session.getAttribute("pType");
-		System.out.println("페이지타입(pType):"+pType);
+		String pageType = (String) session.getAttribute("pageType");
+		System.out.println("페이지타입(pType):"+pageType);
 		List list = null;
 		List rlist = null;
-		if(pType == null || pType.equals("default")) {
+		if(pageType.equals("main")) {
 			list = ss.feedlist();
 			rlist = ss.tsReplyList();
 			session.setAttribute("pType", "default");
-		}else if(pType=="likeOrder") {
+		}else if(pageType=="likeOrder") {
 			list = ss.feedlist_orderLike();
 			rlist = ss.tsReplyList();
-		}else if(pType=="recentOrder") {
+		}else if(pageType=="recentOrder") {
 			list = ss.feedlist_orderRecent();
 			rlist = ss.tsReplyList();
 		}
@@ -86,14 +87,14 @@ public class StylefeedController {
 			rlist = ss.tsReplyList();
 			map.put("list", list);
 			map.put("rlist", rlist);
-			session.setAttribute("pType", "likeOrder");
+			session.setAttribute("pageType", "likeOrder");
 		}else if(listType.equals("recent")) {  //최근등록순
 			System.out.println("정렬타입:" + listType);
 			list = ss.feedlist_orderRecent();
 			rlist = ss.tsReplyList();
 			map.put("list", list);
 			map.put("rlist", rlist);
-			session.setAttribute("pType", "recentOrder");
+			session.setAttribute("pageType", "recentOrder");
 		};
 		
 		try {
@@ -166,14 +167,19 @@ public class StylefeedController {
 	}
 	//피드 댓글 등록
 	@RequestMapping(value = "feedreplywrite", method = RequestMethod.POST)
-	public void feedreplywrite(HttpServletRequest request, Model model) {
+	public @ResponseBody List feedreplywrite(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("스타일피드 댓글 작성 컨트롤러 실행");
 		int ts_id = Integer.parseInt(request.getParameter("ts_id"));
-		String mem_id= request.getParameter("mem_id");
+		String mem_id = request.getParameter("mem_id");
+		String mem_name = request.getParameter("mem_name");
+/*		String mem_id= (String) session.getAttribute("mem_id");
+		String mem_name=(String) session.getAttribute("mem_name");*/
 		String reply_content=request.getParameter("reply_content");
+		List list = null;
 		Tsreply tr = new Tsreply();
 		tr.setTs_id(ts_id);
 		tr.setMem_id(mem_id);
+		tr.setMem_name(mem_name);
 		tr.setReply_content(reply_content);
 		tr.setReply_type("feed");
 		int replyResult = ss.feedReplyWrite(tr);
@@ -182,9 +188,14 @@ public class StylefeedController {
 		}else {
 			System.out.println("트렌드쉐어 댓글 등록 실패");
 		}
-		System.out.println("insert후 reply_id뽑기:"+tr.getReply_id());
-		System.out.println("insert후 ts_id뽑기:"+tr.getTs_id());
-		
+		//여기까지 댓글입력
+		//여기부터는 댓글 출력
+		Stylefeed sf = new Stylefeed();
+		System.out.println();
+		sf.setReply_id(tr.getReply_id());
+		sf.setTs_id(tr.getTs_id());
+		list = ss.feedReply(sf);
+		return list;
 	}
 	// 마이페이지
 	@RequestMapping("mypage")

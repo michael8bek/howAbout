@@ -18,8 +18,15 @@ public class Stylefeed {
 	private int reply_id;
 	private String reply_content;
 	private Date reply_regdate;
+	private String reply_del;
 	
 	
+	public String getReply_del() {
+		return reply_del;
+	}
+	public void setReply_del(String reply_del) {
+		this.reply_del = reply_del;
+	}
 	public int getReply_id() {
 		return reply_id;
 	}
