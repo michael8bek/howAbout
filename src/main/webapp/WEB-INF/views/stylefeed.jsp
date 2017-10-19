@@ -617,6 +617,7 @@ height:180px;
 	overflow: hidden;
 	max-width: 80px;
 	margin-left: 5px;
+	cursor: pointer;
 }
 #feedpage_replyList .feedreply_text{
 	font-size: 13px;
@@ -1331,7 +1332,9 @@ height:180px;
 			console.log("replyuploadChk함수 실행");
 			var fr = document.feed_reply_write;
 			console.log(fr);
-
+			if ("${member.mem_id}"==""){
+				alert("로그인하세요");
+			}
 			var reply_content = document.getElementById('feed_reply_content').value; //리플 내용 값 
 			if (reply_content == "") {
 				alert("댓긍을 입력하세요");
@@ -1683,6 +1686,8 @@ height:180px;
 																		+'</div><div class="feed_content" id="feeedpage_content">'+$(feed).attr('ts_content')+'</div></div>'
 																		+'<form name="feed_reply_write"><input type="hidden" value="'+$(feed).attr('ts_id')+'" id="ts_id" name="ts_id">'
 																		+'<input type="hidden" value="${member.mem_id}" name="mem_id"> <input type="hidden" value="${member.mem_name}" name="mem_name">' 
+																		+'<div style="display:none"><input type="submit" onclick="return false;" />'
+																		+'<input type="text"/></div>'
 																		+'<c:if test="${not empty member }">'
 																		+'<input type="text" id="feed_reply_content" name="reply_content"  placeholder="댓글을 입력하세요">'
 																		+'<input type="button" class="btn btn-danger" id="feed_reply_btn" onClick="return replyuploadChk();" value="확인">' 
@@ -1698,7 +1703,7 @@ height:180px;
 																		 $(".feed_reply").append('<div id="feedpage_replyList">'
 																		+'<div class="feed_writer_img" style="width: 30px; height: 30px;">'
 																		+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
-																		+'</div><div class="feed_writer" id="feedreply_writer" data-writer='+$(reply).attr('mem_id')+'">'+$(reply).attr('mem_name')+'</div>'
+																		+'</div><div class="feed_writer" id="feedreply_writer" data-writer='+$(reply).attr('mem_id')+'>'+$(reply).attr('mem_name')+'</div>'
 																		+'<div class="feedreply_text">'+$(reply).attr('reply_content')+'</div>'							
 																		+'</div></div></div>');
 																	});
