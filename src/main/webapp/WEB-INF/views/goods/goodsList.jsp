@@ -23,9 +23,22 @@
 
 				//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
 				$('.view_container').html(data);
+				var sumpri = $('#goods_pri_del').val();
+				$('#price').append().text(sumpri);
+				$(function() {
+					$('#cart').on('change', function() {
+						var qty = $('#cart').val();
+						var price1 = $('#goods_price').val();
+						var price2 = $('#goods_delprice').val();
+						var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
+						$('#price').append().text(total_price);
+					});
+				});
 			}
 		});
 	});
+
+	
 </script>
 </head>
 <body>
@@ -35,10 +48,11 @@
     </c:forEach> --%>
 
 	<div class="container">
+	<h2 class="text-primary" style="padding-top: 3%;">상품 목록</h2>
 		<div class="row">
 			<c:forEach var="goods" items="${list}">
 				<div class="col-lg-4 col-sm-6 portfolio-item">
-					<div class="card h-100">
+					<div class="card h-100" style="text-align: center;">
 						<a data-toggle="modal" data-target=".bd-example-modal-lg"><img
 							class="card-img-top"
 							src="${path}/resources/images/goods/${goods.goods_img}"
@@ -46,7 +60,7 @@
 						<div class="modal fade bd-example-modal-lg" tabindex="-1"
 							role="dialog" aria-labelledby="myLargeModalLabel"
 							aria-hidden="true">
-							<div class="modal-dialog modal-lg">
+							<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">
 								<div class="modal-content">
 									<%@ include file="view.jsp"%>
 								</div>
