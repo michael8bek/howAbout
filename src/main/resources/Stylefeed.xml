@@ -12,9 +12,16 @@
 		<result property="ts_readcount" column="ts_readcount" />
 		<result property="ts_img_path" column="ts_img_path"/>
 		<result property="ts_img_name" column="ts_img_name"/>
+		<result property="ts_like" column="ts_like"/>
+		<result property="reply_id" column="reply_id"/>
+		<result property="reply_content" column="reply_content"/>
+		<result property="reply_regdate" column="reply_regdate"/>
+		<result property="reply_del" column="reply_del"/>
+		
 	</resultMap>
 	<select id="feedlist" resultMap="stylefeedResult">
 		select * from trendshare where ts_del='n' order by ts_regdate desc
+		<!-- select * from trendshare t, reply r, ts_reply tr where r.reply_id = tr.reply_id and t.mem_id = r.mem_id and t.ts_id = tr.ts_id and reply_del='n' -->
 	</select>
 	<select id="feedlist_orderLike" resultMap="stylefeedResult">
 		select * from trendshare where ts_del='n' order by ts_like desc
@@ -31,5 +38,18 @@
 	</insert>
 	<select id="feedDetail" parameterType="stylefeed" resultMap="stylefeedResult">
 		select * from trendshare where ts_del='n' and ts_id=#{ts_id}
+	</select>
+	<select id="tsReplyList" resultMap="stylefeedResult">
+		<!-- select tr.ts_id, r.reply_id, r.reply_content, r.mem_id, r.reply_regdate from reply r, ts_reply tr where r.reply_id = tr.reply_id and reply_del='n' -->
+		<!-- select tr.ts_id, r.reply_id, r.reply_content, t.mem_name, r.reply_regdate from trendshare t, reply r, ts_reply tr where r.reply_id = tr.reply_id and t.ts_id = tr.ts_id and reply_del='n' -->
+		select tr.ts_id, r.reply_id, r.reply_content, r.mem_id, r.mem_name, r.reply_regdate from reply r, ts_reply tr where r.reply_id = tr.reply_id and reply_del='n'
+	</select>
+	<select id="feedReplyList" resultMap="stylefeedResult">
+		<!-- select tr.ts_id, r.reply_id, r.reply_content, r.mem_id, r.reply_regdate from reply r, ts_reply tr where r.reply_id = tr.reply_id and reply_del='n' -->
+		select tr.ts_id, r.reply_id, r.reply_content, r.mem_id, r.mem_name, r.reply_regdate from reply r, ts_reply tr where tr.ts_id=#{ts_id} and r.reply_id = tr.reply_id and reply_del='n'
+	</select>
+	<select id="feedReply" parameterType="stylefeed" resultType="stylefeed">
+	<!-- select tr.ts_id, r.reply_id, r.reply_content, t.mem_name, r.reply_regdate from trendshare t, reply r, ts_reply tr where r.reply_id = #{reply_id} and t.mem_id=#{mem_id} and t.mem_id = r.mem_id and t.ts_id=#{ts_id} and t.ts_id = tr.ts_id and reply_del='n' -->
+ 		select * from reply r, ts_reply tr where tr.ts_id=#{ts_id} and tr.reply_id = #{reply_id} and r.reply_id = tr.reply_id and reply_del='n'; 
 	</select>
 </mapper>

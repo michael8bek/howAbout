@@ -20,6 +20,14 @@ public class MemberServiceImpl implements MemberService{
 		return md.select(mem_id);
 	}
 
+	@Override
+	public int addpoint(int point, String memberName) {
+		Member member = new Member();
+		member.setMem_point(point);
+		member.setMem_id(memberName);
+		return md.addpoint(member);
+	}
+
 	
 
 	

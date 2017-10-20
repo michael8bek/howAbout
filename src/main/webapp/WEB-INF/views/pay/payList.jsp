@@ -11,18 +11,21 @@
 <div class="container">
 	<h2 class="text-primary" style="padding-top: 3%;">결제 완료 상품</h2>
 				<p>
-				<table class="table table-bordered" style="">					
+				<table class="table" style="text-align: center;">					
 					<tr style="background-color: #E7E7E7;">
-						<th>주문상품</th>
-						<th>수량</th>
-						<th>상품금액</th>
-						<th>상품할인</th>
-						<th>배송비</th>
-						<th>결제금액</th>
+						<th></th>
+						<th style="text-align: center;">주문상품</th>
+						<th style="text-align: center;">수량</th>
+						<th style="text-align: center;">상품금액</th>
+						<th style="text-align: center;">상품할인</th>
+						<th style="text-align: center;">배송비</th>
+						<th style="text-align: center;">결제금액</th>
+						<th></th>
 					</tr>
 				<c:if test="${not empty payList }">
 				<c:forEach var="payList" items="${payList}">
-					<tr >
+					<tr>
+						<td style="border-right: 1px solid #FFFFFF; width: 10%; vertical-align: middle;"><img src="resources/images/goods/${payList.goods_img }" style="width:100%;"></td>
 						<td style="vertical-align: middle;">${payList.goods_name}<p>
 							Color : ${payList.goods_color } / Size : ${payList.goods_size }
 						</td>
@@ -31,6 +34,7 @@
 						<td style="vertical-align: middle;">${payList.cp_benefit }</td>
 						<td style="vertical-align: middle;">${payList.goods_delprice}</td>
 						<td style="vertical-align: middle;">${payList.goods_price*payList.goods_qty-payList.cp_benefit +payList.goods_delprice}</td>
+						<td style="vertical-align: middle;"><a href="uploadFeedImg.do" class="btn btn-warning">후기작성</a></td>
 					</tr>
 					</c:forEach>
 				</c:if>

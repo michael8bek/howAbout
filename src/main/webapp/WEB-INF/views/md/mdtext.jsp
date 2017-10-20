@@ -9,7 +9,7 @@
 
 	<!-- Page Content -->
 	<div class="container">
-	<h4>test3</h4>
+
 		<%-- ${list.mdtext_content} --%>
 		<c:forEach var="b" items="${best }">
 			${b.mdtext_content}
@@ -27,96 +27,53 @@
 		<!-- Project One -->
 		<c:forEach var="list" items="${list }">
 			<div class="row">
-				<div class="col-md-7">
+				<div class="col-md-7" align="center">
 					<a href="#"> <img class="img-fluid rounded mb-3 mb-md-0"
-						src="http://placehold.it/700x300" alt="">
+						src="${path }/resources/images/goods/${list.mdtext_goods_img}"
+						alt="">
 					</a>
 				</div>
-				<div class="col-md-5">
-					<h3>${list.mdtext_id }</h3>
-					<p>${list.mdtext_type }</p>
-					<p>${list.mdtext_content }</p>
-					<p>${list.mdtext_regdate }</p>
-					<p>${list.mdtext_del }</p>
-					<p>${list.mem_id }</p>
-					<p>${list.mdtext_readcount }</p>
+				<div class="card col-md-5 h3">
+					<h3 style="color: blue;">${list.mdtext_id }</h3>
+					<p class="card-text">테마 : [ ${list.mdtext_type } ]</p>
+					<br>
+					<p style="font: oblique; font-size-adjust: none;font-size: medium;">추천 정보 :</p>
+					<article class="card-text article"
+						style="font-family: inherit; font-size: x-large; color: lime;">${list.mdtext_content }
+					</article>
+					<p/>
+					<hr>
+					<div style="font-size: smaller;">
+						<table class="table">
+
+							<tr>
+								<td>추천인</td>
+								<td><p>${list.mem_id }</p></td>
+							</tr>
+							<tr>
+								<td>조회수</td>
+								<td><p>${list.mdtext_readcount }</p></td>
+							</tr>
+							<tr>
+								<td>등록일</td>
+								<td>
+									<p
+										style="font-family: monospace; font-weight: bolder;">
+										${list.mdtext_regdate }</p>
+								</td>
+							</tr>
+						</table>
+					</div>
 					<a class="btn btn-primary" href="#">list <span
 						class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>
 			</div>
 			<!-- /.row -->
-		
-		<hr>
-</c:forEach>
-		<!-- Project Two -->
-		<div class="row">
-			<div class="col-md-7">
-				<a href="#"> <img class="img-fluid rounded mb-3 mb-md-0"
-					src="http://placehold.it/700x300" alt="">
-				</a>
-			</div>
-			<div class="col-md-5">
-				<h3>Project Two</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
-					odit velit cumque vero doloremque repellendus distinctio maiores
-					rem expedita a nam vitae modi quidem similique ducimus! Velit, esse
-					totam tempore.</p>
-				<a class="btn btn-primary" href="#">View Project <span
-					class="glyphicon glyphicon-chevron-right"></span>
-				</a>
-			</div>
-		</div>
-		<!-- /.row -->
 
-		<hr>
+			<hr>
+		</c:forEach>
 
-		<!-- Project Three -->
-		<div class="row">
-			<div class="col-md-7">
-				<a href="#"> <img class="img-fluid rounded mb-3 mb-md-0"
-					src="http://placehold.it/700x300" alt="">
-				</a>
-			</div>
-			<div class="col-md-5">
-				<h3>Project Three</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Omnis, temporibus, dolores, at, praesentium ut unde repudiandae
-					voluptatum sit ab debitis suscipit fugiat natus velit excepturi
-					amet commodi deleniti alias possimus!</p>
-				<a class="btn btn-primary" href="#">View Project <span
-					class="glyphicon glyphicon-chevron-right"></span>
-				</a>
-			</div>
-		</div>
-		<!-- /.row -->
-
-		<hr>
-
-		<!-- Project Four -->
-		<div class="row">
-
-			<div class="col-md-7">
-				<a href="#"> <img class="img-fluid rounded mb-3 mb-md-0"
-					src="http://placehold.it/700x300" alt="">
-				</a>
-			</div>
-			<div class="col-md-5">
-				<h3>Project Four</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Explicabo, quidem, consectetur, officia rem officiis illum aliquam
-					perspiciatis aspernatur quod modi hic nemo qui soluta aut eius
-					fugit quam in suscipit?</p>
-				<a class="btn btn-primary" href="#">View Project <span
-					class="glyphicon glyphicon-chevron-right"></span>
-				</a>
-			</div>
-		</div>
-		<!-- /.row -->
-
-		<hr>
-
-		<!-- Pagination -->
 		<ul class="pagination justify-content-center">
 			<li class="page-item"><a class="page-link" href="#"
 				aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span

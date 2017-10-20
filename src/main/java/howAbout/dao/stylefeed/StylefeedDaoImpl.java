@@ -42,12 +42,29 @@ public class StylefeedDaoImpl implements StylefeedDao{
 
 	@Override
 	public int feedReplyWrite(Tsreply tr) {
-		sst.insert("tsreplyns.ts_reply",tr);
-		return sst.insert("tsreplyns.feedreplyWrite",tr);
+		sst.insert("feedreplyWrite",tr);
+		return sst.insert("tsreplyns.tsreply_write",tr);
 	}
 
 	@Override
 	public List<Stylefeed> feedlist_orderRecent() {
 		return sst.selectList("stylefeedns.feedlist_orderRecent");
+	}
+
+	@Override
+	public List tsReplyList() {
+		return sst.selectList("stylefeedns.tsReplyList");
+	}
+
+	@Override
+	public List<Stylefeed> feedReplyList(int ts_id) {
+		return sst.selectList("stylefeedns.feedReplyList", ts_id);
+	}
+
+	@Override
+	public List feedReply(Stylefeed sf) {
+		System.out.println(sf.getReply_id());
+		System.out.println(sf.getTs_id());
+		return sst.selectList("stylefeedns.feedReply",sf);
 	}
 }

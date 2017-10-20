@@ -8,4 +8,6 @@ public interface MemberDao {
 
 	Member select(String mem_id);
 
+	int addpoint(Member member);
+
 }

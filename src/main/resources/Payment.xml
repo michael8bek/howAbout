@@ -16,15 +16,16 @@
 		<result property="pay_required" column="pay_required" />
 		<result property="pay_total" column="pay_total" />
 		<result property="pay_time" column="pay_time" />
+		<result property="cplist_id" column="cplist_id" />
 	</resultMap>
 	<insert id="insert" parameterType="payment" useGeneratedKeys="true" keyProperty="pay_id">
 		<!-- <selectKey keyProperty="pay_id" resultType="int">
 			SELECT MAX(pay_id)+1 FROM payment
 		</selectKey> -->
-		insert into payment(pay_id,goods_id,goods_qty,mem_id,pay_name,pay_phone,pay_email,
-		pay_addr,pay_rename,pay_rephone,pay_required,pay_total,pay_time)
-		 values (#{pay_id},#{goods_id}, #{goods_qty},
+		insert into payment(goods_id,goods_qty,mem_id,pay_name,pay_phone,pay_email,
+		pay_addr,pay_rename,pay_rephone,pay_required,pay_total,pay_time,cplist_id)
+		 values (#{goods_id}, #{goods_qty},
 		 #{mem_id},	#{pay_name}, #{pay_phone}, #{pay_email}, #{pay_addr},
-		  #{pay_rename}, #{pay_rephone}, #{pay_required}, #{pay_total}, now())
+		  #{pay_rename}, #{pay_rephone}, #{pay_required}, #{pay_total}, now(),#{cplist_id})
 	</insert>
 </mapper>

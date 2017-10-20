@@ -8,4 +8,6 @@ public interface CouponlistDao {
 
 	List<Couponlist> listCoupon(String mem_id);
 
+	int update(int cplist_id);
+
 }

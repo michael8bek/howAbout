@@ -15,6 +15,8 @@ import howAbout.model.Goods;
 import howAbout.model.Payment;
 import howAbout.model.Stock;
 import howAbout.service.cart.CartService;
+import howAbout.service.couponlist.CouponlistService;
+import howAbout.service.member.MemberService;
 import howAbout.service.payment.PaymentService;
 import howAbout.service.stock.StockService;
 
@@ -26,10 +28,16 @@ public class PaymentController {
 	private CartService cs;
 	@Autowired
 	private StockService ss;
+	@Autowired
+	private CouponlistService cpls;
+	@Autowired
+	private MemberService ms;
 	
 	@RequestMapping("payInsert")
 	public String payInsert(Payment payment, Model model, HttpSession session,HttpServletRequest request ) {
+		
 		payment.setMem_id((String)session.getAttribute("mem_id"));
+		String memberName = payment.getMem_id();
 		String cart_id[] = request.getParameterValues("cart_id");
 		int result1 = 0;
 		if (cart_id.length > 0) {
@@ -38,12 +46,18 @@ public class PaymentController {
 			}
 			result1 = 1;
 		}
-		System.out.println(session.getAttribute("mem_id"));
+		/*마일리지 구매금액의 10%*/
+		int point = (int)(payment.getPay_total() * 0.1);
+		int addpoint = ms.addpoint(point, memberName);
+		
+		int cplistId= cpls.update(payment.getCplist_id());
 		int result = ps.insert(payment);
+		int result3 = ss.update(payment);
 		model.addAttribute("result", result);
 		model.addAttribute("result1", result1);
-		int result3 = ss.update(payment);
 		model.addAttribute("result3", result3);
+		model.addAttribute("cplistId", cplistId);
+		model.addAttribute("addpoint", addpoint);
 		return "pay/payment";
 	}
 	@RequestMapping("payList")
