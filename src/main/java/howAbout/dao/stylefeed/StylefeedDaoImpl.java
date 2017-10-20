@@ -1,5 +1,6 @@
 package howAbout.dao.stylefeed;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -66,5 +67,13 @@ public class StylefeedDaoImpl implements StylefeedDao{
 		System.out.println(sf.getReply_id());
 		System.out.println(sf.getTs_id());
 		return sst.selectList("stylefeedns.feedReply",sf);
+	}
+
+	@Override
+	public List feedmore(int startRow, int endRow) {
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		return sst.selectList("stylefeedns.feedmore",map);
 	}
 }

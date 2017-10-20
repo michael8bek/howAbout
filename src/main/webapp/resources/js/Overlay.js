@@ -476,7 +476,7 @@ var Overlay = (function(){
 				$("#input_img").val("");
 			}
 				$("#img").removeAttr("src");
-				
+				location.href = location.href;
 			//여기까지
 			return false;
 		},
@@ -498,6 +498,7 @@ var Overlay = (function(){
 			}
 				$("#img").removeAttr("src");
 			//여기까지
+				location.href = location.href;
 			return false;
 		},
         

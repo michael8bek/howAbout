@@ -20,5 +20,6 @@ public interface StylefeedService {
 	List tsReplyList();
 	List<Stylefeed> feedReplyList(int ts_id);
 	List feedReply(Stylefeed sf);
+	List feedmore(int startRow, int endRow);
 
 }

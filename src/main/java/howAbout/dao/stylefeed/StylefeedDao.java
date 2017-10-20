@@ -28,4 +28,6 @@ public interface StylefeedDao {
 
 	List feedReply(Stylefeed sf);
 
+	List feedmore(int startRow, int endRow);
+
 }
