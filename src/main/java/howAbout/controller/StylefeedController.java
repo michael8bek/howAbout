@@ -98,7 +98,7 @@ public class StylefeedController {
 		};
 
 		try {
-			Thread.sleep(650);
+			Thread.sleep(350);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

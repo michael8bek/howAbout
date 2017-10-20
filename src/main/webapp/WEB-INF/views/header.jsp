@@ -37,7 +37,7 @@
 
 <title>How about</title>
 <script type="text/javascript">
-   
+
 </script>
 </head>
 <body>
@@ -108,10 +108,10 @@
                   aria-haspopup="true" aria-expanded="false"> 추천 </a>
                   <div class="dropdown-menu dropdown-menu-right"
                      aria-labelledby="navbarDropdownPortfolio">
-                     <a class="dropdown-item" href="listMdtext.do">MD추천</a> 
+                     <a class="dropdown-item" href="listMdtext.do">MD추천</a>
                      <c:if test="${member.mem_name=='master' }">
                      <a
-                        class="dropdown-item" href="mdtextInsertForm.do">MD추천 입력</a> 
+                        class="dropdown-item" href="mdtextInsertForm.do">MD추천 입력</a>
                         </c:if><a
                         class="dropdown-item" href="portfolio-3-col.jsp">3 Column
                         Portfolio</a> <a class="dropdown-item" href="portfolio-4-col.jsp">4
@@ -166,7 +166,7 @@
                             href="payList.do?mem_id=${member.mem_id }"
                            data-toggle="modal" data-target=".bd-example-modal-lg">결제내역</a>
                      </c:if>
-                     
+
                      <!-- <a class="dropdown-item" href="goodsList.do">상품페이지</a> -->
                      <%-- <c:if test="${empty member }">
                         <a class="dropdown-item" href="joinForm.do">Join page</a>

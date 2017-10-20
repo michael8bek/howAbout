@@ -447,6 +447,7 @@ a {
 	flex: auto;
 }
 .feed_icon_area {
+	display:inline-block;
     word-wrap: break-word;
     width: 100%;
     height: 20%;
@@ -480,6 +481,7 @@ a {
 .comment_list{
 	display: flex;
 	height: 35px;
+	justify-content: space-between;
 }
 .feed_list #feedreply_writer {
 	display: inline-block;
@@ -487,11 +489,14 @@ a {
 	cursor: pointer;
 	margin-left:5px;
 	font-weight: bold;
-	width:75px;
+	width:70px;
 	padding-top: 9px;
+	text-overflow: ellipsis;
+	overflow:hidden; 
 }
 
 .feed_comment .feed_writer_img {
+	display:table;
 	padding-top:5px;
 	padding-left:5px;
 	width: 30px;
@@ -503,13 +508,12 @@ a {
 	height: 30px;
 }
 .feed_list .comment_txt{
-	position:absolute;
+	position:relative;
 	padding-top:9px;
-	right:0;
 	width:185px;
 	height:30px;
 	font-size:13px;
-	display: inline-block;
+	display: table;
 	overflow-y:auto; 
 }
 
@@ -613,6 +617,7 @@ height:180px;
 	overflow: hidden;
 	max-width: 80px;
 	margin-left: 5px;
+	cursor: pointer;
 }
 #feedpage_replyList .feedreply_text{
 	font-size: 13px;
@@ -622,7 +627,13 @@ height:180px;
 }
 
 @media all and (max-width:767px) {
-
+	/*피드 리스트*/
+	.feed_list #feedlist_writer{
+		font-size: 13px;
+	}
+	.feed_list #feedlist_date{
+		font-size: 13px;
+	}
 	/*피드 상세페이지 새창(overray)*/
 	#myOverlay2 {
 		max-width: 310px;
@@ -1038,7 +1049,7 @@ height:180px;
 					 <div><img src="resources/images/icons/ajax_loading.gif" /></div>
 				</div>
 			<div class="feed_list" id="user_feed">
-				<c:forEach var="feed" items="${list }" varStatus="status">
+<%-- 				<c:forEach var="feed" items="${list }" varStatus="status">
 					<div class="feed">
 						<div class="feed_imgbox">
 							<a class="feedpage" id="overlayTrigger2"
@@ -1076,7 +1087,7 @@ height:180px;
 						<div class="feed_comment">
 						<c:forEach var="reply" items="${reply}" begin="0" end="3"> 
 							<c:if test="${feed.ts_id==reply.ts_id }">
-							<div class="comment_list">
+							<div class="comment_list" data-tsid="${feed.ts_id}" data-replyid="${reply.reply_id }">
 								<div class="feed_writer_img">
 									<img alt=""
 									src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"
@@ -1093,7 +1104,7 @@ height:180px;
 						</c:forEach> 
 						</div>
 					</div>
-				</c:forEach>
+				</c:forEach> --%>
 			</div>
 			<div class="feed_more" style="text-align: center;">
 				<button class="btn btn-danger" id="feed_more_btn" data-ts_id="${feed.ts_id }">more</button>
@@ -1223,12 +1234,107 @@ height:180px;
 	<script type="text/javascript"
 		src="resources/js/trendshare.js"></script>
 	<script type="text/javascript">
+		//스타일피드 페이지 로딩 후 
+		var errImg = "'http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png'"; //이미지 로딩 에러시 뜰 사진
+		window.onload = pageLoad;
+    function pageLoad(){
+			console.log("트렌드쉐어 페이지 실행");
+			$.ajax({
+						url : "feedorder.do",
+						type : "POST",
+						data : {
+							listType : "recent"
+						},
+						async : true,
+						dataType : "json",
+						timeout:100000,
+						success : function(data) {
+							console.log("최신순 정렬 ajax 함수 success");
+							/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
+							var overlayjs = document.createElement('script');
+							overlayjs.src = "/howAbout/resources/js/Overlay.js";
+							document.getElementsByTagName('head')[0].appendChild(overlayjs);
+							/*ajxx밭은 data 출력하기*/
+							var mem_id = "";
+							var mem_name = "";
+							var ts_content = "";
+							var ts_img = ""; /*ts_img_path+ts_img_name*/
+							var ts_regdate = "";
+							$.each(data.list, function(index, feed) {
+								$("#user_feed").append('<div class="feed">'
+														+ '<div class="feed_imgbox">'
+														+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+														+ '<img class="feed-img" '
+														+ 'onerror="this.src='+errImg+';"'
+														+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
+														+ '<div class="caption_box">'
+														+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
+														+ '</div></div>'
+														+ '<div class="feed_thumbnail">'
+														+ '<div class="feed_writer_img">'
+														+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
+														+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
+														+ $(feed).attr('mem_name')
+														+ '</div>'
+														+ '<div class="feed_date" id="feedlist_date">'
+														+ $(feed).attr('ts_regdate')
+														+ '</div>'
+														+ '<div class="feed_content" id="feedlist_content">'
+														+ $(feed).attr('ts_content')
+														+ '</div>'
+														+ '<div class="feed_icon_area" id="feed_icon">'
+														+ '<div class="feed_icon">'
+														+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+														+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+														+ '</p></div><div class="feed_icon">'
+														+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+														+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+														+ '</p></div></div></div>'
+														+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
+														+ '"></div>');
+														
+							$.each(data.rlist, function(index, reply) {
+								if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
+								$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
+								+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
+								+ '<div class="feed_writer_img">'
+								+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
+								+ 'width="100%" height="100%"></div>'
+								+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(feed).attr("mem_id")
+								+ '">'+$(reply).attr("mem_name")
+								+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
+								+'">'
+								+ $(reply).attr("reply_content")+'</div></div>'); 
+								}
+							});
+			
+					});
+						},beforeSend:function(){
+							$("#user_feed").html(" ");
+					        $('.feed_loading').removeClass('display-none');
+					    },complete:function(){
+					    	$('.feed_loading').addClass('display-none');
+						},error : function(request,status,error) {
+							console.log("code:"+ request.status
+											+ "\n"
+											+ "message:"
+											+ request.responseText
+											+ "\n"
+											+ "error:"
+											+ error);
+						}
+					});
+    };
+	
+	
 		//피드 리플 달때 체크 함수
-				function replyuploadChk() {
+		function replyuploadChk() {
 			console.log("replyuploadChk함수 실행");
 			var fr = document.feed_reply_write;
 			console.log(fr);
-
+			if ("${member.mem_id}"==""){
+				alert("로그인하세요");
+			}
 			var reply_content = document.getElementById('feed_reply_content').value; //리플 내용 값 
 			if (reply_content == "") {
 				alert("댓긍을 입력하세요");
@@ -1356,9 +1462,13 @@ height:180px;
 									console.log("사진 선택하세요");
 								}
 							}); */
-
+							//
+							
+							
+							
+							
 							//피드 리스트 인기순(DB의 ts_like순) 정렬
-							var errImg = "'http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png'";
+							
 							$("#order_like").bind("click",function() {
 												console.log("인기순정렬 JS함수 실행");
 												$.ajax({
@@ -1372,6 +1482,7 @@ height:180px;
 															timeout:100000,
 															success : function(data) {
 																console.log("인기순 정렬 ajax 함수 success");
+																console.log(data)
 																/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
 																var overlayjs = document.createElement('script');
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
@@ -1417,21 +1528,18 @@ height:180px;
 																												
 																					$.each(data.rlist, function(index, reply) {
 																						if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
-																								console.log($(feed).attr('ts_id')+"반복 시작");
-																								console.log($(feed).attr('ts_id')+"의 reply_id:"+$(reply).attr('reply_id'));
-																								console.log($(feed).attr('ts_id')+"반복 종료");
-																						 $(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list">'
+																						 $(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
+																						+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
 																						+ '<div class="feed_writer_img">'
 																						+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
 																						+ 'width="100%" height="100%"></div>'
-																						+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(feed).attr("mem_id")
+																						+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(reply).attr("mem_id")
 																						+ '">'+$(reply).attr("mem_name")
 																						+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
 																						+'">'
 																						+ $(reply).attr("reply_content")+'</div></div>'); 
 																						}
 																					});
-																	
 																		});
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
@@ -1510,14 +1618,12 @@ height:180px;
 																							
 																$.each(data.rlist, function(index, reply) {
 																	if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
-																			console.log($(feed).attr('ts_id')+"반복 시작");
-																			console.log($(feed).attr('ts_id')+"의 reply_id:"+$(reply).attr('reply_id'));
-																			console.log($(feed).attr('ts_id')+"반복 종료");
-																	 $(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list">'
+																	$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
+																	+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
 																	+ '<div class="feed_writer_img">'
 																	+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
 																	+ 'width="100%" height="100%"></div>'
-																	+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(feed).attr("mem_id")
+																	+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(reply).attr("mem_id")
 																	+ '">'+$(reply).attr("mem_name")
 																	+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
 																	+'">'
@@ -1580,6 +1686,8 @@ height:180px;
 																		+'</div><div class="feed_content" id="feeedpage_content">'+$(feed).attr('ts_content')+'</div></div>'
 																		+'<form name="feed_reply_write"><input type="hidden" value="'+$(feed).attr('ts_id')+'" id="ts_id" name="ts_id">'
 																		+'<input type="hidden" value="${member.mem_id}" name="mem_id"> <input type="hidden" value="${member.mem_name}" name="mem_name">' 
+																		+'<div style="display:none"><input type="submit" onclick="return false;" />'
+																		+'<input type="text"/></div>'
 																		+'<c:if test="${not empty member }">'
 																		+'<input type="text" id="feed_reply_content" name="reply_content"  placeholder="댓글을 입력하세요">'
 																		+'<input type="button" class="btn btn-danger" id="feed_reply_btn" onClick="return replyuploadChk();" value="확인">' 
@@ -1595,7 +1703,7 @@ height:180px;
 																		 $(".feed_reply").append('<div id="feedpage_replyList">'
 																		+'<div class="feed_writer_img" style="width: 30px; height: 30px;">'
 																		+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
-																		+'</div><div class="feed_writer" id="feedreply_writer" data-writer="${feed.mem_id }">'+$(reply).attr('mem_name')+'</div>'
+																		+'</div><div class="feed_writer" id="feedreply_writer" data-writer='+$(reply).attr('mem_id')+'>'+$(reply).attr('mem_name')+'</div>'
 																		+'<div class="feedreply_text">'+$(reply).attr('reply_content')+'</div>'							
 																		+'</div></div></div>');
 																	});
@@ -1646,20 +1754,21 @@ height:180px;
 						});
 							
 							/*피드 더보기 기능(ajax)*/
-							$("#feed_more_btn").bind("click",function(){
+							$(document).on('click','#feed_more_btn',function() {
 								var ts_id = $(".feed_list > .feed:last-child").data('seq');
 								console.log("더보기 클릭"+ts_id);
 							});
 							
 							
 							/*닉네임 클릭하면 mypage로 이동*/
-							$(".feed_writer").bind("click", function() {
+							$(document).on('click','.feed_writer',function() {
 								var mem_id = $(this).data('writer');
 								console.log("mem_id는" + mem_id);
 								location.href = 'mypage.do?mem_id=' + mem_id
 							});
 
-						})
+							})
+							
 	</script>
 
 
