@@ -23,4 +23,10 @@ public class CouponlistDaoImpl implements CouponlistDao {
 		return sst.update("couponlistns.delmark", cplist_id);
 	}
 
+	@Override
+	public Couponlist findCpVal(int cplist_id) {
+		return sst.selectOne("couponlistns.findCpVal",cplist_id);
+	}
+
+
 }

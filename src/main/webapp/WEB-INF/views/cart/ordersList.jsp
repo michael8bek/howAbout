@@ -57,7 +57,7 @@
 		var sum = 0;
 		var sum1 = 0;
 		var salesum = 0;
-		var count = frm.goods_price.length;
+		var count = frm.cart_id.length;
 		/* 상품이 하나일때 */
 		if (count == undefined) {
 			sum = parseInt(frm.goods_price.value * frm.goods_qty.value);
@@ -88,19 +88,51 @@
 
 	}
 	/* 쿠폰 클릭시 가격이 계산됨 */
-	function coupon(val1) {
-		var element = val1;
-		var cp_benefit = element.split('-')[0];
-		var cplistid = element.split('-')[1];
+	function coupon() {
+		var cplist_id = document.getElementById("cplist_id").value;
+		/* var cp_benefit = element.split('-')[0];
+		var cplistid = element.split('-')[1]; */
+		
+		/* console.log("변수 element = ", element); */
+		/* console.log("변수 cp_benefit = ", cp_benefit); */
+		console.log("변수 cplist_id = ", cplist_id);
+		var cp_benefit =0;
+		/* "findcpval.do?cplist_id="+cplist_id; */
+		$.ajax({
+			type : "GET",
+ 			url : "findcpval.do?cplist_id="+cplist_id, 
+			async : false,
+			dataType : "json",
+			contentType : 'application/json; charset=utf-8',
+			error : function(request,status,error) {
+                console.log("code:"+ request.status
+                            + "\n"
+                            + "message:"
+                            + request.responseText
+                            + "\n"
+                            + "error:"
+                            + error);
+             },
+			success : function(data) {
+				console.log(data.cplist_id);
+				/* if ($("input[name=chk]").prop("checked")) {
+					$("#mem_id").val(data.mem_id);
+					$("#mem_phone").val(data.mem_phone);
+					$("#mem_email").val(data.mem_email);
+				} else {
+					$("#mem_id").val("");
+					$("#mem_phone").val("");
+					$("#mem_email").val("");
+				} */
+				cp_benefit = data.cp_benefit;
+			}
+		});
+             console.log("모니 : ",cp_benefit);
+             $("#couponsale").val(cp_benefit);
+		/* $('#cplist_id').text(cplistid); */
 		
 		
-		console.log("변수 element = ", element);
-		console.log("변수 cp_benefit = ", cp_benefit);
-		console.log("변수 cplist_id = ", cplistid);
-		
-		$('#cplist_id').val(cplistid);
-		
-		frm.couponsale.value = cp_benefit;
+		/* frm.couponsale.value = cp_benefit; */
 		/* console.log("변수 cplist_id = ", frm.cplist_id.val); */
 		var sum = 0;
 		var sum1 = 0;
@@ -269,17 +301,18 @@
 			<div class="container3">
 				<div class="container1_3">
 					<h5>2. 쿠폰 할인</h5>
-					<input type="hidden" name="cplist_id" id="cplist_id" value="">
 					
+
 					<table class="table" style="width: 100%;">
 						<tr>
-							<th style="width: 25%;">쿠폰 선택</th>
-							<th><select onclick="coupon(this.value);" name="cp">
+							<th style="width: 25%;">쿠폰 선택
+							</th>
+							<th><select onclick="coupon();" name="cplist_id" id="cplist_id">
 									<option value="0" style="text-align: center;">사용안함</option>
 									<c:forEach var="couponlist" items="${listCoupon }"
 										varStatus="status">
 										<option
-											value="${couponlist.cp_benefit }-${couponlist.cplist_id }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
+											value="${couponlist.cplist_id }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
 									</c:forEach>
 							</select></th>
 						</tr>
@@ -293,6 +326,7 @@
 							<th colspan="2">- 단추는 스타일쉐어만의 포인트 제도입니다.
 								<p>
 									- 단추 1개 = 1원으로, 현금처럼 사용 가능합니다.<br> - 단추는 10개 단위로 사용 가능합니다.
+
 
 								
 							</th>
@@ -389,7 +423,7 @@
 						</tr>
 						<tr>
 							<th>쿠폰할인</th>
-							<th><input name="couponsale" type="text" readonly
+							<th><input id="couponsale" name="couponsale" type="text" readonly
 								style="width: 100%; margin: 0; padding: 0;" class="btn"></th>
 						</tr>
 						<tr>
@@ -406,17 +440,30 @@
 					<table class="table">
 						<!-- style="margin-top: 5%; border: 5px solid #1993A8;" -->
 						<tr>
-							<th colspan="2"><input type="submit" value="주문하기"
-								style="width: 100%; height: 100%;" class="btn btn-info"></th>
+							<th colspan="2"><c:if test="${not empty listOrders }">
+									<input type="submit" value="주문하기" id=""
+										style="width: 100%; height: 100%;" class="btn btn-info">
+								</c:if> <c:if test="${empty listOrders }">
+									<input type="submit" value="주문하기" id="" disabled="disabled"
+										style="width: 100%; height: 100%;" class="btn btn-info">
+								</c:if></th>
 						</tr>
 					</table>
 				</div>
 			</div>
 
 			<div align="center">
-				<input type="submit" value="주문하기" id=""
-					style="width: 20%; height: 100%;" class="btn btn-info">
+				<c:if test="${not empty listOrders }">
+					<input type="submit" value="주문하기" id=""
+						style="width: 100%; height: 100%;" class="btn btn-info">
+				</c:if>
+
+				<c:if test="${empty listOrders }">
+					<input type="submit" value="주문하기" id="" disabled="disabled"
+						style="width: 100%; height: 100%;" class="btn btn-info">
+				</c:if>
 			</div>
+
 		</div>
 	</form>
 </body>

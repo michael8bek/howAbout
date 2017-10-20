@@ -19,5 +19,9 @@ public class CouponlistServiceImpl implements CouponlistService {
 	public int update(int cplist_id) {
 		return cd.update(cplist_id);
 	}
+	@Override
+	public Couponlist findCpVal(int cplist_id) {
+		return cd.findCpVal(cplist_id);
+	}
 
 }

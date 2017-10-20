@@ -10,4 +10,7 @@ public interface CouponlistService {
 
 	int update(int cplist_id);
 
+	Couponlist findCpVal(int cplist_id);
+
+
 }
