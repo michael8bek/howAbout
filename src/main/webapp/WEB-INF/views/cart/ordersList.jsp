@@ -82,6 +82,8 @@
 		if(frm.pay_total.value < 0){
 			frm.pay_total.value = 0;
 		}
+		
+		
 	}
 	/* 쿠폰 클릭시 가격이 계산됨 */
 	 function coupon(val) {
@@ -100,6 +102,7 @@
 			sum1 += parseInt(frm.goods_delprice[i].value);
 			salesum += parseInt(frm.cp_benefit[i].value*frm.goods_qty[i].value);
 		}
+		
 		if(sum >=50000){
 			sum1 = "무료배송";
 			frm.total_sum.value = sum;
@@ -187,7 +190,6 @@
 </head>
 <body>
 <form name="frm" action="payInsert.do" method="post" id="submitid">
-	<input type="hidden" name="cp_id" value="">
 	<div class="container">
 		<div class="container1">
 			<div class="container1_1">
@@ -251,7 +253,7 @@
 						<th ><select onclick="coupon(this.value);" name="cp_id">
 							<option value="0" style="text-align: center;">사용안함</option>
 						<c:forEach var="couponlist" items="${listCoupon }" varStatus="status">
-							<option value="${couponlist.cp_benefit }" data-cp_id="${couponlist.cp_id}">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
+							<option value="${couponlist.cp_benefit }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
 						</c:forEach>
 						</select></th>
 					</tr>
