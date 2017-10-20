@@ -58,11 +58,16 @@
 		}
 	}
 	if(sum >= 50000){
-		sum1 = "0";
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
 	}
-	frm.total_sum.value = sum;
-	frm.delprice.value = sum1;
-	frm.total_sum1.value = sum+sum1;
+	
 	
 }
   /* 전체선택 체크박스 클릭시 */
@@ -81,11 +86,15 @@ function ckeckAll(index) {
 			sum1 += parseInt(frm.goods_delprice[i].value);
 		}
 		if(sum >= 50000){
-			sum1 = "0";
+			sum1 = "무료배송";
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.total_sum1.value = sum;
+		}else{
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.total_sum1.value = sum+sum1;
 		}
-		frm.total_sum.value = sum;
-		frm.delprice.value = sum1;
-		frm.total_sum1.value = sum+sum1;
 		
 	}else {
 		$("input[name=chk]").prop("checked", false);
@@ -95,7 +104,7 @@ function ckeckAll(index) {
 	}
 }
 
- /* 클릭시 수량 변경  */
+ /* 클릭시 수량 변경 -> 수량에 따라 가격 변동  */
 function click_count(idx, n) {
 	var num = parseInt($("#numberUpDown" + idx).val(), 10) + n;
 	var num1 = parseInt($("#stock_qty" + idx).val(), 10);
@@ -123,11 +132,15 @@ function click_count(idx, n) {
 		}
 	}
 	if(sum >= 50000){
-		sum1 = "0";
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
 	}
-	frm.total_sum.value = sum;
-	frm.delprice.value = sum1;
-	frm.total_sum1.value = sum+sum1;
 	
 }
  /* 장바구니 팝업시 상품이 모두 체크 */
@@ -146,11 +159,15 @@ function click_count(idx, n) {
 		}
 	}
 	if(sum >= 50000){
-		sum1 = "0";
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
 	}
-	frm.total_sum.value = sum;
- 	frm.delprice.value = sum1;
- 	frm.total_sum1.value = sum+sum1;
  	
 
 }
@@ -194,25 +211,26 @@ function click_count(idx, n) {
 </script>
 </head>
 <body>
-<form name="frm" action="" method="post">
+<form name="frm" action="" method="post" >
 	<div class="container">
 			<div class="container1">
 				<div class="container1_1">
 					<h2 class="text-primary" style="padding-top: 3%;">장바구니 목록</h2>
 					담아둔 상품이 품절됐을 시 장바구니에서 자동 삭제되오니 참고 바랍니다.
 					<p>
-					<table class="table table-bordered" style="width: 100%; ">
+					<table class="table" style="width: 100%; ">
 						<tr>
-							<th colspan="5"><input id="checkbox_1" type="checkbox" checked="checked"
+							<th colspan="5"  style="border-top: 1px solid #FFFFFF;"><input id="checkbox_1" type="checkbox" checked="checked"
 								onclick="ckeckAll()" value="">전체선택</th>
-							<th><button onclick="mySubmit(1)" class="btn btn-info" style="">선택삭제</button></th>
+							<th  style="border-top: 1px solid #FFFFFF;"><button onclick="mySubmit(1)" class="btn btn-info" style="">선택삭제</button></th>
 						</tr>
 
 							<tr style="background-color: #E7E7E7;">
-								<th colspan="3" style="width: %">주문상품</th>
-								<th>상품금액</th>
-								<th>배송비</th>
-								<th style="width: 15%">주문관리</th>
+								<th colspan="2"></th>
+								<th >주문상품</th>
+								<th style="text-align: center;">상품금액</th>
+								<th style="text-align: center;">배송비</th>
+								<th style="width: 15%;text-align: center;">주문관리</th>
 							</tr>
 
 						<c:if test="${not empty listCart }">
@@ -237,9 +255,9 @@ function click_count(idx, n) {
 						  		<input type="text" class="qty1" id="numberUpDown${status.count }" name="goods_qty" value="${cart.goods_qty }" style="width: 11%; text-align: center;">
 						  		<a onclick="click_count(${status.count}, -1)"  class="goods_qty1" id="" >▼</a>
 								</td>
-								<td style="width: 15%; vertical-align: middle;">${cart.goods_price}</td>
-								<td style="width: 15%; vertical-align: middle;">${cart.goods_delprice }</td>
-								<td style="vertical-align: middle;"><button onclick="mySubmit(3)" style="width: 100%;" class="btn btn-warning">바로구매</button><p>
+								<td style="width: 15%; vertical-align: middle; text-align: center;">${cart.goods_price}</td>
+								<td style="width: 15%; vertical-align: middle; text-align: center;">${cart.goods_delprice }</td>
+								<td style="vertical-align: middle; text-align: center;"><button onclick="mySubmit(3)" style="width: 100%;" class="btn btn-warning">바로구매</button><p>
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
 

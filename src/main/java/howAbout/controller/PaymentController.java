@@ -38,11 +38,11 @@ public class PaymentController {
 			}
 			result1 = 1;
 		}
-		System.out.println(session.getAttribute("mem_id"));
+		
 		int result = ps.insert(payment);
+		int result3 = ss.update(payment);
 		model.addAttribute("result", result);
 		model.addAttribute("result1", result1);
-		int result3 = ss.update(payment);
 		model.addAttribute("result3", result3);
 		return "pay/payment";
 	}
