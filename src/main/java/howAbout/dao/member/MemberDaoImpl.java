@@ -27,4 +27,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sst.selectOne("memberns.select", mem_id);
 	}
 
+	@Override
+	public int addpoint(Member member) {
+		return sst.update("memberns.addpoint", member);
+	}
+
 }
