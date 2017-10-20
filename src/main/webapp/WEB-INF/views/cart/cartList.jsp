@@ -234,9 +234,9 @@ function click_count(idx, n) {
 								<th style="width: 15%;text-align: center;">주문관리</th>
 							</tr>
 
-						<c:if test="${not empty listCart }">
 						<c:forEach var="cart" items="${listCart}" varStatus="status">
 						<c:forEach var="stock" items="${listStock }" varStatus="status">
+						<c:if test="${not empty listCart }">
 						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty>0 }">
 						<input type="hidden" name="goods_qty${status.count}" value="${cart.goods_qty }" id="goods_qty${status.count}">
 						<input type="hidden" name="goods_price" value="${cart.goods_price}" id="goods_price">
@@ -280,9 +280,9 @@ function click_count(idx, n) {
 							</tr>
 
 						</c:if>
-						</c:forEach>
-						</c:forEach>
 						</c:if>
+						</c:forEach>
+						</c:forEach>
 						<c:if test="${empty listCart }">
 							<tr style="width: 100%; vertical-align: middle;">
 								<td colspan="6" style="width: 100%; vertical-align: middle;">장바구니에 담긴 상품이 없습니다.</td>

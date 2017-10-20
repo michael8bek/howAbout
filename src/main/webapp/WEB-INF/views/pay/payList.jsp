@@ -34,7 +34,7 @@
 						<td style="vertical-align: middle;">${payList.cp_benefit }</td>
 						<td style="vertical-align: middle;">${payList.goods_delprice}</td>
 						<td style="vertical-align: middle;">${payList.goods_price*payList.goods_qty-payList.cp_benefit +payList.goods_delprice}</td>
-						<td style="vertical-align: middle;"><a href="ordersDelete.do?cart_id=${cart.cart_id }" class="btn btn-warning">후기작성</a></td>
+						<td style="vertical-align: middle;"><a href="uploadFeedImg.do" class="btn btn-warning">후기작성</a></td>
 					</tr>
 					</c:forEach>
 				</c:if>
