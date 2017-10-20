@@ -93,7 +93,6 @@
 		var cp_benefit = element.split('-')[0];
 		var cplistid = element.split('-')[1];
 		
-		
 		console.log("변수 element = ", element);
 		console.log("변수 cp_benefit = ", cp_benefit);
 		console.log("변수 cplist_id = ", cplistid);
@@ -190,20 +189,50 @@
 			}
 		});
 	}
-	/* $(function() {
-	       $("#submitid").click(function() {
-	       
-	          var element = $(this);
-	          var img= element.val().split('-')[0];
-	          var id= element.val().split('-')[1];
-	          $('#goods_id').val(img);
-	          $('#goods_img').val(id);
-	       });
-	    }); */
+	function mempoint(){
+		
+		var point = parseInt(document.getElementById("mem_point").value);
+		if(point > frm.mem_point1.value){
+			alert("최대 가능 마일리지입니다");
+			frm.mem_point.value = frm.mem_point1.value;
+		}
+		var sum = 0;
+		var sum1 = 0;
+		var salesum = 0;
+		var count = frm.goods_price.length;
+		/* 상품이 하나일때 */
+		if (count == undefined) {
+			sum = parseInt(frm.goods_price.value * frm.goods_qty.value);
+			sum1 = parseInt(frm.goods_delprice.value);
+			salesum = parseInt(frm.cp_benefit.value * frm.goods_qty.value);
+		}
+		for (var i = 0; i < count; i++) {
+			sum += parseInt(frm.goods_price[i].value * frm.goods_qty[i].value);
+			sum1 += parseInt(frm.goods_delprice[i].value);
+			salesum += parseInt(frm.cp_benefit[i].value
+					* frm.goods_qty[i].value);
+		}
+		if (sum >= 50000) {
+			sum1 = "무료배송";
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.saleprice.value = salesum;
+			frm.pay_total.value = sum - salesum - frm.couponsale.value - point;
+		} else {
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.saleprice.value = salesum;
+			frm.pay_total.value = sum + sum1 - salesum - frm.couponsale.value- point;
+		}
+		if (frm.pay_total.value < 0) {
+			frm.pay_total.value = 0;
+		}
+	}
 </script>
 </head>
 <body>
 	<form name="frm" action="payInsert.do" method="post" id="submitid">
+	<input type="hidden" id="mem_point1" name="mem_point1" value="${member.mem_point}">
 		<div class="container">
 			<div class="container1">
 				<div class="container1_1">
@@ -285,14 +314,14 @@
 						</tr>
 						<tr>
 							<th>마일리지 사용</th>
-							<th><input type="text">&nbsp;<a href=""
-								class="btn success"
-								style="color: #1993A8; border: 1px solid #1993A8;">내 마일리지</a></th>
+							<th><input type="text" min="1" max="${member.mem_point }" name="mem_point" id="mem_point" oninput="mempoint()" >&nbsp;사용가능 마일리지${member.mem_point }</th>
+							
 						</tr>
 						<tr>
-							<th colspan="2">- 단추는 스타일쉐어만의 포인트 제도입니다.
-								<p>
-									- 단추 1개 = 1원으로, 현금처럼 사용 가능합니다.<br> - 단추는 10개 단위로 사용 가능합니다.
+							<th colspan="2">
+									- 마일리지 1 = 1원으로, 현금처럼 사용 가능합니다.
+									<br> - 마일리지는 3000점 이상부터 사용가능합니다.
+									<br> - 마일리지는 10점 단위로 사용 가능합니다.
 
 								
 							</th>
