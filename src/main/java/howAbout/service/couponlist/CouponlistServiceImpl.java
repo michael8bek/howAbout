@@ -15,5 +15,9 @@ public class CouponlistServiceImpl implements CouponlistService {
 	public List<Couponlist> listCoupon(String mem_id) {
 		return cd.listCoupon(mem_id);
 	}
+	@Override
+	public int update(int cplist_id) {
+		return cd.update(cplist_id);
+	}
 
 }

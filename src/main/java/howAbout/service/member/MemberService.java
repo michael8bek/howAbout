@@ -8,6 +8,8 @@ public interface MemberService {
 
 	Member select(String mem_id);
 
+	int addpoint(int point, String memberName);
+
 	
 
 }

@@ -16,6 +16,14 @@ public class Payment {
 	private String pay_required;
 	private int pay_total;
 	private Date pay_time;
+	private int cplist_id;
+	
+	public int getCplist_id() {
+		return cplist_id;
+	}
+	public void setCplist_id(int cplist_id) {
+		this.cplist_id = cplist_id;
+	}
 	public int getPay_id() {
 		return pay_id;
 	}
