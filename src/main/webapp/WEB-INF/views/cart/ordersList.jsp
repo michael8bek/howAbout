@@ -57,7 +57,7 @@
 		var sum = 0;
 		var sum1 = 0;
 		var salesum = 0;
-		var count = frm.goods_price.length;
+		var count = frm.cart_id.length;
 		/* 상품이 하나일때 */
 		if (count == undefined) {
 			sum = parseInt(frm.goods_price.value * frm.goods_qty.value);
@@ -190,9 +190,8 @@
 		});
 	}
 	/* 마일리지 숫자 입력할때 가격에 적용 */
-	/* function mempoint(){
+	 function mempoint(){
 		var point = parseInt(document.getElementById("mem_usepoint").value);
-		alert(point);
 		if(point > frm.mem_point1.value){
 			alert("최대 가능 마일리지입니다");
 			frm.mem_usepoint.value = frm.mem_point1.value;
@@ -201,7 +200,7 @@
 		var sum1 = 0;
 		var salesum = 0;
 		var count = frm.goods_price.length;
-		/* 상품이 하나일때 
+		 /* 상품이 하나일때  */
 		if (count == undefined) {
 			sum = parseInt(frm.goods_price.value * frm.goods_qty.value);
 			sum1 = parseInt(frm.goods_delprice.value);
@@ -228,12 +227,12 @@
 		if (frm.pay_total.value < 0) {
 			frm.pay_total.value = 0;
 		}
-	} */
+	} 
 </script>
 </head>
 <body>
 	<form name="frm" action="payInsert.do" method="post" id="">
-		<%-- <input type="hidden" id="mem_point1" name="mem_point1" value="${member.mem_point}">  --%>
+		 <input type="hidden" id="mem_point1" name="mem_point1" value="${member.mem_point}">  
 		<div class="container">
 			<div class="container1">
 				<div class="container1_1">
@@ -315,7 +314,7 @@
 						</tr>
 						<tr>
 							<th>마일리지 사용</th>
-							<th><%-- <input type="text" name="mem_usepoint" id="mem_usepoint" oninput="mempoint()" >&nbsp;사용가능 마일리지${member.mem_point } --%></th>
+							<th> <input type="text" name="mem_usepoint" id="mem_usepoint" oninput="mempoint()" >&nbsp;사용가능 마일리지 : ${member.mem_point }</th>
 							
 						</tr>
 						<tr>

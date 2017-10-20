@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Cart;
 import howAbout.model.Goods;
+import howAbout.model.Member;
 import howAbout.model.Payment;
 import howAbout.model.Stock;
 import howAbout.service.cart.CartService;
