@@ -47,7 +47,7 @@ public class PaymentController {
 			result1 = 1;
 		}
 		/*마일리지 구매금액의 10%*/
-		int point = (int)(payment.getPay_total() * 0.1);
+		int point = (int)(payment.getPay_total())+(int)(payment.getPay_total() * 0.1);
 		int addpoint = ms.addpoint(point, memberName);
 		
 		int cplistId= cpls.update(payment.getCplist_id());
