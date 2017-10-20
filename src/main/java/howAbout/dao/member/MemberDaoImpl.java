@@ -14,7 +14,7 @@ public class MemberDaoImpl implements MemberDao {
 	public int insert(Member member) {
 		int result = 0;
 		try {
-			sst.insert("insert", member);
+			sst.insert("memberns.insert", member);
 			result = 1;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
