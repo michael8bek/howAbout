@@ -6,14 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-$(function() {
-	$('#price').append().text("${goods.goods_price}");
-	$('select[name=goods_qty]').on('change', function() {
-		alert(this.value);
-	});
-});
-</script>
 </head>
 <body>
 	<div class="view_container" style="text-align: center">
@@ -28,12 +20,13 @@ $(function() {
 				남은수량 : ${stock.stock_qty}<br> 배송비 : ${goods.goods_delprice}
 			</p>
 			<form name="form1" method="post" action="cartinsert.do">
-				<input type="hidden" name="goods_price"
-					value="${goods.goods_price }"> <input type="hidden"
-					name="goods_delprice" value="${goods.goods_delprice }"> <input
-					type="hidden" name="goods_id" id="goods_id"
-					value="${goods.goods_id}">
+				<input type="hidden" name="goods_price" id="goods_price" value="${goods.goods_price }"> 
+				<input type="hidden" name="goods_delprice" id="goods_delprice" value="${goods.goods_delprice }"> 
+				<input type="hidden" name="goods_id" id="goods_id" value="${goods.goods_id}">
+				<input type="hidden" id="goods_pri_del" value="${goods.goods_delprice+goods.goods_price }">
+
 				<c:choose>
+
 					<c:when test="${stock.stock_qty == 0}">
 								수량이 없습니다.
 					</c:when>
@@ -69,7 +62,9 @@ $(function() {
 						<hr>
 						<input type="submit" class="btn btn-info" value="장바구니에 담기">
 					</c:when>
+
 				</c:choose>
+
 			</form>
 			<span id="result"></span>
 		</div>

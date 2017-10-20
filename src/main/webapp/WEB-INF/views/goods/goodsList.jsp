@@ -23,6 +23,17 @@
 
 				//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
 				$('.view_container').html(data);
+				var sumpri = $('#goods_pri_del').val();
+				$('#price').append().text(sumpri);
+				$(function() {
+					$('#cart').on('change', function() {
+						var qty = $('#cart').val();
+						var price1 = $('#goods_price').val();
+						var price2 = $('#goods_delprice').val();
+						var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
+						$('#price').append().text(total_price);
+					});
+				});
 			}
 		});
 	});
