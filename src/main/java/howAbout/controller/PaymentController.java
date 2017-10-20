@@ -36,7 +36,6 @@ public class PaymentController {
 	
 	@RequestMapping("payInsert")
 	public String payInsert(Payment payment, Model model, HttpSession session,HttpServletRequest request ) {
-		
 		payment.setMem_id((String)session.getAttribute("mem_id"));
 		String memberName = payment.getMem_id();
 		String cart_id[] = request.getParameterValues("cart_id");

@@ -91,13 +91,13 @@
 	function coupon(val1) {
 		var element = val1;
 		var cp_benefit = element.split('-')[0];
-		var cplistid = element.split('-')[1];
+		var cplist_id = element.split('-')[1];
 		
 		console.log("변수 element = ", element);
 		console.log("변수 cp_benefit = ", cp_benefit);
-		console.log("변수 cplist_id = ", cplistid);
+		console.log("변수 cplist_id = ", cplist_id);
 		
-		$('#cplist_id').val(cplistid);
+		$('#cplist_id').val(cplist_id);
 		
 		frm.couponsale.value = cp_benefit;
 		/* console.log("변수 cplist_id = ", frm.cplist_id.val); */
@@ -304,11 +304,11 @@
 						<tr>
 							<th style="width: 25%;">쿠폰 선택</th>
 							<th><select onclick="coupon(this.value);" name="cp">
-									<option value="0" style="text-align: center;">사용안함</option>
+									<option value="0-0" style="text-align: center;">사용안함</option>
 									<c:forEach var="couponlist" items="${listCoupon }"
 										varStatus="status">
 										<option
-											value="${couponlist.cp_benefit }-${couponlist.cplist_id }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
+											value="${couponlist.cp_benefit}-${couponlist.cplist_id }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
 									</c:forEach>
 							</select></th>
 						</tr>
