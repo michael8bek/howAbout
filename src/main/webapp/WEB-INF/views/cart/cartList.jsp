@@ -184,15 +184,16 @@ function click_count(idx, n) {
  		  }
  	  }
  	  if (count == undefined){
+ 		 if($("input[name=chk]").prop("checked")){
  		 if (index == 1){
- 	         document.frm.action='delSelect.do';
- 		 }
- 		 else if (index == 2){
- 	         document.frm.action='ordersSelect.do';
+ 	        document.frm.action='delSelect.do';
+ 		 }else if (index == 2){
+ 	     	document.frm.action='ordersSelect.do';
  	 	 }else if (index == 3){
  	   		document.frm.action='buyOne.do?cart_id='+frm.chk.value+'&goods_qty='+frm.goods_qty.value;
 	     }
  		 ck = true;
+ 	  }else ck=false;
  	  }
  	  if (ck==false) {
  		  alert("선택후 작업하세요");

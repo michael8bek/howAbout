@@ -108,7 +108,6 @@ public class CartController {
 		model.addAttribute("result", result);
 		return "cart/delSelect";
 	}
-
 	@RequestMapping("ordersSelect")
 	public String ordersSelect(HttpServletRequest request, Model model) throws Exception {
 		String arr[] = request.getParameterValues("chk");
