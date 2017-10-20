@@ -435,16 +435,30 @@
 					<table class="table">
 						<!-- style="margin-top: 5%; border: 5px solid #1993A8;" -->
 						<tr>
-							<th colspan="2"><input type="submit" value="주문하기"
-								style="width: 100%; height: 100%;" class="btn btn-info"></th>
+							<th colspan="2">
+								<c:if test="${not empty listOrders }">
+									<input type="submit" value="주문하기" id=""
+									style="width: 100%; height: 100%;" class="btn btn-info">
+								</c:if>
+								<c:if test="${empty listOrders }">
+								<input type="submit" value="주문하기" id="" disabled="disabled"
+								style="width:100%; height: 100%;" class="btn btn-info">
+								</c:if>
+							</th>
 						</tr>
 					</table>
 				</div>
 			</div>
-
+	
 			<div align="center">
+			<c:if test="${not empty listOrders }">
 				<input type="submit" value="주문하기" id=""
-					style="width: 20%; height: 100%;" class="btn btn-info">
+					style="width: 100%; height: 100%;" class="btn btn-info">
+			</c:if>
+			<c:if test="${empty listOrders }">
+				<input type="submit" value="주문하기" id="" disabled="disabled"
+					style="width: 100%; height: 100%;" class="btn btn-info">
+			</c:if>
 			</div>
 		</div>
 	</form>
