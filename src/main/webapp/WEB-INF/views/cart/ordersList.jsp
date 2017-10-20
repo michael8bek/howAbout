@@ -189,12 +189,13 @@
 			}
 		});
 	}
+	/* 마일리지 숫자 입력할때 가격에 적용 */
 	function mempoint(){
-		
-		var point = parseInt(document.getElementById("mem_point").value);
+		var point = parseInt(document.getElementById("mem_usepoint").value);
+		alert(point);
 		if(point > frm.mem_point1.value){
 			alert("최대 가능 마일리지입니다");
-			frm.mem_point.value = frm.mem_point1.value;
+			frm.mem_usepoint.value = frm.mem_point1.value;
 		}
 		var sum = 0;
 		var sum1 = 0;
@@ -231,8 +232,8 @@
 </script>
 </head>
 <body>
-	<form name="frm" action="payInsert.do" method="post" id="submitid">
-	<input type="hidden" id="mem_point1" name="mem_point1" value="${member.mem_point}">
+	<form name="frm" action="payInsert.do" method="post" id="">
+		<input type="hidden" id="mem_point1" name="mem_point1" value="${member.mem_point}"> 
 		<div class="container">
 			<div class="container1">
 				<div class="container1_1">
@@ -314,7 +315,7 @@
 						</tr>
 						<tr>
 							<th>마일리지 사용</th>
-							<th><input type="text" min="1" max="${member.mem_point }" name="mem_point" id="mem_point" oninput="mempoint()" >&nbsp;사용가능 마일리지${member.mem_point }</th>
+							<th><input type="text" name="mem_usepoint" id="mem_usepoint" oninput="mempoint()" >&nbsp;사용가능 마일리지${member.mem_point }</th>
 							
 						</tr>
 						<tr>

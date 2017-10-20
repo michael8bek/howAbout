@@ -50,6 +50,14 @@ public class PaymentController {
 		int point = (int)(payment.getPay_total() * 0.1);
 		int addpoint = ms.addpoint(point, memberName);
 		
+		/*포인트 사용시 보유 포인트에서 차감*/
+		/*Member member = new Member();
+		int mem_point = (int)session.getAttribute("mem_point")-(int)request.getAttribute("mem_usepoint");
+		member.setMem_point(mem_point);
+		member.setMem_id((String)session.getAttribute("mem_id"));
+		ms.pointUse(member);
+		System.out.println(mem_point);*/
+		
 		int cplistId= cpls.update(payment.getCplist_id());
 		int result = ps.insert(payment);
 		int result3 = ss.update(payment);
