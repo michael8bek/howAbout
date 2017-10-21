@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결제내역 리스트</title>
+
 </head>
 <body>
 <div class="container">
@@ -22,23 +23,27 @@
 						<th style="text-align: center;">결제금액</th>
 						<th></th>
 					</tr>
-				<c:if test="${not empty payList }">
-				<c:forEach var="payList" items="${payList}">
+				<c:if test="${not empty cartList }">
+				<%-- <c:forEach var="payList" items="${payList}"> --%>
+				<c:forEach var="cartList" items="${cartList}">
+				<%-- <c:if test="${payList.mem_id==cartList.mem_id || payList.goods_id == cartList.goods_id }"> --%>
+					
 					<tr>
 						<td style="border-right: 1px solid #FFFFFF; width: 10%; vertical-align: middle;"><img src="resources/images/goods/${payList.goods_img }" style="width:100%;"></td>
-						<td style="vertical-align: middle;">${payList.goods_name}<p>
-							Color : ${payList.goods_color } / Size : ${payList.goods_size }
+						<td style="vertical-align: middle;">${cartList.goods_name}<p>
+							Color : ${cartList.goods_color } / Size : ${cartList.goods_size }
 						</td>
-						<td style="vertical-align: middle;">${payList.goods_qty }</td>
-						<td style="vertical-align: middle;">${payList.goods_price }</td>
-						<td style="vertical-align: middle;">${payList.cp_benefit }</td>
-						<td style="vertical-align: middle;">${payList.goods_delprice}</td>
-						<td style="vertical-align: middle;">${payList.goods_price*payList.goods_qty-payList.cp_benefit +payList.goods_delprice}</td>
+						<td style="vertical-align: middle;">${cartList.goods_qty }</td>
+						<td style="vertical-align: middle;">${cartList.goods_price }</td>
+						<td style="vertical-align: middle;">${cartList.cp_benefit }</td>
+						<td style="vertical-align: middle;">${cartList.goods_delprice}</td>
+						<td style="vertical-align: middle;"><%-- ${payList.pay_total} --%></td>
+						<!--${payList.goods_price*payList.goods_qty-payList.cp_benefit +payList.goods_delprice}  -->
 						<td style="vertical-align: middle;"><a href="uploadFeedImg.do" class="btn btn-warning">후기작성</a></td>
 					</tr>
 					</c:forEach>
-				</c:if>
-				<c:if test="${empty payList }">
+					</c:if>
+				<c:if test="${empty cartList }">
 					<tr>
 						<td colspan="6">주문상품 내역이 아직없어요. 구매해주세요 ㅜㅜ</td>
 					</tr>
