@@ -18,6 +18,28 @@
 
 
 <style type="text/css">
+
+
+/*모달 새창*/
+#dialog-background {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    opacity:0.6;
+    z-index: 900;
+}
+#my-dialog {
+    display: none;
+    position: fixed;
+    left: calc( 50% - 300px ); top: calc( 50% - 170px );
+    width: 600px; height: 340px; 
+    background: #fff;
+    z-index: 1000;
+    padding: 10px;
+}
+
 /*모바일용 css*/
 
 /* 공통  css*/
@@ -26,15 +48,15 @@ body {
 	background-color: #E3E3E3;
 }
 
-textarea {
+/* textarea {
 	vertical-align: middle;
 	font-size: 1em;
 	color: #333;
-}
+} */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
 display:none;
-}
+} */
 
 /* .container {
 	width: 90%;
@@ -424,6 +446,7 @@ a {
 	overflow-y:auto;
 	width: 100%;
 	height: 80px;
+	font-size:14px;
 	color: #AAAAAA;
 	float: left;
 	padding-left: 2.5%;
@@ -474,14 +497,19 @@ a {
 }
 
 .feed .feed_comment {
+	width:100%;
 	position: relative;
 	background-color: #F7F7F7;
 	border-radius: 0px 0px 5px 5px;
+	height:180px;
+	overflow-y:hidden;
+	display: inline-block;
 }
 .comment_list{
 	display: flex;
 	height: 35px;
 	justify-content: space-between;
+	overflow: hidden;
 }
 .feed_list #feedreply_writer {
 	display: inline-block;
@@ -510,7 +538,7 @@ a {
 .feed_list .comment_txt{
 	position:relative;
 	padding-top:9px;
-	width:185px;
+	width:197px;
 	height:30px;
 	font-size:13px;
 	display: table;
@@ -536,7 +564,7 @@ a {
 	position: fixed;
 	right: 10%;
 	bottom: 5%;
-	z-index: 1000;
+	z-index: 500;
 }
 
 /*피드 글쓰기 창(#myOverlay3)*/
@@ -547,7 +575,21 @@ a {
 /*피드 상세페이지 공통*/
 .feed_detail {
 	border-bottom: 2px solid #7F7F7F;
-	height: 100px;
+	height: 120px;
+	margin-bottom: 10px;
+}
+
+#feeedpage_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:hidden;
+	width: 100%;
+	height: 80px;
+	font-size:14px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
 }
 
 
@@ -565,32 +607,37 @@ float: left;
  display: inline-block; 
  font-weight: bold; 
  cursor: pointer; 
- margin-left: 20px;
+ margin-left: 5%;
 }
 
 #ts_regdate{
- width: 37%; 
+ display:inline-block;
+ right:10px;
  float: right; 
  height: 40px; 
- margin-left: 70px; 
- margin-right: 0px; 
+ position: absolute;
  font-size: 15px; 
  text-align: right;
 }
 
 .feed_reply{
 margin-top: 10px; 
-height:180px;
+height:270px;
+overflow-y:auto;
 }
+#feed_like_btn{
+	cursor: pointer;
+}
+
 #feedpage_replyList{
 	margin-top: 5px;
 	font-size:13px;
 	display: flex;
-	height: 20px;
+	height: 25px;
 }
 
 #feed_reply_content{
- width: 270px;
+ width: 230px;
  height: 33px; 
  vertical-align: middle;
 
@@ -608,24 +655,32 @@ height:180px;
 .replywriter_img>img{
 	border-radius:20px;
 }
-#feeedpage_content{
+#feeedpage_content{	
+	width:120px;
     display: inline-block;
-    overflow-y: scroll;
+    overflow-y: hidden;
     height: 70px;
 }
+.feedreply_regdate{
+	position: relative;
+}
 #feedpage_replyList .feed_writer{
-	overflow: hidden;
-	max-width: 80px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	width: 50px;
 	margin-left: 5px;
 	cursor: pointer;
 }
 #feedpage_replyList .feedreply_text{
+	width:120px;
 	font-size: 13px;
 	overflow: auto;
 	position: relative;
 	margin-left:15px;
 }
-
+#overlayFrame{
+	display: inline-block;
+}
 @media all and (max-width:767px) {
 	/*피드 리스트*/
 	.feed_list #feedlist_writer{
@@ -636,10 +691,10 @@ height:180px;
 	}
 	/*피드 상세페이지 새창(overray)*/
 	#myOverlay2 {
-		max-width: 310px;
+		width:310px;
 	}
 	.feeddetail_img {
-		width: 100%;
+		width: 310px;
 		height: 310px;
 	}
 	/* 	.feed_detail {
@@ -768,18 +823,35 @@ height:180px;
 	}
  */
 	/*피드 상세페이지*/
+	#overlayFrame{
+	width:650px;
+}
 	#myOverlay2 {
+		width:650px;
 		max-width: 700px;
 		display: flex;
+		height: 500px;
 	}
 	.feeddetail_img {
-		width: 350px;
-		height: 350px;
+		width: 320px;
+		height: 320px;
 	}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
 		width: 320px;
+	}
+	.feed_textarea{
+	width:330px;
+	}
+	.feed_detail{
+		height:160px;
+	}
+	.feed_reply_write{
+		padding-top: 5px;
+	}
+	#feeedpage_content{
+		width: 310px;
 	}
 }
 
@@ -851,17 +923,32 @@ height:180px;
 	} */
 	/*피드 상세페이지*/
 	#myOverlay2 {
+		width:650px;
 		max-width: 700px;
 		display: flex;
+		height: 500px;
 	}
 	.feeddetail_img {
-		width: 350px;
-		height: 350px;
+		width: 320px;
+		height: 320px;
 	}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
 		width: 320px;
+	}
+	.feed_textarea{
+	width:330px;
+	}
+	.feed_detail{
+		height:160px;
+	}
+
+	.feed_reply_write{
+		padding-top: 5px;
+	}
+		#feeedpage_content{
+		width: 310px;
 	}
 }
 /* pc 큰화면(1200px이상) */
@@ -926,7 +1013,7 @@ height:180px;
 		width: 100%;
 		height: 160px;
 	}
-/* 	.feed .feed_comment {
+/*	.feed .feed_comment {
 		width: 100%;
 		height: 150px;
 	} */
@@ -940,7 +1027,7 @@ height:180px;
 	padding-top: 9px;
     }
     .feed_list .comment_txt{
-	width:150px;
+	width:142px;
 	height:30px;
 	font-size:13px;
 	display: inline-block;
@@ -948,17 +1035,31 @@ height:180px;
 }
 	/*피드 상세페이지*/
 	#myOverlay2 {
+		width:650px;
 		max-width: 700px;
 		display: flex;
+		height: 500px;
 	}
 	.feeddetail_img {
-		width: 350px;
-		height: 350px;
+		width: 320px;
+		height: 320px;
 	}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
 		width: 320px;
+	}
+	.feed_textarea{
+	width:330px;
+	}
+	.feed_detail{
+		height:160px;
+	}
+	.feed_reply_write{
+		padding-top: 5px;
+	}
+		#feeedpage_content{
+		width: 310px;
 	}
 }
 </style>
@@ -1049,7 +1150,7 @@ height:180px;
 					 <div><img src="resources/images/icons/ajax_loading.gif" /></div>
 				</div>
 			<div class="feed_list" id="user_feed">
-<%-- 				<c:forEach var="feed" items="${list }" varStatus="status">
+ <%-- 				<c:forEach var="feed" items="${list }" varStatus="status">
 					<div class="feed">
 						<div class="feed_imgbox">
 							<a class="feedpage" id="overlayTrigger2"
@@ -1104,15 +1205,14 @@ height:180px;
 						</c:forEach> 
 						</div>
 					</div>
-				</c:forEach> --%>
+				</c:forEach> --%> 
 			</div>
 			<div class="feed_more" style="text-align: center;">
 				<button class="btn btn-danger" id="feed_more_btn" data-pageNum="">more</button>
 			</div> 
 		</section>
 		<div class="write_btn">
-			<a class="feedwrite" id="overlayTrigger2"
-				data-overlay-trigger="myOverlay3"> <c:if test="${not empty member }">
+			<a class="feedwrite" id="btn-open-dialog"> <c:if test="${not empty member }">
 					<button class="btn btn-success">글쓰기</button>
 				</c:if>
 			</a>
@@ -1143,6 +1243,16 @@ height:180px;
 								style="width: 37%; float: right; height: 40px; margin-left: 70px; margin-right: 0px; font-size: 15px; text-align: right;"></div>
 						</div>
 						<div class="feed_content" id="feeedpage_content">피드</div>
+						<div class="feed_icon_area" id="feed_icon">
+								<div class="feed_icon">
+									<img class="icon_img" src="resources/images/icons/feed_heart.png">
+									<p class="icon_txt">${feed.ts_like }</p>
+								</div>
+								<div class="feed_icon">
+									<img class="icon_img" src="resources/images/icons/feed_msg.png">
+									<p class="icon_txt">0</p>
+								</div>
+							</div>
 					</div>
 						<form name="feed_reply_write">
 							<input type="hidden" value="" id="ts_id" name="ts_id"> <input
@@ -1178,8 +1288,44 @@ height:180px;
 		</div>
 	</div>
 	<!-- 피드 글쓰기창(새창) -->
-	<div style="display: none;">
-		<div id="myOverlay3" aria-labelledby="myOverlay2Heading"
+	<div id="my-dialog">
+		<div class="feedwrite_head"
+				style="width: 100%; height: 40px; border-bottom: 1px solid grey; padding-left: 15px; line-height: 35px">
+				<span style="font-weight: bold;">패션 공유 업로드</span>
+		</div>
+		<form name="uploadForm" method="post" action="uploadFeedImg.do"
+				enctype="multipart/form-data" style="width: 100%; height: 300px; display: flex;">
+				<input type="hidden" value="${member.mem_id}" name="mem_id">
+				<input type="hidden" value="${member.mem_name}" name="mem_name">
+					<div class="img_upload_area"
+						style="width: 220px; height: 200px; margin: 10px; display: inline-block;">
+						<div class="img_preview"
+							style="width: 100%; height: 200px; border: 1px solid red; text-align: center;">
+							<img id="img" width="100%" height="100%" style="z-index: 1000" />
+						</div>
+						<input type="file" id="input_img" name="input_img"
+							style="margin-top: 15px;"> <br> <a id="clear">사진초기화</a>
+						<!-- 					<!--<div class="img_upload_btn"
+						style="position: absolute; left: 50%; margin-left: -245px; bottom: 30px">
+						<button class="btn btn-success">이미지 업로드</button>
+					</div> -->
+					</div>
+					<div class="text_upload_area" style="width: 340px; height: 220px; margin: 2%; display: inline-block;">
+					<textarea id="input_content"
+								name="input_content" rows="8" cols="42" style="resize: none;">
+							</textarea> 
+						<div class="content_upload_btn"
+							style="position: absolute; right: 50%; margin-right: -140px; bottom: 30px">
+							<input type="submit" class="btn btn-success"
+								onClick="return uploadChk();" value="등록">
+						</div>
+					</div>
+			</form>
+	</div>
+	<div id="dialog-background"></div>
+
+ 	<%-- <div style="display: none;">
+		<div id="my-dialog" aria-labelledby="myOverlay2Heading"
 			data-overlay-container-class="slide-down" role="region"
 			style="width: 600px; height: 340px">
 			<div class="feedwrite_head"
@@ -1222,29 +1368,40 @@ height:180px;
 			</form>
 			<div class="feedwrite_footer"></div>
 		</div>
-	</div>
+	</div>  --%>
 
 
-	<script type="text/javascript" src="resources/js/Overlay.js"></script>
+<!-- 	<script type="text/javascript" src="resources/js/Overlay.js"></script> -->
 	<script type="text/javascript"
 		src="resources/vendor/bootstrap/js/bootstrap.js"></script>
 	<!-- <script src="resources/js/jquery.js"></script> -->
 	<script type="text/javascript"
 		src="resources/vendor/jquery/jquery.min.js"></script>
+		
 	<script type="text/javascript"
 		src="resources/js/trendshare.js"></script>
 	<script type="text/javascript">
 		//스타일피드 페이지 로딩 후 
 		var errImg = "'http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png'"; //이미지 로딩 에러시 뜰 사진
-		window.onload = pageLoad;
+		 window.onload = pageLoad;
+/* 		function jsinsert(){
+			var overlayjs = document.createElement('script');
+			overlayjs.src = "/howAbout/resources/js/Overlay.js";
+			overlayjs.id="overlay";
+			document.getElementsByTagName('head')[0].appendChild(overlayjs);
+		}; */
+		
+		
     function pageLoad(){
+			var pageType = "${pageType}";
 			console.log("트렌드쉐어 페이지 실행");
+			console.log("페이지타입:",pageType)
 			$.ajax({
 						url : "feedorder.do",
 						type : "POST",
 						data : {
-							listType : "recent"
-						},
+							pageType : "recent"
+						}, 
 						async : true,
 						dataType : "json",
 						timeout:100000,
@@ -1261,7 +1418,6 @@ height:180px;
 							var ts_img = ""; /*ts_img_path+ts_img_name*/
 							var ts_regdate = "";
 							$.each(data.list, function(index, feed) {
-								console.log(data.list);
 								$("#user_feed").append('<div class="feed">'
 														+ '<div class="feed_imgbox">'
 														+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
@@ -1289,7 +1445,7 @@ height:180px;
 														+ '<p class="icon_txt">'+$(feed).attr('ts_like')
 														+ '</p></div><div class="feed_icon">'
 														+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-														+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+														+ '<p class="icon_txt">'+$(feed).attr('reply_count')
 														+ '</p></div></div></div>'
 														+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 														+ '"></div>');
@@ -1305,7 +1461,9 @@ height:180px;
 								+ '">'+$(reply).attr("mem_name")
 								+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
 								+'">'
-								+ $(reply).attr("reply_content")+'</div></div>'); 
+								+ $(reply).attr("reply_content")+'</div>'
+								/* +'<div class="feedreply_regdate">'+$(reply).attr('reply_regdate')+'</div>' */
+								+'</div>'); 
 								}
 							});
 			
@@ -1317,6 +1475,8 @@ height:180px;
 					        $('.feed_loading').removeClass('display-none');
 					    },complete:function(){
 					    	$('.feed_loading').addClass('display-none');
+					    	$("#order_recent").css('color','blue');
+					    	$("#order_like").css('color','black');
 						},error : function(request,status,error) {
 							console.log("code:"+ request.status
 											+ "\n"
@@ -1380,14 +1540,14 @@ height:180px;
 			} */
 		};
 
-
+/* 
 		$(document)
 				.ready(
-						function() {
+						function() { */
 							/* 이벤트배너 슬라이드 */
 
 							/* 캐러쉘 광고 슬라이드*/
-							$('.carousel').carousel();
+							/* $('.carousel').carousel(); */
 
 							/* 이미지 마우스 갖다 되면 투명하게 */
 							$(".feedpage").hover(function() {
@@ -1471,25 +1631,29 @@ height:180px;
 							
 							
 							//피드 리스트 인기순(DB의 ts_like순) 정렬
-							
-							$("#order_like").bind("click",function() {
+							$(document).on('click','#order_like',function() {
+							/* $("#order_like").bind("click",function() { */
+								var pageType = "${pageType}";
 												console.log("인기순정렬 JS함수 실행");
+												console.log("인기순페이지타입:",pageType);
 												$.ajax({
 															url : "feedorder.do",
 															type : "POST",
 															data : {
-																listType : "like"
-															},
+																pageType : "like"
+															}, 
 															async : true,
 															dataType : "json",
 															timeout:100000,
 															success : function(data) {
 																console.log("인기순 정렬 ajax 함수 success");
-																console.log(data)
+																var pageType = "${pageType}";
+																console.log(pageType);
+																console.log(data);
 																/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
 																var overlayjs = document.createElement('script');
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
-																document.getElementsByTagName('head')[0].appendChild(overlayjs);
+																document.getElementsByTagName('head')[0].appendChild(overlayjs); 
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
@@ -1523,7 +1687,7 @@ height:180px;
 																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
 																												+ '</p></div><div class="feed_icon">'
 																												+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																												+ '<p class="icon_txt">'+$(feed).attr('reply_count')
 																												+ '</p></div></div></div>'
 																												+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 																												+ '"></div>');
@@ -1546,8 +1710,12 @@ height:180px;
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
+														        $('#overlay').remove();
 														    },complete:function(){
 														    	$('.feed_loading').addClass('display-none');
+														    	$("#order_recent").css('color','black');
+														    	$("#order_like").css('color','blue');
+																	/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -1568,8 +1736,8 @@ height:180px;
 															url : "feedorder.do",
 															type : "POST",
 															data : {
-																listType : "recent"
-															},
+																pageType : "recent"
+															}, 
 															async : true,
 															dataType : "json",
 															timeout:100000,
@@ -1578,7 +1746,7 @@ height:180px;
 																/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
 																var overlayjs = document.createElement('script');
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
-																document.getElementsByTagName('head')[0].appendChild(overlayjs);
+																document.getElementsByTagName('head')[0].appendChild(overlayjs); 
 																/*ajxx밭은 data 출력하기*/
 																var mem_id = "";
 																var mem_name = "";
@@ -1613,7 +1781,7 @@ height:180px;
 																							+ '<p class="icon_txt">'+$(feed).attr('ts_like')
 																							+ '</p></div><div class="feed_icon">'
 																							+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-																							+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																							+ '<p class="icon_txt">'+$(feed).attr('reply_count')
 																							+ '</p></div></div></div>'
 																							+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 																							+ '"></div>');
@@ -1639,6 +1807,8 @@ height:180px;
 														        $('.feed_loading').removeClass('display-none');
 														    },complete:function(){
 														    	$('.feed_loading').addClass('display-none');
+														    	$("#order_recent").css('color','blue');
+														    	$("#order_like").css('color','black');
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -1652,11 +1822,11 @@ height:180px;
 											});
 
 							//피드 클릭시 새창 띄우며 ajax로 데이터 불러오기$(".feedpage").bind("click",function() {
-							$(document).on('click','.feedpage',function() {
+							$(document).on('click','.feedpage',function feeddetail() {
 								console.log("피드창 띄우기");
-								/* var jquery = document.createElement('script');
-								jquery.src = "/howAbout/resources/js/Overlay.js";
-								document.getElementsByTagName('head')[0].appendChild(jquery); */
+								 	/* var overlayjs = document.createElement('script');
+									overlayjs.src = "/howAbout/resources/js/Overlay.js";
+									document.getElementsByTagName('head')[0].appendChild(overlayjs); */
 												var ts_id = $(this).data('seq');
 												console.log("피드페이지 클릭");
 												$.ajax({url : "feeddetail.do",
@@ -1671,11 +1841,8 @@ height:180px;
 																var ts_id="";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
 																var ts_regdate = "";
-																console.log("data:"+data);
-																console.log("data.list:"+data.list);
-																console.log("data.rlist:"+data.list);
-																
 																$.each(data.list,function(index,feed) {
+																console.log("상세페이지 데이터:",feed);
 																	$("#myOverlay2").html('<img class="feeddetail_img" id="ts_img"'
 																		+'onerror="this.src='+errImg+';"'  
 																		+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt="">'
@@ -1685,8 +1852,13 @@ height:180px;
 																		+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
 																		+'</div><div class="feed_writer" id="feedpage_writer" data-writer="'+$(feed).attr('mem_id')+'">'+$(feed).attr('mem_name')+'</div>'
 																		+'<div class="feed_date" id="ts_regdate">'+$(feed).attr('ts_regdate')+'</div>'
-																		+'</div><div class="feed_content" id="feeedpage_content">'+$(feed).attr('ts_content')+'</div></div>'
-																		+'<form name="feed_reply_write"><input type="hidden" value="'+$(feed).attr('ts_id')+'" id="ts_id" name="ts_id">'
+																		+'</div><div class="feed_content" id="feeedpage_content">'+$(feed).attr('ts_content')+'</div>'
+																		+'<div class="feed_icon_area" id="feed_icon"><div class="feed_icon">'
+																		+'<img class="icon_img" id="feed_like_btn" src="resources/images/icons/feed_heart.png">'
+																		+'<p class="icon_txt" id="feed_like_icon">'+$(feed).attr('ts_like')+'</p></div><div class="feed_icon">'
+																		+'<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+																		+'<p class="icon_txt" id="reply_count">'+$(feed).attr('reply_count')+'</p></div></div></div>'
+																		+'<form name="feed_reply_write" class="feed_reply_write"><input type="hidden" value="'+$(feed).attr('ts_id')+'" id="ts_id" name="ts_id">'
 																		+'<input type="hidden" value="${member.mem_id}" name="mem_id"> <input type="hidden" value="${member.mem_name}" name="mem_name">' 
 																		+'<div style="display:none"><input type="submit" onclick="return false;" />'
 																		+'<input type="text"/></div>'
@@ -1698,15 +1870,14 @@ height:180px;
 																		+'<input type="text" id="feed_reply_content" name="reply_content" style="width:100%;" placeholder="댓글을 입력하려면 로그인하세요.">'
 																		+'</c:if>'
 																		+'</form><div class="feed_reply"></div>');
-																		/* +'<input type="text" id="feed_reply_content" name="reply_content"  placeholder="댓글을 입력하세요">'
-																		+'<input type="button" class="btn btn-danger" id="feed_reply_btn" onClick="return replyuploadChk();" value="확인">' */
 																	
 																	$.each(data.rlist, function(index, reply) {
 																		 $(".feed_reply").append('<div id="feedpage_replyList">'
 																		+'<div class="feed_writer_img" style="width: 30px; height: 30px;">'
 																		+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
 																		+'</div><div class="feed_writer" id="feedreply_writer" data-writer='+$(reply).attr('mem_id')+'>'+$(reply).attr('mem_name')+'</div>'
-																		+'<div class="feedreply_text">'+$(reply).attr('reply_content')+'</div>'							
+																		+'<div class="feedreply_text">'+$(reply).attr('reply_content')+'</div>'
+																		+'<div class="feedreply_regdate">'+$(reply).attr('reply_regdate')+'</div>'
 																		+'</div></div></div>');
 																	});
 																		
@@ -1728,14 +1899,14 @@ height:180px;
 									success : function(data){
 										console.log("댓글등록ajax메소드");
 										console.log(data)
-										$.each(data, function(index, reply) {
 											 $(".feed_reply").prepend('<div id="feedpage_replyList">'
 											+'<div class="feed_writer_img" style="width: 30px; height: 30px;">'
 											+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
-											+'</div><div class="feed_writer" id="feedreply_writer" data-writer="${feed.mem_id }">'+$(reply).attr('mem_name')+'</div>'
-											+'<div class="feedreply_text">'+$(reply).attr('reply_content')+'</div>'							
+											+'</div><div class="feed_writer" id="feedreply_writer" data-writer="${feed.mem_id }">'+$(data.list).attr('mem_name')+'</div>'
+											+'<div class="feedreply_text">'+$(data.list).attr('reply_content')+'</div>'	
+											+'<div class="feedreply_regdate">'+$(data.list).attr('reply_regdate')+'<div>'
 											+'</div></div></div>');
-										});
+											$("#reply_count").text($(data.reply).attr('reply_count'));
 									},
 									error : function(
 											request,
@@ -1794,7 +1965,7 @@ height:180px;
 																	+ '</div>'
 																	+ '<div class="feed_icon_area" id="feed_icon">'
 																	+ '<div class="feed_icon">'
-																	+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+																	+ '<img class="icon_img" id="feed_like_btn" src="resources/images/icons/feed_heart.png">'
 																	+ '<p class="icon_txt">'+$(feed).attr('ts_like')
 																	+ '</p></div><div class="feed_icon">'
 																	+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
@@ -1802,8 +1973,8 @@ height:180px;
 																	+ '</p></div></div></div>'
 																	+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 																	+ '"></div>');
-																	
-/* 										$.each(data.rlist, function(index, reply) {
+		/* 															
+										$.each(data.rlist, function(index, reply) {
 											if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
 											$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
 											+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
@@ -1816,10 +1987,10 @@ height:180px;
 											+'">'
 											+ $(reply).attr("reply_content")+'</div></div>'); 
 											}
-										}); */
+										});  */
 						
-								});
-									}
+													});
+											}
 									})
 							});
 							
@@ -1830,8 +2001,31 @@ height:180px;
 								console.log("mem_id는" + mem_id);
 								location.href = 'mypage.do?mem_id=' + mem_id
 							});
-
-							})
+						
+							/* 피드 글쓰기 창(overlay에서 modal로 변경) */
+							$(function(){
+									$("#btn-open-dialog,#dialog-background,#btn-close-dialog").click(function () {
+									$("#my-dialog,#dialog-background").toggle();
+							});
+									
+							/*피드 좋아요 버튼 클릭*/
+							$(document).on('click','#feed_like_btn',function(){
+								var ts_id = $('#ts_id').val();
+								console.log("좋아요버튼",ts_id);
+								$.ajax({
+									url:"feedlike.do",
+									type:"POST",
+									data:{ts_id : ts_id},
+									async:true,
+									dataType:"json",
+									success:function(data){
+										console.log("피드 좋아요 ajax 성공");
+										console.log("좋아요누를때 들어오는 data",data);
+										$('#feed_like_icon').text(data);										
+									}
+								})								
+							});
+});
 							
 	</script>
 

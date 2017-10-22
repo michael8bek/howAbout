@@ -15,11 +15,13 @@ public interface StylefeedService {
 
 	List<Stylefeed> feedDetail(int ts_id);
 	List<Stylefeed> feedlist_orderLike();
-	int feedReplyWrite(Tsreply tr);
+	List feedReplyWrite(Stylefeed sf);
 	List<Stylefeed> feedlist_orderRecent();
 	List tsReplyList();
 	List<Stylefeed> feedReplyList(int ts_id);
 	List feedReply(Stylefeed sf);
 	List feedmore(int startRow, int endRow);
+	int feedcount();
+	int feedlike(int ts_id);
 
 }

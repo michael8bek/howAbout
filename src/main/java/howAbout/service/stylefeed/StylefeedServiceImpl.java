@@ -42,8 +42,8 @@ public class StylefeedServiceImpl implements StylefeedService {
 	}
 
 	@Override
-	public int feedReplyWrite(Tsreply tr) {
-		return sd.feedReplyWrite(tr);
+	public List feedReplyWrite(Stylefeed sf) {
+		return sd.feedReplyWrite(sf);
 	}
 
 	@Override
@@ -69,6 +69,16 @@ public class StylefeedServiceImpl implements StylefeedService {
 	@Override
 	public List feedmore(int startRow, int endRow) {
 		return sd.feedmore(startRow, endRow);
+	}
+
+	@Override
+	public int feedcount() {
+		return sd.feedcount();
+	}
+
+	@Override
+	public int feedlike(int ts_id) {
+		return sd.feedlike(ts_id);
 	}
 
 }

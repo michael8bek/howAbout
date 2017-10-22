@@ -42,9 +42,10 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	}
 
 	@Override
-	public int feedReplyWrite(Tsreply tr) {
-		sst.insert("feedreplyWrite",tr);
-		return sst.insert("tsreplyns.tsreply_write",tr);
+	public List feedReplyWrite(Stylefeed sf) {
+		sst.insert("stylefeedns.feedreplyWrite",sf);
+		sst.insert("stylefeedns.tsreply_write",sf);
+		return sst.selectList("stylefeedns.replycount", sf);
 	}
 
 	@Override
@@ -75,5 +76,16 @@ public class StylefeedDaoImpl implements StylefeedDao{
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		return sst.selectList("stylefeedns.feedmore",map);
+	}
+
+	@Override
+	public int feedcount() {
+		return sst.selectOne("stylefeedns.feedcount");
+	}
+
+	@Override
+	public int feedlike(int ts_id) {
+		sst.update("stylefeedns.feedlike", ts_id);
+		return sst.selectOne("stylefeedns.feedlike_result", ts_id);
 	}
 }

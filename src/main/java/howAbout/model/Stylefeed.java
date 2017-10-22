@@ -19,8 +19,14 @@ public class Stylefeed {
 	private String reply_content;
 	private Date reply_regdate;
 	private String reply_del;
+	private int reply_count;
 	
-	
+	public int getReply_count() {
+		return reply_count;
+	}
+	public void setReply_count(int reply_count) {
+		this.reply_count = reply_count;
+	}
 	public String getReply_del() {
 		return reply_del;
 	}

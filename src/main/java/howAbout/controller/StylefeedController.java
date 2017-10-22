@@ -31,6 +31,8 @@ import howAbout.model.Member;
 import howAbout.model.Stylefeed;
 import howAbout.model.Tsreply;
 import howAbout.service.stylefeed.StylefeedService;
+import scala.util.parsing.json.JSONArray;
+import scala.util.parsing.json.JSONObject;
 
 @Controller
 public class StylefeedController {
@@ -48,57 +50,45 @@ public class StylefeedController {
 	
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
-	public @ResponseBody Map<String,List> stylefeed(HttpSession session, HttpServletRequest request, Model model) {
-		String pageType = (String) session.getAttribute("pageType");
-		System.out.println("페이지타입(pType):"+pageType);
-		List list = null;
-		List rlist = null;
-		HashMap<String, List> map = new HashMap<String, List>();
-		list = ss.feedlist_orderRecent();
-		rlist = ss.tsReplyList();
-		map.put("list", list);
-		map.put("rlist", rlist);
-		session.setAttribute("pageType", "recentOrder");
-		
-		
-		model.addAttribute("reply", rlist);
-		model.addAttribute("list", list);
+	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println("ㅁㄴㅇ:"+request.getParameter("pageType"));
+			//session.setAttribute("main", pageType);
 		Member member = (Member) session.getAttribute("member");
 		model.addAttribute("member", member);
-		return map;
+		return "stylefeed";
 	};
 	
 
 	// 피드 리스트 정렬(인기순, 최신순(기본값))
 	@RequestMapping(value = "feedorder", method = RequestMethod.POST)
-	public @ResponseBody Map<String,List> feedorder(@RequestParam("listType") String listType, Model model, HttpSession session) {
+	public @ResponseBody Map<String,List> feedorder(@RequestParam("pageType") String pageType, Model model, HttpSession session) {
 		System.out.println("피드정렬 컨트롤러 실행");
+		
 		List list = null;
 		List rlist = null;
-		rlist = ss.tsReplyList();
-		System.out.println("댓글리스트"+rlist);
 		HashMap<String, List> map = new HashMap<String, List>();
-		if(listType.equals("like")){  //인기순
-			System.out.println("정렬타입:" + listType);
+		if(pageType.equals("like")){  //인기순
+			System.out.println("페이지타입2:" + pageType);
 			list = ss.feedlist_orderLike();
 			rlist = ss.tsReplyList();
 			map.put("list", list);
 			map.put("rlist", rlist);
-			session.setAttribute("pageType", "likeOrder");
-		}else if(listType.equals("recent")) {  //최근등록순
-			System.out.println("정렬타입:" + listType);
+			model.addAttribute("pageType","like");
+			//session.setAttribute("pageType", "like");
+		}else if(pageType.equals("recent") || pageType == null) {  //최근등록순
+			System.out.println("페이지타입3:" + pageType);
 			list = ss.feedlist_orderRecent();
 			rlist = ss.tsReplyList();
 			map.put("list", list);
 			map.put("rlist", rlist);
-			session.setAttribute("pageType", "recentOrder");
+			model.addAttribute("pageType", "recent");
+			//session.setAttribute("pageType", "recent");
 		};
-		
-		try {
+/*		try {
 			Thread.sleep(350);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
 		return map;
 	}
 
@@ -164,7 +154,7 @@ public class StylefeedController {
 	}
 	//피드 댓글 등록
 	@RequestMapping(value = "feedreplywrite", method = RequestMethod.POST)
-	public @ResponseBody List feedreplywrite(HttpServletRequest request, Model model, HttpSession session) {
+	public @ResponseBody Map feedreplywrite(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("스타일피드 댓글 작성 컨트롤러 실행");
 		int ts_id = Integer.parseInt(request.getParameter("ts_id"));
 		String mem_id = request.getParameter("mem_id");
@@ -172,28 +162,32 @@ public class StylefeedController {
 /*		String mem_id= (String) session.getAttribute("mem_id");
 		String mem_name=(String) session.getAttribute("mem_name");*/
 		String reply_content=request.getParameter("reply_content");
+		HashMap<String, List> map = new HashMap<String, List>();
 		List list = null;
-		Tsreply tr = new Tsreply();
-		tr.setTs_id(ts_id);
-		tr.setMem_id(mem_id);
-		tr.setMem_name(mem_name);
-		tr.setReply_content(reply_content);
-		tr.setReply_type("feed");
-		int replyResult = ss.feedReplyWrite(tr);
-		if(replyResult==1) {
+		Stylefeed sf = new Stylefeed();
+		sf.setTs_id(ts_id);
+		sf.setMem_id(mem_id);
+		sf.setMem_name(mem_name);
+		sf.setReply_content(reply_content);
+		List reply_count = ss.feedReplyWrite(sf);
 			System.out.println("트렌드쉐어 댓글 등록 성공");
-		}else {
-			System.out.println("트렌드쉐어 댓글 등록 실패");
-		}
+			System.out.println("댓글갯수:"+reply_count);
 		//여기까지 댓글입력
 		//여기부터는 댓글 출력
-		Stylefeed sf = new Stylefeed();
-		System.out.println();
-		sf.setReply_id(tr.getReply_id());
-		sf.setTs_id(tr.getTs_id());
 		list = ss.feedReply(sf);
-		return list;
+		map.put("list", list);
+		map.put("reply", reply_count);
+		return map;
 	}
+	//피드 좋아요 반영
+	@RequestMapping(value = "feedlike", method = RequestMethod.POST)
+	public @ResponseBody int feedlike(@RequestParam("ts_id") int ts_id, Model model, HttpSession session) {
+		System.out.println("스타일피드 댓글 작성 컨트롤러 실행");
+		int ts_count = ss.feedlike(ts_id);
+		System.out.println("글좋아요수"+ts_count);
+		return ts_count;
+	}
+	
 	// 마이페이지
 	@RequestMapping("mypage")
 	public String mypage(Model model, @RequestParam("mem_id") String mem_id) {
@@ -205,23 +199,40 @@ public class StylefeedController {
 	
 	//피드 더보기 
 	@RequestMapping("feedmore")
-	public @ResponseBody List feedmore(@RequestParam("pageNum") String pageNum) {
+	public @ResponseBody List feedmore(@RequestParam("pageNum") String pageNum, Model model) {
 		String more="more";
 		System.out.println(pageNum);
 		//스타일피드 페이지 메인 페이징작업
 		
 		System.out.println("pageNum 두번째값:"+pageNum);
-		int currentPage = Integer.parseInt(pageNum);
-		currentPage = currentPage+1;
+		int totalcount = ss.feedcount(); //게시글 총 개수
+		System.out.println("게시글 총 개수:"+totalcount);
 		final int ROWPERPAGE = 8;
 		
-		int startRow = (currentPage-1)*ROWPERPAGE+1;
+		int totalpage = totalcount / ROWPERPAGE; // 총 페이지
+		
+		if(totalcount % ROWPERPAGE > 0) {
+			totalpage = totalpage + 1  ;
+		} 
+		int currentPage = Integer.parseInt(pageNum);
+		System.out.println("currentPage"+currentPage);
+		if(totalpage < currentPage ) {
+			currentPage = totalpage;
+		}
+		
+		
+		int startpage = 1;  //시작페이지
+		int endpage = totalpage; //마지막페이지
+		System.out.println("마지막페이지:"+endpage);
+		
+		int startRow = (currentPage-1)*ROWPERPAGE+1; //페이지 내 첫번째 글번호
+		
+		
 		System.out.println("startRow:"+startRow);
 		int endRow = startRow + ROWPERPAGE-1;
 		System.out.println("endRow:"+endRow);
 		
 		List list = ss.feedmore(startRow, endRow);
-		
 		
 		
 		return list;

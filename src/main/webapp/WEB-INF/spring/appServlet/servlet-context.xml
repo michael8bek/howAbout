@@ -16,6 +16,11 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+
+
+
+
+
 	<!-- 이미지 업로드를 위한 CommonsMultipartResolver 빈등록 -->
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

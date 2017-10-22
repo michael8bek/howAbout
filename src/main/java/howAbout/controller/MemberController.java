@@ -29,7 +29,7 @@ public class MemberController {
 	public String main(Model model, HttpSession session) {
 		List<Goods> list = gs.list();
 		model.addAttribute("list", list);
-		session.setAttribute("pageType", "main"); //세션에 페이지별 타입(이름) 지정해서 페이지 구분;
+		session.setAttribute("pageDefault", "true"); //세션에 페이지별 타입(이름) 지정해서 페이지 구분;
 		List<Mdtext> best = mds.list();
 		model.addAttribute("best",best);
 		return "main";
