@@ -55,7 +55,7 @@
 				<div class="form-group">
 					<input type="text"
 						class="form-control form-row " name="search" id="search" placeholder="Search Items">
-				<button type="submit" class="btn btn-primary btn-md active">Search</button>
+				<button type="submit" id="search_btn" class="btn btn-primary btn-md active">Search</button>
 				</div>
 			</form>
 			<!-- /.search 창 form -->
@@ -142,6 +142,18 @@
 			</div>
 		</div>
 	</nav>
-
+	<script type="text/javascript">
+	//검색결과에서 검색어 강조
+/* 	 $('.feed').each(function() {
+		console.log($(this).find('#feedlist_content').text());
+	 검색결과
+		var searchString=$(this).find('#feedlist_content').text();
+	/ 치환하기
+		var resultString = searchString.replace(re, "<span class='found'>$&</span>");
+	/ 화면에 출력
+		$(this).find('#feedlist_content').text(resultString); 
+        }); */
+	
+	</script>
 </body>
 </html>

@@ -34,4 +34,8 @@ public interface StylefeedDao {
 
 	int feedlike(int ts_id);
 
+	List feedsearch(String search);
+
+	List feedDetailDft(int ts_id);
+
 }

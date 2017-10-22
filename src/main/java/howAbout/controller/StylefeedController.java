@@ -39,19 +39,29 @@ public class StylefeedController {
 	@Autowired
 	private StylefeedService ss;
 
-	//테스트용 검색결과
+	//검색결과 페이지 이동
 	@RequestMapping("search")
 	public String search(@RequestParam String search, HttpServletRequest request,Model model) {
 	System.out.println(search);
+	List list = ss.feedSearch(search);
+	model.addAttribute("list",list);
 	model.addAttribute("search",search);
 	return "searchresult";	
 	}
-	
+/*	//검색결과
+	@RequestMapping(value = "searchresult", method = RequestMethod.POST)
+	public @ResponseBody List searchresult(@RequestParam("search") String search) {
+		System.out.println("피드상세페이지 컨트롤러 실행");
+		System.out.println("검색어:"+search);
+		List list = ss.feedSearch(search);
+		System.out.println("검색결과"+list);
+		return list;
+	}*/
 	
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
 	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {
-		System.out.println("ㅁㄴㅇ:"+request.getParameter("pageType"));
+		System.out.println("페이지타입:"+request.getParameter("pageType"));
 			//session.setAttribute("main", pageType);
 		Member member = (Member) session.getAttribute("member");
 		model.addAttribute("member", member);
@@ -145,10 +155,18 @@ public class StylefeedController {
 	@RequestMapping(value = "feeddetail", method = RequestMethod.POST)
 	public @ResponseBody Map<String,List> feeddetail(@RequestParam("ts_id") int ts_id) {
 		System.out.println("피드상세페이지 컨트롤러 실행");
+		System.out.println("글번호:"+ts_id);
 		HashMap<String, List> map = new HashMap<String,List>();
 		List feed = ss.feedDetail(ts_id);
-		List rlist = ss.feedReplyList(ts_id);
 		map.put("list", feed);
+		if(feed.isEmpty()) {
+			List feed_d = ss.feedDetailDft(ts_id);
+			map.put("list", feed_d);
+			System.out.println("댓글수 없이 뽑기:"+feed_d);
+		}
+		List rlist = ss.feedReplyList(ts_id);
+		System.out.println(feed);
+		System.out.println(rlist);
 		map.put("rlist", rlist);
 		return map;
 	}

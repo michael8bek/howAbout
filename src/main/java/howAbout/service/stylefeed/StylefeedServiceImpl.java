@@ -81,4 +81,14 @@ public class StylefeedServiceImpl implements StylefeedService {
 		return sd.feedlike(ts_id);
 	}
 
+	@Override
+	public List feedSearch(String search) {
+		return sd.feedsearch(search);
+	}
+
+	@Override
+	public List feedDetailDft(int ts_id) {
+		return sd.feedDetailDft(ts_id);
+	}
+
 }

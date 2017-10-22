@@ -44,6 +44,9 @@ select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from rep
 		<!-- select * from trendshare where ts_del='n' and ts_id=#{ts_id} -->
 		select * from (select tr.ts_id,count(*) reply_count from reply r, ts_reply tr where tr.ts_id = #{ts_id} and r.reply_id = tr.reply_id and reply_del='n' order by reply_regdate desc) r_count, trendshare ts where r_count.ts_id = ts.ts_id;
 	</select>
+	<select id="feedDetail_default" parameterType="stylefeed" resultMap="stylefeedResult">
+		select * from trendshare where ts_del='n' and ts_id=#{ts_id}
+	</select>
 	<update id="feedlike" parameterType="int">
 		update trendshare set ts_like = ts_like + 1 where ts_id=#{ts_id};
 	</update>
@@ -84,6 +87,8 @@ select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from rep
 		ts_reply(ts_id, reply_id)
 		values(#{ts_id},#{reply_id})
 	</insert>
-	
+	<select id="feedsearch" parameterType="String" resultMap="stylefeedResult">
+	select * from trendshare where ts_content LIKE CONCAT('%', #{search}, '%')
+	</select>
 	
 </mapper>

@@ -23,5 +23,7 @@ public interface StylefeedService {
 	List feedmore(int startRow, int endRow);
 	int feedcount();
 	int feedlike(int ts_id);
+	List feedSearch(String search);
+	List feedDetailDft(int ts_id);
 
 }

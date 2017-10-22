@@ -88,4 +88,14 @@ public class StylefeedDaoImpl implements StylefeedDao{
 		sst.update("stylefeedns.feedlike", ts_id);
 		return sst.selectOne("stylefeedns.feedlike_result", ts_id);
 	}
+
+	@Override
+	public List feedsearch(String search) {
+		return sst.selectList("stylefeedns.feedsearch",search);
+	}
+
+	@Override
+	public List feedDetailDft(int ts_id) {
+		return sst.selectList("stylefeedns.feedDetail_default",ts_id);
+	}
 }

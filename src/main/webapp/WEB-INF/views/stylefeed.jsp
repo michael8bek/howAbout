@@ -481,9 +481,13 @@ a {
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 15%;
+	margin-right: 65px;
 }
-
+.feed_icon_area .feed_icon:first-child{
+	margin-left: 15px;
+}.feed_icon_area .feed_icon:last-child{
+	margin-right: 15px;
+}
 .icon_img{
 	margin-right: 5px;
 	float:left;
@@ -622,7 +626,7 @@ float: left;
 
 .feed_reply{
 margin-top: 10px; 
-height:270px;
+height:220px;
 overflow-y:auto;
 }
 #feed_like_btn{
@@ -830,7 +834,7 @@ overflow-y:auto;
 		width:650px;
 		max-width: 700px;
 		display: flex;
-		height: 500px;
+		height: 450px;
 	}
 	.feeddetail_img {
 		width: 320px;
@@ -917,16 +921,23 @@ overflow-y:auto;
 		width: 100%;
 		height: 160px;
 	}
-/* 	.feed .feed_comment {
-		width: 100%;
-		height: 150px;
-	} */
+	.feed_icon{
+	margin:5px;
+	height:24px;
+	float:left;
+	margin-right: 50px;
+}
+.feed_icon_area .feed_icon:first-child{
+	margin-left: 15px;
+}.feed_icon_area .feed_icon:last-child{
+	margin-right: 15px;
+}
 	/*피드 상세페이지*/
 	#myOverlay2 {
 		width:650px;
 		max-width: 700px;
 		display: flex;
-		height: 500px;
+		height: 450px;
 	}
 	.feeddetail_img {
 		width: 320px;
@@ -1013,12 +1024,17 @@ overflow-y:auto;
 		width: 100%;
 		height: 160px;
 	}
-/*	.feed .feed_comment {
-		width: 100%;
-		height: 150px;
-	} */
-	
-	
+.feed_icon{
+	margin:5px;
+	height:24px;
+	float:left;
+	margin-right: 40px;
+}
+.feed_icon_area .feed_icon:first-child{
+	margin-left: 15px;
+}.feed_icon_area .feed_icon:last-child{
+	margin-right: 15px;
+}
 	.feed_list #feedreply_writer {
 	font-size: 13px;
 	margin-left:10px;
@@ -1038,7 +1054,7 @@ overflow-y:auto;
 		width:650px;
 		max-width: 700px;
 		display: flex;
-		height: 500px;
+		height: 450px;
 	}
 	.feeddetail_img {
 		width: 320px;
@@ -1443,10 +1459,16 @@ overflow-y:auto;
 														+ '<div class="feed_icon">'
 														+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
 														+ '<p class="icon_txt">'+$(feed).attr('ts_like')
-														+ '</p></div><div class="feed_icon">'
+														+ '</p></div>'
+														+'<div class="feed_icon">'
 														+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
 														+ '<p class="icon_txt">'+$(feed).attr('reply_count')
-														+ '</p></div></div></div>'
+														+ '</p></div>'
+														+'<div class="feed_icon">'
+														+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
+														+ '<p class="icon_txt">'+$(feed).attr('ts_readcount')
+														+'</p></div>'
+														+'</div></div>'
 														+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 														+ '"></div>');
 														
@@ -1685,10 +1707,16 @@ overflow-y:auto;
 																												+ '<div class="feed_icon">'
 																												+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
 																												+ '<p class="icon_txt">'+$(feed).attr('ts_like')
-																												+ '</p></div><div class="feed_icon">'
+																												+ '</p></div>'
+																												+'<div class="feed_icon">'
 																												+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
 																												+ '<p class="icon_txt">'+$(feed).attr('reply_count')
-																												+ '</p></div></div></div>'
+																												+ '</p></div>'
+																												+'<div class="feed_icon">'
+																												+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
+																												+ '<p class="icon_txt">'+$(feed).attr('ts_readcount')
+																												+'</p></div>'
+																												+'</div></div>'
 																												+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 																												+ '"></div>');
 																												
@@ -1779,10 +1807,16 @@ overflow-y:auto;
 																							+ '<div class="feed_icon">'
 																							+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
 																							+ '<p class="icon_txt">'+$(feed).attr('ts_like')
-																							+ '</p></div><div class="feed_icon">'
+																							+ '</p></div>'
+																							+'<div class="feed_icon">'
 																							+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
 																							+ '<p class="icon_txt">'+$(feed).attr('reply_count')
-																							+ '</p></div></div></div>'
+																							+ '</p></div>'
+																							+'<div class="feed_icon">'
+																							+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
+																							+ '<p class="icon_txt">'+$(feed).attr('ts_readcount')
+																							+'</p></div>'
+																							+'</div></div>'
 																							+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 																							+ '"></div>');
 																							
@@ -1857,7 +1891,12 @@ overflow-y:auto;
 																		+'<img class="icon_img" id="feed_like_btn" src="resources/images/icons/feed_heart.png">'
 																		+'<p class="icon_txt" id="feed_like_icon">'+$(feed).attr('ts_like')+'</p></div><div class="feed_icon">'
 																		+'<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-																		+'<p class="icon_txt" id="reply_count">'+$(feed).attr('reply_count')+'</p></div></div></div>'
+																		+'<p class="icon_txt" id="reply_count">'+$(feed).attr('reply_count')+'</p></div>'
+																		+'<div class="feed_icon">'
+																		+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
+																		+ '<p class="icon_txt">'+$(feed).attr('ts_readcount')
+																		+'</p></div>'
+																		+'</div></div>'
 																		+'<form name="feed_reply_write" class="feed_reply_write"><input type="hidden" value="'+$(feed).attr('ts_id')+'" id="ts_id" name="ts_id">'
 																		+'<input type="hidden" value="${member.mem_id}" name="mem_id"> <input type="hidden" value="${member.mem_name}" name="mem_name">' 
 																		+'<div style="display:none"><input type="submit" onclick="return false;" />'
@@ -1965,12 +2004,18 @@ overflow-y:auto;
 																	+ '</div>'
 																	+ '<div class="feed_icon_area" id="feed_icon">'
 																	+ '<div class="feed_icon">'
-																	+ '<img class="icon_img" id="feed_like_btn" src="resources/images/icons/feed_heart.png">'
+																	+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
 																	+ '<p class="icon_txt">'+$(feed).attr('ts_like')
-																	+ '</p></div><div class="feed_icon">'
+																	+ '</p></div>'
+																	+'<div class="feed_icon">'
 																	+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-																	+ '<p class="icon_txt">'+$(feed).attr('ts_like')
-																	+ '</p></div></div></div>'
+																	+ '<p class="icon_txt">'+$(feed).attr('reply_count')
+																	+ '</p></div>'
+																	+'<div class="feed_icon">'
+																	+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
+																	+ '<p class="icon_txt">'+$(feed).attr('ts_readcount')
+																	+'</p></div>'
+																	+'</div></div>'
 																	+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 																	+ '"></div>');
 		/* 															
