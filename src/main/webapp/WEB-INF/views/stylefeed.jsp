@@ -1107,7 +1107,7 @@ height:180px;
 				</c:forEach> --%>
 			</div>
 			<div class="feed_more" style="text-align: center;">
-				<button class="btn btn-danger" id="feed_more_btn" data-ts_id="${feed.ts_id }">more</button>
+				<button class="btn btn-danger" id="feed_more_btn" data-pageNum="">more</button>
 			</div> 
 		</section>
 		<div class="write_btn">
@@ -1261,6 +1261,7 @@ height:180px;
 							var ts_img = ""; /*ts_img_path+ts_img_name*/
 							var ts_regdate = "";
 							$.each(data.list, function(index, feed) {
+								console.log(data.list);
 								$("#user_feed").append('<div class="feed">'
 														+ '<div class="feed_imgbox">'
 														+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
@@ -1300,7 +1301,7 @@ height:180px;
 								+ '<div class="feed_writer_img">'
 								+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
 								+ 'width="100%" height="100%"></div>'
-								+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(feed).attr("mem_id")
+								+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(reply).attr("mem_id")
 								+ '">'+$(reply).attr("mem_name")
 								+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
 								+'">'
@@ -1309,6 +1310,8 @@ height:180px;
 							});
 			
 					});
+							
+						$('#feed_more_btn').attr('data-pageNum','1');	
 						},beforeSend:function(){
 							$("#user_feed").html(" ");
 					        $('.feed_loading').removeClass('display-none');
@@ -1487,7 +1490,6 @@ height:180px;
 																var overlayjs = document.createElement('script');
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
 																document.getElementsByTagName('head')[0].appendChild(overlayjs);
-																/**/
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
@@ -1755,8 +1757,70 @@ height:180px;
 							
 							/*피드 더보기 기능(ajax)*/
 							$(document).on('click','#feed_more_btn',function() {
-								var ts_id = $(".feed_list > .feed:last-child").data('seq');
-								console.log("더보기 클릭"+ts_id);
+								var pageNum = $('#feed_more_btn').attr('data-pageNum');
+								console.log("더보기 클릭"+pageNum);
+								$.ajax({
+									url:"feedmore.do",
+									type:"POST",
+									data:{pageNum:pageNum},
+									async:true,
+									dataType:"json",
+									success:function(data){
+										console.log("더보기버튼 ajx success");
+										console.log(data);
+										
+										$.each(data, function(index, feed) {
+											console.log("더보기 출력");											
+											$("#user_feed").append('<div class="feed">'
+																	+ '<div class="feed_imgbox">'
+																	+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+																	+ '<img class="feed-img" '
+																	+ 'onerror="this.src='+errImg+';"'
+																	+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
+																	+ '<div class="caption_box">'
+																	+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
+																	+ '</div></div>'
+																	+ '<div class="feed_thumbnail">'
+																	+ '<div class="feed_writer_img">'
+																	+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
+																	+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
+																	+ $(feed).attr('mem_name')
+																	+ '</div>'
+																	+ '<div class="feed_date" id="feedlist_date">'
+																	+ $(feed).attr('ts_regdate')
+																	+ '</div>'
+																	+ '<div class="feed_content" id="feedlist_content">'
+																	+ $(feed).attr('ts_content')
+																	+ '</div>'
+																	+ '<div class="feed_icon_area" id="feed_icon">'
+																	+ '<div class="feed_icon">'
+																	+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+																	+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																	+ '</p></div><div class="feed_icon">'
+																	+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+																	+ '<p class="icon_txt">'+$(feed).attr('ts_like')
+																	+ '</p></div></div></div>'
+																	+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
+																	+ '"></div>');
+																	
+/* 										$.each(data.rlist, function(index, reply) {
+											if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
+											$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
+											+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
+											+ '<div class="feed_writer_img">'
+											+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
+											+ 'width="100%" height="100%"></div>'
+											+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(reply).attr("mem_id")
+											+ '">'+$(reply).attr("mem_name")
+											+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
+											+'">'
+											+ $(reply).attr("reply_content")+'</div></div>'); 
+											}
+										}); */
+						
+								});
+									}
+									})
 							});
 							
 							

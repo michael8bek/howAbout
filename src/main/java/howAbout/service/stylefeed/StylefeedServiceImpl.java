@@ -66,4 +66,9 @@ public class StylefeedServiceImpl implements StylefeedService {
 		return sd.feedReply(sf);
 	}
 
+	@Override
+	public List feedmore(int startRow, int endRow) {
+		return sd.feedmore(startRow, endRow);
+	}
+
 }

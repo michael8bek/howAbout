@@ -48,29 +48,26 @@ public class StylefeedController {
 
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
-	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {
+	public @ResponseBody Map<String,List> stylefeed(HttpSession session, HttpServletRequest request, Model model) {
 		String pageType = (String) session.getAttribute("pageType");
 		System.out.println("페이지타입(pType):"+pageType);
 		List list = null;
 		List rlist = null;
-		if(pageType.equals("main")) {
-			list = ss.feedlist();
-			rlist = ss.tsReplyList();
-			session.setAttribute("pType", "default");
-		}else if(pageType=="likeOrder") {
-			list = ss.feedlist_orderLike();
-			rlist = ss.tsReplyList();
-		}else if(pageType=="recentOrder") {
-			list = ss.feedlist_orderRecent();
-			rlist = ss.tsReplyList();
-		}
-
+		HashMap<String, List> map = new HashMap<String, List>();
+		list = ss.feedlist_orderRecent();
+		rlist = ss.tsReplyList();
+		map.put("list", list);
+		map.put("rlist", rlist);
+		session.setAttribute("pageType", "recentOrder");
+		
+		
 		model.addAttribute("reply", rlist);
 		model.addAttribute("list", list);
 		Member member = (Member) session.getAttribute("member");
 		model.addAttribute("member", member);
-		return "stylefeed";
-	}
+		return map;
+	};
+	
 
 	// 피드 리스트 정렬(인기순, 최신순(기본값))
 	@RequestMapping(value = "feedorder", method = RequestMethod.POST)
@@ -204,6 +201,30 @@ public class StylefeedController {
 		List<Stylefeed> list = ss.myfeedlist(mem_id);
 		model.addAttribute("list", list);
 		return "mypage";
+	}
+	
+	//피드 더보기 
+	@RequestMapping("feedmore")
+	public @ResponseBody List feedmore(@RequestParam("pageNum") String pageNum) {
+		String more="more";
+		System.out.println(pageNum);
+		//스타일피드 페이지 메인 페이징작업
+		
+		System.out.println("pageNum 두번째값:"+pageNum);
+		int currentPage = Integer.parseInt(pageNum);
+		currentPage = currentPage+1;
+		final int ROWPERPAGE = 8;
+		
+		int startRow = (currentPage-1)*ROWPERPAGE+1;
+		System.out.println("startRow:"+startRow);
+		int endRow = startRow + ROWPERPAGE-1;
+		System.out.println("endRow:"+endRow);
+		
+		List list = ss.feedmore(startRow, endRow);
+		
+		
+		
+		return list;
 	}
 
 }
