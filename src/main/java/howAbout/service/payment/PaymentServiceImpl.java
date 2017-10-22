@@ -1,5 +1,7 @@
 package howAbout.service.payment;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +17,11 @@ public class PaymentServiceImpl implements PaymentService{
 	public int insert(Payment payment) {
 		return pd.insert(payment);
 	}
+
+	@Override
+	public List<Payment> list(String mem_id) {
+		return pd.list(mem_id);
+	}
+
+	
 }

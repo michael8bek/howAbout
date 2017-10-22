@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import howAbout.model.Cart;
 import howAbout.model.Couponlist;
+import howAbout.model.Goods;
+import howAbout.model.Member;
 import howAbout.model.Payment;
 import howAbout.service.cart.CartService;
 import howAbout.service.couponlist.CouponlistService;
@@ -35,12 +37,13 @@ public class PaymentController {
 	private CouponlistService cpls;
 	@Autowired
 	private MemberService ms;
-	
+
 	@RequestMapping("payInsert")
 	public String payInsert(Payment payment, Model model, HttpSession session,HttpServletRequest request ) {
-		
 		payment.setMem_id((String)session.getAttribute("mem_id"));
 		String memberName = payment.getMem_id();
+
+		/*결제 했을때 장바구니 상태 = 'done'으로 변경*/
 		String cart_id[] = request.getParameterValues("cart_id");
 		int result1 = 0;
 		if (cart_id.length > 0) {
@@ -52,14 +55,14 @@ public class PaymentController {
 		/*마일리지 구매금액의 10%*/
 		int point = (int)(payment.getPay_total())+(int)(payment.getPay_total() * 0.1);
 		int addpoint = ms.addpoint(point, memberName);
-		
+
 		/*쿠폰삭제로 업데이트*/
 		int temp_cplistid = payment.getCplist_id();
 		if(temp_cplistid != 0) {
-			int cplistId= cpls.update(payment.getCplist_id());	
+			int cplistId= cpls.update(payment.getCplist_id());
 			model.addAttribute("cplistId", cplistId);
 		}
-		
+
 		int result = ps.insert(payment);
 		int result3 = ss.update(payment);
 		model.addAttribute("result", result);
@@ -70,16 +73,18 @@ public class PaymentController {
 	}
 	@RequestMapping("payList")
 	public String payList(Model model, HttpSession session) {
-		List<Cart> payList = cs.payList((String) session.getAttribute("mem_id"));
-		model.addAttribute("payList",payList);
+		List<Cart> cartList = cs.payList((String) session.getAttribute("mem_id"));
+		List<Payment> payList = ps.list((String) session.getAttribute("mem_id"));
+		model.addAttribute("cartList",cartList);
+		model.addAttribute("payList", payList);
 		return "pay/payList";
-		
+
 	}
 	@RequestMapping(value = "findcpval", method=RequestMethod.GET)
 	public @ResponseBody Couponlist findcpval(Model model,int cplist_id) {
 		System.out.println("cplist_id값:"+cplist_id);
 		Couponlist couponlist= cpls.findCpVal(cplist_id);
 		return couponlist;
-		
+
 	}
 }
