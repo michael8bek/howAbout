@@ -42,157 +42,121 @@
 </head>
 <body>
 
-   <!-- Navigation -->
-   <nav
-      class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-         <div class="col-lg-2">
-            <a class="navbar-brand" href="main.do">How About Style</a>
-         </div>
-         <!--search 창 줄어들었을때 나오는 버튼 -->
-         <button class="navbar-toggler navbar-toggler-right" type="button"
-            data-toggle="collapse" data-target="#searchResponsive"
-            aria-controls="searchResponsive" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <div class="w3-padding w3-xlarge w3-teal">
-               <i class="material-icons">search</i>
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="main.do">How About Style</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- search 창 form -->
+			<form class="form-inline" action="search.do" method="post">
+				<div class="form-group">
+					<input type="text"
+						class="form-control form-row " name="search" id="search" placeholder="Search Items">
+				<button type="submit" id="search_btn" class="btn btn-primary btn-md active">Search</button>
+				</div>
+			</form>
+			<!-- /.search 창 form -->
 
-            </div>
-         </button>
-         <!--./search창 줄어들었을때 나오는 버튼 -->
+			<div class="collapse navbar-collapse" id="navbarResponsive">
 
-         <!-- search 창 form -->
-         <div class="collapse col-lg-3 navbar-collapse">
-            <form class="form-inline" action="search.do" method="post">
-            <div class="form-group">
-               <input type="text"
-                  class="form-control form-row " name="search" id="search" placeholder="Search Items">
-            <button type="submit" class="btn btn-primary btn-md active">Search</button>
-            </div>
-         </form>
-         </div>
-         <%-- <div class="collapse navbar-collapse" id="searchResponsive">
-            <form class="form-inline sm-auto">
-               <div class="form-group">
-                  <input type="text" class="form-control form-row " id="search"
-                     placeholder="Search Items">
-                  <button type="submit" class="btn btn-primary btn-sm active">Search</button>
-               </div>
-            </form>
-         </div> --%>
-         <!-- /.search 창 form -->
+				<ul class="navbar-nav ml-auto">
+				<c:if test="${not empty member.mem_id }">
+						<li class="nav-item nav-link">${member.mem_name }</li>
+					</c:if>
+                    <c:if test="${not empty member }">
+					<li class="nav-item"><a class="nav-link"
+						href="cartList.do?mem_id=${member.mem_id }">장바구니</a>
+					</li>
+					</c:if>
+					 <c:if test="${ empty member }">
+					<li class="nav-item"><a class="nav-link"
+						href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">장바구니</a></li>
+					</c:if>
+					<li class="nav-item"><a class="nav-link" id="trendshare" href="stylefeed.do?pageType=recent">트렌드쉐어</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 추천 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="listMdtext.do">MD추천</a>
+							<a class="dropdown-item" href="portfolio-2-col.jsp">2
+								Column Portfolio</a> <a class="dropdown-item"
+								href="portfolio-3-col.jsp">3 Column Portfolio</a> <a
+								class="dropdown-item" href="portfolio-4-col.jsp">4 Column
+								Portfolio</a> <a class="dropdown-item" href="portfolio-item.jsp">Single
+								Portfolio Item</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Blog </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="blog-home-1.jsp">Blog Home 1</a> <a
+								class="dropdown-item" href="blog-home-2.jsp">Blog Home 2</a> <a
+								class="dropdown-item" href="blog-post.jsp">Blog Post</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Other Pages </a>
 
-         <!-- 창 줄어들었을때 나오는 버튼 -->
-         <button class="navbar-toggler navbar-toggler-right" type="button"
-            data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-         <!--./창 줄어들었을때 나오는 버튼 -->
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<c:if test="${not empty member }">
+								<a class="dropdown-item" href="logout.do">로그아웃</a>
+							</c:if>
+							<c:if test="${not empty member }">
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }">주문페이지</a>
+							</c:if>
+							<c:if test="${empty member }">
+							<a class="dropdown-item" href="ordersList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">주문페이지</a>
+							</c:if>
+							<a class="dropdown-item" href="goodsList.do">상품페이지</a>
+							<c:if test="${empty member }">
+								<a class="dropdown-item" href="joinForm.do">Join page</a>
+							</c:if>
+							<c:if test="${member.mem_name=='master' }">
+								<a class="dropdown-item" href="indexManage.do">Manager</a>
+							</c:if>
+						</div></li>
+					<c:if test="${empty member }">
+                    	<a class="btn btn-info" href="loginForm.do" data-toggle="modal" data-target=".bd-example-modal-lg">로그인</a>
+                    	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    		<div class="modal-dialog modal-lg">
+                    			<div class="modal-content">
+                    				<%@ include file="member/loginForm.jsp" %>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </c:if>
 
-         <div class="collapse col-lg-7 navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<script type="text/javascript">
+	//검색결과에서 검색어 강조
+/* 	 $('.feed').each(function() {
+		console.log($(this).find('#feedlist_content').text());
+	 검색결과
+		var searchString=$(this).find('#feedlist_content').text();
+	/ 치환하기
+		var resultString = searchString.replace(re, "<span class='found'>$&</span>");
+	/ 화면에 출력
+		$(this).find('#feedlist_content').text(resultString);
+        }); */
 
-               <c:if test="${not empty member.mem_id }">
-                  <li class="nav-item nav-link">${member.mem_name }</li>
-               </c:if>
-               <li class="nav-item"><a class="nav-link" href="goodsList.do">상품페이지</a></li>
-               <li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
-               </li>
-               <!-- <li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
-               </li> -->
-               <li class="nav-item dropdown"><a
-                  class="nav-link dropdown-toggle" href="#"
-                  id="navbarDropdownPortfolio" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false"> 추천 </a>
-                  <div class="dropdown-menu dropdown-menu-right"
-                     aria-labelledby="navbarDropdownPortfolio">
-                     <a class="dropdown-item" href="listMdtext.do">MD추천</a>
-                     <c:if test="${member.mem_name=='master' }">
-                     <a
-                        class="dropdown-item" href="mdtextInsertForm.do">MD추천 입력</a>
-                        </c:if><a
-                        class="dropdown-item" href="portfolio-3-col.jsp">3 Column
-                        Portfolio</a> <a class="dropdown-item" href="portfolio-4-col.jsp">4
-                        Column Portfolio</a> <a class="dropdown-item"
-                        href="portfolio-item.jsp">Single Portfolio Item</a>
-                  </div></li>
-               <!-- <li class="nav-item dropdown"><a
-                  class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Blog </a>
-                  <div class="dropdown-menu dropdown-menu-right"
-                     aria-labelledby="navbarDropdownBlog">
-                     <a class="dropdown-item" href="blog-home-1.jsp">Blog Home 1</a> <a
-                        class="dropdown-item" href="blog-home-2.jsp">Blog Home 2</a> <a
-                        class="dropdown-item" href="blog-post.jsp">Blog Post</a>
-                  </div></li> -->
-
-               <li class="nav-item dropdown"><a
-                  class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     마이페이지</a>
-
-                  <div class="dropdown-menu dropdown-menu-right"
-                     aria-labelledby="navbarDropdownBlog">
-                     <c:if test="${not empty member }">
-                        <a class="dropdown-item" href="logout.do">로그아웃</a>
-                     </c:if>
-                     <c:if test="${not empty member }">
-                        <a class="dropdown-item"
-                           href="cartList.do?mem_id=${member.mem_id }">장바구니</a>
-                     </c:if>
-                     <c:if test="${ empty member }">
-                        <a class="dropdown-item"
-                           href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal"
-                           data-target=".bd-example-modal-lg">장바구니</a>
-                     </c:if>
-                     <c:if test="${not empty member }">
-                        <a class="dropdown-item"
-                           href="ordersList.do?mem_id=${member.mem_id }">주문정보</a>
-                     </c:if>
-                     <c:if test="${empty member }">
-                        <a class="dropdown-item"
-                           href="ordersList.do?mem_id=${member.mem_id }"
-                           data-toggle="modal" data-target=".bd-example-modal-lg">주문정보</a>
-                     </c:if>
-                      <c:if test="${not empty member }">
-                        <a class="dropdown-item"
-                           href="payList.do?mem_id=${member.mem_id }">결제내역</a>
-                     </c:if>
-                     <c:if test="${empty member }">
-                        <a class="dropdown-item"
-                            href="payList.do?mem_id=${member.mem_id }"
-                           data-toggle="modal" data-target=".bd-example-modal-lg">결제내역</a>
-                     </c:if>
-
-                     <!-- <a class="dropdown-item" href="goodsList.do">상품페이지</a> -->
-                     <%-- <c:if test="${empty member }">
-                        <a class="dropdown-item" href="joinForm.do">Join page</a>
-                     </c:if> --%>
-                     <c:if test="${member.mem_name=='master' }">
-                        <a class="dropdown-item" href="indexManage.do">Manager</a>
-                     </c:if>
-                  </div></li>
-               <c:if test="${empty member }">
-                  <a class="btn btn-info" href="loginForm.do" data-toggle="modal"
-                     data-target=".bd-example-modal-lg">로그인</a>
-                  <div class="modal fade bd-example-modal-lg" tabindex="-1"
-                     role="dialog" aria-labelledby="myLargeModalLabel"
-                     aria-hidden="true">
-                     <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                           <%@ include file="member/loginForm.jsp"%>
-                        </div>
-                     </div>
-                  </div>
-               </c:if>
-
-            </ul>
-         </div>
-      </div>
-   </nav>
-
+	</script>
 </body>
 </html>
