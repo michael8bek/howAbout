@@ -318,7 +318,7 @@
 									role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 										<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">
 											<div class="modal-content">
-											<%@ include file="view.jsp"%>
+											<%@ include file="../goods/view.jsp"%>
 											</div>
 										</div>
 									</div> 
