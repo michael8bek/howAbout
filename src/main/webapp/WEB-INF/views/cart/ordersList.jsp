@@ -191,6 +191,7 @@
 	}
 	/* 마일리지 숫자 입력할때 가격에 적용 */
 	 function mempoint(){
+		
 		var point = parseInt(document.getElementById("mem_usepoint").value);
 		if(point > frm.mem_point1.value){
 			alert("최대 가능 마일리지입니다");
@@ -228,7 +229,10 @@
 		if (frm.pay_total.value < 0) {
 			frm.pay_total.value = 0;
 		}
-	} 
+	}
+	 $('.onlynumber').keyup(function () {
+		 this.value = this.value.replace(/[^0-9]/g,'');
+			});
 </script>
 </head>
 <body>
@@ -315,7 +319,8 @@
 						</tr>
 						<tr>
 							<th>마일리지 사용</th>
-							<th> <input type="number" name="mem_usepoint" id="mem_usepoint" oninput="mempoint()" >&nbsp;사용가능 마일리지 : ${member.mem_point }</th>
+							<th> <input type="text" name="mem_usepoint" id="mem_usepoint"  oninput="mempoint()"  onKeypress="if(event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" style="IME-MODE:disabled;" >
+							&nbsp;사용가능 마일리지 : ${member.mem_point }</th>
 							
 						</tr>
 						<tr>

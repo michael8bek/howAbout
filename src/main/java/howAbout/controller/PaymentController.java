@@ -38,6 +38,8 @@ public class PaymentController {
 	public String payInsert(Payment payment, Model model, HttpSession session, HttpServletRequest request ) {
 		payment.setMem_id((String)session.getAttribute("mem_id"));
 		String memberName = payment.getMem_id();
+		
+		/*결제 했을때 장바구니 상태 = 'done'으로 변경*/
 		String cart_id[] = request.getParameterValues("cart_id");
 		int result1 = 0;
 		if (cart_id.length > 0) {
@@ -71,8 +73,10 @@ public class PaymentController {
 	}
 	@RequestMapping("payList")
 	public String payList(Model model, HttpSession session) {
-		List<Cart> payList = cs.payList((String) session.getAttribute("mem_id"));
-		model.addAttribute("payList",payList);
+		List<Cart> cartList = cs.payList((String) session.getAttribute("mem_id"));
+		List<Payment> payList = ps.list((String) session.getAttribute("mem_id"));
+		model.addAttribute("cartList",cartList);
+		model.addAttribute("payList", payList);
 		return "pay/payList";
 		
 	}
