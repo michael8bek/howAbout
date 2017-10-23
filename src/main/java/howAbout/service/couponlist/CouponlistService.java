@@ -12,5 +12,9 @@ public interface CouponlistService {
 
 	Couponlist findCpVal(int cplist_id);
 
+	List<Couponlist> listAllCoupon();
+
+	int regCouponlist(Couponlist couponlist);
+
 
 }

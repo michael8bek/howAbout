@@ -15,6 +15,9 @@
 		<typeAlias type="howAbout.model.Tsreply" alias="tsreply"/>
 		<typeAlias type="howAbout.model.Couponlist" alias="couponlist"/>
 		<typeAlias type="howAbout.model.Review" alias="review"/>
+		<typeAlias type="howAbout.model.Coupon" alias="coupon"/>
+
+
 	</typeAliases>
 	<mappers>
 		<mapper resource="Member.xml" />
@@ -26,6 +29,7 @@
 		<mapper resource="Stock.xml"/>
 		<mapper resource="Tsreply.xml"/>
 		<mapper resource="Couponlist.xml"/>
+		<mapper resource="Coupon.xml"/>
 		<mapper resource="Payment.xml"/>
 		<mapper resource="Review.xml"/>
 	</mappers>

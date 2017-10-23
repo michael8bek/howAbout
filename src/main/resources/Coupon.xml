@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="couponns">
+	<resultMap type="coupon" id="couponResult">
+		<result property="cp_id" column="cp_id" />
+		 <result property="cp_benefit" column="cp_benefit" /> 
+	</resultMap>
+	<select id="cpAll"  resultType="coupon">
+		SELECT * FROM coupon
+	</select>
+</mapper>

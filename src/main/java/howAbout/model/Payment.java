@@ -18,8 +18,8 @@ public class Payment {
 	private Date pay_time;
 	private int cplist_id;
 	private int cart_id;
-	
-	
+
+
 	public int getCart_id() {
 		return cart_id;
 	}
@@ -111,6 +111,3 @@ public class Payment {
 		this.goods_qty = goods_qty;
 	}
 }
-	
-	
-	

@@ -23,5 +23,13 @@ public class CouponlistServiceImpl implements CouponlistService {
 	public Couponlist findCpVal(int cplist_id) {
 		return cd.findCpVal(cplist_id);
 	}
+	@Override
+	public List<Couponlist> listAllCoupon() {
+		return cd.listAllCoupon();
+	}
+	@Override
+	public int regCouponlist(Couponlist couponlist) {
+		return cd.regCouponlist(couponlist);
+	}
 
 }

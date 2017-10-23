@@ -1,5 +1,7 @@
 package howAbout.dao.member;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,6 +37,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void pointUse(Member member) {
 		sst.update("memberns.pointUse", member);
+	}
+
+	@Override
+	public List<Member> listAll() {
+		return sst.selectList("memberns.listAll");
 	}
 
 }

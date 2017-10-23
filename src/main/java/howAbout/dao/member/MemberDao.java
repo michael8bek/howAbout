@@ -1,5 +1,7 @@
 package howAbout.dao.member;
 
+import java.util.List;
+
 import howAbout.model.Member;
 
 public interface MemberDao {
@@ -11,5 +13,7 @@ public interface MemberDao {
 	int addpoint(Member member);
 
 	void pointUse(Member member);
+
+	List<Member> listAll();
 
 }
