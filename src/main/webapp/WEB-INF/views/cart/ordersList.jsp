@@ -194,8 +194,9 @@
 		var point = parseInt(document.getElementById("mem_usepoint").value);
 		if(point > frm.mem_point1.value){
 			alert("최대 가능 마일리지입니다");
-			frm.mem_usepoint.value = frm.mem_point1.value;
+			frm.mem_usepoint.value = parseInt(frm.mem_point1.value);
 		}
+		
 		var sum = 0;
 		var sum1 = 0;
 		var salesum = 0;
@@ -217,12 +218,12 @@
 			frm.total_sum.value = sum;
 			frm.delprice.value = sum1;
 			frm.saleprice.value = salesum;
-			frm.pay_total.value = sum - salesum - frm.couponsale.value - point;
+			frm.pay_total.value = parseInt(sum - salesum - frm.couponsale.value - point);
 		} else {
 			frm.total_sum.value = sum;
 			frm.delprice.value = sum1;
 			frm.saleprice.value = salesum;
-			frm.pay_total.value = sum + sum1 - salesum - frm.couponsale.value- point;
+			frm.pay_total.value =  parseInt(sum + sum1 - salesum - frm.couponsale.value- point);
 		}
 		if (frm.pay_total.value < 0) {
 			frm.pay_total.value = 0;
@@ -314,7 +315,7 @@
 						</tr>
 						<tr>
 							<th>마일리지 사용</th>
-							<th> <input type="text" name="mem_usepoint" id="mem_usepoint" oninput="mempoint()" >&nbsp;사용가능 마일리지 : ${member.mem_point }</th>
+							<th> <input type="number" name="mem_usepoint" id="mem_usepoint" oninput="mempoint()" >&nbsp;사용가능 마일리지 : ${member.mem_point }</th>
 							
 						</tr>
 						<tr>
