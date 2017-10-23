@@ -28,5 +28,15 @@ public class CouponlistDaoImpl implements CouponlistDao {
 		return sst.selectOne("couponlistns.findCpVal",cplist_id);
 	}
 
+	@Override
+	public List<Couponlist> listAllCoupon() {
+		return sst.selectList("couponlistns.listAllCoupon");
+	}
+
+	@Override
+	public int regCouponlist(Couponlist couponlist) {
+		return sst.insert("couponlistns.regCouponlist",couponlist);
+	}
+
 
 }

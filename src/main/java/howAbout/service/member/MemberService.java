@@ -1,5 +1,7 @@
 package howAbout.service.member;
 
+import java.util.List;
+
 import howAbout.model.Member;
 
 public interface MemberService {
@@ -11,6 +13,8 @@ public interface MemberService {
 	int addpoint(int point, String memberName);
 
 	void pointUse(Member member);
+
+	List<Member> listAll();
 
 	
 

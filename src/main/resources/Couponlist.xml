@@ -11,9 +11,22 @@
 		<result property="mem_id" column="mem_id" />
 		 <result property="cp_benefit" column="cp_benefit" /> 
 	</resultMap>
-	<select id="listCoupon" resultMap="couponlistResult">
+	<insert id="regCouponlist" parameterType="couponlist">
+		<selectKey keyProperty="cplist_id" resultType="int" order="BEFORE">
+			SELECT ifnull(MAX(cplist_id),0)+1 cp_benefit FROM couponlist
+		</selectKey>
+		insert into couponlist values 
+			(#{cplist_id},now(),#{cplist_expire},'n',#{cp_id},#{mem_id},
+			(select cp_benefit from coupon where cp_id = #{cp_id}))
+	</insert>
+	
+	<select id="listAllCoupon"  resultType="couponlist">
+		SELECT * FROM howaboutdb.couponlist
+	</select>
+	<select id="listCoupon" resultType="couponlist">
 		select * from couponlist where mem_id=#{mem_id} and cplist_use = 'n' order by cp_benefit 
 	</select>
+	
 	<update id="delmark" parameterType="int">
 		UPDATE couponlist SET `cplist_use`='y' WHERE `cplist_id`= #{cplist_id}
 	</update>

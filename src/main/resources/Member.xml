@@ -25,6 +25,9 @@
 		#{mem_addr},'0','bronze',now(),null,
 		'n',#{mem_email}, #{mem_pic})
 	</insert>
+	<select id="listAll" resultType="member">
+		select * from member
+	</select>
 	<select id="select" parameterType="String" resultType="member">
 		select * from member where mem_id=#{mem_id}
 	</select>
@@ -34,4 +37,5 @@
 	<update id="pointUse" parameterType="member">
 		update member set mem_point = #{mem_point} where mem_id = #{mem_id}
 	</update> 
+	
 </mapper>
