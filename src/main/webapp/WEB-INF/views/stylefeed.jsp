@@ -501,6 +501,7 @@ a {
 }
 
 .feed .goods_link{
+	width:100%;x
 	display: inline-block;
 	background-color: white;
 }
@@ -508,14 +509,13 @@ a {
 .feed #goods_img{
 	float:left;
 	width:62px;
-	height:70px;
+	height:62px;
 }
 
 .feed #goods_name{
-	display: inline-block;
 	font-size: 13px;
 	margin-top:5px;
-	margin-left: 5px;
+	padding-left:10px;
 	font-weight: bold;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
@@ -523,7 +523,7 @@ a {
 
 .feed #goods_price{
 	font-size:13px;
-	margin-left:5px;
+	margin-left:10px;
 	font-weight: bold;
 }
 .feed .feed_comment {
@@ -609,18 +609,6 @@ a {
 	margin-bottom: 10px;
 }
 
-#feeedpage_content {
-	word-wrap: break-word;
-	display:inline-block;
-	overflow-y:hidden;
-	width: 100%;
-	height: 80px;
-	font-size:14px;
-	color: #AAAAAA;
-	float: left;
-	padding-left: 2.5%;
-	-ms-overflow-style: none;
-}
 
 
 .feed_writer_img{
@@ -736,13 +724,16 @@ overflow-y:auto;
 	.feed_textarea {
 		padding: 10px;
 	}
-	
+	.feed_goods_link{
+	display: none;
+}
 	#feeedpage_content {
 		width: 100%;
 		height: 20%;
 		margin-top: 10px;
 		display: flex
 	}
+	
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
@@ -866,6 +857,47 @@ overflow-y:auto;
 		width: 320px;
 		height: 320px;
 	}
+	.feed_goods_link{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 130px;
+    padding-top: 15px;
+	background-color: white;
+}
+	#feed_goods_img{
+	float:left;
+	width:100px;
+	height:100px;
+}
+
+#feed_goods_name{
+	font-size: 15px;
+	margin-top:5px;
+	padding-left:10px;
+	font-weight: bold;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+#feed_goods_price{
+	font-size:15px;
+	margin-left:10px;
+	font-weight: bold;
+}
+#feeedpage_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:hidden;
+	width: 100%;
+	height: 80px;
+	font-size:14px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
+}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
@@ -969,6 +1001,47 @@ overflow-y:auto;
 		width: 320px;
 		height: 320px;
 	}
+	.feed_goods_link{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 130px;
+    padding-top: 15px;
+	background-color: white;
+}
+	#feed_goods_img{
+	float:left;
+	width:100px;
+	height:100px;
+}
+
+#feed_goods_name{
+	font-size: 15px;
+	margin-top:5px;
+	padding-left:10px;
+	font-weight: bold;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+#feed_goods_price{
+	font-size:15px;
+	margin-left:10px;
+	font-weight: bold;
+}
+#feeedpage_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:hidden;
+	width: 100%;
+	height: 80px;
+	font-size:14px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
+}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
@@ -1086,6 +1159,47 @@ overflow-y:auto;
 		width: 320px;
 		height: 320px;
 	}
+	
+	#feed_goods_img{
+	float:left;
+	width:100px;
+	height:100px;
+}
+.feed_goods_link{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 130px;
+    padding-top: 15px;
+	background-color: white;
+}
+#feed_goods_name{
+	font-size: 15px;
+	margin-top:5px;
+	padding-left:10px;
+	font-weight: bold;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+#feed_goods_price{
+	font-size:15px;
+	margin-left:10px;
+	font-weight: bold;
+}
+#feeedpage_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:hidden;
+	width: 100%;
+	height: 80px;
+	font-size:14px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
+}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
@@ -1502,8 +1616,8 @@ overflow-y:auto;
 														+ '"></div>');
 								if($(feed).attr('ts_id')=='24'){
 									$('.feed_comment').prepend('<div class="goods_link">'
-											+ '<img class="goods_info" id="goods_img" src="https://usercontents-c.styleshare.kr/images/i59bb8e5d1ad0a/80x80">'
-											+ '<div class="goods_info" id="goods_name"><a>Bulging Tumble Hood T-Shirt</a></div>'
+											+ '<img class="goods_info" id="goods_img" src="/howAbout/resources/images/goods/08.png">'
+											+ '<div class="goods_info" id="goods_name"><a href="view.do?goods_id=8">[한정특가]crump represent track pants...</a></div>'
 											+ '<span class="goods_info" id="goods_price">34,900원</span>'
 											+ '</div>');
 								}
@@ -1957,6 +2071,14 @@ overflow-y:auto;
 																		+'</c:if>'
 																		+'</form><div class="feed_reply"></div>');
 																	
+																	if($(feed).attr('ts_id')=='24'){
+																		$('#myOverlay2').append('<div class="feed_goods_link">'
+																		+ '<img class="feed_goods_info" id="feed_goods_img" src="/howAbout/resources/images/goods/08.png">'
+																		+ '<div class="feed_goods_info" id="feed_goods_name"><a>[한정특가]crump represent track pants...</a></div>'
+																		+ '<span class="feed_goods_info" id="feed_goods_price">34,900원</span>'
+																		+ '</div>')
+																	}
+																	
 																	$.each(data.rlist, function(index, reply) {
 																		 $(".feed_reply").append('<div id="feedpage_replyList">'
 																		+'<div class="feed_writer_img" style="width: 30px; height: 30px;">'
@@ -2091,11 +2213,6 @@ overflow-y:auto;
 												$('.feed_more').remove();
 											};
 										},complete:function(){
-									    	/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
-									    	var overlayjs = document.createElement('script');
-											overlayjs.src = "/howAbout/resources/js/Overlay.js";
-											overlayjs.id="overlay";
-											document.getElementsByTagName('head')[0].appendChild(overlayjs); 
 										}
 									});
 							};

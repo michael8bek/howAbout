@@ -206,10 +206,10 @@ display:none;
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 65px;
+	margin-right: 45px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
 	margin-right: 15px;
 }
@@ -656,9 +656,9 @@ overflow-y:auto;
 	margin-right: 40px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
-	margin-right: 15px;
+	margin-right: auto;
 }
 	.feed_list #feedreply_writer {
 	font-size: 13px;
