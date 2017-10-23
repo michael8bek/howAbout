@@ -85,7 +85,6 @@
 		if (frm.pay_total.value < 0) {
 			frm.pay_total.value = 0;
 		}
-
 	}
 	/* 쿠폰 클릭시 가격이 계산됨 */
 	function coupon(val1) {

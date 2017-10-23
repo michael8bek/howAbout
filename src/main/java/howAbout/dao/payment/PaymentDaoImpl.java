@@ -19,8 +19,7 @@ public class PaymentDaoImpl implements PaymentDao {
 	}
 
 	@Override
-	public List<Payment> list(String mem_id) {
-		return sst.selectList("paymentns.list", mem_id);
+	public List<Payment> paymentList(String mem_id) {
+		return sst.selectList("paymentns.paymentList", mem_id);
 	}
-
 }

@@ -8,6 +8,6 @@ public interface PaymentDao {
 
 	int insert(Payment payment);
 
-	List<Payment> list(String mem_id);
+	List<Payment> paymentList(String mem_id);
 
 }
