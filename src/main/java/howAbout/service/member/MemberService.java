@@ -10,6 +10,8 @@ public interface MemberService {
 
 	int addpoint(int point, String memberName);
 
+	void pointUse(Member member);
+
 	
 
 }
