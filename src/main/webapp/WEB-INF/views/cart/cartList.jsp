@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -208,6 +207,37 @@ function click_count(idx, n) {
    	  }else{}
 
  }
+  /* 이미지 클릭시 상품 상세정보  */
+  $(document).on('click', '.card-img-top', function() {
+
+		var goods_id = $(this).attr("alt");
+
+		$.ajax({
+			url : "view.do",
+			method : "POST",
+
+			//위에서 클릭한 goods_id 데이터를 url로 넘겨주고
+			data : {
+				goods_id : goods_id
+			},
+			success : function(data) {
+
+				//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
+				$('.view_container').html(data);
+				var sumpri = $('#goods_pri_del').val();
+				$('#price').append().text(sumpri);
+				$(function() {
+					$('#cart').on('change', function() {
+						var qty = $('#cart').val();
+						var price1 = $('#goods_price').val();
+						var price2 = $('#goods_delprice').val();
+						var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
+						$('#price').append().text(total_price);
+					});
+				});
+			}
+		});
+	});
 
 </script>
 </head>
@@ -245,8 +275,20 @@ function click_count(idx, n) {
 						<input type="hidden" name="stock_qty${status.count}" value="${stock.stock_qty}" id="stock_qty${status.count}">
 							<tr style="width: 100%; vertical-align: middle;">
 								<td style="border-right: 1px solid #FFFFFF; vertical-align: middle;">
-								<input type="checkbox" name="chk" value="${cart.cart_id}" onclick="itemSum()"></td>
-								<td style="border-right: 1px solid #FFFFFF; width: 15%; vertical-align: middle;"><img src="resources/images/goods/${cart.goods_img }" style="width:100%;"></td>
+									<input type="checkbox" name="chk" value="${cart.cart_id}" onclick="itemSum()"></td>
+								<td style="border-right: 1px solid #FFFFFF; width: 15%; vertical-align: middle;">
+								<a data-toggle="modal" data-target=".bd-example-modal-lg">
+									<img src="${path}/resources/images/goods/${cart.goods_img }" alt="${cart.goods_id}" class="card-img-top" style="width: 100%;">
+								</a>
+									<div class="modal fade bd-example-modal-lg" tabindex="-1"
+									role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">
+											<div class="modal-content">
+											<%@ include file="view.jsp"%>
+											</div>
+										</div>
+									</div> 
+								</td> 
 								<td style="width:40%; ">${cart.goods_name}<p>
 						  		Color : ${cart.goods_color } / 
 						  		<c:if test="${cart.goods_size ==0 }"> Size : Free<p></c:if>

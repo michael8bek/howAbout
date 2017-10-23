@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Payment {
 	private int pay_id;
 	private int goods_id;
+	private int goods_qty;
 	private String mem_id;
 	private String pay_name;
 	private String pay_phone;
@@ -16,7 +17,6 @@ public class Payment {
 	private int pay_total;
 	private Date pay_time;
 	private int cplist_id;
-	private int goods_qty;
 	
 	public int getPay_id() {
 		return pay_id;

@@ -23,10 +23,10 @@
 		<mapper resource="Goods.xml" />
 		<mapper resource="Orders.xml" />
 		<mapper resource="Mdtext.xml" />
-		<mapper resource="Payment.xml" />
 		<mapper resource="Stylefeed.xml"/>
 		<mapper resource="Stock.xml"/>
 		<mapper resource="Tsreply.xml"/>
 		<mapper resource="Couponlist.xml"/>
+		<mapper resource="Payment.xml"/>
 	</mappers>
 </configuration>

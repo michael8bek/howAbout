@@ -19,9 +19,7 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
-	public List<Payment> list(String mem_id) {
-		return pd.list(mem_id);
+	public List<Payment> paymentList(String mem_id) {
+		return pd.paymentList(mem_id);
 	}
-
-	
 }

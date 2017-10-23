@@ -85,7 +85,6 @@
 		if (frm.pay_total.value < 0) {
 			frm.pay_total.value = 0;
 		}
-
 	}
 	/* 쿠폰 클릭시 가격이 계산됨 */
 	function coupon(val1) {
@@ -229,9 +228,42 @@
 			frm.pay_total.value = 0;
 		}
 	}
+	
+	/* 이미지 클릭시 상품 상세정보  */
 	 $('.onlynumber').keyup(function () {
 		 this.value = this.value.replace(/[^0-9]/g,'');
 			});
+	 
+	 $(document).on('click', '.card-img-top', function() {
+
+			var goods_id = $(this).attr("alt");
+
+			$.ajax({
+				url : "view.do",
+				method : "POST",
+
+				//위에서 클릭한 goods_id 데이터를 url로 넘겨주고
+				data : {
+					goods_id : goods_id
+				},
+				success : function(data) {
+
+					//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
+					$('.view_container').html(data);
+					var sumpri = $('#goods_pri_del').val();
+					$('#price').append().text(sumpri);
+					$(function() {
+						$('#cart').on('change', function() {
+							var qty = $('#cart').val();
+							var price1 = $('#goods_price').val();
+							var price2 = $('#goods_delprice').val();
+							var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
+							$('#price').append().text(total_price);
+						});
+					});
+				}
+			});
+		});
 </script>
 </head>
 <body>
@@ -274,9 +306,19 @@
 								<input type="hidden" name="goods_id" value="${cart.goods_id }">
 								<tr>
 									<td
-										style="border-right: 1px solid #FFFFFF; width: 10%; vertical-align: middle;"><img
-										src="resources/images/goods/${cart.goods_img }"
-										style="width: 100%;"></td>
+										style="border-right: 1px solid #FFFFFF; width: 10%; vertical-align: middle;">
+										<a data-toggle="modal" data-target=".bd-example-modal-lg">
+									<img src="${path}/resources/images/goods/${cart.goods_img }" alt="${cart.goods_id}" class="card-img-top" style="width: 100%;">
+								</a>
+									<div class="modal fade bd-example-modal-lg" tabindex="-1"
+									role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">
+											<div class="modal-content">
+											<%@ include file="view.jsp"%>
+											</div>
+										</div>
+									</div> 
+								</td>
 									<td style="vertical-align: middle;">${cart.goods_name}<p>
 											Color : ${cart.goods_color } / Size : ${cart.goods_size }</td>
 									<td style="vertical-align: middle;">${cart.goods_qty }</td>
@@ -308,7 +350,7 @@
 						<tr>
 							<th style="width: 25%;">쿠폰 선택</th>
 							<th><select onclick="coupon(this.value);" name="cp">
-									<option value="0-0" style="text-align: center;">사용안함</option>
+									<option value="0-0" style="text-align: center;" selected="selected">사용안함</option>
 									<c:forEach var="couponlist" items="${listCoupon }"
 										varStatus="status">
 										<option

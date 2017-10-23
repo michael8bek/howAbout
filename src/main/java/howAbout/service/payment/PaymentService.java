@@ -8,7 +8,6 @@ public interface PaymentService {
 
 	int insert(Payment payment);
 
-	List<Payment> list(String mem_id);
-
+	List<Payment> paymentList(String mem_id);
 
 }
