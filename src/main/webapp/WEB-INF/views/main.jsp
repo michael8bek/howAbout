@@ -135,7 +135,7 @@
 						<div class="card col-lg-3 col-md-4" style="float: right;">
 							<div class="card-img h-100">
 								<a  href="stylefeed.do"> <img class="img-fluid rounded"
-									src="${style.ts_img_path}/${style.ts_img_name}" alt=""></a>
+									src="${style.ts_img_path}${style.ts_img_name}" alt=""></a>
 									<div class="card-body">
 										<p class="card-text">${style.ts_content }</p>
 							</div>
