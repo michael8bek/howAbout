@@ -32,7 +32,6 @@ body.overlay-visible  {
   -webkit-transition: opacity 0.5s;
   opacity: 0;
 }
-
 #overlayContainer #overlayFrame {
   position: relative;
   display: inline-block;
