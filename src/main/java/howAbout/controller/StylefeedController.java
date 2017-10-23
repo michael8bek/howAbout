@@ -94,11 +94,6 @@ public class StylefeedController {
 			model.addAttribute("pageType", "recent");
 			//session.setAttribute("pageType", "recent");
 		};
-/*		try {
-			Thread.sleep(350);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}*/
 		return map;
 	}
 

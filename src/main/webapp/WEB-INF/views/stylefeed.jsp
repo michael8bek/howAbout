@@ -1059,7 +1059,7 @@ overflow-y:auto;
 .feed_icon_area .feed_icon:first-child{
 	margin-left: 15px;
 }.feed_icon_area .feed_icon:last-child{
-	margin-right: 15px;
+	margin-right: auto;
 }
 	.feed_list #feedreply_writer {
 	font-size: 13px;
