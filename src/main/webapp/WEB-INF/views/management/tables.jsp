@@ -32,7 +32,18 @@
 <!-- Custom styles for this template-->
 <link href="${path}/resources/sbAdmin/css/sb-admin.css" rel="stylesheet">
 </head>
-
+<!-- 수정버튼 -->
+<script type="text/javascript">
+	$("#goods_img").bind("click", function() {
+		$("<b>New World</b>").replaceAll("div.imgArea");
+	});
+</script>
+<!-- 삭제버튼 -->
+<script type="text/javascript">
+	$("#goods_img").bind("click", function() {
+		$("<b>New World</b>").replaceAll("div.imgArea");
+	});
+</script>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<!-- Navigation-->
@@ -42,36 +53,47 @@
 		<div class="container-fluid">
 			<!-- Breadcrumbs-->
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-				<li class="breadcrumb-item active">Tables</li>
+				<li class="breadcrumb-item"><a href="#">관리자</a></li>
+				<li class="breadcrumb-item active">상품리스트</li>
 			</ol>
 			<!-- Example DataTables Card-->
 			<div class="card mb-3">
 				<div class="card-header">
-					<i class="fa fa-table"></i> 총 상품 페이지
+					<div style="float: left; vertical-align: middle; margin-top: 8px;" >
+						<i class="fa fa-table"></i> 총 상품 페이지
+					</div>
+					<div style="float: right;">
+						<a class="btn btn-success" href="#" onclick="goodsEditFunc()" id="goods_edit" style="align-content: flex-end;">수정</a>
+						<a class="btn btn-danger" id="goods_delete" style="align-items: right">삭제</a>
+					</div>
 				</div>
+
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%"
+						<table class="table table-bordered"  id="dataTable" width="100%"
 							cellspacing="0">
 							<thead>
 								<tr>
-									<th>순번</th>
-									<th>대분류</th>
-									<th>소분류</th>
-									<th>가격</th>
-									<th>브랜드</th>
-									<th>색상</th>
-									<th>테마</th>
-									<th>사이즈</th>
-									<th>패턴</th>
-									<th>사진</th>
-									<th>상품이름</th>
-									<th>배송비</th>
+									<th></th>
+									<th align="center" style="vertical-align: middle;">순번</th>
+									<th align="center" style="vertical-align: middle;">대분류</th>
+									<th align="center" style="vertical-align: middle;">소분류</th>
+									<th align="center" style="vertical-align: middle;">가격</th>
+									<th align="center" style="vertical-align: middle;">브랜드</th>
+									<th align="center" style="vertical-align: middle;">색상</th>
+									<th align="center" style="vertical-align: middle;">테마</th>
+									<th align="center" style="vertical-align: middle;">사이즈</th>
+									<th align="center" style="vertical-align: middle;">패턴</th>
+									<th align="center" style="vertical-align: middle;">사진</th>
+									<th align="center" style="vertical-align: middle;">상품이름</th>
+									<th align="center" style="vertical-align: middle;">배송비</th>
+									<th align="center" style="vertical-align: middle;">재고수량</th>
+									<th align="center" style="vertical-align: middle;">유형</th>
 								</tr>
 							</thead>
 							<tfoot>
 								<tr>
+									<th></th>
 									<th>순번</th>
 									<th>대분류</th>
 									<th>소분류</th>
@@ -84,23 +106,39 @@
 									<th>사진</th>
 									<th>상품이름</th>
 									<th>배송비</th>
+									<th>재고수량</th>
+									<th>유형</th>
 								</tr>
 							</tfoot>
 							<tbody>
 								<c:forEach var="list" items="${list }">
 									<tr>
-										<td>${list.goods_id }</td>
-										<td>${list.goods_bigc }</td>
-										<td>${list.goods_smc }</td>
-										<td>${list.goods_price }</td>
-										<td>${list.goods_brand }</td>
-										<td>${list.goods_color }</td>
-										<td>${list.goods_theme }</td>
-										<td>${list.goods_size }</td>
-										<td>${list.goods_pat }</td>
-										<td>${list.goods_img }</td>
-										<td>${list.goods_name }</td>
-										<td>${list.goods_delprice }</td>
+										<td align="center" style="vertical-align: middle;"><input type="checkbox" name="chk_goods_id"
+											value="${list.goods_id }"></td>
+										<td align="center" style="vertical-align: middle;">${list.goods_id }</td>
+										<td align="center" style="vertical-align: middle;">${list.goods_bigc }</td>
+										<td align="center" style="vertical-align: middle;">${list.goods_smc }</td>
+										<td align="center" style="vertical-align: middle;">${list.goods_price }</td>
+										<td align="center" style="vertical-align: middle;">${list.goods_brand }</td>
+										<td align="center" style="vertical-align: middle;">${list.goods_color }</td>
+										<td align="center" style="vertical-align: middle;">${list.goods_theme }</td>
+										<c:if test="${list.goods_size == 0 }">
+										<td align="center" style="vertical-align: middle;">free</td>
+										</c:if>
+										<c:if test="${list.goods_size != 0 }">
+										<td align="center" style="vertical-align: middle;">${list.goods_size}</td>
+										</c:if>
+										<td align="center" style="vertical-align: middle;">${list.goods_pat }</td>
+										<td align="center" style="vertical-align: middle;"><img src="${path }/resources/images/goods/${list.goods_img }" height="10%"></td>
+										<td align="center" style="vertical-align: middle;">${list.goods_name }</td>
+										<td align="center" style="vertical-align: middle;">${list.goods_delprice }</td>
+										<c:forEach var="stockList" items="${stockList }">
+
+											<c:if test="${list.goods_id==stockList.goods_id }">
+												<td align="center" style="vertical-align: middle;">${stockList.stock_qty }</td>
+												<td align="center" style="vertical-align: middle;">${stockList.stock_sale }</td>
+											</c:if>
+										</c:forEach>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -108,7 +146,7 @@
 					</div>
 				</div>
 				<div class="card-footer small text-muted">
-					Update DATA :  <span id="dateInfo"></span>
+					Update DATE : <span id="dateInfo"></span>
 				</div>
 			</div>
 		</div>

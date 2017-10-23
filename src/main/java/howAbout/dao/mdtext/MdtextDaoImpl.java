@@ -18,7 +18,12 @@ public class MdtextDaoImpl implements MdtextDao {
 	}
 	@Override
 	public List<Mdtext> best() {
-		return sst.selectOne("mdtextns.best");
+		return sst.selectList("mdtextns.best");
+	}
+	@Override
+	public int register(Mdtext mdtext) {
+		
+		return sst.insert("mdtextns.register", mdtext);
 	}
 
 }

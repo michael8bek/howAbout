@@ -1,20 +1,22 @@
 package howAbout.model;
 
+import java.sql.Date;
+
 public class Payment {
 	private int pay_id;
 	private int goods_id;
-	private int goods_qty;
-	private int mem_id;
+	private String mem_id;
 	private String pay_name;
 	private String pay_phone;
 	private String pay_email;
 	private String pay_addr;
 	private String pay_rename;
 	private String pay_rephone;
-	private String pay_readdr;
+	private String pay_required;
 	private int pay_total;
+	private Date pay_time;
 	private int cplist_id;
-	
+	private int goods_qty;
 	
 	public int getPay_id() {
 		return pay_id;
@@ -28,16 +30,10 @@ public class Payment {
 	public void setGoods_id(int goods_id) {
 		this.goods_id = goods_id;
 	}
-	public int getGoods_qty() {
-		return goods_qty;
-	}
-	public void setGoods_qty(int goods_qty) {
-		this.goods_qty = goods_qty;
-	}
-	public int getMem_id() {
+	public String getMem_id() {
 		return mem_id;
 	}
-	public void setMem_id(int mem_id) {
+	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
 	public String getPay_name() {
@@ -76,11 +72,11 @@ public class Payment {
 	public void setPay_rephone(String pay_rephone) {
 		this.pay_rephone = pay_rephone;
 	}
-	public String getPay_readdr() {
-		return pay_readdr;
+	public String getPay_required() {
+		return pay_required;
 	}
-	public void setPay_readdr(String pay_readdr) {
-		this.pay_readdr = pay_readdr;
+	public void setPay_required(String pay_required) {
+		this.pay_required = pay_required;
 	}
 	public int getPay_total() {
 		return pay_total;
@@ -88,13 +84,24 @@ public class Payment {
 	public void setPay_total(int pay_total) {
 		this.pay_total = pay_total;
 	}
+	public Date getPay_time() {
+		return pay_time;
+	}
+	public void setPay_time(Date pay_time) {
+		this.pay_time = pay_time;
+	}
 	public int getCplist_id() {
 		return cplist_id;
 	}
 	public void setCplist_id(int cplist_id) {
 		this.cplist_id = cplist_id;
 	}
+	public int getGoods_qty() {
+		return goods_qty;
+	}
+	public void setGoods_qty(int goods_qty) {
+		this.goods_qty = goods_qty;
+	}
 	
 	
 	
-}

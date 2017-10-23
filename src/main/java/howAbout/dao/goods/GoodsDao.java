@@ -8,6 +8,8 @@ public interface GoodsDao {
 
 	List<Goods> list();
 
+	Goods select(int goods_id);
+
 	int register(Goods goods);
 
 }

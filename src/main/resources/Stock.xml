@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stockns">
+	<resultMap type="stock" id="stockResult">
+		<result property="stock_id" column="stock_id" />
+		<result property="goods_id" column="goods_id" />
+		<result property="stock_qty" column="stock_qty" />
+		<result property="stock_regdate" column="stock_regdate" />
+		<result property="stock_editdate" column="stock_editdate" />
+		<result property="stock_sale" column="stock_sale" />
+	</resultMap>
+	<select id="stockList" resultMap="stockResult">
+		select * from stock
+	</select>
+	<insert id="register" parameterType="stock">
+		<selectKey keyProperty="stock_id" resultType="Integer"
+			order="BEFORE">
+			SELECT MAX(stock_id)+1 FROM stock
+		</selectKey>
+		INSERT INTO stock VALUES (#{stock_id}, (select max(goods_id) from goods),
+		#{stock_qty}, now(), now(), #{stock_sale});
+	</insert>
+		<select id="select" parameterType="int" resultType="stock">
+		select * from stock where goods_id=#{goods_id}
+	</select>
+	    <update id="imsupdate">
+        UPDATE stock 
+        SET stock_qty = stock_qty - #{goods_qty} 
+        WHERE goods_id= #{goods_id}
+    </update>
+</mapper>

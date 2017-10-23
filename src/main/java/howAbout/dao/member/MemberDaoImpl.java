@@ -14,7 +14,7 @@ public class MemberDaoImpl implements MemberDao {
 	public int insert(Member member) {
 		int result = 0;
 		try {
-			sst.insert("insert", member);
+			sst.insert("memberns.insert", member);
 			result = 1;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -25,6 +25,16 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member select(String mem_id) {
 		return sst.selectOne("memberns.select", mem_id);
+	}
+
+	@Override
+	public int addpoint(Member member) {
+		return sst.update("memberns.addpoint", member);
+	}
+
+	@Override
+	public void pointUse(Member member) {
+		sst.update("memberns.pointUse", member);
 	}
 
 }

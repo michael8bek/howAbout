@@ -8,12 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Goods;
+import howAbout.model.Stock;
 import howAbout.service.goods.GoodsService;
+import howAbout.service.stock.StockService;
 
 @Controller
 public class ManageController {
 	@Autowired
 	private GoodsService cs;
+	@Autowired
+	private StockService ss;
 	
 	@RequestMapping("indexManage")
 	public String indexManage() {
@@ -50,7 +54,9 @@ public class ManageController {
 	@RequestMapping("tables")
 	public String tables(Model model) {
 		List<Goods> listGoods = cs.list();
+		List<Stock> stockList = ss.stockList();
 		model.addAttribute("list", listGoods);
+		model.addAttribute("stockList", stockList);
 		return "/management/tables";
 	}
 	

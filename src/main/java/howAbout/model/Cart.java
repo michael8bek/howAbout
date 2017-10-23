@@ -4,20 +4,35 @@ package howAbout.model;
 import java.sql.Date;
 
 public class Cart {
-	private String cart_id;
+	private int cart_id;
 	private Date cart_date;
 	private Date cart_editdate;
 	private String cart_state;
 	private String mem_id;
 	private int goods_qty;
-	private String goods_id;
+	private int goods_id;
 	private String goods_name;
 	private int goods_price;
 	private int goods_delprice;
 	private String goods_color;
 	private String goods_size;
 	private String goods_img;
+	private String grade_name;
+	private String cp_benefit;
 	
+	
+	public String getCp_benefit() {
+		return cp_benefit;
+	}
+	public void setCp_benefit(String cp_benefit) {
+		this.cp_benefit = cp_benefit;
+	}
+	public String getGrade_name() {
+		return grade_name;
+	}
+	public void setGrade_name(String grade_name) {
+		this.grade_name = grade_name;
+	}
 	public int getGoods_qty() {
 		return goods_qty;
 	}
@@ -60,10 +75,10 @@ public class Cart {
 	public void setGoods_price(int goods_price) {
 		this.goods_price = goods_price;
 	}
-	public String getCart_id() {
+	public int getCart_id() {
 		return cart_id;
 	}
-	public void setCart_id(String cart_id) {
+	public void setCart_id(int cart_id) {
 		this.cart_id = cart_id;
 	}
 	public Date getCart_date() {
@@ -90,10 +105,10 @@ public class Cart {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
-	public String getGoods_id() {
+	public int getGoods_id() {
 		return goods_id;
 	}
-	public void setGoods_id(String goods_id) {
+	public void setGoods_id(int goods_id) {
 		this.goods_id = goods_id;
 	}
 }

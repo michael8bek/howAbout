@@ -10,7 +10,7 @@ public class Member {
 	private String mem_phone;
 	private String mem_addr;
 	private int mem_point;
-	private String grade_id;
+	private String grade_name;
 	private Date mem_regdate;
 	private Date mem_exitdate;
 	private String mem_exitstate;
@@ -57,11 +57,12 @@ public class Member {
 	public void setMem_point(int mem_point) {
 		this.mem_point = mem_point;
 	}
-	public String getGrade_id() {
-		return grade_id;
+	
+	public String getGrade_name() {
+		return grade_name;
 	}
-	public void setGrade_id(String grade_id) {
-		this.grade_id = grade_id;
+	public void setGrade_name(String grade_name) {
+		this.grade_name = grade_name;
 	}
 	public Date getMem_regdate() {
 		return mem_regdate;

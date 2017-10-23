@@ -5,6 +5,8 @@
 	<resultMap type="mdtext" 				id="mdtextResult">
 		<result property="mdtext_id" 			column="mdtext_id" />
 		<result property="mdtext_type" 			column="mdtext_type" />
+		<result property="mdtext_goods_id" 			column="mdtext_goods_id" />
+		<result property="mdtext_goods_img" 			column="mdtext_goods_img" />
 		<result property="mdtext_content" 		column="mdtext_content" />
 		<result property="mdtext_regdate" 		column="mdtext_regdate" />
 		<result property="mdtext_del" 			column="mdtext_del" />
@@ -14,7 +16,14 @@
 	<select id="list" resultMap="mdtextResult">
 		select * from mdtext
 	</select>
-	<select id="best" resultType="mdtext">
-		select * from mdtext where mdtext_readcount = (select Max(mdtext_readcount) from mdtext)
+	<select id="best" resultType="String">
+		select mdtext_id from mdtext where mdtext_readcount = (select Max(mdtext_readcount) from mdtext)
 	</select>
+	<insert id="register" parameterType="mdtext">
+		<selectKey keyProperty="mdtext_id" resultType="Integer"
+			order="BEFORE">
+			SELECT MAX(mdtext_id)+1 FROM mdtext
+		</selectKey>
+		insert into mdtext values(#{mdtext_id},#{mdtext_type },(select goods_id from goods where goods_img like #{mdtext_goods_img }),#{mdtext_goods_img },#{mdtext_content }, now(),'n',#{mem_id },0)
+	</insert>
 </mapper>

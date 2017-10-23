@@ -18,7 +18,6 @@
 	<filter-mapping>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-		<url-pattern>/WEB-INF/views/management/*</url-pattern>
 	</filter-mapping>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

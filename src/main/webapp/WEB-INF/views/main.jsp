@@ -9,67 +9,53 @@
 	<!-- Page Content -->
 	<div class="container">
 
-		<h1 class="my-4">MAIN</h1>
-
-		<!-- Marketing Icons Section -->
+		<!-- <h1 class="my-4">MAIN</h1> -->
+		<p>
+			<!-- Marketing Icons Section -->
 		<div class="row">
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
+			<div class="col-lg-12 mb-12">
+				<div class="card h-200">
 					<h4 class="card-header">MD추천</h4>
 					<div class="card-body">
-						<c:forEach var="best" items="${best }">
-							<!-- 추천수 가장많은 내용을 보여준다. 왜 안나와 ㅜㅜ -->
-							<p class="card-text">${best.mdtext_content}</p>
-						</c:forEach>
-					</div>
-					<div class="card-footer">
-						<a href="listMdtext.do" class="btn btn-primary">추천보기</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">SECOND</h4>
-					<div class="card-body">
-						<p class="card-text">SECOND TEXT</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">SECOND GO</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 mb-4">
-				<div class="card h-100">
-					<h4 class="card-header">THIRD</h4>
-					<div class="card-body">
-						<p class="card-text">THIRD TEXT</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary">THIRD GO</a>
-					</div>
-				</div>
-			</div>
-			<!-- /.row -->
+						<a href="listMdtext.do"> <img
+							src="http://www.bangaloreshoppingfestival.com/Images/Shopping.jpg"
+							width="100%" alt="쇼핑추천">
 
+						</a>
+						<!-- 추천수 가장많은 내용을 보여준다. 왜 안나와 ㅜㅜ -->
+						<%-- <p class="card-text">${best[0].mdtext_content}</p> --%>
+					</div>
+					<div class="card-footer">
+						<!-- 	<a href="listMdtext.do" class="btn btn-primary" style="width: 100%">추천보기</a> -->
+					</div>
+				</div>
+			</div>
+
+			<!-- /.row -->
+			<div>
+				<p>
+					<br>
+				<hr>
+				</p>
+			</div>
 			<!-- Portfolio Section -->
-			<h2>NEW ARRIVED</h2>
+			<h3>NEW ARRIVED</h3>
 
 			<div class="row">
 				<c:forEach var="goods" items="${list }" begin="0" end="5" step="1">
-				<div class="col-lg-4 col-sm-6 portfolio-item">
-					<div class="card h-100">
-						<!--img size 700x400 -->
-						<a href="#"><img class="card-img-top"
-							src="${path}/resources/images/goods/${goods.goods_img}"
-							alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">${goods.goods_name }</a>
-							</h4>
-							<p class="card-text">${goods.goods_smc }</p>
+					<div class="col-lg-4 col-sm-6 portfolio-item">
+						<div class="card h-100">
+							<!--img size 700x400 -->
+							<a href="goodsList.do"><img class="card-img-top"
+								src="${path}/resources/images/goods/${goods.goods_img}" alt=""></a>
+							<div class="card-body">
+								<h4 class="card-title">
+									<a href="#">${goods.goods_name }</a>
+								</h4>
+								<p class="card-text">${goods.goods_smc }</p>
+							</div>
 						</div>
 					</div>
-				</div>
 				</c:forEach>
 				<!-- <div class="col-lg-4 col-sm-6 portfolio-item">
 					<div class="card h-100">
@@ -142,44 +128,41 @@
 
 			<!-- Features Section -->
 			<div class="row">
-				<div class="col-lg-6">
-					<h2>Modern Fashion Trends!!</h2>
-					<p>Fashion</p>
-					<ul>
-						<li><strong>강한제목</strong></li>
-						<li>일번</li>
-						<li>Fashion</li>
-						<li>Fashion</li>
-						<li>Fashion</li>
-					</ul>
-					<p>Trends</p>
+			<p> 
+				<h2 style="color: red;">Hottest Fashion Trends!!</h2></p>
+				<div class="col-lg-12 ">
+					<c:forEach var="style" items="${style}" begin="6" end="9">
+						<div class="card col-lg-3 col-md-4" style="float: right;">
+							<div class="card-img h-100">
+								<a  href="stylefeed.do"> <img class="img-fluid rounded"
+									src="${style.ts_img_path}${style.ts_img_name}" alt=""></a>
+									<div class="card-body">
+										<p class="card-text">${style.ts_content }</p>
+							</div>
+						</div>
 				</div>
-				<div class="col-lg-6">
-					<!-- img size 700X450 -->
-					<img class="img-fluid rounded"
-						src="http://www.justlia.com.br/wp-content/uploads/2013/06/barroco-02.jpg"
-						alt="">
-				</div>
+				</c:forEach>
 			</div>
-			<!-- /.row -->
-
-			<hr>
-
-			<!-- Call to Action Section -->
-			<div class="row mb-4">
-				<hr>
-				<div class="col-md-8">
-					<p>Call to Action Section</p>
-				</div>
-				<div class="col-md-4">
-					<a class="btn btn-lg btn-secondary btn-block" href="#">Call to
-						Action Click</a>
-				</div>
-			</div>
-
 		</div>
-		<!-- /.container -->
-		<!-- footer -->
-		<%@ include file="footer.jsp"%>
-		<!-- /.footer -->
+	</div>
+	<!-- /.row -->
+
+	<hr>
+
+	<!-- Call to Action Section -->
+	<div class="row mb-4">
+		<hr>
+		<div class="col-md-8">
+			<p>Move to Shopping Section</p>
+		</div>
+		<div class="col-md-4">
+			<a class="btn btn-lg btn-secondary btn-block" href="goodsList.do">Go Shopping</a>
+		</div>
+	</div>
+
+	</div>
+	<!-- /.container -->
+	<!-- footer -->
+	<%@ include file="footer.jsp"%>
+	<!-- /.footer -->
 </html>

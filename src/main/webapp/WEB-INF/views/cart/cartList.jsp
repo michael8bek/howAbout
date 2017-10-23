@@ -12,7 +12,6 @@
 	width: 100%;
 	display: flex;
 }
-
 .container1_1 {
 	float: left;
 	width: 65%;
@@ -24,151 +23,252 @@
 	float: left;
 	width: 35%;
 	padding: 5%;
-	margin-top: 3.5%;	
+	margin-top: 3.5%;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 }
-.goods_qty:hover {
+.goods_qty1:hover {
 	cursor:pointer;
 	text-decoration: none;
 }
 </style>
 <script type="text/javascript">
-/* 개별 체크박스 클릭시 */
+
+	/*개별 체크 박스 클릭시  */
   function itemSum() {
 	var sum =0;
+	var sum1 = 0;
 	var count = frm.chk.length;
 	if (count == undefined) {
-		sum += parseInt(frm.goods_price.value);
+		if($("input[name=chk]").prop("checked")){
+		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+		sum1 += parseInt(frm.goods_delprice.value);
+		}else{
+			sum = "";
+			sum1 = "";
+		}
+			
 	} else {
 		for (var i = 0; i < count; i++) {
 			if (frm.chk[i].checked==true) {
-				 sum += parseInt(frm.goods_price[i].value);
+				 sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+				 sum1 += parseInt(frm.goods_delprice[i].value);
 			}
 		}
 	}
-	frm.total_sum.value = sum;
-	 frm.total_sum1.value = sum; 
+	if(sum >= 50000){
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
+	}
+	
+	
 }
   /* 전체선택 체크박스 클릭시 */
-function ckeckAll() {
+function ckeckAll(index) {
 	var sum = 0;
 	var sum1 = 0;
 	var count = frm.chk.length;
 	if (count == undefined) {
-		sum += parseInt(frm.goods_price.value);
+		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+		sum1 += parseInt(frm.goods_delprice.value);
 	}
 	if ($("#checkbox_1").is(':checked')) {
 			$("input[name=chk]").prop("checked", true);
 		for (var i = 0; i < count; i++) {
-			sum += parseInt(frm.goods_price[i].value);
+			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+			sum1 += parseInt(frm.goods_delprice[i].value);
 		}
-		frm.total_sum.value = sum;
-		 frm.total_sum1.value = sum; 
+		if(sum >= 50000){
+			sum1 = "무료배송";
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.total_sum1.value = sum;
+		}else{
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.total_sum1.value = sum+sum1;
+		}
+		
 	}else {
 		$("input[name=chk]").prop("checked", false);
-		frm.total_sum.value ="";		
+		frm.total_sum.value ="";
 		frm.total_sum1.value ="";
-		frm.delprice.value="";
+		frm.delprice.value = "";
 	}
-}  
-  /*선택된 항목 삭제,구매  */
- function mySubmit(index) {
-	  var count = frm.chk.length;
-	  var ck = false;
-	  for (var i = 0; i < frm.chk.length;i++) {
-		  if (frm.chk[i].checked==true) {
-			  ck = true; break;
-		  }
-	  }
-	  if (count == undefined){
-		  ck=true;
-	  }
-	  if (ck==false) {
-		  alert("선택후 작업하세요");
-		  return false;
-	  }
-      if (index == 1) {
-        document.frm.action='delSelect.do';
-      }else if (index == 2) {
-          document.frm.action='ordersSelect.do';
-      }else{}
 }
- $(function(){
-	 $('#decreaseQuantity').click(function(e){
-	 e.preventDefault();
-	 var stat = $('#numberUpDown').val();
-	 var num = parseInt(stat,10);
-	 num--;
-	 if(num<=0){
-	 alert('더이상 줄일수 없습니다.');
-	 num =1;
-	 }
-	 $('#numberUpDown').val(num);
-	 });
-	 $('#increaseQuantity').click(function(e){
-	 e.preventDefault();
-	 var stat = $('#numberUpDown').val();
-	 var num = parseInt(stat,10);
-	 num++;
-	 
-	 $('#numberUpDown').val(num);
-	 });
-	 });
+
+ /* 클릭시 수량 변경 -> 수량에 따라 가격 변동  */
+function click_count(idx, n) {
+	var num = parseInt($("#numberUpDown" + idx).val(), 10) + n;
+	var num1 = parseInt($("#stock_qty" + idx).val(), 10);
+	if(num<1){
+		alert('더이상 줄일수 없습니다.');
+		num = 1;
+	} else if(num>num1) {
+		alert('더이상 늘릴수 없습니다.');
+		num = num1;
+	}
+	$("#numberUpDown" + idx).val(num);
+	var sum =0;
+	var sum1 = 0;
+	var count = frm.chk.length;
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+		sum1 += parseInt(frm.goods_delprice.value);
+
+	} else {
+		for (var i = 0; i < count; i++) {
+			if (frm.chk[i].checked==true) {
+				 sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+				 sum1 += parseInt(frm.goods_delprice[i].value);
+			}
+		}
+	}
+	if(sum >= 50000){
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
+	}
+	
+}
+ /* 장바구니 팝업시 상품이 모두 체크 */
+  window.onload = function() {
+	var sum = 0;
+	var sum1 = 0;
+	var count = frm.chk.length;
+	$("input[name=chk]").prop("checked", true);
+	if (count == undefined) {
+		sum += parseInt(frm.goods_price.value*frm.goods_qty.value);
+		sum1 += parseInt(frm.goods_delprice.value);
+	}else{
+		for (var i = 0; i < count; i++) {
+			sum += parseInt(frm.goods_price[i].value*frm.goods_qty[i].value);
+			sum1 += parseInt(frm.goods_delprice[i].value);
+		}
+	}
+	if(sum >= 50000){
+		sum1 = "무료배송";
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum;
+	}else{
+		frm.total_sum.value = sum;
+		frm.delprice.value = sum1;
+		frm.total_sum1.value = sum+sum1;
+	}
+ 	
+
+}
+
+  /*선택된 항목 삭제,구매  */
+  function mySubmit(index) {
+ 	  var count = frm.chk.length;
+ 	  var ck = false;
+ 	  var num = 0;
+ 	  for (var i = 0; i < frm.chk.length;i++) {
+ 		  if (frm.chk[i].checked==true) {
+ 			  num=i;
+ 			  ck = true; break;
+ 		  }
+ 	  }
+ 	  if (count == undefined){
+ 		 if($("input[name=chk]").prop("checked")){
+ 		 if (index == 1){
+ 	        document.frm.action='delSelect.do';
+ 		 }else if (index == 2){
+ 	     	document.frm.action='ordersSelect.do';
+ 	 	 }else if (index == 3){
+ 	   		document.frm.action='buyOne.do?cart_id='+frm.chk.value+'&goods_qty='+frm.goods_qty.value;
+	     }
+ 		 ck = true;
+ 	  }else ck=false;
+ 	  }
+ 	  if (ck==false) {
+ 		  alert("선택후 작업하세요");
+ 		  return false;
+ 	  }
+       if (index == 1){
+         document.frm.action='delSelect.do';
+       }else if (index == 2){
+         document.frm.action='ordersSelect.do';
+   	  }else if (index == 3){
+   		document.frm.action='buyOne.do?cart_id='+frm.chk[num].value+'&goods_qty='+frm.goods_qty[num].value;
+   	  }else{}
+
+ }
+
 </script>
 </head>
 <body>
-<form name="frm" action="" method="post">
+<form name="frm" action="" method="post" >
 	<div class="container">
 			<div class="container1">
 				<div class="container1_1">
 					<h2 class="text-primary" style="padding-top: 3%;">장바구니 목록</h2>
 					담아둔 상품이 품절됐을 시 장바구니에서 자동 삭제되오니 참고 바랍니다.
 					<p>
-					<table class="table table-bordered" style="">
+					<table class="table" style="width: 100%; ">
 						<tr>
-							<th colspan="3"><input id="checkbox_1" type="checkbox"
+							<th colspan="5"  style="border-top: 1px solid #FFFFFF;"><input id="checkbox_1" type="checkbox" checked="checked"
 								onclick="ckeckAll()" value="">전체선택</th>
-							<th><button onclick="mySubmit(1)" class="btn btn-info" style="">선택삭제</button></th>
+							<th  style="border-top: 1px solid #FFFFFF;"><button onclick="mySubmit(1)" class="btn btn-info" style="">선택삭제</button></th>
 						</tr>
-						
+
 							<tr style="background-color: #E7E7E7;">
-								<th style="width: 40%">주문상품</th>
-								<th>상품금액</th>
-								<th>배송비</th>
-								<th style="width: 15%">주문관리</th>
+								<th colspan="2"></th>
+								<th >주문상품</th>
+								<th style="text-align: center;">상품금액</th>
+								<th style="text-align: center;">배송비</th>
+								<th style="width: 15%;text-align: center;">주문관리</th>
 							</tr>
 
-     					
+						<c:forEach var="cart" items="${listCart}" varStatus="status">
+						<c:forEach var="stock" items="${listStock }" varStatus="status">
 						<c:if test="${not empty listCart }">
-						<c:forEach var="cart" items="${listCart }">
-						<c:if test="${cart.goods_qty>0}"> 
-						<input type="hidden" name="goods_qty" value="${cart.goods_qty }">
-							<tr>
-								<td><input type="checkbox" name="chk"
-								value="${cart.cart_id}" onclick="itemSum()">${cart.goods_name}<p>
-								<input type="hidden" name="goods_price" value="${cart.goods_price }">
-						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }<p>
-						  		<a onclick="" class="goods_qty" id="increaseQuantity">▲</a>
-						  		<input type="text" id="numberUpDown" name="qty" value="1" style="width: 11%; text-align: center;">
-						  		<a onclick="" class="goods_qty" id="decreaseQuantity" >▼</a>
+						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty>0 }">
+						<input type="hidden" name="goods_qty${status.count}" value="${cart.goods_qty }" id="goods_qty${status.count}">
+						<input type="hidden" name="goods_price" value="${cart.goods_price}" id="goods_price">
+						<input type="hidden" name="cart_id" value="${cart.cart_id }">
+						<input type="hidden" name="goods_delprice" value="${cart.goods_delprice }">
+						<input type="hidden" name="stock_qty${status.count}" value="${stock.stock_qty}" id="stock_qty${status.count}">
+							<tr style="width: 100%; vertical-align: middle;">
+								<td style="border-right: 1px solid #FFFFFF; vertical-align: middle;">
+								<input type="checkbox" name="chk" value="${cart.cart_id}" onclick="itemSum()"></td>
+								<td style="border-right: 1px solid #FFFFFF; width: 15%; vertical-align: middle;"><img src="resources/images/goods/${cart.goods_img }" style="width:100%;"></td>
+								<td style="width:40%; ">${cart.goods_name}<p>
+						  		Color : ${cart.goods_color } / 
+						  		<c:if test="${cart.goods_size ==0 }"> Size : Free<p></c:if>
+						  		<c:if test="${cart.goods_size > 0 }"> Size : ${cart.goods_size }<p></c:if>
+						  		<!-- 수량 -->
+						  		<a onclick="click_count(${status.count}, 1)" class="goods_qty1" id="">▲</a>
+						  		<input type="text" class="qty1" id="numberUpDown${status.count }" name="goods_qty" value="${cart.goods_qty }" style="width: 11%; text-align: center;">
+						  		<a onclick="click_count(${status.count}, -1)"  class="goods_qty1" id="" >▼</a>
 								</td>
-								<td>${cart.goods_price}</td>
-								<td>${cart.goods_delprice}</td>
-								<td><a href="buyOne.do?cart_id=${cart.cart_id }" class="btn btn-success" style="width: 100%; ">바로구매</a><p>
+								<td style="width: 15%; vertical-align: middle; text-align: center;">${cart.goods_price}</td>
+								<td style="width: 15%; vertical-align: middle; text-align: center;">${cart.goods_delprice }</td>
+								<td style="vertical-align: middle; text-align: center;"><button onclick="mySubmit(3)" style="width: 100%;" class="btn btn-warning">바로구매</button><p>
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
-							</tr>
-							<tr style="text-align:right;">
-								<th colspan="4" style="text-align:right;">상품 ${cart.goods_price}원 + 배송
-									${cart.goods_delprice} =
-									${cart.goods_price+cart.goods_delprice}원</th>
+
 							</tr>
 						</c:if>
-						<c:if test="${cart.goods_qty==0}"> 
+						<c:if test="${cart.goods_id==stock.goods_id && stock.stock_qty==0}">
 							<tr>
-								<td>&nbsp;&nbsp;&nbsp;${cart.goods_name}<p>
+								<td style="border-right: 1px solid #FFFFFF;"></td>
+								<td style="border-right: 1px solid #FFFFFF;  width: 15%;"></td>
+								<td style="width:40%;">&nbsp;&nbsp;&nbsp;${cart.goods_name}<p>
 						  		&nbsp;&nbsp;&nbsp;Color : ${cart.goods_color } / Size : ${cart.goods_size }
 									</td>
 								<td colspan="2">
@@ -178,15 +278,17 @@ function ckeckAll() {
 									<a href="cartDelete.do?cart_id=${cart.cart_id }" class="btn btn-danger" style="width: 100%; ">삭제</a>
 								</td>
 							</tr>
-							
+
+						</c:if>
 						</c:if>
 						</c:forEach>
-						</c:if>
+						</c:forEach>
 						<c:if test="${empty listCart }">
-							<tr>
-								<td colspan="4">장바구니에 담긴 상품이 없습니다.</td>
+							<tr style="width: 100%; vertical-align: middle;">
+								<td colspan="6" style="width: 100%; vertical-align: middle;">장바구니에 담긴 상품이 없습니다.</td>
 							</tr>
 						</c:if>
+
 					</table>
 				</div>
 				<div class="container1_2">
@@ -195,10 +297,6 @@ function ckeckAll() {
 						<tr>
 							<th style="width:55%; ">총 상품금액</th>
 							<th><input name="total_sum" type="text" readonly style="width: 100%; margin: 0; padding: 0; " class="btn"></th>
-						</tr>
-						<tr>	
-							<th>할인 금액</th>
-							<th></th>
 						</tr>
 						<tr>
 							<th>총 배송비</th>
@@ -210,9 +308,8 @@ function ckeckAll() {
 						</tr>
 					</table>
 					<table class="table table-bordered">
-						<!-- style="margin-top: 5%; border: 5px solid #1993A8;" -->
 						<tr>
-							<th colspan="2">
+							<th colspan="2" style="border: 1px solid #FFFFFF;">
 							<button onclick="mySubmit(2)" class="btn btn-info" style="width: 100%; height: 100%;">구매하기</button></th>
 						</tr>
 					</table>
