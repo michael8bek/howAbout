@@ -67,8 +67,8 @@ public class StylefeedServiceImpl implements StylefeedService {
 	}
 
 	@Override
-	public List feedmore(int startRow, int endRow) {
-		return sd.feedmore(startRow, endRow);
+	public List feedmore_recent(int startRow, int endRow) {
+		return sd.feedmore_recent(startRow, endRow);
 	}
 
 	@Override
@@ -94,6 +94,11 @@ public class StylefeedServiceImpl implements StylefeedService {
 	@Override
 	public void feedRead(int ts_id) {
 		sd.feedRead(ts_id);
+	}
+
+	@Override
+	public List allreplycount() {
+		return sd.allreplycount();
 	}
 
 }

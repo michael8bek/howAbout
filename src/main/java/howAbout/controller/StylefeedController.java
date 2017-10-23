@@ -3,6 +3,7 @@ package howAbout.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.rmi.ssl.SslRMIClientSocketFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -31,6 +33,7 @@ import howAbout.model.Member;
 import howAbout.model.Stylefeed;
 import howAbout.model.Tsreply;
 import howAbout.service.stylefeed.StylefeedService;
+import scala.annotation.meta.setter;
 import scala.util.parsing.json.JSONArray;
 import scala.util.parsing.json.JSONObject;
 
@@ -89,8 +92,10 @@ public class StylefeedController {
 			System.out.println("페이지타입3:" + pageType);
 			list = ss.feedlist_orderRecent();
 			rlist = ss.tsReplyList();
+			List allreplycount = ss.allreplycount();
 			map.put("list", list);
 			map.put("rlist", rlist);
+			map.put("reply", allreplycount);
 			model.addAttribute("pageType", "recent");
 			//session.setAttribute("pageType", "recent");
 		};
@@ -170,7 +175,7 @@ public class StylefeedController {
 	}
 	//피드 댓글 등록
 	@RequestMapping(value = "feedreplywrite", method = RequestMethod.POST)
-	public @ResponseBody Map feedreplywrite(HttpServletRequest request, Model model, HttpSession session) {
+	public @ResponseBody Map<String,List> feedreplywrite(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("스타일피드 댓글 작성 컨트롤러 실행");
 		int ts_id = Integer.parseInt(request.getParameter("ts_id"));
 		String mem_id = request.getParameter("mem_id");
@@ -217,12 +222,11 @@ public class StylefeedController {
 	
 	//피드 더보기 
 	@RequestMapping("feedmore")
-	public @ResponseBody List feedmore(@RequestParam("pageNum") String pageNum, Model model) {
+	public @ResponseBody Map feedmore(@RequestParam String current_pageNum, Model model, HttpSession session) {
 		String more="more";
-		System.out.println(pageNum);
+		System.out.println("피드더보기 실행");
+		System.out.println("current_pageNum:"+current_pageNum);
 		//스타일피드 페이지 메인 페이징작업
-		
-		System.out.println("pageNum 두번째값:"+pageNum);
 		int totalcount = ss.feedcount(); //게시글 총 개수
 		System.out.println("게시글 총 개수:"+totalcount);
 		final int ROWPERPAGE = 8;
@@ -232,28 +236,31 @@ public class StylefeedController {
 		if(totalcount % ROWPERPAGE > 0) {
 			totalpage = totalpage + 1  ;
 		} 
-		int currentPage = Integer.parseInt(pageNum);
+		int currentPage = Integer.parseInt(current_pageNum);
 		System.out.println("currentPage"+currentPage);
-		if(totalpage < currentPage ) {
-			currentPage = totalpage;
+		int nextPage = currentPage+1;
+		if(totalpage < nextPage ) {
+			nextPage = totalpage;
 		}
-		
-		
+		System.out.println("다음페이지"+nextPage);
 		int startpage = 1;  //시작페이지
 		int endpage = totalpage; //마지막페이지
 		System.out.println("마지막페이지:"+endpage);
 		
-		int startRow = (currentPage-1)*ROWPERPAGE+1; //페이지 내 첫번째 글번호
-		
-		
+		int startRow = (nextPage-1)*ROWPERPAGE+1; //페이지 내 첫번째 글번호
 		System.out.println("startRow:"+startRow);
 		int endRow = startRow + ROWPERPAGE-1;
 		System.out.println("endRow:"+endRow);
-		
-		List list = ss.feedmore(startRow, endRow);
-		
-		
-		return list;
+		List list = ss.feedmore_recent(startRow, endRow);
+		//List rlist = ss.tsReplyList();
+		HashMap<String, List> map = new HashMap<String, List>();
+		List pageList = new ArrayList<>();
+		pageList.add(nextPage);
+		pageList.add(totalpage);
+		System.out.println("리스트삽입결과:"+pageList.size());
+		map.put("list", list);
+		map.put("page",pageList);
+		return map;
 	}
 
 }

@@ -20,11 +20,12 @@ public interface StylefeedService {
 	List tsReplyList();
 	List<Stylefeed> feedReplyList(int ts_id);
 	List feedReply(Stylefeed sf);
-	List feedmore(int startRow, int endRow);
+	List feedmore_recent(int startRow, int endRow);
 	int feedcount();
 	int feedlike(int ts_id);
 	List feedSearch(String search);
 	List feedDetailDft(int ts_id);
 	void feedRead(int ts_id);
+	List allreplycount();
 
 }

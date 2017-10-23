@@ -484,7 +484,7 @@ a {
 	margin-right: 65px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
 	margin-right: 15px;
 }
@@ -507,8 +507,8 @@ a {
 
 .feed #goods_img{
 	float:left;
-	width:60px;
-	height:60px;
+	width:62px;
+	height:70px;
 }
 
 .feed #goods_name{
@@ -531,7 +531,7 @@ a {
 	position: relative;
 	background-color: #F7F7F7;
 	border-radius: 0px 0px 5px 5px;
-	height:170px;
+	height:175px;
 	overflow-y:hidden;
 	display: inline-block;
 }
@@ -951,10 +951,10 @@ overflow-y:auto;
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 50px;
+	margin-right: 45px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
 	margin-right: 15px;
 }
@@ -1057,7 +1057,7 @@ overflow-y:auto;
 	margin-right: 40px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
 	margin-right: auto;
 }
@@ -1250,7 +1250,8 @@ overflow-y:auto;
 				</c:forEach> --%> 
 			</div>
 			<div class="feed_more" style="text-align: center;">
-				<button class="btn btn-danger" id="feed_more_btn" data-pageNum="">more</button>
+				<!-- <button class="btn btn-danger" id="feed_more_btn" data-pageNum="">more</button> -->
+				<img id="feed_more_btn" data-pageNum="" data-listType="" src="resources/images/icons/more.png">
 			</div> 
 		</section>
 		<div class="write_btn">
@@ -1449,9 +1450,11 @@ overflow-y:auto;
 						timeout:100000,
 						success : function(data) {
 							console.log("최신순 정렬 ajax 함수 success");
+							console.log(data);
 							/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
 							var overlayjs = document.createElement('script');
 							overlayjs.src = "/howAbout/resources/js/Overlay.js";
+							overlayjs.id="overlay";
 							document.getElementsByTagName('head')[0].appendChild(overlayjs);
 							/*ajxx밭은 data 출력하기*/
 							var mem_id = "";
@@ -1488,7 +1491,7 @@ overflow-y:auto;
 														+ '</p></div>'
 														+'<div class="feed_icon">'
 														+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-														+ '<p class="icon_txt">'+$(feed).attr('reply_count')
+														+ '<p class="icon_txt" id="reply_count">'+$(feed).attr('reply_count')
 														+ '</p></div>'
 														+'<div class="feed_icon">'
 														+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
@@ -1497,7 +1500,7 @@ overflow-y:auto;
 														+ '</div></div>'
 														+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 														+ '"></div>');
-								if($(feed).attr('ts_id')=='22'){
+								if($(feed).attr('ts_id')=='24'){
 									$('.feed_comment').prepend('<div class="goods_link">'
 											+ '<img class="goods_info" id="goods_img" src="https://usercontents-c.styleshare.kr/images/i59bb8e5d1ad0a/80x80">'
 											+ '<div class="goods_info" id="goods_name"><a>Bulging Tumble Hood T-Shirt</a></div>'
@@ -1506,26 +1509,26 @@ overflow-y:auto;
 								}
 
 														
-							$.each(data.rlist, function(index, reply) {
-								if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
+							$.each(data.rlist, function(index, rlist) {
+								if($(feed).attr('ts_id')==$(rlist).attr('ts_id')){
 								$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
-								+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
+								+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(rlist).attr('reply_id')+'">'
 								+ '<div class="feed_writer_img">'
 								+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
 								+ 'width="100%" height="100%"></div>'
-								+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(reply).attr("mem_id")
-								+ '">'+$(reply).attr("mem_name")
-								+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
+								+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(rlist).attr("mem_id")
+								+ '">'+$(rlist).attr("mem_name")
+								+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(rlist).attr("ts_id")
 								+'">'
-								+ $(reply).attr("reply_content")+'</div>'
+								+ $(rlist).attr("reply_content")+'</div>'
 								/* +'<div class="feedreply_regdate">'+$(reply).attr('reply_regdate')+'</div>' */
 								+'</div>'); 
 								}
 							});
-			
 					});
 							
-						$('#feed_more_btn').attr('data-pageNum','1');	
+						$('#feed_more_btn').attr('data-pageNum','2');	
+						$('#feed_more_btn').attr('data-listType','recent');	
 						},beforeSend:function(){
 							$("#user_feed").html(" ");
 					        $('.feed_loading').removeClass('display-none');
@@ -1769,6 +1772,8 @@ overflow-y:auto;
 																						}
 																					});
 																		});
+																	$('#feed_more_btn').removeAttr('data-pageNum')
+																	$('#feed_more_btn').attr('data-pageNum','1');
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
@@ -1806,9 +1811,10 @@ overflow-y:auto;
 															success : function(data) {
 																console.log("최신순 정렬 ajax 함수 success");
 																/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
-																var overlayjs = document.createElement('script');
+																/* var overlayjs = document.createElement('script');
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
-																document.getElementsByTagName('head')[0].appendChild(overlayjs); 
+																document.getElementsByTagName('head')[0].appendChild(overlayjs);  */
+																$("#overlay").remove();
 																/*ajxx밭은 data 출력하기*/
 																var mem_id = "";
 																var mem_name = "";
@@ -1870,13 +1876,20 @@ overflow-y:auto;
 																});
 												
 														});
+																/* $('#feed_more_btn').attr('data-listType','recent');	 */
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
+														        $('#feed_more_btn').attr('data-pageNum','1');
 														    },complete:function(){
 														    	$('.feed_loading').addClass('display-none');
 														    	$("#order_recent").css('color','blue');
 														    	$("#order_like").css('color','black');
+														    	/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
+														    	var overlayjs = document.createElement('script');
+																overlayjs.src = "/howAbout/resources/js/Overlay.js";
+																overlayjs.id="overlay";
+																document.getElementsByTagName('head')[0].appendChild(overlayjs); 
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -2000,20 +2013,24 @@ overflow-y:auto;
 						});
 							
 							/*피드 더보기 기능(ajax)*/
-							$(document).on('click','#feed_more_btn',function() {
-								var pageNum = $('#feed_more_btn').attr('data-pageNum');
-								console.log("더보기 클릭"+pageNum);
+/* 							$(document).on('click','#feed_more_btn',function nextPage() { */
+							function nextPage() {
+								console.log("nextPage함수실행");
+								var current_pageNum = $('#feed_more_btn').attr('data-pageNum');
+								console.log("current_pageNum:",current_pageNum);
 								$.ajax({
 									url:"feedmore.do",
 									type:"POST",
-									data:{pageNum:pageNum},
+									data:{current_pageNum:current_pageNum},
 									async:true,
 									dataType:"json",
 									success:function(data){
 										console.log("더보기버튼 ajx success");
 										console.log(data);
-										
-										$.each(data, function(index, feed) {
+										var next_pageNum = "${next_pageNum}";
+										var total_pageNum ="${total_pageNum}";
+										console.log("페이지정보:",data.page);
+										$.each(data.list, function(index, feed) {
 											console.log("더보기 출력");											
 											$("#user_feed").append('<div class="feed">'
 																	+ '<div class="feed_imgbox">'
@@ -2052,8 +2069,8 @@ overflow-y:auto;
 																	+'</div></div>'
 																	+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 																	+ '"></div>');
-		/* 															
-										$.each(data.rlist, function(index, reply) {
+																	
+/* 										$.each(data.rlist, function(index, reply) {
 											if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
 											$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
 											+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
@@ -2066,12 +2083,22 @@ overflow-y:auto;
 											+'">'
 											+ $(reply).attr("reply_content")+'</div></div>'); 
 											}
-										});  */
-						
+										});  */ 
 													});
-											}
-									})
-							});
+											$('#feed_more_btn').attr('data-pageNum',next_pageNum);	
+											if(data.page[0]==data.page[1]){
+												console.log("조건만족");													
+												$('.feed_more').remove();
+											};
+										},complete:function(){
+									    	/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
+									    	var overlayjs = document.createElement('script');
+											overlayjs.src = "/howAbout/resources/js/Overlay.js";
+											overlayjs.id="overlay";
+											document.getElementsByTagName('head')[0].appendChild(overlayjs); 
+										}
+									});
+							};
 							
 							
 							/*닉네임 클릭하면 mypage로 이동*/
@@ -2104,6 +2131,18 @@ overflow-y:auto;
 									}
 								})								
 							});
+							
+							$(window).scroll(function(){ 
+								/* console.log("$(window).scrollTop():",$(window).scrollTop());
+								console.log("$(document).height():",$(document).height());
+								console.log("$(window).height():",$(window).height()); */
+									if($(window).scrollTop()+0.80>=$(document).height()-$(window).height()){
+										console.log("scroll내 if문");
+										$("#overlay").remove();
+										nextPage();
+									}
+							})
+
 });
 							
 	</script>
