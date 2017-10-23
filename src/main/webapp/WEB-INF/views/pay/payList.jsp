@@ -22,23 +22,29 @@
 						<th style="text-align: center;">결제금액</th>
 						<th></th>
 					</tr>
-				<c:if test="${not empty payList }">
-				<c:forEach var="payList" items="${payList}">
+				<c:if test="${not empty cartList }">
+				<c:forEach var="cartList" items="${cartList}">
 					<tr>
-						<td style="border-right: 1px solid #FFFFFF; width: 10%; vertical-align: middle;"><img src="resources/images/goods/${payList.goods_img }" style="width:100%;"></td>
-						<td style="vertical-align: middle;">${payList.goods_name}<p>
-							Color : ${payList.goods_color } / Size : ${payList.goods_size }
+						<td style="border-right: 1px solid #FFFFFF; width: 10%; vertical-align: middle;"><img src="resources/images/goods/${cartList.goods_img }" style="width:100%;"></td>
+						<td style="vertical-align: middle;">${cartList.goods_name}<p>
+							Color : ${cartList.goods_color } / Size : ${cartList.goods_size }
 						</td>
-						<td style="vertical-align: middle;">${payList.goods_qty }</td>
-						<td style="vertical-align: middle;">${payList.goods_price }</td>
-						<td style="vertical-align: middle;">${payList.cp_benefit }</td>
-						<td style="vertical-align: middle;">${payList.goods_delprice}</td>
-						<td style="vertical-align: middle;">${payList.goods_price*payList.goods_qty-payList.cp_benefit +payList.goods_delprice}</td>
+						<td style="vertical-align: middle;">${cartList.goods_qty }</td>
+						<td style="vertical-align: middle;">${cartList.goods_price }</td>
+						<td style="vertical-align: middle;">${cartList.cp_benefit }</td>
+						<td style="vertical-align: middle;">${cartList.goods_delprice}</td>
+						<%-- ${cartList.goods_price*cartList.goods_qty-cartList.cp_benefit +cartList.goods_delprice} --%>
+					<c:forEach var="paymentList" items="${paymentList}">
+					<c:if test="${cartList.goods_id ==paymentList.goods_id  }">
+					
+						<td style="vertical-align: middle;">${paymentList.pay_total }</td>
 						<td style="vertical-align: middle;"><a href="uploadFeedImg.do" class="btn btn-warning">후기작성</a></td>
+					</c:if>
+					</c:forEach>
 					</tr>
 					</c:forEach>
 				</c:if>
-				<c:if test="${empty payList }">
+				<c:if test="${empty cartList }">
 					<tr>
 						<td colspan="6">주문상품 내역이 아직없어요. 구매해주세요 ㅜㅜ</td>
 					</tr>
