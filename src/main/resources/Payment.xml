@@ -17,16 +17,17 @@
 		<result property="pay_time" column="pay_time" />
 		<result property="cplist_id" column="cplist_id" />
 		<result property="goods_qty" column="goods_qty" />
+		<result property="cart_id" column="cart_id" />
 	</resultMap>
 	<insert id="insert" parameterType="payment" useGeneratedKeys="true" keyProperty="pay_id">
 		<!-- <selectKey keyProperty="pay_id" resultType="int">
 			SELECT MAX(pay_id)+1 FROM payment
 		</selectKey> -->
 		insert into payment(goods_id,mem_id,pay_name,pay_phone,pay_email,
-		pay_addr,pay_rename,pay_rephone,pay_required,pay_total,pay_time,cplist_id,goods_qty)
+		pay_addr,pay_rename,pay_rephone,pay_required,pay_total,pay_time,cplist_id,goods_qty,cart_id)
 		 values (#{goods_id},
 		 #{mem_id},	#{pay_name}, #{pay_phone}, #{pay_email}, #{pay_addr},
-		  #{pay_rename}, #{pay_rephone}, #{pay_required}, #{pay_total}, now(),#{cplist_id},#{goods_qty})
+		  #{pay_rename}, #{pay_rephone}, #{pay_required}, #{pay_total}, now(),#{cplist_id},#{goods_qty},#{cart_id})
 	</insert>
 	<select id="paymentList" resultMap="paymentResult">
 		select * from payment where mem_id=#{mem_id}

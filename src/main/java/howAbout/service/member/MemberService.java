@@ -12,6 +12,7 @@ public interface MemberService {
 
 	void pointUse(Member member);
 
+
 	
 
 }

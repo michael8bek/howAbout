@@ -17,7 +17,15 @@ public class Payment {
 	private int pay_total;
 	private Date pay_time;
 	private int cplist_id;
+	private int cart_id;
 	
+	
+	public int getCart_id() {
+		return cart_id;
+	}
+	public void setCart_id(int cart_id) {
+		this.cart_id = cart_id;
+	}
 	public int getPay_id() {
 		return pay_id;
 	}

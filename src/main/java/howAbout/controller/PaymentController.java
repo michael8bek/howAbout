@@ -35,7 +35,7 @@ public class PaymentController {
 	private MemberService ms;
 
 	@RequestMapping("payInsert")
-	public String payInsert(Payment payment, Model model, HttpSession session,HttpServletRequest request ) {
+	public String payInsert(Member member,Payment payment, Model model, HttpSession session,HttpServletRequest request ) {
 		payment.setMem_id((String)session.getAttribute("mem_id"));
 		String memberName = payment.getMem_id();
 
@@ -49,7 +49,8 @@ public class PaymentController {
 			result1 = 1;
 		}
 		/*마일리지 구매금액의 10%*/
-		int point = (int)(payment.getPay_total() * 0.1);
+		Member mem = ms.select((String)session.getAttribute("mem_id"));
+		int point = (int)(payment.getPay_total() * 0.1+(int)mem.getMem_point());
 		int addpoint = ms.addpoint(point, memberName);
 
 		/*포인트 사용시 보유 포인트에서 차감*/
@@ -76,6 +77,7 @@ public class PaymentController {
 		List<Payment> paymentList = ps.paymentList((String) session.getAttribute("mem_id"));
 		model.addAttribute("cartList",cartList);
 		model.addAttribute("paymentList",paymentList);
+		
 		return "pay/payList";
 
 	}
