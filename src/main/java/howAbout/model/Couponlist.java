@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class Couponlist {
 	private	int cplist_id;
-	private Date cplist_regdate;
-	private Date cplist_expire;
+	private String cplist_regdate;
+	private String cplist_expire;
 	private String cplist_use;
 	private String cp_id;
 	private String mem_id;
@@ -17,16 +17,16 @@ public class Couponlist {
 	public void setCplist_id(int cplist_id) {
 		this.cplist_id = cplist_id;
 	}
-	public Date getCplist_regdate() {
+	public String getCplist_regdate() {
 		return cplist_regdate;
 	}
-	public void setCplist_regdate(Date cplist_regdate) {
+	public void setCplist_regdate(String cplist_regdate) {
 		this.cplist_regdate = cplist_regdate;
 	}
-	public Date getCplist_expire() {
+	public String getCplist_expire() {
 		return cplist_expire;
 	}
-	public void setCplist_expire(Date cplist_expire) {
+	public void setCplist_expire(String cplist_expire) {
 		this.cplist_expire = cplist_expire;
 	}
 	public String getCplist_use() {

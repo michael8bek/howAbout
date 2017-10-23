@@ -33,11 +33,13 @@ public class PaymentController {
 	private CouponlistService cpls;
 	@Autowired
 	private MemberService ms;
-	
+
 	@RequestMapping("payInsert")
 	public String payInsert(Payment payment, Model model, HttpSession session,HttpServletRequest request ) {
 		payment.setMem_id((String)session.getAttribute("mem_id"));
 		String memberName = payment.getMem_id();
+
+		/*결제 했을때 장바구니 상태 = 'done'으로 변경*/
 		String cart_id[] = request.getParameterValues("cart_id");
 		int result1 = 0;
 		if (cart_id.length > 0) {
@@ -49,7 +51,7 @@ public class PaymentController {
 		/*마일리지 구매금액의 10%*/
 		int point = (int)(payment.getPay_total() * 0.1);
 		int addpoint = ms.addpoint(point, memberName);
-		
+
 		/*포인트 사용시 보유 포인트에서 차감*/
 		/*Member member = new Member();
 		int mem_point = (int)session.getAttribute("mem_point")-(int)request.getAttribute("mem_usepoint");
@@ -57,7 +59,7 @@ public class PaymentController {
 		member.setMem_id((String)session.getAttribute("mem_id"));
 		ms.pointUse(member);
 		System.out.println(mem_point);*/
-		
+
 		int cplistId= cpls.update(payment.getCplist_id());
 		int result = ps.insert(payment);
 		int result3 = ss.update(payment);
@@ -75,6 +77,6 @@ public class PaymentController {
 		model.addAttribute("cartList",cartList);
 		model.addAttribute("paymentList",paymentList);
 		return "pay/payList";
-		
+
 	}
 }

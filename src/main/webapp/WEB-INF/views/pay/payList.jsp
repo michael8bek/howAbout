@@ -6,12 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결제내역 리스트</title>
+
 </head>
 <body>
 <div class="container">
 	<h2 class="text-primary" style="padding-top: 3%;">결제 완료 상품</h2>
 				<p>
-				<table class="table" style="text-align: center;">					
+				<table class="table" style="text-align: center;">
 					<tr style="background-color: #E7E7E7;">
 						<th></th>
 						<th style="text-align: center;">주문상품</th>
@@ -36,7 +37,7 @@
 						<%-- ${cartList.goods_price*cartList.goods_qty-cartList.cp_benefit +cartList.goods_delprice} --%>
 					<c:forEach var="paymentList" items="${paymentList}">
 					<c:if test="${cartList.goods_id ==paymentList.goods_id  }">
-					
+
 						<td style="vertical-align: middle;">${paymentList.pay_total }</td>
 						<td style="vertical-align: middle;"><a href="uploadFeedImg.do" class="btn btn-warning">후기작성</a></td>
 					</c:if>

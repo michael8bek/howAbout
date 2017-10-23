@@ -18,12 +18,6 @@ public class Payment {
 	private Date pay_time;
 	private int cplist_id;
 	
-	public int getCplist_id() {
-		return cplist_id;
-	}
-	public void setCplist_id(int cplist_id) {
-		this.cplist_id = cplist_id;
-	}
 	public int getPay_id() {
 		return pay_id;
 	}
@@ -35,12 +29,6 @@ public class Payment {
 	}
 	public void setGoods_id(int goods_id) {
 		this.goods_id = goods_id;
-	}
-	public int getGoods_qty() {
-		return goods_qty;
-	}
-	public void setGoods_qty(int goods_qty) {
-		this.goods_qty = goods_qty;
 	}
 	public String getMem_id() {
 		return mem_id;
@@ -102,7 +90,19 @@ public class Payment {
 	public void setPay_time(Date pay_time) {
 		this.pay_time = pay_time;
 	}
-	
-	
-	
+	public int getCplist_id() {
+		return cplist_id;
+	}
+	public void setCplist_id(int cplist_id) {
+		this.cplist_id = cplist_id;
+	}
+	public int getGoods_qty() {
+		return goods_qty;
+	}
+	public void setGoods_qty(int goods_qty) {
+		this.goods_qty = goods_qty;
+	}
 }
+	
+	
+	
