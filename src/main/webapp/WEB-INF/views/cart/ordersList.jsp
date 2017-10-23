@@ -196,6 +196,7 @@
 			alert("최대 가능 마일리지입니다");
 			frm.mem_usepoint.value = parseInt(frm.mem_point1.value);
 		}
+		/* isNaN체크 */
 		 if(isNaN(point) == true){
 			point = 0;
 		} 

@@ -14,11 +14,13 @@ import howAbout.model.Cart;
 import howAbout.model.Goods;
 import howAbout.model.Member;
 import howAbout.model.Payment;
+import howAbout.model.Review;
 import howAbout.model.Stock;
 import howAbout.service.cart.CartService;
 import howAbout.service.couponlist.CouponlistService;
 import howAbout.service.member.MemberService;
 import howAbout.service.payment.PaymentService;
+import howAbout.service.review.ReviewService;
 import howAbout.service.stock.StockService;
 
 @Controller
@@ -33,6 +35,8 @@ public class PaymentController {
 	private CouponlistService cpls;
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private ReviewService rs;
 
 	@RequestMapping("payInsert")
 	public String payInsert(Member member,Payment payment, Model model, HttpSession session,HttpServletRequest request ) {
@@ -79,6 +83,16 @@ public class PaymentController {
 		model.addAttribute("paymentList",paymentList);
 		
 		return "pay/payList";
-
+	}
+	@RequestMapping("reviewForm")
+	public String reviewForm(Model model, int pay_id) {
+		model.addAttribute("pay_id",pay_id);
+		return "pay/reviewForm";
+	}
+	@RequestMapping("review")
+	public String review(Review review , Model model) {
+		int result = rs.insert(review);
+		model.addAttribute("result",result);
+		return "pay/reivew";
 	}
 }

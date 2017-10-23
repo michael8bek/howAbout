@@ -82,9 +82,8 @@ $(document).on('click', '.card-img-top', function() {
 						<%-- ${cartList.goods_price*cartList.goods_qty-cartList.cp_benefit +cartList.goods_delprice} --%>
 					<c:forEach var="paymentList" items="${paymentList}">
 					<c:if test="${cartList.cart_id ==paymentList.cart_id  }">
-
 						<td style="vertical-align: middle;">${paymentList.pay_total }</td>
-						<td style="vertical-align: middle;"><a href="uploadFeedImg.do" class="btn btn-warning">후기작성</a></td>
+						<td style="vertical-align: middle;"><a href="reviewForm.do?pay_id=${paymentList.pay_id}" class="btn btn-warning">후기작성</a></td>
 					</c:if>
 					</c:forEach>
 					</tr>
