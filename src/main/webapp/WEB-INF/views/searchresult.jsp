@@ -653,7 +653,7 @@ overflow-y:auto;
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 40px;
+	margin-right: 35px;
 }
 .feed_icon_area .feed_icon:first-child{
 	margin-left: 5px;

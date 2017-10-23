@@ -211,6 +211,19 @@ public class StylefeedController {
 		return ts_count;
 	}
 	
+	//MD페이지
+	@RequestMapping("mdpage")
+	public String mdpage(Model model) {
+		String search ="가을";
+		List list = ss.feedSearch(search);
+		List rlist = ss.tsReplyList();
+		System.out.println("mD페이지");
+		model.addAttribute("list",list);
+		model.addAttribute("reply",rlist);
+		return "mdpage";
+	}
+	
+	
 	// 마이페이지
 	@RequestMapping("mypage")
 	public String mypage(Model model, @RequestParam("mem_id") String mem_id) {
@@ -222,6 +235,7 @@ public class StylefeedController {
 		List rlist = ss.tsReplyList();
 		model.addAttribute("list", list);
 		model.addAttribute("reply",rlist);
+		System.out.println("댓글사이즈:"+rlist.size());
 		model.addAttribute("memberInfo",memberInfo);
 		return "mypage";
 	}

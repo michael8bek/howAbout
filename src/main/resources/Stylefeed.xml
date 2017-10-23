@@ -105,7 +105,10 @@ on rc.ts_id = a.ts_id where a.ROWNUM between 1 and 8 order by a.ts_regdate desc
 		values(#{ts_id},#{reply_id})
 	</insert>
 	<select id="feedsearch" parameterType="String" resultMap="stylefeedResult">
-	select * from trendshare where ts_content LIKE CONCAT('%', #{search}, '%')
+	select * from (select @ROWNUM := @ROWNUM+1 AS ROWNUM, tr.* from trendshare tr, (select @ROWNUM:=0) rn order by tr.ts_regdate desc) a 
+left outer join (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc 
+on rc.ts_id = a.ts_id where ts_content LIKE CONCAT('%', #{search}, '%') order by a.ts_regdate desc
+	<!-- select * from trendshare where ts_content LIKE CONCAT('%', #{search}, '%') -->
 	</select>
 	<select id="memberInfo" parameterType="String" resultMap="stylefeedResult">
 	select ts.mem_id, ts.mem_name, sum(ts.ts_readcount) readcount, sum(ts.ts_like) likecount, count(mem_id) feedcount from trendshare ts where mem_id=#{mem_id};

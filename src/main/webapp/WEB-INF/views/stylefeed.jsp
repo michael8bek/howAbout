@@ -328,7 +328,34 @@ a {
 	border-radius: 5px;
 	margin-bottom: 1.000rem;
 }
-
+	.mdfeed_img{
+		position: relative;
+	}
+	.mdfeed_img_text{
+	background-color: black;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    opacity: 0.2;
+	}
+	.mdfeed_text{
+	position: absolute;
+	border-top:4px solid;
+    color: white;
+    top: calc(50%);
+    font-size: 30px;
+    left: calc( 50% - 150px );
+    font-weight: bold;
+	}
+	.mdfeed_text_small{
+	position: absolute;
+    color: white;
+    font-weight: bold;
+    top: calc(70%);
+    left: calc( 50% - 120px );
+    font-size: 16px;
+	}
 .mdfeed_content {
 	width: 100%;
 	height: 60px;
@@ -501,7 +528,8 @@ a {
 }
 
 .feed .goods_link{
-	width:100%;x
+	width:100%;
+	height:62px;
 	display: inline-block;
 	background-color: white;
 }
@@ -514,7 +542,6 @@ a {
 
 .feed #goods_name{
 	font-size: 13px;
-	margin-top:5px;
 	padding-left:10px;
 	font-weight: bold;
 	overflow-x: hidden;
@@ -700,6 +727,42 @@ overflow-y:auto;
 	display: inline-block;
 }
 @media all and (max-width:767px) {
+	/* mdfeed */
+	.mdfeed {
+		width: 100%;
+		height: auto;
+		margin-bottom: 0.500rem;
+	}
+	.mdfeed_content{
+		font-weight:bold;
+		font-size:14px;
+		padding-top: 10px;
+		position: relative;
+		display: inline-flex;
+	}
+	.mdfeed_content .profile_img{
+		margin-left: 10px;
+		display: inline-block;
+	}
+	.mdfeed_content .profile_img > img{
+		width: 40px;
+		height:40px;
+		border-radius: 20px;
+	}
+	.mdfeed_content .mem_info{
+		margin-left: 10px;
+		float:left;
+		margin-right:10px;
+	}
+	.mdfeed_content .info{
+		text-align:center;
+		line-height: 10px;
+	}
+	.mdfeed_content .mem_data{
+		margin-left:10px;
+		margin-right:10px;
+		float:left;	
+	}
 	/*피드 리스트*/
 	.feed_list #feedlist_writer{
 		font-size: 13px;
@@ -727,7 +790,19 @@ overflow-y:auto;
 	.feed_goods_link{
 	display: none;
 }
+.feed .goods_link{
+	display: inline-block;
+	height: 62px;
+	width:100%;
+}
+.feed_icon {
+    margin: 5px;
+    height: 24px;
+    float: left;
+    margin-right: 50px;
+}
 	#feeedpage_content {
+		overflow-y : scroll;
 		width: 100%;
 		height: 20%;
 		margin-top: 10px;
@@ -744,6 +819,9 @@ overflow-y:auto;
 }
 /* 태블릿(768px이상)*/
 @media all and ( min-width : 768px) and (max-width:991px) {
+.container{
+	max-width:800px
+}
 	/*이벤트 배너 캐러쉘*/
 	.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right,
 		.carousel-control .icon-next, .carousel-control .icon-prev {
@@ -790,10 +868,40 @@ overflow-y:auto;
 		display: flex;
 	}
 	/* mdfeed */
+		/* mdfeed */
 	.mdfeed {
 		width: 50%;
 		height: auto;
 		margin-bottom: 0.500rem;
+	}
+	.mdfeed_content{
+		padding-top: 10px;
+		font-size:15px;
+		font-weight:bold;
+		position: relative;
+		display: inline-flex;
+	}
+	.mdfeed_content .profile_img{
+		margin-left: 10px;
+		display: inline-block;
+	}
+	.mdfeed_content .profile_img > img{
+		width: 35px;
+		height:35px;
+		border-radius: 20px;
+	}
+	.mdfeed_content .mem_info{
+		margin-left: 10px;
+		float:left;
+		margin-right:10px;
+	}
+	.mdfeed_content .info{
+		text-align:center;
+		line-height: 10px;
+	}
+	.mdfeed_content .mem_data{
+		margin-right:10px;
+		float:left;	
 	}
 	.mdfeed:first-child {
 		margin-right: 1.000rem;
@@ -865,6 +973,12 @@ overflow-y:auto;
     height: 130px;
     padding-top: 15px;
 	background-color: white;
+}
+.feed_icon{
+	    margin: 5px;
+    height: 24px;
+    float: left;
+    margin-right: 50px;
 }
 	#feed_goods_img{
 	float:left;
@@ -938,11 +1052,39 @@ overflow-y:auto;
 		flex-flow: nowrap;
 		display: flex;
 	}
-	/* mdfeed */
+		/* mdfeed */
 	.mdfeed {
 		width: 50%;
 		height: auto;
 		margin-bottom: 0.500rem;
+	}
+	.mdfeed_content{
+		padding-top: 10px;
+		position: relative;
+		display: inline-flex;
+		font-weight:bold;
+	}
+	.mdfeed_content .profile_img{
+		margin-left: 20px;
+		display: inline-block;
+	}
+	.mdfeed_content .profile_img > img{
+		width: 40px;
+		height:40px;
+		border-radius: 20px;
+	}
+	.mdfeed_content .mem_info{
+		margin-left: 20px;
+		float:left;
+		margin-right:20px;
+	}
+	.mdfeed_content .info{
+	margin-left:20px;
+		line-height: 10px;
+	}
+	.mdfeed_content .mem_data{
+		margin-right:25px;
+		float:left;	
 	}
 	.mdfeed:first-child {
 		margin-right: 1.000rem;
@@ -1047,6 +1189,12 @@ overflow-y:auto;
 		padding-bottom: 20px;
 		width: 320px;
 	}
+	.feed_icon{
+	    margin: 5px;
+    height: 24px;
+    float: left;
+    margin-right: 40px;
+}
 	.feed_textarea{
 	width:330px;
 	}
@@ -1088,6 +1236,56 @@ overflow-y:auto;
 		height: auto;
 		margin-bottom: 0.500rem;
 	}
+	
+	.mdfeed_img{
+		position: relative;
+	}
+	.mdfeed_img_text{
+	background-color: black;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    opacity: 0.2;
+	}
+	.mdfeed_text{
+	    position: absolute;
+	    border-top:4px solid;
+	    border-bottom:4px solid;
+    color: white;
+    top: calc( 50%);
+    font-size: 30px;
+    left: calc( 50% - 150px );
+    font-weight: bold;
+}
+	.mdfeed_content{
+		padding-top: 10px;
+		position: relative;
+		font-weight:bold;
+		display: inline-flex;
+	}
+	.mdfeed_content .profile_img{
+		margin-left: 20px;
+		display: inline-block;
+	}
+	.mdfeed_content .profile_img > img{
+		width: 40px;
+		height:40px;
+		border-radius: 20px;
+	}
+	.mdfeed_content .mem_info{
+		margin-left: 20px;
+		float:left;
+		margin-right:50px;
+	}
+	.mdfeed_content .info{
+		margin-left:50px;
+		line-height: 10px;
+	}
+	.mdfeed_content .mem_data{
+		margin-right:50px;
+		float:left;	
+	}
 	.mdfeed:first-child {
 		margin-right: 1.000rem;
 	}
@@ -1127,7 +1325,7 @@ overflow-y:auto;
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 40px;
+	margin-right: 35px;
 }
 .feed_icon_area .feed_icon:first-child{
 	margin-left: 5px;
@@ -1271,24 +1469,74 @@ overflow-y:auto;
 			</div>
 			<div class="feed_list">
 				<div class="mdfeed">
-					<a href="mypage.do"> <img class="card-img-top"
+					<div class="mdfeed_img" onclick="location.href='mdpage.do'">
+						<a href="mypage.do"> <img class="card-img-top"
 						src="https://usercontents-c.styleshare.kr/images/22937491/460x288"
 						alt="">
-					</a>
+						</a>
+						<div class="mdfeed_img_text">
+						</div>
+							<div class="mdfeed_text">
+							올 가을 유행할 코디들
+							</div>
+							<div class="mdfeed_text_small">
+							본격 가을준비는 트렌드쉐어에서~!
+							</div>
+					</div>
 					<div class="mdfeed_content">
-						<span>여기는 작성자, 좋아요 갯수</span>
+					<c:forEach var="mem" items="memberInfo }">
+					<div class="profile_img">
+						<img src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png">
+					</div>
+					<div class="mem_info">
+					<div class="mem_id">master</div>
+					</div>
+					<div class="info">
+						<div class="mem_data">
+					<p>좋아요</p>
+					<div class="likecount">222</div>
+						</div>
+						<div class="mem_data">
+					<p>조회수</p>
+					<div class="readcount">3333</div>
+						</div>
+					</div>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="mdfeed">
-					<a href="#"> <img class="card-img-top"
+					<div class="mdfeed_img">
+					<a href="mypage.do"> <img class="card-img-top"
 						src="https://usercontents-c.styleshare.kr/images/22828389/460x288"
 						alt="">
 					</a>
+					<div class="mdfeed_img_text_area">
+						<div class="mdfeed_img_text">
+						</div>
+					</div>
+					</div>
 					<div class="mdfeed_content">
-						<span>여기는 작성자, 좋아요 갯수</span>
+					<c:forEach var="mem" items="memberInfo }">
+					<div class="profile_img">
+						<img src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png">
+					</div>
+					<div class="mem_info">
+					<div class="mem_id">mem.mem_name</div>
+					</div>
+					<div class="info">
+						<div class="mem_data">
+					<p>좋아요</p>
+					<div class="likecount">4444</div>
+						</div>
+						<div class="mem_data">
+					<p>조회수</p>
+					<div class="readcount">2222</div>
+						</div>
+					</div>
+					</c:forEach>
 					</div>
 				</div>
-			</div>
+				</div>
 		</section>
 		<!-- 피드리스트 글 -->
 		<section class="feedlist_section">
@@ -1629,7 +1877,7 @@ overflow-y:auto;
 								if($(feed).attr('ts_id')=='24'){
 									$('.feed_comment').prepend('<div class="goods_link">'
 											+ '<img class="goods_info" id="goods_img" src="/howAbout/resources/images/goods/08.png">'
-											+ '<div class="goods_info" id="goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]crump represent track pants...</a></div>'
+											+ '<div class="goods_info" id="goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]17신상 갈색코트...</a></div>'
 											+ '<span class="goods_info" id="goods_price">34,900원</span>'
 											+ '</div>');
 								}
@@ -2042,6 +2290,7 @@ overflow-y:auto;
 															async : true,
 															dataType : "json",
 															success : function(data) {
+																$("#overlayContainer:first-child").remove();
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
@@ -2086,7 +2335,7 @@ overflow-y:auto;
 																	if($(feed).attr('ts_id')=='24'){
 																		$('#myOverlay2').append('<div class="feed_goods_link">'
 																		+ '<img class="feed_goods_info" id="feed_goods_img" src="/howAbout/resources/images/goods/08.png">'
-																		+ '<div class="feed_goods_info" id="feed_goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]crump represent track pants...</a></div>'
+																		+ '<div class="feed_goods_info" id="feed_goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]17신상 갈색코트...</a></div>'
 																		+ '<span class="feed_goods_info" id="feed_goods_price">34,900원</span>'
 																		+ '</div>')
 																	}
