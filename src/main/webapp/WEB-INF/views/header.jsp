@@ -98,8 +98,8 @@
                   <li class="nav-item nav-link">${member.mem_name }</li>
                </c:if>
                <li class="nav-item"><a class="nav-link" href="goodsList.do">상품페이지</a></li>
-               <li class="nav-item"><a class="nav-link" href="stylefeed.do">스타일피드</a>
-               </li>
+               <li class="nav-item"><a class="nav-link" id="trendshare" href="stylefeed.do?pageType=recent">트렌드쉐어</a>
+     					</li>
                <!-- <li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
                </li> -->
                <li class="nav-item dropdown"><a

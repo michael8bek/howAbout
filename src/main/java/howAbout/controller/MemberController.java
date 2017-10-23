@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import howAbout.model.Goods;
 import howAbout.model.Mdtext;
 import howAbout.model.Member;
+import howAbout.model.Stylefeed;
 import howAbout.service.goods.GoodsService;
 import howAbout.service.mdtext.MdtextService;
 import howAbout.service.member.MemberService;
+import howAbout.service.stylefeed.StylefeedService;
 
 @Controller
 public class MemberController {
@@ -24,14 +26,18 @@ public class MemberController {
 	private GoodsService gs;
 	@Autowired
 	private MdtextService mds;
+	@Autowired
+	private StylefeedService sfs;
 	
 	@RequestMapping("main")
 	public String main(Model model, HttpSession session) {
 		List<Goods> list = gs.list();
 		model.addAttribute("list", list);
-		session.setAttribute("pageType", "main"); //세션에 페이지별 타입(이름) 지정해서 페이지 구분;
+		session.setAttribute("pageDefault", "true"); //세션에 페이지별 타입(이름) 지정해서 페이지 구분;
 		List<Mdtext> best = mds.list();
 		model.addAttribute("best",best);
+		List<Stylefeed> style = sfs.feedlist();
+		model.addAttribute("style",style);
 		return "main";
 	}
 	@RequestMapping("about")

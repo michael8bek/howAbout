@@ -32,4 +32,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sst.update("memberns.addpoint", member);
 	}
 
+	@Override
+	public void pointUse(Member member) {
+		sst.update("memberns.pointUse", member);
+	}
+
 }

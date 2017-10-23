@@ -31,4 +31,7 @@
 	<update id="addpoint" parameterType="member">
 		update member set mem_point = #{mem_point} where mem_id = #{mem_id}
 	</update>
+	<update id="pointUse" parameterType="member">
+		update member set mem_point = #{mem_point} where mem_id = #{mem_id}
+	</update> 
 </mapper>

@@ -28,6 +28,11 @@ public class MemberServiceImpl implements MemberService{
 		return md.addpoint(member);
 	}
 
+	@Override
+	public void pointUse(Member member) {
+		md.pointUse(member);
+	}
+
 	
 
 	

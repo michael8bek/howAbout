@@ -10,4 +10,6 @@ public interface MemberDao {
 
 	int addpoint(Member member);
 
+	void pointUse(Member member);
+
 }

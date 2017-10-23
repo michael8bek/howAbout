@@ -57,7 +57,7 @@
 		var sum = 0;
 		var sum1 = 0;
 		var salesum = 0;
-		var count = frm.goods_price.length;
+		var count = frm.cart_id.length;
 		/* 상품이 하나일때 */
 		if (count == undefined) {
 			sum = parseInt(frm.goods_price.value * frm.goods_qty.value);
@@ -85,20 +85,18 @@
 		if (frm.pay_total.value < 0) {
 			frm.pay_total.value = 0;
 		}
-
 	}
 	/* 쿠폰 클릭시 가격이 계산됨 */
 	function coupon(val1) {
 		var element = val1;
 		var cp_benefit = element.split('-')[0];
-		var cplistid = element.split('-')[1];
-		
+		var cplist_id = element.split('-')[1];
 		
 		console.log("변수 element = ", element);
 		console.log("변수 cp_benefit = ", cp_benefit);
-		console.log("변수 cplist_id = ", cplistid);
+		console.log("변수 cplist_id = ", cplist_id);
 		
-		$('#cplist_id').val(cplistid);
+		$('#cplist_id').val(cplist_id);
 		
 		frm.couponsale.value = cp_benefit;
 		/* console.log("변수 cplist_id = ", frm.cplist_id.val); */
@@ -190,20 +188,54 @@
 			}
 		});
 	}
-	/* $(function() {
-	       $("#submitid").click(function() {
-	       
-	          var element = $(this);
-	          var img= element.val().split('-')[0];
-	          var id= element.val().split('-')[1];
-	          $('#goods_id').val(img);
-	          $('#goods_img').val(id);
-	       });
-	    }); */
+	/* 마일리지 숫자 입력할때 가격에 적용 */
+	 function mempoint(){
+		
+		var point = parseInt(document.getElementById("mem_usepoint").value);
+		if(point > frm.mem_point1.value){
+			alert("최대 가능 마일리지입니다");
+			frm.mem_usepoint.value = parseInt(frm.mem_point1.value);
+		}
+		var sum = 0;
+		var sum1 = 0;
+		var salesum = 0;
+		var count = frm.goods_price.length;
+		 /* 상품이 하나일때  */
+		if (count == undefined) {
+			sum = parseInt(frm.goods_price.value * frm.goods_qty.value);
+			sum1 = parseInt(frm.goods_delprice.value);
+			salesum = parseInt(frm.cp_benefit.value * frm.goods_qty.value);
+		}
+		for (var i = 0; i < count; i++) {
+			sum += parseInt(frm.goods_price[i].value * frm.goods_qty[i].value);
+			sum1 += parseInt(frm.goods_delprice[i].value);
+			salesum += parseInt(frm.cp_benefit[i].value
+					* frm.goods_qty[i].value);
+		}
+		if (sum >= 50000) {
+			sum1 = "무료배송";
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.saleprice.value = salesum;
+			frm.pay_total.value = sum - salesum - frm.couponsale.value - point;
+		} else {
+			frm.total_sum.value = sum;
+			frm.delprice.value = sum1;
+			frm.saleprice.value = salesum;
+			frm.pay_total.value = sum + sum1 - salesum - frm.couponsale.value- point;
+		}
+		if (frm.pay_total.value < 0) {
+			frm.pay_total.value = 0;
+		}
+	}
+	 $('.onlynumber').keyup(function () {
+		 this.value = this.value.replace(/[^0-9]/g,'');
+			});
 </script>
 </head>
 <body>
-	<form name="frm" action="payInsert.do" method="post" id="submitid">
+	<form name="frm" action="payInsert.do" method="post" id="">
+		 <input type="hidden" id="mem_point1" name="mem_point1" value="${member.mem_point}">  
 		<div class="container">
 			<div class="container1">
 				<div class="container1_1">
@@ -275,24 +307,26 @@
 						<tr>
 							<th style="width: 25%;">쿠폰 선택</th>
 							<th><select onclick="coupon(this.value);" name="cp">
-									<option value="0" style="text-align: center;">사용안함</option>
+									<option value="0-0" style="text-align: center;">사용안함</option>
 									<c:forEach var="couponlist" items="${listCoupon }"
 										varStatus="status">
 										<option
-											value="${couponlist.cp_benefit }-${couponlist.cplist_id }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
+											value="${couponlist.cp_benefit}-${couponlist.cplist_id }">${couponlist.cp_id }(-${couponlist.cp_benefit }할인)</option>
 									</c:forEach>
 							</select></th>
 						</tr>
 						<tr>
 							<th>마일리지 사용</th>
-							<th><input type="text">&nbsp;<a href=""
-								class="btn success"
-								style="color: #1993A8; border: 1px solid #1993A8;">내 마일리지</a></th>
+							<!-- 마일리지 숫자만 입력받게 함 -->
+							<th> <input type="text" name="mem_usepoint" id="mem_usepoint"  oninput="mempoint()"  onKeypress="if(event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" style="IME-MODE:disabled;" >
+							&nbsp;사용가능 마일리지 : ${member.mem_point }</th>
+							
 						</tr>
 						<tr>
-							<th colspan="2">- 단추는 스타일쉐어만의 포인트 제도입니다.
-								<p>
-									- 단추 1개 = 1원으로, 현금처럼 사용 가능합니다.<br> - 단추는 10개 단위로 사용 가능합니다.
+							<th colspan="2">
+									- 마일리지 1 = 1원으로, 현금처럼 사용 가능합니다.
+									<br> - 마일리지는 3000점 이상부터 사용가능합니다.
+									<br> - 마일리지는 10점 단위로 사용 가능합니다.
 
 								
 							</th>
@@ -406,16 +440,30 @@
 					<table class="table">
 						<!-- style="margin-top: 5%; border: 5px solid #1993A8;" -->
 						<tr>
-							<th colspan="2"><input type="submit" value="주문하기"
-								style="width: 100%; height: 100%;" class="btn btn-info"></th>
+							<th colspan="2">
+								<c:if test="${not empty listOrders }">
+									<input type="submit" value="주문하기" id=""
+									style="width: 100%; height: 100%;" class="btn btn-info">
+								</c:if>
+								<c:if test="${empty listOrders }">
+								<input type="submit" value="주문하기" id="" disabled="disabled"
+								style="width:100%; height: 100%;" class="btn btn-info">
+								</c:if>
+							</th>
 						</tr>
 					</table>
 				</div>
 			</div>
-
+	
 			<div align="center">
+			<c:if test="${not empty listOrders }">
 				<input type="submit" value="주문하기" id=""
-					style="width: 20%; height: 100%;" class="btn btn-info">
+					style="width: 100%; height: 100%;" class="btn btn-info">
+			</c:if>
+			<c:if test="${empty listOrders }">
+				<input type="submit" value="주문하기" id="" disabled="disabled"
+					style="width: 100%; height: 100%;" class="btn btn-info">
+			</c:if>
 			</div>
 		</div>
 	</form>
