@@ -12,6 +12,11 @@
 		<result property="review_title" 		column="review_title" />
 	</resultMap>
 	<insert id="insert" parameterType="review">
-		insert into review values()
+		<selectKey keyProperty="review_id" resultType="Integer" order="BEFORE">
+			select max(review_id)+1 from review
+		</selectKey>
+		insert into review(review_id,review_content,review_regdate,review_del
+		 pay_id,review_readcount,review_title)
+		 values(#{review_id},#{review_content},now(),#{review_del},#{pay_id},#{review_readcount},#{review_title})
 	</insert>
 </mapper>
