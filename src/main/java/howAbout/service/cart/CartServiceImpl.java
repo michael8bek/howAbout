@@ -55,5 +55,13 @@ public class CartServiceImpl implements CartService {
 	public int countcart(int goods_id, String mem_id) {
 		return cd.countcart(goods_id, mem_id);
 	}
+	@Override
+	public int countorder(int goods_id, String mem_id) {
+		return cd.countorder(goods_id, mem_id);
+	}
+	@Override
+	public int insert2(Cart cart) {
+		return cd.insert2(cart);
+	}
 
 }

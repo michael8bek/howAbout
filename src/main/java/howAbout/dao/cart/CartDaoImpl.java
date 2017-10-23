@@ -67,4 +67,15 @@ public class CartDaoImpl implements CartDao {
 		return sst.selectOne("cartns.countcart", map);
 	}
 
+	public int countorder(int goods_id, String mem_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("goods_id", goods_id);
+		map.put("mem_id", mem_id);
+		return sst.selectOne("cartns.countorder", map);
+	}
+
+	@Override
+	public int insert2(Cart cart) {
+		return sst.insert("cartns.cartinsert2", cart);
+	}
 }
