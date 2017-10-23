@@ -46,12 +46,8 @@ public class StylefeedController {
 	List list = ss.feedSearch(search);
 	model.addAttribute("list",list);
 	model.addAttribute("search",search);
-	return "searchresult";
+	return "searchresult";	
 	}
-<<<<<<< HEAD
-
-
-=======
 /*	//검색결과
 	@RequestMapping(value = "searchresult", method = RequestMethod.POST)
 	public @ResponseBody List searchresult(@RequestParam("search") String search) {
@@ -61,8 +57,7 @@ public class StylefeedController {
 		System.out.println("검색결과"+list);
 		return list;
 	}*/
-
->>>>>>> origin/trendshare(moon)
+	
 	// 스타일피드 페이지 메인
 	@RequestMapping("stylefeed")
 	public String stylefeed(HttpSession session, HttpServletRequest request, Model model) {
@@ -72,13 +67,13 @@ public class StylefeedController {
 		model.addAttribute("member", member);
 		return "stylefeed";
 	};
-
+	
 
 	// 피드 리스트 정렬(인기순, 최신순(기본값))
 	@RequestMapping(value = "feedorder", method = RequestMethod.POST)
 	public @ResponseBody Map<String,List> feedorder(@RequestParam("pageType") String pageType, Model model, HttpSession session) {
 		System.out.println("피드정렬 컨트롤러 실행");
-
+		
 		List list = null;
 		List rlist = null;
 		HashMap<String, List> map = new HashMap<String, List>();
@@ -99,8 +94,7 @@ public class StylefeedController {
 			model.addAttribute("pageType", "recent");
 			//session.setAttribute("pageType", "recent");
 		};
-
-		try {
+/*		try {
 			Thread.sleep(350);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -170,7 +164,7 @@ public class StylefeedController {
 			map.put("list", feed_d);
 			System.out.println("댓글수 없이 뽑기:"+feed_d);
 		}
-		//해당 피드 조회수 +1
+		//해당 피드 조회수 +1 
 		ss.feedRead(ts_id);
 		//해당 피드글에 담긴 댓글들 정보 불러오기
 		List rlist = ss.feedReplyList(ts_id);
@@ -196,12 +190,12 @@ public class StylefeedController {
 		sf.setMem_id(mem_id);
 		sf.setMem_name(mem_name);
 		sf.setReply_content(reply_content);
-
+		
 		//특정 피드 글에 댓글 DB등록과 동시에 해당 글에 달린 댓글 총 갯수 출력
 		List reply_count = ss.feedReplyWrite(sf);
 			System.out.println("트렌드쉐어 댓글 등록 성공");
 			System.out.println("댓글갯수:"+reply_count);
-
+				
 		//여기부터는 해당 피드글에 대한 댓글정보 출력
 		list = ss.feedReply(sf);
 		map.put("list", list);
@@ -216,7 +210,7 @@ public class StylefeedController {
 		System.out.println("글좋아요수"+ts_count);
 		return ts_count;
 	}
-
+	
 	// 마이페이지
 	@RequestMapping("mypage")
 	public String mypage(Model model, @RequestParam("mem_id") String mem_id) {
@@ -225,45 +219,45 @@ public class StylefeedController {
 		model.addAttribute("list", list);
 		return "mypage";
 	}
-
-	//피드 더보기
+	
+	//피드 더보기 
 	@RequestMapping("feedmore")
 	public @ResponseBody List feedmore(@RequestParam("pageNum") String pageNum, Model model) {
 		String more="more";
 		System.out.println(pageNum);
 		//스타일피드 페이지 메인 페이징작업
-
+		
 		System.out.println("pageNum 두번째값:"+pageNum);
 		int totalcount = ss.feedcount(); //게시글 총 개수
 		System.out.println("게시글 총 개수:"+totalcount);
 		final int ROWPERPAGE = 8;
-
+		
 		int totalpage = totalcount / ROWPERPAGE; // 총 페이지
-
+		
 		if(totalcount % ROWPERPAGE > 0) {
 			totalpage = totalpage + 1  ;
-		}
+		} 
 		int currentPage = Integer.parseInt(pageNum);
 		System.out.println("currentPage"+currentPage);
 		if(totalpage < currentPage ) {
 			currentPage = totalpage;
 		}
-
-
+		
+		
 		int startpage = 1;  //시작페이지
 		int endpage = totalpage; //마지막페이지
 		System.out.println("마지막페이지:"+endpage);
-
+		
 		int startRow = (currentPage-1)*ROWPERPAGE+1; //페이지 내 첫번째 글번호
-
-
+		
+		
 		System.out.println("startRow:"+startRow);
 		int endRow = startRow + ROWPERPAGE-1;
 		System.out.println("endRow:"+endRow);
-
+		
 		List list = ss.feedmore(startRow, endRow);
-
-
+		
+		
 		return list;
 	}
 
