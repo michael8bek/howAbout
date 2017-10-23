@@ -25,5 +25,6 @@ public interface StylefeedService {
 	int feedlike(int ts_id);
 	List feedSearch(String search);
 	List feedDetailDft(int ts_id);
+	void feedRead(int ts_id);
 
 }

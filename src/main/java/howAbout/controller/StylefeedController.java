@@ -164,6 +164,9 @@ public class StylefeedController {
 			map.put("list", feed_d);
 			System.out.println("댓글수 없이 뽑기:"+feed_d);
 		}
+		//해당 피드 조회수 +1 
+		ss.feedRead(ts_id);
+		//해당 피드글에 담긴 댓글들 정보 불러오기
 		List rlist = ss.feedReplyList(ts_id);
 		System.out.println(feed);
 		System.out.println(rlist);
@@ -187,11 +190,13 @@ public class StylefeedController {
 		sf.setMem_id(mem_id);
 		sf.setMem_name(mem_name);
 		sf.setReply_content(reply_content);
+		
+		//특정 피드 글에 댓글 DB등록과 동시에 해당 글에 달린 댓글 총 갯수 출력
 		List reply_count = ss.feedReplyWrite(sf);
 			System.out.println("트렌드쉐어 댓글 등록 성공");
 			System.out.println("댓글갯수:"+reply_count);
-		//여기까지 댓글입력
-		//여기부터는 댓글 출력
+				
+		//여기부터는 해당 피드글에 대한 댓글정보 출력
 		list = ss.feedReply(sf);
 		map.put("list", list);
 		map.put("reply", reply_count);

@@ -75,7 +75,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="cartList.do?mem_id=${member.mem_id }" data-toggle="modal" data-target=".bd-example-modal-lg">장바구니</a></li>
 					</c:if>
-					<li class="nav-item"><a class="nav-link" id="trendshare" href="stylefeed.do?pageType=recent">스타일피드</a>
+					<li class="nav-item"><a class="nav-link" id="trendshare" href="stylefeed.do?pageType=recent">트렌드쉐어</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
 					</li>

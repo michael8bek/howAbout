@@ -38,4 +38,6 @@ public interface StylefeedDao {
 
 	List feedDetailDft(int ts_id);
 
+	void feedRead(int ts_id);
+
 }

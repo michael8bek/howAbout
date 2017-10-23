@@ -50,6 +50,9 @@ select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from rep
 	<update id="feedlike" parameterType="int">
 		update trendshare set ts_like = ts_like + 1 where ts_id=#{ts_id};
 	</update>
+	<update id="feedRead" parameterType="int">
+		update trendshare set ts_readcount = ts_readcount + 1 where ts_id=#{ts_id};
+	</update>
 	<select id="feedlike_result" parameterType="int" resultType="int">
 		select ts_like from trendshare where ts_id = #{ts_id}
 	</select>

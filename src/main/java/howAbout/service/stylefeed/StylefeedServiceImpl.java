@@ -91,4 +91,9 @@ public class StylefeedServiceImpl implements StylefeedService {
 		return sd.feedDetailDft(ts_id);
 	}
 
+	@Override
+	public void feedRead(int ts_id) {
+		sd.feedRead(ts_id);
+	}
+
 }

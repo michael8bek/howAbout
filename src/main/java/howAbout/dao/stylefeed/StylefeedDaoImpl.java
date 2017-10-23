@@ -98,4 +98,9 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	public List feedDetailDft(int ts_id) {
 		return sst.selectList("stylefeedns.feedDetail_default",ts_id);
 	}
+
+	@Override
+	public void feedRead(int ts_id) {
+		sst.update("stylefeedns.feedRead",ts_id);
+	}
 }

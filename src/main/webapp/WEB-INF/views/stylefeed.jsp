@@ -500,12 +500,38 @@ a {
 	border-radius: 20px;
 }
 
+.feed .goods_link{
+	display: inline-block;
+	background-color: white;
+}
+
+.feed #goods_img{
+	float:left;
+	width:60px;
+	height:60px;
+}
+
+.feed #goods_name{
+	display: inline-block;
+	font-size: 13px;
+	margin-top:5px;
+	margin-left: 5px;
+	font-weight: bold;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+.feed #goods_price{
+	font-size:13px;
+	margin-left:5px;
+	font-weight: bold;
+}
 .feed .feed_comment {
 	width:100%;
 	position: relative;
 	background-color: #F7F7F7;
 	border-radius: 0px 0px 5px 5px;
-	height:180px;
+	height:170px;
 	overflow-y:hidden;
 	display: inline-block;
 }
@@ -1468,9 +1494,17 @@ overflow-y:auto;
 														+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
 														+ '<p class="icon_txt">'+$(feed).attr('ts_readcount')
 														+'</p></div>'
-														+'</div></div>'
+														+ '</div></div>'
 														+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 														+ '"></div>');
+								if($(feed).attr('ts_id')=='22'){
+									$('.feed_comment').prepend('<div class="goods_link">'
+											+ '<img class="goods_info" id="goods_img" src="https://usercontents-c.styleshare.kr/images/i59bb8e5d1ad0a/80x80">'
+											+ '<div class="goods_info" id="goods_name"><a>Bulging Tumble Hood T-Shirt</a></div>'
+											+ '<span class="goods_info" id="goods_price">34,900원</span>'
+											+ '</div>');
+								}
+
 														
 							$.each(data.rlist, function(index, reply) {
 								if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
