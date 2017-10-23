@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,11 +45,29 @@
 	});
 </script>
 
+<!-- 쿠폰등록 모달 -->
+<script type="text/javascript">
+$(function(){
+    $("#newCp").click(function(){
+        $('div.modal').modal({
+                      remote : 'newCpForm.jsp'
+                });
+    })
+});
+
+</script>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<!-- Navigation-->
 	<%@ include file="navigation.jsp"%>
 
 	<div class="content-wrapper">
+	<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <!-- remote ajax call이 되는영역 -->
+    </div>
+  </div>
+</div>
 		<div class="container-fluid">
 			<!-- Breadcrumbs-->
 			<ol class="breadcrumb">
@@ -63,6 +81,8 @@
 						<i class="fa fa-table"></i> 쿠폰 목록
 					</div>
 					<div style="float: right;">
+						<button class="btn btn-info" id="newCp">신규등록</button>
+
 						<a class="btn btn-success" href="#" onclick="goodsEditFunc()"
 							id="goods_edit" style="align-content: flex-end;">수정</a> <a
 							class="btn btn-danger" id="goods_delete"
@@ -72,8 +92,7 @@
 
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%"
-							cellspacing="0">
+						<table class="table table-bordered" id="dataTable" style="width: 100%">
 							<thead>
 								<tr>
 									<th width="15"></th>
@@ -89,11 +108,10 @@
 								</tr>
 							</tfoot>
 							<tbody>
-								<c:forEach var="cp" items="${cpAll }" >
+								<c:forEach var="cp" items="${cpAll }">
 									<tr>
 										<td align="center" style="vertical-align: middle;"><input
-											type="checkbox" name="chk_goods_id"
-											value="${cp.cp_id }"></td>
+											type="checkbox" name="chk_goods_id" value="${cp.cp_id }"></td>
 										<td align="center" style="vertical-align: middle;">${cp.cp_id }</td>
 										<td align="center" style="vertical-align: middle;">${cp.cp_benefit }</td>
 									</tr>
@@ -108,6 +126,22 @@
 			</div>
 		</div>
 		<!-- /.container-fluid-->
+		<div class="container">
+			<form action="addCoupon.do">
+				<table class="table">
+					<tr>
+						<th>쿠폰이름</th>
+						<th>쿠폰할인혜택</th>
+					</tr>
+					<tr>
+						<td><input id="cp_id" type="text" name="cp_id" placeholder="쿠폰이름을 입력하세요"></td>
+						<td><input id="cp_benefit" type="text" placeholder="예)10000"></td>
+					</tr>
+
+				</table>
+				<input type="submit" value="새로운 쿠폰 등록">
+			</form>
+		</div>
 		<!-- /.content-wrapper-->
 		<footer class="sticky-footer">
 		<div class="container">

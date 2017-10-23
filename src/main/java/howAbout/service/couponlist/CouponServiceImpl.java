@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import howAbout.dao.couponlist.CouponDao;
 import howAbout.model.Coupon;
@@ -16,5 +17,10 @@ public class CouponServiceImpl implements CouponService{
 	@Override
 	public List<Coupon> cpAll() {
 		return cd.cpAll();
+	}
+
+	@Override
+	public int addCoupon(Coupon coupon) {
+		return cd.addCoupon(coupon);
 	}
 }
