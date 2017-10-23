@@ -15,14 +15,15 @@
 		<result property="mem_exitdate" column="mem_exitdate" />
 		<result property="mem_exitstate" column="mem_exitstate" />
 		<result property="mem_email" column="mem_email" />
+		<result property="mem_pic" column="mem_pic" />
 	</resultMap>
  	<insert id="insert" parameterType="member">
 		insert into member (mem_id,
 		mem_name, mem_pw, mem_birth, mem_phone, mem_addr, mem_point, grade_name,
-		mem_regdate, mem_exitdate, mem_exitstate, mem_email) values
+		mem_regdate, mem_exitdate, mem_exitstate, mem_email, mem_pic) values
 		(#{mem_id},#{mem_name},#{mem_pw},#{mem_birth},#{mem_phone},
 		#{mem_addr},'0','bronze',now(),null,
-		'n',#{mem_email})
+		'n',#{mem_email}, #{mem_pic})
 	</insert>
 	<select id="select" parameterType="String" resultType="member">
 		select * from member where mem_id=#{mem_id}
