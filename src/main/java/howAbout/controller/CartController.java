@@ -79,6 +79,7 @@ public class CartController {
 			map.put("cart_id", Integer.parseInt(cart_id));
 			map.put("goods_qty", Integer.parseInt(goods_qty));
 			cs.buyOne(map);
+			System.out.println(map);
 			result = 1;
 		}
 		model.addAttribute("result", result);
