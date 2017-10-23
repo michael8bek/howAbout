@@ -108,4 +108,9 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	public List allreplycount() {
 		return sst.selectList("stylefeedns.allreplycount");
 	}
+
+	@Override
+	public List memberInfo(String mem_id) {
+		return sst.selectList("stylefeedns.memberInfo", mem_id);
+	}
 }

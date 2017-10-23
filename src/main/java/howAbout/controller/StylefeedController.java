@@ -215,8 +215,14 @@ public class StylefeedController {
 	@RequestMapping("mypage")
 	public String mypage(Model model, @RequestParam("mem_id") String mem_id) {
 		System.out.println(mem_id);
+		Stylefeed sf = new Stylefeed();
 		List<Stylefeed> list = ss.myfeedlist(mem_id);
+		List memberInfo = ss.memberInfo(mem_id);
+		System.out.println("멤버인포 겟:"+memberInfo.size());
+		List rlist = ss.tsReplyList();
 		model.addAttribute("list", list);
+		model.addAttribute("reply",rlist);
+		model.addAttribute("memberInfo",memberInfo);
 		return "mypage";
 	}
 	

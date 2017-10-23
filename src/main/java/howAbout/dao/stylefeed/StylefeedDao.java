@@ -42,4 +42,6 @@ public interface StylefeedDao {
 
 	List allreplycount();
 
+	List memberInfo(String mem_id);
+
 }

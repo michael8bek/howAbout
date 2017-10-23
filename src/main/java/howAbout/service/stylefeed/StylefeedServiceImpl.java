@@ -101,4 +101,9 @@ public class StylefeedServiceImpl implements StylefeedService {
 		return sd.allreplycount();
 	}
 
+	@Override
+	public List memberInfo(String mem_id) {
+		return sd.memberInfo(mem_id);
+	}
+
 }

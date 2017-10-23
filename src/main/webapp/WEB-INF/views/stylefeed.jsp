@@ -1527,6 +1527,18 @@ overflow-y:auto;
 		</div>
 	</div>  --%>
 
+	<!-- 상품페이지 링크용 페이지 -->
+							<div class="modal fade bd-example-modal-lg1" tabindex="-1"
+							role="dialog" aria-labelledby="myLargeModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">
+								<div class="modal-content">
+									<%@ include file="goods/view.jsp"%>
+								</div>
+							</div>
+						</div>
+
+
 
 <!-- 	<script type="text/javascript" src="resources/js/Overlay.js"></script> -->
 	<script type="text/javascript"
@@ -1617,7 +1629,7 @@ overflow-y:auto;
 								if($(feed).attr('ts_id')=='24'){
 									$('.feed_comment').prepend('<div class="goods_link">'
 											+ '<img class="goods_info" id="goods_img" src="/howAbout/resources/images/goods/08.png">'
-											+ '<div class="goods_info" id="goods_name"><a href="view.do?goods_id=8">[한정특가]crump represent track pants...</a></div>'
+											+ '<div class="goods_info" id="goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]crump represent track pants...</a></div>'
 											+ '<span class="goods_info" id="goods_price">34,900원</span>'
 											+ '</div>');
 								}
@@ -2074,7 +2086,7 @@ overflow-y:auto;
 																	if($(feed).attr('ts_id')=='24'){
 																		$('#myOverlay2').append('<div class="feed_goods_link">'
 																		+ '<img class="feed_goods_info" id="feed_goods_img" src="/howAbout/resources/images/goods/08.png">'
-																		+ '<div class="feed_goods_info" id="feed_goods_name"><a>[한정특가]crump represent track pants...</a></div>'
+																		+ '<div class="feed_goods_info" id="feed_goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]crump represent track pants...</a></div>'
 																		+ '<span class="feed_goods_info" id="feed_goods_price">34,900원</span>'
 																		+ '</div>')
 																	}
@@ -2213,6 +2225,7 @@ overflow-y:auto;
 												$('.feed_more').remove();
 											};
 										},complete:function(){
+											$('#feed_more_btn').attr('data-pageNum','1');
 										}
 									});
 							};
@@ -2261,6 +2274,38 @@ overflow-y:auto;
 							})
 
 });
+						
+							/* 이미지 클릭시 상품 상세정보  */
+							$(document).on('click', '.card-img-top', function() {
+									$("#overlayContainer").remove();
+									var goods_id = $(this).attr("alt");
+
+									$.ajax({
+										url : "view.do",
+										method : "POST",
+
+										//위에서 클릭한 goods_id 데이터를 url로 넘겨주고
+										data : {
+											goods_id : goods_id
+										},
+										success : function(data) {
+											console.log(data);
+											//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
+											$('.view_container').html(data);
+											var sumpri = $('#goods_pri_del').val();
+											$('#price').append().text(sumpri);
+											$(function() {
+												$('#cart').on('change', function() {
+													var qty = $('#cart').val();
+													var price1 = $('#goods_price').val();
+													var price2 = $('#goods_delprice').val();
+													var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
+													$('#price').append().text(total_price);
+												});
+											});
+										}
+									});
+								});	
 							
 	</script>
 
