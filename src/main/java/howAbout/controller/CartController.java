@@ -164,6 +164,7 @@ public class CartController {
 	public String cartinsert(Cart cart, Model model, HttpSession session){
 		String mem_id = (String) session.getAttribute("mem_id");
 		cart.setMem_id(mem_id);
+		System.out.println(mem_id);
 		int count = cs.countcart(cart.getGoods_id(), mem_id);
 		if (count == 0 ) {
 			int result = cs.insert(cart);
@@ -171,6 +172,21 @@ public class CartController {
 			return "cart/productInsert";
 		} else {
 			return "cart/cartChk";
+		}
+	}
+	
+	@RequestMapping("orderinsert")
+	public String orderinsert(Cart cart, Model model, HttpSession session){
+		String mem_id = (String) session.getAttribute("mem_id");
+		cart.setMem_id(mem_id);
+		int count = cs.countorder(cart.getGoods_id(), mem_id);
+		System.out.println(count);
+		if (count == 0 ) {
+			int result = cs.insert2(cart);
+			model.addAttribute("result",result);
+			return "cart/productInsert2";
+		} else {
+			return "cart/orderChk";
 		}
 	}
 }

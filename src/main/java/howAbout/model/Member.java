@@ -15,6 +15,7 @@ public class Member {
 	private Date mem_exitdate;
 	private String mem_exitstate;
 	private String mem_email;
+	private String mem_pic;
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -87,6 +88,12 @@ public class Member {
 	}
 	public void setMem_email(String mem_email) {
 		this.mem_email = mem_email;
+	}
+	public String getMem_pic() {
+		return mem_pic;
+	}
+	public void setMem_pic(String mem_pic) {
+		this.mem_pic = mem_pic;
 	}
 	
 }

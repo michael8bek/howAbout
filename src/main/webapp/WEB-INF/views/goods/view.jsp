@@ -19,7 +19,7 @@
 			<p style="margin-left: 7px; text-align: left;">
 				남은수량 : ${stock.stock_qty}<br> 배송비 : ${goods.goods_delprice}
 			</p>
-			<form name="form1" method="post" action="cartinsert.do">
+			<form name="form1" method="post" id="viewform">  <!-- action="cartinsert.do" --> 
 				<input type="hidden" name="goods_price" id="goods_price" value="${goods.goods_price }"> 
 				<input type="hidden" name="goods_delprice" id="goods_delprice" value="${goods.goods_delprice }"> 
 				<input type="hidden" name="goods_id" id="goods_id" value="${goods.goods_id}">
@@ -44,7 +44,9 @@
 						</div>
 						<br>
 						<hr>
-						<input type="submit" class="btn btn-info" value="장바구니에 담기">
+						<!-- <input type="submit" class="btn btn-info" value="장바구니에 담기"> -->
+						<button type="button" class="btn btn-info" id="cartinsert">장바구니에 담기</button>
+						<button type="button" class="btn btn-info" id="orderinsert">바로구매</button>
 					</c:when>
 
 					<c:when test="${stock.stock_qty < 10}">
@@ -60,7 +62,8 @@
 						</div>
 						<br>
 						<hr>
-						<input type="submit" class="btn btn-info" value="장바구니에 담기">
+						<button type="button" class="btn btn-info" id="cartinsert">장바구니에 담기</button>
+						<button type="button" class="btn btn-info" id="orderinsert">바로구매</button>
 					</c:when>
 
 				</c:choose>

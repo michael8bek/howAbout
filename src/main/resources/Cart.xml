@@ -58,4 +58,16 @@
   SELECT COUNT(*) FROM cart
   WHERE mem_id = #{mem_id} AND goods_id = #{goods_id} AND cart_state = 'put'
 </select>
+<select id="countorder" resultType="Integer">
+  SELECT COUNT(*) FROM cart
+  WHERE mem_id = #{mem_id} AND goods_id = #{goods_id} AND cart_state = 'orders'
+</select>
+<insert id="cartinsert2" parameterType="cart">
+  <selectKey keyProperty="cart_id" resultType="Integer" order="BEFORE">
+    SELECT MAX(cart_id)+1 FROM cart
+  </selectKey>
+  insert into cart (cart_id, cart_date, mem_id, goods_id, cart_editdate,
+  cart_state, goods_qty) values (#{cart_id}, now(), #{mem_id},
+  #{goods_id}, now(), 'orders', #{goods_qty})
+</insert>
 </mapper>

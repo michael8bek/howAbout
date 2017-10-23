@@ -729,3 +729,4 @@ insert into orders values(1, now(), 'y', null, 1);
 insert into orders values(2, now(), 'y', null, 4);
 
 insert into cart values(5, now(), 'jeagong', 3, now(), 'put', 1);
+ALTER TABLE member ADD mem_pic VARCHAR(250);
