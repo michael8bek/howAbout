@@ -102,6 +102,6 @@ public class Payment {
 	public void setGoods_qty(int goods_qty) {
 		this.goods_qty = goods_qty;
 	}
-	
+}
 	
 	

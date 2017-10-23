@@ -28,7 +28,7 @@
 		 #{mem_id},	#{pay_name}, #{pay_phone}, #{pay_email}, #{pay_addr},
 		  #{pay_rename}, #{pay_rephone}, #{pay_required}, #{pay_total}, now(),#{cplist_id},#{goods_qty})
 	</insert>
-	<select id="">
-		select * frm payment where mem_id=#{mem_id}
+	<select id="list" parameterType="String">
+		select * from payment where mem_id=#{mem_id}
 	</select>
 </mapper>
