@@ -63,14 +63,14 @@ $(document).on('click', '.card-img-top', function() {
 						<a data-toggle="modal" data-target=".bd-example-modal-lg">
 									<img src="${path}/resources/images/goods/${cartList.goods_img }" alt="${cartList.goods_id}" class="card-img-top" style="width: 100%;">
 								</a>
-									<%-- <div class="modal fade bd-example-modal-lg" tabindex="-1"
+									 <div class="modal fade bd-example-modal-lg" tabindex="-1"
 									role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 										<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">
 											<div class="modal-content">
 											<%@ include file="view.jsp"%>
 											</div>
 										</div>
-									</div>  --%>
+									</div>  
 								</td> 
 						<td style="vertical-align: middle;">${cartList.goods_name}<p>
 							Color : ${cartList.goods_color } / Size : ${cartList.goods_size }
