@@ -112,7 +112,7 @@
 								</tr>
 							</tfoot>
 							<tbody>
-								<c:forEach var="cp" items="${cpAll }" begin="1">
+								<c:forEach var="cp" items="${cpAll }" begin="0">
 									<tr>
 										<td align="center" style="vertical-align: middle;"><input
 											type="checkbox" name="chk_goods_id" value="${cp.cp_id }"></td>
