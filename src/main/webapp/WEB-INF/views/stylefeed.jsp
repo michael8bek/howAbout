@@ -1839,7 +1839,7 @@ overflow-y:auto;
 							$.each(data.review, function(index, review) {
 								$("#user_feed").append('<div class="feed">'
 										+ '<div class="feed_imgbox">'
-										+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(review).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+										+ '<a class="feedpage" id="reviewpage" data-goods="'+$(review).attr('goods_id')+'"data-overlay-trigger="myOverlay2">'
 										+ '<img class="feed-img" '
 										+ 'onerror="this.src='+errImg+';"'
 										+ 'src="/howAbout/resources/images/goods/'+$(review).attr('ts_img_name')+'"alt=""></a>'
@@ -1905,7 +1905,7 @@ overflow-y:auto;
 							$.each(data.list, function(index, feed) {
 								$("#user_feed").append('<div class="feed">'
 														+ '<div class="feed_imgbox">'
-														+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+														+ '<a class="feedpage" id="feedpage" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
 														+ '<img class="feed-img" '
 														+ 'onerror="this.src='+errImg+';"'
 														+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
@@ -2341,9 +2341,87 @@ overflow-y:auto;
 															}
 														});
 											});
-
-							//피드 클릭시 새창 띄우며 ajax로 데이터 불러오기$(".feedpage").bind("click",function() {
-							$(document).on('click','.feedpage',function feeddetail() {
+							//피드 클릭시 새창 띄우며 ajax로 리뷰글데이터 불러오기$(".feedpage").bind("click",function() {
+							$(document).on('click','#reviewpage',function feeddetail() {
+								console.log("피드창 띄우기");
+								 	/* var overlayjs = document.createElement('script');
+									overlayjs.src = "/howAbout/resources/js/Overlay.js";
+									document.getElementsByTagName('head')[0].appendChild(overlayjs); */
+												var goods_id = $(this).data('goods');
+												console.log("피드페이지 클릭");
+												console.log(goods_id);
+												$.ajax({url : "reviewdetail.do",
+														type : "POST",
+														data : {goods_id : goods_id},
+															async : true,
+															dataType : "json",
+															success : function(data) {
+																console.log(data);
+																var mem_id = "";
+																var mem_name = "";
+																var ts_content = "";
+																var ts_id="";
+																var ts_img = ""; /*ts_img_path+ts_img_name*/
+																var ts_regdate = "";
+																$.each(data,function(index,review) {
+																console.log("상세페이지 데이터:",review);
+																	$("#myOverlay2").html('<img class="feeddetail_img" id="ts_img"'
+																		+'onerror="this.src='+errImg+';"' 
+																		+ 'data-seq="'+$(review).attr('goods_id')+'"'
+																		+ 'src="/howAbout/resources/images/goods/'+$(review).attr('ts_img_name')+'"alt="">'
+																		+'<div class="feed_textarea" style="padding:10px;">'
+																		+'<div class="feed_detail"><div class="feed_writer_info">'
+																		+'<div class="feed_writer_img">'
+																		+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
+																		+'</div><div class="feed_writer" id="feedpage_writer" data-writer="'+$(review).attr('mem_id')+'">'+$(review).attr('mem_name')+'</div>'
+																		+'<div class="feed_date" id="ts_regdate">'+$(review).attr('ts_regdate')+'</div>'
+																		+'</div><div class="feed_content" id="feeedpage_content">'+$(review).attr('ts_content')+'</div>'
+																		+'<div class="feed_icon_area" id="feed_icon"><div class="feed_icon">'
+																		+'<img class="icon_img" id="feed_like_btn" src="resources/images/icons/feed_heart.png">'
+																		+'<p class="icon_txt" id="feed_like_icon">'+$(review).attr('ts_like')+'</p></div><div class="feed_icon">'
+																		+'<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+																		+'<p class="icon_txt" id="reply_count">'+$(review).attr('reply_count')+'</p></div>'
+																		+'<div class="feed_icon">'
+																		+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
+																		+ '<p class="icon_txt">'+$(review).attr('ts_readcount')
+																		+'</p></div>'
+																		+'</div></div>'
+																		+'<form name="feed_reply_write" class="feed_reply_write"><input type="hidden" value="'+$(review).attr('goods_id')+'" id="goods_id" name="goods_id">'
+																		+'<input type="hidden" value="${member.mem_id}" name="mem_id"> <input type="hidden" value="${member.mem_name}" name="mem_name">' 
+																		+'<div style="display:none"><input type="submit" onclick="return false;" />'
+																		+'<input type="text"/></div>'
+																		+'<c:if test="${not empty member }">'
+																		+'<input type="text" id="feed_reply_content" name="reply_content"  placeholder="댓글을 입력하세요">'
+																		+'<input type="button" class="btn btn-danger" id="feed_reply_btn" onClick="return replyuploadChk();" value="확인">' 
+																		+'</c:if>'
+																		+'<c:if test="${empty member }">'
+																		+'<input type="text" id="feed_reply_content" name="reply_content" style="width:100%;" placeholder="댓글을 입력하려면 로그인하세요.">'
+																		+'</c:if>'
+																		+'</form><div class="feed_reply"></div>');
+																	
+																		$("#myOverlay2[data-seq="+$(review).attr('goods_id')+"]").append('<div class="feed_goods_link">'
+																		+ '<img class="feed_goods_info" id="feed_goods_img" src="/howAbout/resources/images/goods/08.png">'
+																		+ '<div class="feed_goods_info" id="feed_goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]17신상 갈색코트...</a></div>'
+																		+ '<span class="feed_goods_info" id="feed_goods_price">34,900원</span>'
+																		+ '</div>');
+																	
+/* 																	$.each(data.rlist, function(index, reply) {
+																		 $(".feed_reply").append('<div id="feedpage_replyList">'
+																		+'<div class="feed_writer_img" style="width: 30px; height: 30px;">'
+																		+'<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png" width="100%" height="100%">'
+																		+'</div><div class="feed_writer" id="feedreply_writer" data-writer='+$(reply).attr('mem_id')+'>'+$(reply).attr('mem_name')+'</div>'
+																		+'<div class="feedreply_text">'+$(reply).attr('reply_content')+'</div>'
+																		+'<div class="feedreply_regdate">'+$(reply).attr('reply_regdate')+'</div>'
+																		+'</div></div></div>');
+																	});
+ */																		
+																		
+																});
+															}
+												});
+							});
+							//피드 클릭시 새창 띄우며 ajax로 피드페이지 데이터 불러오기$(".feedpage").bind("click",function() {
+							$(document).on('click','#feedpage',function feeddetail() {
 								console.log("피드창 띄우기");
 								 	/* var overlayjs = document.createElement('script');
 									overlayjs.src = "/howAbout/resources/js/Overlay.js";

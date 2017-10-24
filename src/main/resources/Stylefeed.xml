@@ -117,10 +117,14 @@ on rc.ts_id = a.ts_id where ts_content LIKE CONCAT('%', #{search}, '%') order by
 	</select>
 	
 	<select id="reviewList" resultMap="stylefeedResult">
-	select re.mem_id, p.pay_name mem_name, re.review_content ts_content, re.review_regdate ts_regdate, g.goods_img ts_img_name, re.goods_id goods_id from payment p, review re, goods g where p.pay_id = re.pay_id and g.goods_id = p.goods_id and review_del = 'n'
+		select re.mem_id, p.pay_name mem_name, re.review_content ts_content, re.review_regdate ts_regdate, g.goods_img ts_img_name, p.goods_id goods_id from payment p, review re, goods g where p.pay_id = re.pay_id and g.goods_id = p.goods_id and review_del = 'n'
 	</select>
 	<select id="goodsList" resultMap="stylefeedResult">
 	select goods_id, goods_img ts_img_name, goods_price from goods
+	</select>
+	<select id="reviewDetail" parameterType="stylefeed" resultMap="stylefeedResult">
+		<!-- select * from trendshare where ts_del='n' and ts_id=#{ts_id} -->
+		select re.mem_id, p.pay_name mem_name, re.review_content ts_content, re.review_regdate ts_regdate, g.goods_img ts_img_name, p.goods_id goods_id from payment p, review re, goods g where g.goods_id = #{goods_id} and p.pay_id = re.pay_id and g.goods_id = p.goods_id and review_del = 'n'
 	</select>
 	
 </mapper>

@@ -123,4 +123,9 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	public List goodsList() {
 		return sst.selectList("stylefeedns.goodsList");
 	}
+
+	@Override
+	public List reviewDetail(int goods_id) {
+		return sst.selectList("stylefeedns.reviewDetail", goods_id);
+	}
 }

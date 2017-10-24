@@ -116,4 +116,9 @@ public class StylefeedServiceImpl implements StylefeedService {
 		return sd.goodsList();
 	}
 
+	@Override
+	public List reviewDetail(int goods_id) {
+		return sd.reviewDetail(goods_id);
+	}
+
 }

@@ -165,7 +165,7 @@ public class StylefeedController {
 		HashMap<String, List> map = new HashMap<String,List>();
 		List feed = ss.feedDetail(ts_id);
 		map.put("list", feed);
-		if(feed.isEmpty()) {
+		if(feed.isEmpty()) {//댓글없는 피드 상세페이지(feedDetailDft)
 			List feed_d = ss.feedDetailDft(ts_id);
 			map.put("list", feed_d);
 			System.out.println("댓글수 없이 뽑기:"+feed_d);
@@ -178,6 +178,28 @@ public class StylefeedController {
 		System.out.println(rlist);
 		map.put("rlist", rlist);
 		return map;
+	}	
+	// 리뷰상세페이지
+	@RequestMapping(value = "reviewdetail", method = RequestMethod.POST)
+	public @ResponseBody List reviewdetail(@RequestParam("goods_id") int goods_id) {
+		System.out.println("피드상세페이지 컨트롤러 실행");
+		System.out.println("글번호:"+goods_id);
+		HashMap<String, List> map = new HashMap<String,List>();
+		List review = ss.reviewDetail(goods_id);
+		/*map.put("list", feed);*/
+		/*if(feed.isEmpty()) {
+			List feed_d = ss.feedDetailDft(goods_id);
+			map.put("list", feed_d);
+			System.out.println("댓글수 없이 뽑기:"+feed_d);
+		}*/
+		//해당 피드 조회수 +1 
+		/*ss.feedRead(goods_id);*/
+		//해당 피드글에 담긴 댓글들 정보 불러오기
+		//List rlist = ss.feedReplyList(ts_id);
+		System.out.println("리뷰:"+review);
+		//System.out.println(rlist);
+		//map.put("rlist", rlist);
+		return review;
 	}
 	//피드 댓글 등록
 	@RequestMapping(value = "feedreplywrite", method = RequestMethod.POST)

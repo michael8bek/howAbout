@@ -48,4 +48,6 @@ public interface StylefeedDao {
 
 	List goodsList();
 
+	List reviewDetail(int goods_id);
+
 }

@@ -30,5 +30,6 @@ public interface StylefeedService {
 	List memberInfo(String mem_id);
 	List reviewList();
 	List goodsList();
+	List reviewDetail(int goods_id);
 
 }

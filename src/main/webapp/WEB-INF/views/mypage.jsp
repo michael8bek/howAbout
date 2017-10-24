@@ -1236,7 +1236,7 @@ overflow-y:auto;
 											});
 									};
 									
-									$(window).scroll(function(){ 
+									/* $(window).scroll(function(){ 
 										/* console.log("$(window).scrollTop():",$(window).scrollTop());
 										console.log("$(document).height():",$(document).height());
 										console.log("$(window).height():",$(window).height()); */
@@ -1245,7 +1245,7 @@ overflow-y:auto;
 												$("#overlay").remove();
 												nextPage();
 											}
-									});
+									}); */
 		
 		
 		</script>
