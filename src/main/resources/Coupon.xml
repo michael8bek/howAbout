@@ -9,4 +9,7 @@
 	<select id="cpAll"  resultType="coupon">
 		SELECT * FROM coupon
 	</select>
+	<insert id="addCoupon" parameterType="coupon">
+		insert into coupon values(#{cp_id},#{cp_benefit})
+	</insert>
 </mapper>

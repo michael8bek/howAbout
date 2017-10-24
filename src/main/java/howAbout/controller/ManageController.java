@@ -90,6 +90,29 @@ public class ManageController {
 		model.addAttribute("listAllCoupon",listAllCoupon);
 		return "/management/cpList";
 	}
+	/*새로운 쿠폰 등록*/
+	@RequestMapping("newCpForm")
+	public String newCpForm() {
+		return "/management/newCpForm";
+	}
+/*	@RequestMapping("addCoupon" )
+	public String addCoupon(String cp_id,int cp_benefit,Model model) {
+		Coupon coupon = new Coupon();
+		coupon.setCp_id(cp_id);
+		coupon.setCp_benefit((cp_benefit));
+		int result = coupons.addCoupon(coupon);
+		model.addAttribute("result",result);
+		return "redirect:cpList.do";
+	}*/
+	@RequestMapping("addCoupon")
+	public String addCoupon(Coupon coupon,Model model) {
+		int result = coupons.addCoupon(coupon);
+		System.out.println("cpid : "+coupon.getCp_id());
+		System.out.println("cpbenefit : "+coupon.getCp_benefit());
+		model.addAttribute("result",result);
+		return "redirect:cpAll.do";
+	}
+	/*고객에게 쿠폰 등록*/
 	@RequestMapping("registercoupon")
 	public String registercoupon(Couponlist couponlist, Model model) {
 		int result = cps.regCouponlist(couponlist);

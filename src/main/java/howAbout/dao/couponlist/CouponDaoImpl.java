@@ -17,4 +17,9 @@ public class CouponDaoImpl implements CouponDao{
 	public List<Coupon> cpAll() {
 		return sst.selectList("couponns.cpAll");
 	}
+
+	@Override
+	public int addCoupon(Coupon coupon) {
+		return sst.insert("couponns.addCoupon", coupon);
+	}
 }

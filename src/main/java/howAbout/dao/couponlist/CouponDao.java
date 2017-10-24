@@ -8,4 +8,6 @@ public interface CouponDao {
 
 	List<Coupon> cpAll();
 
+	int addCoupon(Coupon coupon);
+
 }

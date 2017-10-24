@@ -25,30 +25,30 @@
 					class="fa fa-fw fa-table"></i> <span class="nav-link-text">Tables</span>
 			</a></li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
-				title="Tables"><a class="nav-link" href="tables.do"> <i
+				title="상품리스트"><a class="nav-link" href="tables.do"> <i
 					class="fa fa-fw fa-table"></i> <span class="nav-link-text">상품리스트</span>
 			</a></li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
-				title="FileUpload"><a class="nav-link" href="registerForm.do"> <i
+				title="상품입력"><a class="nav-link" href="registerForm.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">상품입력</span>
 			</a></li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
-				title="Tables"><a class="nav-link" href="cpList.do"> <i
+				title="회원쿠폰목록"><a class="nav-link" href="cpList.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">회원쿠폰목록</span>
 			</a></li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
-				title="FileUpload"><a class="nav-link" href="cpInsertForm.do"> <i
+				title="쿠폰회원입력"><a class="nav-link" href="cpInsertForm.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">쿠폰회원입력</span>
 			</a></li>
 			
 			<li class="nav-item" data-toggle="tooltip" data-placement="right"
-				title="FileUpload"><a class="nav-link" href="cpAll.do"> <i
+				title="쿠폰목록"><a class="nav-link" href="cpAll.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">쿠폰목록</span>
 			</a></li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right"
-				title="FileUpload"><a class="nav-link" href="newCpForm.do"> <i
+			<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right"
+				title="신규쿠폰등록"><a class="nav-link" href="newCpForm.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">신규쿠폰등록</span>
-			</a></li>
+			</a></li> -->
 			
 			<!-- 메뉴 예제 샘플 -->
 			<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right"
