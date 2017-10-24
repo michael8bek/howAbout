@@ -196,6 +196,9 @@
 			alert("최대 가능 마일리지입니다");
 			frm.mem_usepoint.value = parseInt(frm.mem_point1.value);
 		}
+		if(point == null || point == ""){
+			point = 0;
+		}
 		var sum = 0;
 		var sum1 = 0;
 		var salesum = 0;
