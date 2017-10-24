@@ -164,31 +164,50 @@
 			}
 		});
 	}
-	/* 배송지 정보 ajax */
-	function memajax1() {
-		$.ajax({
-			type : "GET",
-			url : "memorders.do",
-			async : false,
-			dataType : "json",
-			contentType : 'application/json; charset=utf-8',
-			error : function(request) {
-				alert("[[error]]" + request.responseText);
-				event.preventDefault();
-			},
-			success : function(data) {
-				if ($("input[name=chk1]").prop("checked")) {
-					$("#delmem_id").val(data.mem_id);
-					$("#delmem_addr").val(data.mem_addr);
-					$("#delmem_phone").val(data.mem_phone);
-				} else {
-					$("#delmem_id").val("");
-					$("#delmem_addr").val("");
-					$("#delmem_phone").val("");
+	$('.onlynumber').keyup(function () {
+		 this.value = this.value.replace(/[^0-9]/g,'');
+			});
+
+	$(document).on('click', '#card-img-top', function() {
+
+			var goods_id = $(this).attr("alt");
+
+			$.ajax({
+				url : "view.do",
+				method : "POST",
+
+				//위에서 클릭한 goods_id 데이터를 url로 넘겨주고
+				data : {
+					goods_id : goods_id
+				},
+				success : function(data) {
+
+					//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
+					$('.view_container').html(data);
+					var sumpri = $('#goods_pri_del').val();
+					$('#price').append().text(sumpri);
+					$(function() {
+						$('#cart').on('change', function() {
+							var qty = $('#cart').val();
+							var price1 = $('#goods_price').val();
+							var price2 = $('#goods_delprice').val();
+							var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
+							$('#price').append().text(total_price);
+						});
+					});
+					$(function() {
+						$('#cartinsert').on('click', function() {
+							$('#viewform').attr('action', 'cartinsert.do');
+							$('#viewform').submit();
+						});
+						$('#orderinsert').on('click', function() {
+							$('#viewform').attr('action', 'orderinsert.do');
+							$('#viewform').submit();
+						});
+					});
 				}
-			}
+			});
 		});
-	}
 	/* 마일리지 숫자 입력할때 가격에 적용 */
 	 function mempoint(){
 		

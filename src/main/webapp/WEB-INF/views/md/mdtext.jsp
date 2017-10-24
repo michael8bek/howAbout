@@ -38,6 +38,16 @@ $(document).on('click', '#card-img-top', function() {
 						$('#price').append().text(total_price);
 					});
 				});
+				$(function() {
+					$('#cartinsert').on('click', function() {
+						$('#viewform').attr('action', 'cartinsert.do');
+						$('#viewform').submit();
+					});
+					$('#orderinsert').on('click', function() {
+						$('#viewform').attr('action', 'orderinsert.do');
+						$('#viewform').submit();
+					});
+				});
 			}
 		});
 	});
