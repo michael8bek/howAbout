@@ -21,6 +21,8 @@
 		<result property="feedcount" column="feedcount"/>
 		<result property="likecount" column="reply_count"/>
 		<result property="reply_count" column="reply_count"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="goods_price" column="goods_price"/>
 		
 	</resultMap>
  	<select id="feedlist" resultMap="stylefeedResult">
@@ -114,5 +116,11 @@ on rc.ts_id = a.ts_id where ts_content LIKE CONCAT('%', #{search}, '%') order by
 	select ts.mem_id, ts.mem_name, sum(ts.ts_readcount) readcount, sum(ts.ts_like) likecount, count(mem_id) feedcount from trendshare ts where mem_id=#{mem_id};
 	</select>
 	
+	<select id="reviewList" resultMap="stylefeedResult">
+	select re.mem_id, p.pay_name mem_name, re.review_content ts_content, re.review_regdate ts_regdate, g.goods_img ts_img_name, re.goods_id goods_id from payment p, review re, goods g where p.pay_id = re.pay_id and g.goods_id = p.goods_id and review_del = 'n'
+	</select>
+	<select id="goodsList" resultMap="stylefeedResult">
+	select goods_id, goods_img ts_img_name, goods_price from goods
+	</select>
 	
 </mapper>

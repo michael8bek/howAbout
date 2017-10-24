@@ -80,6 +80,12 @@ public class StylefeedController {
 		List list = null;
 		List rlist = null;
 		HashMap<String, List> map = new HashMap<String, List>();
+		List reviewlist = ss.reviewList();
+		map.put("review", reviewlist);
+		List goodsList = ss.goodsList();
+		System.out.println("goodslist:"+goodsList.size());
+		map.put("goods", goodsList);
+		System.out.println("리뷰글 리스트 결과:"+reviewlist.size());
 		if(pageType.equals("like")){  //인기순
 			System.out.println("페이지타입2:" + pageType);
 			list = ss.feedlist_orderLike();

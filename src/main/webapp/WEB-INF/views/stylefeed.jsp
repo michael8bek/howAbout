@@ -1494,11 +1494,11 @@ overflow-y:auto;
 					<div class="info">
 						<div class="mem_data">
 					<p>좋아요</p>
-					<div class="likecount">222</div>
+					<div class="likecount">78</div>
 						</div>
 						<div class="mem_data">
 					<p>조회수</p>
-					<div class="readcount">3333</div>
+					<div class="readcount">352</div>
 						</div>
 					</div>
 					</c:forEach>
@@ -1521,16 +1521,16 @@ overflow-y:auto;
 						<img src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png">
 					</div>
 					<div class="mem_info">
-					<div class="mem_id">mem.mem_name</div>
+					<div class="mem_id">master</div>
 					</div>
 					<div class="info">
 						<div class="mem_data">
 					<p>좋아요</p>
-					<div class="likecount">4444</div>
+					<div class="likecount">44</div>
 						</div>
 						<div class="mem_data">
 					<p>조회수</p>
-					<div class="readcount">2222</div>
+					<div class="readcount">21</div>
 						</div>
 					</div>
 					</c:forEach>
@@ -1836,6 +1836,72 @@ overflow-y:auto;
 							var ts_content = "";
 							var ts_img = ""; /*ts_img_path+ts_img_name*/
 							var ts_regdate = "";
+							$.each(data.review, function(index, review) {
+								$("#user_feed").append('<div class="feed">'
+										+ '<div class="feed_imgbox">'
+										+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(review).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
+										+ '<img class="feed-img" '
+										+ 'onerror="this.src='+errImg+';"'
+										+ 'src="/howAbout/resources/images/goods/'+$(review).attr('ts_img_name')+'"alt=""></a>'
+										+ '<div class="caption_box">'
+										+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
+										+ '</div></div>'
+										+ '<div class="feed_thumbnail">'
+										+ '<div class="feed_writer_img">'
+										+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
+										+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(review).attr('mem_id')+'">'
+										+ $(review).attr('mem_name')
+										+ '</div>'
+										+ '<div class="feed_date" id="feedlist_date">'
+										+ $(review).attr('ts_regdate')
+										+ '</div>'
+										+ '<div class="feed_content" id="feedlist_content">'
+										+ $(review).attr('ts_content')
+										+ '</div>'
+										+ '<div class="feed_icon_area" id="feed_icon">'
+										+ '<div class="feed_icon">'
+										+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
+										+ '<p class="icon_txt">'+$(review).attr('ts_like')
+										+ '</p></div>'
+										+'<div class="feed_icon">'
+										+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
+										+ '<p class="icon_txt" id="reply_count">'+$(review).attr('reply_count')
+										+ '</p></div>'
+										+'<div class="feed_icon">'
+										+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
+										+ '<p class="icon_txt">'+$(review).attr('ts_readcount')
+										+'</p></div>'
+										+ '</div></div>'
+										+ '<div class="feed_comment" data-seq="'+$(review).attr('goods_id')
+										+ '"></div>');
+							$.each(data.goods, function(index, goods) {
+								if($(review).attr('goods_id')==$(goods).attr('goods_id')){
+									console.log("오예");
+									$(".feed_comment[data-seq="+$(review).attr('goods_id')+"]").prepend('<div class="goods_link">'
+							+ '<img class="goods_info" id="goods_img" src="/howAbout/resources/images/goods/'+$(review).attr('ts_img_name')+'">'
+							+ '<div class="goods_info" id="goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="'+$(review).attr('goods_id')+'" href="view.do">[한정특가]17신상 갈색코트...</a></div>'
+							+ '<span class="goods_info" id="goods_price">34,900원</span>'
+							+ '</div>');
+						};
+					});
+
+/* 										
+			$.each(data.rlist, function(index, rlist) {
+				if($(feed).attr('ts_id')==$(rlist).attr('ts_id')){
+				$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
+				+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(rlist).attr('reply_id')+'">'
+				+ '<div class="feed_writer_img">'
+				+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
+				+ 'width="100%" height="100%"></div>'
+				+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(rlist).attr("mem_id")
+				+ '">'+$(rlist).attr("mem_name")
+				+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(rlist).attr("ts_id")
+				+'">'
+				+ $(rlist).attr("reply_content")+'</div>'
+				+'</div>'); 
+				}
+			}); */
+							});
 							$.each(data.list, function(index, feed) {
 								$("#user_feed").append('<div class="feed">'
 														+ '<div class="feed_imgbox">'
@@ -1874,13 +1940,13 @@ overflow-y:auto;
 														+ '</div></div>'
 														+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 														+ '"></div>');
-								if($(feed).attr('ts_id')=='24'){
+/* 								if($(feed).attr('ts_id')=='24'){
 									$('.feed_comment').prepend('<div class="goods_link">'
 											+ '<img class="goods_info" id="goods_img" src="/howAbout/resources/images/goods/08.png">'
 											+ '<div class="goods_info" id="goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]17신상 갈색코트...</a></div>'
 											+ '<span class="goods_info" id="goods_price">34,900원</span>'
 											+ '</div>');
-								}
+								} */
 
 														
 							$.each(data.rlist, function(index, rlist) {

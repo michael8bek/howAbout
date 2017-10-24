@@ -44,4 +44,8 @@ public interface StylefeedDao {
 
 	List memberInfo(String mem_id);
 
+	List reviewList();
+
+	List goodsList();
+
 }

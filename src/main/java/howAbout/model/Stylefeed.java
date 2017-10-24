@@ -15,11 +15,26 @@ public class Stylefeed {
 	private String ts_img_path;
 	private String ts_img_name;
 	
+	private int goods_id;
+	private int goods_price;
+	public int getGoods_price() {
+		return goods_price;
+	}
+	public void setGoods_price(int goods_price) {
+		this.goods_price = goods_price;
+	}
+	public int getGoods_id() {
+		return goods_id;
+	}
+	public void setGoods_id(int goods_id) {
+		this.goods_id = goods_id;
+	}
 	private int reply_id;
 	private String reply_content;
 	private Date reply_regdate;
 	private String reply_del;
 	private int reply_count;
+	
 	
 	
 	private int feedcount;
