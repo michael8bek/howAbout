@@ -12,4 +12,6 @@ public interface GoodsDao {
 
 	int register(Goods goods);
 
+	List<Goods> selectlist(Goods goods_theme);
+
 }
