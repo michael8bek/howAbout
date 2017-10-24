@@ -81,9 +81,12 @@ public class PaymentController {
 	public String payList(Model model, HttpSession session) {
 		List<Cart> cartList = cs.payList((String) session.getAttribute("mem_id"));
 		List<Payment> paymentList = ps.paymentList((String) session.getAttribute("mem_id"));
-		
+		List<Couponlist> couponlist = cls.couponlist((String)session.getAttribute("mem_id"));
+		List<Review> review = rs.reviewList((String)session.getAttribute("mem_id"));
 		model.addAttribute("cartList",cartList);
 		model.addAttribute("paymentList",paymentList);
+		model.addAttribute("couponlist",couponlist);
+		model.addAttribute("review", review);
 		
 		return "pay/payList";
 	}
@@ -93,7 +96,8 @@ public class PaymentController {
 		return "pay/reviewForm";
 	}
 	@RequestMapping("review")
-	public String review(Review review , Model model) {
+	public String review(Review review , Model model, HttpSession session) {
+		review.setMem_id((String)session.getAttribute("mem_id"));
 		int result = rs.insert(review);
 		model.addAttribute("result",result);
 		return "pay/review";

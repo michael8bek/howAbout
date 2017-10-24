@@ -38,5 +38,10 @@ public class CouponlistDaoImpl implements CouponlistDao {
 		return sst.insert("couponlistns.regCouponlist",couponlist);
 	}
 
+	@Override
+	public List<Couponlist> couponlist(String mem_id) {
+		return sst.selectList("couponlistns.couponlist", mem_id);
+	}
+
 
 }

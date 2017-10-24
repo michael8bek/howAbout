@@ -31,5 +31,9 @@ public class CouponlistServiceImpl implements CouponlistService {
 	public int regCouponlist(Couponlist couponlist) {
 		return cd.regCouponlist(couponlist);
 	}
+	@Override
+	public List<Couponlist> couponlist(String mem_id) {
+		return cd.couponlist(mem_id);
+	}
 
 }

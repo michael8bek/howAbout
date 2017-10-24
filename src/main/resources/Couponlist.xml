@@ -33,4 +33,7 @@
 	<select id="findCpVal" parameterType="int" resultType="couponlist">
 		select cp_benefit, cp_id, cplist_id from couponlist where cplist_id = #{cplist_id}
 	</select>
+	<select id="couponlist" resultMap="couponlistResult">
+		select * from couponlist where mem_id=#{mem_id}
+	</select>
 </mapper>

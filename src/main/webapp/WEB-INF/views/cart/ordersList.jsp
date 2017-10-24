@@ -357,8 +357,8 @@
 					<table class="table" style="width: 100%;">
 						<tr>
 							<th style="width: 25%;">쿠폰 선택</th>
-							<th><select onclick="coupon(this.value);">
-									<option value="0-0" style="text-align: center;" selected="selected">사용안함</option>
+							<th><select onclick="coupon(this.value);" name="coupon1">
+									<option value="0-0" style="text-align: center;" selected="selected" >사용안함</option>
 									<c:forEach var="couponlist" items="${listCoupon }"
 										varStatus="status">
 										<option
