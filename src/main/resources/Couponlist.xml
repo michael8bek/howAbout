@@ -11,10 +11,10 @@
 		<result property="mem_id" column="mem_id" />
 		 <result property="cp_benefit" column="cp_benefit" /> 
 	</resultMap>
-	<insert id="regCouponlist" parameterType="couponlist">
-		<selectKey keyProperty="cplist_id" resultType="int" order="BEFORE">
+	<insert id="regCouponlist" parameterType="couponlist" useGeneratedKeys="true" keyProperty="cplist_id">
+		<!-- <selectKey keyProperty="cplist_id" resultType="int" order="BEFORE">
 			SELECT ifnull(MAX(cplist_id),0)+1 cp_benefit FROM couponlist
-		</selectKey>
+		</selectKey> -->
 		insert into couponlist values 
 			(#{cplist_id},now(),#{cplist_expire},'n',#{cp_id},#{mem_id},
 			(select cp_benefit from coupon where cp_id = #{cp_id}))

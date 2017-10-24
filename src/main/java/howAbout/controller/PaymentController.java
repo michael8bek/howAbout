@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import howAbout.model.Cart;
+import howAbout.model.Couponlist;
 import howAbout.model.Goods;
 import howAbout.model.Member;
 import howAbout.model.Payment;
@@ -32,7 +33,7 @@ public class PaymentController {
 	@Autowired
 	private StockService ss;
 	@Autowired
-	private CouponlistService cpls;
+	private CouponlistService cls;
 	@Autowired
 	private MemberService ms;
 	@Autowired
@@ -54,7 +55,8 @@ public class PaymentController {
 		}
 		/*마일리지 구매금액의 10%*/
 		Member mem = ms.select((String)session.getAttribute("mem_id"));
-		int point = (int)(payment.getPay_total() * 0.1+(int)mem.getMem_point());
+		int usePoint = payment.getMem_usepoint();
+		int point = (int)(payment.getPay_total() * 0.1+(int)mem.getMem_point() - usePoint);
 		int addpoint = ms.addpoint(point, memberName);
 
 		/*포인트 사용시 보유 포인트에서 차감*/
@@ -65,7 +67,7 @@ public class PaymentController {
 		ms.pointUse(member);
 		System.out.println(mem_point);*/
 
-		int cplistId= cpls.update(payment.getCplist_id());
+		int cplistId= cls.update(payment.getCplist_id());
 		int result = ps.insert(payment);
 		int result3 = ss.update(payment);
 		model.addAttribute("result", result);
@@ -79,6 +81,7 @@ public class PaymentController {
 	public String payList(Model model, HttpSession session) {
 		List<Cart> cartList = cs.payList((String) session.getAttribute("mem_id"));
 		List<Payment> paymentList = ps.paymentList((String) session.getAttribute("mem_id"));
+		
 		model.addAttribute("cartList",cartList);
 		model.addAttribute("paymentList",paymentList);
 		
@@ -93,6 +96,6 @@ public class PaymentController {
 	public String review(Review review , Model model) {
 		int result = rs.insert(review);
 		model.addAttribute("result",result);
-		return "pay/reivew";
+		return "pay/review";
 	}
 }

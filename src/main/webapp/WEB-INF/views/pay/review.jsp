@@ -6,8 +6,8 @@
 <title>Insert title here</title></head><body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("등록완료");
-		location.href="ordersList.do?mem_id=${member.mem_id }";
+		alert("후기작성 감사합니다 ~!");
+		location.href="payList.do?mem_id=${member.mem_id }";
 	</script>
 </c:if>
 <c:if test="${result <= 0 }">

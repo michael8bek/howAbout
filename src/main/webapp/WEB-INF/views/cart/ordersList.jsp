@@ -58,6 +58,7 @@
 		var sum1 = 0;
 		var salesum = 0;
 		var count = frm.cart_id.length;
+		frm.mem_usepoint.value = 0;
 		/* 상품이 하나일때 */
 		if (count == undefined) {
 			sum = parseInt(frm.goods_price.value * frm.goods_qty.value);
@@ -199,7 +200,10 @@
 		/* isNaN체크 */
 		 if(isNaN(point) == true){
 			point = 0;
-		} 
+		}
+		if(point == null || point == ""){
+			point = 0;
+		}
 		var sum = 0;
 		var sum1 = 0;
 		var salesum = 0;
@@ -353,7 +357,7 @@
 					<table class="table" style="width: 100%;">
 						<tr>
 							<th style="width: 25%;">쿠폰 선택</th>
-							<th><select onclick="coupon(this.value);" name="cp">
+							<th><select onclick="coupon(this.value);">
 									<option value="0-0" style="text-align: center;" selected="selected">사용안함</option>
 									<c:forEach var="couponlist" items="${listCoupon }"
 										varStatus="status">
@@ -373,8 +377,6 @@
 							<th colspan="2">
 									- 마일리지 1 = 1원으로, 현금처럼 사용 가능합니다.
 									<br> - 마일리지는 3000점 이상부터 사용가능합니다.
-									<br> - 마일리지는 10점 단위로 사용 가능합니다.
-
 								
 							</th>
 						</tr>
