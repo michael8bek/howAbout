@@ -950,7 +950,7 @@ overflow-y:auto;
 						<div class="feed_imgbox">
 							<a class="feedpage" id="overlayTrigger2"
 								data-seq="${feed.ts_id }" data-overlay-trigger="myOverlay2"><img
-								class="feed-img" src="${feed.ts_img_path}${feed.ts_img_name}"
+								class="feed-img" src="${feed.ts_img_path}${feed.ts_img_name}" onerror="this.src='http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png';"
 								alt=""> <!-- 이미지 캡션 --> </a>
 							<div class="caption_box">
 								<a><img class="feed_icon"

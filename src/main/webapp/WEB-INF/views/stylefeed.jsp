@@ -1425,7 +1425,7 @@ overflow-y:auto;
 	<div class="container">
 		<!-- 이벤트페이지 -->
 		<section class="event_slide">
-			<div id="carousel-example-generic" class="carousel slide">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 				<!-- 버튼 -->
 				<ol class="carousel-indicators">
 					<li data-target="#carousel-example-generic" data-slide-to="0"
@@ -1452,9 +1452,9 @@ overflow-y:auto;
 					</div>
 				</div>
 				<!-- 슬라이드 컨트롤러 -->
-				<a class="left carousel-control" href="#carousel-example-generic"
+				<a class="left carousel-control" href="#carousel-example-generic" role="button"
 					data-slide="prev"> <span class="icon-prev"></span>
-				</a> <a class="right carousel-control" href="#carousel-example-generic"
+				</a> <a class="right carousel-control" href="#carousel-example-generic" role="button"
 					data-slide="next"> <span class="icon-next"></span>
 				</a>
 			</div>
@@ -1808,7 +1808,7 @@ overflow-y:auto;
 			document.getElementsByTagName('head')[0].appendChild(overlayjs);
 		}; */
 		
-		
+	$()
     function pageLoad(){
 			var pageType = "${pageType}";
 			console.log("트렌드쉐어 페이지 실행");
