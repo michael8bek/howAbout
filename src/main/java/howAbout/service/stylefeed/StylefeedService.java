@@ -28,5 +28,7 @@ public interface StylefeedService {
 	void feedRead(int ts_id);
 	List allreplycount();
 	List memberInfo(String mem_id);
+	List reviewList();
+	List goodsList();
 
 }
