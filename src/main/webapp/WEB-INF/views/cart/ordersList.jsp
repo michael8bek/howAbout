@@ -58,7 +58,6 @@
 		var sum1 = 0;
 		var salesum = 0;
 		var count = frm.cart_id.length;
-		frm.mem_usepoint.value = 0;
 		/* 상품이 하나일때 */
 		if (count == undefined) {
 			sum = parseInt(frm.goods_price.value * frm.goods_qty.value);
@@ -164,50 +163,31 @@
 			}
 		});
 	}
-	$('.onlynumber').keyup(function () {
-		 this.value = this.value.replace(/[^0-9]/g,'');
-			});
-
-	$(document).on('click', '#card-img-top', function() {
-
-			var goods_id = $(this).attr("alt");
-
-			$.ajax({
-				url : "view.do",
-				method : "POST",
-
-				//위에서 클릭한 goods_id 데이터를 url로 넘겨주고
-				data : {
-					goods_id : goods_id
-				},
-				success : function(data) {
-
-					//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
-					$('.view_container').html(data);
-					var sumpri = $('#goods_pri_del').val();
-					$('#price').append().text(sumpri);
-					$(function() {
-						$('#cart').on('change', function() {
-							var qty = $('#cart').val();
-							var price1 = $('#goods_price').val();
-							var price2 = $('#goods_delprice').val();
-							var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
-							$('#price').append().text(total_price);
-						});
-					});
-					$(function() {
-						$('#cartinsert').on('click', function() {
-							$('#viewform').attr('action', 'cartinsert.do');
-							$('#viewform').submit();
-						});
-						$('#orderinsert').on('click', function() {
-							$('#viewform').attr('action', 'orderinsert.do');
-							$('#viewform').submit();
-						});
-					});
+	/* 배송지 정보 ajax */
+	function memajax1() {
+		$.ajax({
+			type : "GET",
+			url : "memorders.do",
+			async : false,
+			dataType : "json",
+			contentType : 'application/json; charset=utf-8',
+			error : function(request) {
+				alert("[[error]]" + request.responseText);
+				event.preventDefault();
+			},
+			success : function(data) {
+				if ($("input[name=chk1]").prop("checked")) {
+					$("#delmem_id").val(data.mem_id);
+					$("#delmem_addr").val(data.mem_addr);
+					$("#delmem_phone").val(data.mem_phone);
+				} else {
+					$("#delmem_id").val("");
+					$("#delmem_addr").val("");
+					$("#delmem_phone").val("");
 				}
-			});
+			}
 		});
+	}
 	/* 마일리지 숫자 입력할때 가격에 적용 */
 	 function mempoint(){
 		
@@ -215,13 +195,6 @@
 		if(point > frm.mem_point1.value){
 			alert("최대 가능 마일리지입니다");
 			frm.mem_usepoint.value = parseInt(frm.mem_point1.value);
-		}
-		/* isNaN체크 */
-		 if(isNaN(point) == true){
-			point = 0;
-		}
-		if(point == null || point == ""){
-			point = 0;
 		}
 		var sum = 0;
 		var sum1 = 0;
@@ -376,8 +349,8 @@
 					<table class="table" style="width: 100%;">
 						<tr>
 							<th style="width: 25%;">쿠폰 선택</th>
-							<th><select onclick="coupon(this.value);" name="coupon1">
-									<option value="0-0" style="text-align: center;" selected="selected" >사용안함</option>
+							<th><select onclick="coupon(this.value);" name="cp">
+									<option value="0-0" style="text-align: center;" selected="selected">사용안함</option>
 									<c:forEach var="couponlist" items="${listCoupon }"
 										varStatus="status">
 										<option
@@ -395,7 +368,9 @@
 						<tr>
 							<th colspan="2">
 									- 마일리지 1 = 1원으로, 현금처럼 사용 가능합니다.
-									<br> - 마일리지는 결제금액의 10%를 드립니다.
+									<br> - 마일리지는 3000점 이상부터 사용가능합니다.
+									<br> - 마일리지는 10점 단위로 사용 가능합니다.
+
 								
 							</th>
 						</tr>

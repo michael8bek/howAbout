@@ -7,9 +7,6 @@
 <html lang="en">
 <script type="text/javascript">
 /* 이미지 클릭시 상품 상세정보  */
-$('.onlynumber').keyup(function () {
-	 this.value = this.value.replace(/[^0-9]/g,'');
-		});
 
 $(document).on('click', '#card-img-top', function() {
 
