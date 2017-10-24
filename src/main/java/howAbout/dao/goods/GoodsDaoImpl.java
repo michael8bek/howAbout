@@ -26,5 +26,9 @@ public class GoodsDaoImpl implements GoodsDao {
 	public int register(Goods goods) {
 		return sst.insert("goodsns.register", goods);
 	}
+	@Override
+	public List<Goods> selectlist(Goods goods_theme) {
+		return sst.selectList("goodsns.selectlist", goods_theme);
+	}
 
 }

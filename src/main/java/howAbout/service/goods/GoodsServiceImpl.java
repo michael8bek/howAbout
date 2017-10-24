@@ -23,5 +23,9 @@ public class GoodsServiceImpl implements GoodsService {
 	public int register(Goods goods) {
 		return gd.register(goods);
 	}
+	@Override
+	public List<Goods> selectlist(Goods goods_theme) {
+		return gd.selectlist(goods_theme);
+	}
 
 }

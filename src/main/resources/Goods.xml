@@ -37,4 +37,7 @@
 		select * from goods where goods_id=#{goods_id}
 	</select>
 
+	<select id="selectlist" resultMap="goodsResult">
+		select * from goods where goods_theme=#{goods_theme}
+	</select>
 </mapper>

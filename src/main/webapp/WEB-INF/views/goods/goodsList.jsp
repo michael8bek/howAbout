@@ -47,7 +47,19 @@
 			}
 		});
 	});
-
+	$(function() {
+		$('#goods_theme').on('change', function() {
+			if ($('#goods_theme').val() == "all") {
+				$.post('goodsList.do', select, function(data) {
+					$('body').html(data);
+				});
+			}
+			var select = "goods_theme=" + $('#goods_theme').val();
+			$.post('goodsSelectList.do', select, function(data) {
+				$('.row').html(data);
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -58,6 +70,15 @@
 
 	<div class="container">
 	<h2 class="text-primary" style="padding-top: 3%;">상품 목록</h2>
+	<div class="sb" style="text-align: right; margin: 20px">
+	<select name="goods_theme" id="goods_theme">
+		<option value="all">all</option>
+		<option value="office">office</option>
+		<option value="nature">nature</option>
+		<option value="daily">daily</option>
+		<option value="student">student</option>
+	</select>
+	</div>
 		<div class="row">
 			<c:forEach var="goods" items="${list}">
 				<div class="col-lg-4 col-sm-6 portfolio-item">

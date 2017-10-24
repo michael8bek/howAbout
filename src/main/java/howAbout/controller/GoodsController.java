@@ -26,6 +26,14 @@ public class GoodsController {
 		model.addAttribute("list", list);
 		return "goods/goodsList";
 	}
+	
+	@RequestMapping("goodsSelectList")
+	public String goodsSelectList(Goods goods_theme, Model model) {
+		List<Goods> list = gs.selectlist(goods_theme);
+		model.addAttribute("list", list);
+		return "goods/selectgoods";
+	}
+	
 	/*관리자페이지에서 상품등록*/
 	@RequestMapping(value="registergoods")
 	public String registerGoods(Goods goods, Stock stock, Model model){
