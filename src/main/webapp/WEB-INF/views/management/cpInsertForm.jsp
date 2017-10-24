@@ -57,9 +57,9 @@
 									</c:forEach>
 							</select></td>
 							<td><label class="col-lg-4" for="cp_id">쿠폰명</label></td>
-							<td><select class="col-lg-6" name="cp_id" title="cp_id">
+							<td><select class="col-lg-6" id="cp_id" title="cp_id">
 									<c:forEach var="cp" items="${cpAll }">
-										<option value="${cp.cp_id }">${cp.cp_id }//${cp.cp_benefit }원
+										<option value="${cp.cp_id }">${cp.cp_id } // ${cp.cp_benefit }원
 											할인</option>
 									</c:forEach>
 							</select></td>

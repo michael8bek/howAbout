@@ -95,7 +95,7 @@ public class ManageController {
 	public String newCpForm() {
 		return "/management/newCpForm";
 	}
-	@RequestMapping("addCoupon" )
+/*	@RequestMapping("addCoupon" )
 	public String addCoupon(String cp_id,int cp_benefit,Model model) {
 		Coupon coupon = new Coupon();
 		coupon.setCp_id(cp_id);
@@ -103,13 +103,15 @@ public class ManageController {
 		int result = coupons.addCoupon(coupon);
 		model.addAttribute("result",result);
 		return "redirect:cpList.do";
-	}
-/*	@RequestMapping("addCoupon")
+	}*/
+	@RequestMapping("addCoupon")
 	public String addCoupon(Coupon coupon,Model model) {
 		int result = coupons.addCoupon(coupon);
+		System.out.println("cpid : "+coupon.getCp_id());
+		System.out.println("cpbenefit : "+coupon.getCp_benefit());
 		model.addAttribute("result",result);
-		return "redirect:cpList.do";
-	}*/
+		return "redirect:cpAll.do";
+	}
 	/*고객에게 쿠폰 등록*/
 	@RequestMapping("registercoupon")
 	public String registercoupon(Couponlist couponlist, Model model) {

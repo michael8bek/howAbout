@@ -45,10 +45,10 @@
 				title="쿠폰목록"><a class="nav-link" href="cpAll.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">쿠폰목록</span>
 			</a></li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right"
+			<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right"
 				title="신규쿠폰등록"><a class="nav-link" href="newCpForm.do"> <i
 					class="fa fa-fw fa-file"></i> <span class="nav-link-text">신규쿠폰등록</span>
-			</a></li>
+			</a></li> -->
 			
 			<!-- 메뉴 예제 샘플 -->
 			<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right"
