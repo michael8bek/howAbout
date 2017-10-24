@@ -11,7 +11,7 @@ $('.onlynumber').keyup(function () {
 	 this.value = this.value.replace(/[^0-9]/g,'');
 		});
 
-$(document).on('click', '.card-img-top', function() {
+$(document).on('click', '#card-img-top', function() {
 
 		var goods_id = $(this).attr("alt");
 
@@ -67,9 +67,11 @@ $(document).on('click', '.card-img-top', function() {
 			<div class="row">
 				<div class="col-md-7" align="center">
 					<a data-toggle="modal" data-target=".bd-example-modal-lg"> 
-					<img class="img-fluid rounded mb-3 mb-md-0"
+					<img class="img-fluid rounded mb-3 mb-md-0" id="card-img-top"
 						src="${path }/resources/images/goods/${list.mdtext_goods_img}"
 						alt="${list.mdtext_goods_id}"></a>
+						<script type="text/javascript">
+						</script>
 						<div class="modal fade bd-example-modal-lg" tabindex="-1"
 									role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 										<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">

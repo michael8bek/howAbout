@@ -18,7 +18,7 @@
 		</selectKey> -->
 		insert into review(review_content,review_regdate,review_del,
 		 pay_id,review_readcount,review_title, mem_id)
-		 values(#{review_content},now(),'put',#{pay_id},'0',#{review_title}, #{mem_id})
+		 values(#{review_content},now(),'n',#{pay_id},'0',#{review_title}, #{mem_id})
 	</insert>
 	<select id="reviewList" resultMap="reviewResult">
 		select * from review where mem_id=#{mem_id}
