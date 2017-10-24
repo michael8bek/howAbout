@@ -18,23 +18,37 @@
 		<result property="reply_regdate" column="reply_regdate"/>
 		<result property="reply_del" column="reply_del"/>
 		<result property="reply_count" column="reply_count"/>
-		
+		<result property="feedcount" column="feedcount"/>
+		<result property="likecount" column="reply_count"/>
+		<result property="reply_count" column="reply_count"/>
 		
 	</resultMap>
  	<select id="feedlist" resultMap="stylefeedResult">
 		select * from trendshare where ts_del='n' order by ts_regdate desc
 	</select> 
+	<select id="allreplycount" resultMap="stylefeedResult">
+	select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id
+	</select>
 	<select id="feedlist_orderLike" resultMap="stylefeedResult">
+	select * from (select @ROWNUM := @ROWNUM+1 AS ROWNUM, tr.* from trendshare tr, (select @ROWNUM:=0) rn order by tr.ts_like desc) a 
+left outer join (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc 
+on rc.ts_id = a.ts_id where a.ROWNUM between 1 and 8 order by a.ts_like desc
 		<!-- select * from trendshare where ts_del='n' order by ts_like desc -->
-		select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc where rc.ts_id = ts.ts_id order by ts_like desc;
+		<!-- select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc where rc.ts_id = ts.ts_id order by ts_like desc limit 8; -->
 	</select>
 	<select id="feedlist_orderRecent" resultMap="stylefeedResult">
-<!-- 	select * from (select @ROWNUM := @ROWNUM+1 AS ROWNUM, tr.* from trendshare tr, (select @ROWNUM:=0) rn order by tr.ts_regdate desc) a where a.ROWNUM between 1 and 8; -->
-select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc where rc.ts_id = ts.ts_id order by ts_regdate desc;
+	select * from (select @ROWNUM := @ROWNUM+1 AS ROWNUM, tr.* from trendshare tr, (select @ROWNUM:=0) rn order by tr.ts_regdate desc) a 
+left outer join (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc 
+on rc.ts_id = a.ts_id where a.ROWNUM between 1 and 8 order by a.ts_regdate desc
+<!-- select * from (select @ROWNUM := @ROWNUM+1 AS ROWNUM, tr.* from trendshare tr, (select @ROWNUM:=0) rn order by tr.ts_regdate desc) a where a.ROWNUM between 1 and 8; -->
+<!--  select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc where rc.ts_id = ts.ts_id order by ts_regdate desc limit 8;-->
 		<!-- select * from trendshare where ts_del='n' order by ts_regdate desc -->
 	</select>
 	<select id="myfeedlist" parameterType="String" resultMap="stylefeedResult">
-		select * from trendshare where ts_del='n'and mem_id=#{mem_id} order by ts_regdate desc
+		<!-- select * from trendshare where ts_del='n'and mem_id=#{mem_id} order by ts_regdate desc -->
+		select * from (select @ROWNUM := @ROWNUM+1 AS ROWNUM, tr.* from trendshare tr, (select @ROWNUM:=0) rn where mem_id= #{mem_id} order by tr.ts_regdate desc) a 
+		left outer join (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc 
+		on rc.ts_id = a.ts_id order by a.ts_regdate desc;
 	</select>
 	<insert id="feedWrite" parameterType="stylefeed">
 		insert into trendshare(ts_content,mem_id, mem_name, ts_img_name)
@@ -72,7 +86,7 @@ select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from rep
 	<!-- select tr.ts_id, r.reply_id, r.reply_content, t.mem_name, r.reply_regdate from trendshare t, reply r, ts_reply tr where r.reply_id = #{reply_id} and t.mem_id=#{mem_id} and t.mem_id = r.mem_id and t.ts_id=#{ts_id} and t.ts_id = tr.ts_id and reply_del='n' -->
  		select * from reply r, ts_reply tr where tr.ts_id=#{ts_id} and tr.reply_id = #{reply_id} and r.reply_id = tr.reply_id and reply_del='n'; 
 	</select>
-	<select id="feedmore" parameterType="Map"   resultMap="stylefeedResult">
+	<select id="feedmore_recent" parameterType="Map"   resultMap="stylefeedResult">
 	select * from (select @ROWNUM := @ROWNUM+1 AS ROWNUM, tr.* from trendshare tr, (select @ROWNUM:=0) rn order by tr.ts_regdate desc) a where a.ROWNUM between ${startRow} and ${endRow};
 		<!-- select * from trendshare where ts_del='n' order by ts_regdate desc -->
 	</select>
@@ -91,7 +105,14 @@ select * from trendshare ts, (select tr.ts_id, count(ts_id) reply_count from rep
 		values(#{ts_id},#{reply_id})
 	</insert>
 	<select id="feedsearch" parameterType="String" resultMap="stylefeedResult">
-	select * from trendshare where ts_content LIKE CONCAT('%', #{search}, '%')
+	select * from (select @ROWNUM := @ROWNUM+1 AS ROWNUM, tr.* from trendshare tr, (select @ROWNUM:=0) rn order by tr.ts_regdate desc) a 
+left outer join (select tr.ts_id, count(ts_id) reply_count from reply r, ts_reply tr where r.reply_id = tr.reply_id group by ts_id) rc 
+on rc.ts_id = a.ts_id where ts_content LIKE CONCAT('%', #{search}, '%') order by a.ts_regdate desc
+	<!-- select * from trendshare where ts_content LIKE CONCAT('%', #{search}, '%') -->
 	</select>
+	<select id="memberInfo" parameterType="String" resultMap="stylefeedResult">
+	select ts.mem_id, ts.mem_name, sum(ts.ts_readcount) readcount, sum(ts.ts_like) likecount, count(mem_id) feedcount from trendshare ts where mem_id=#{mem_id};
+	</select>
+	
 	
 </mapper>

@@ -21,6 +21,30 @@ public class Stylefeed {
 	private String reply_del;
 	private int reply_count;
 	
+	
+	private int feedcount;
+	private int likecount;
+	private int readcount;
+	
+	
+	public int getFeedcount() {
+		return feedcount;
+	}
+	public void setFeedcount(int feedcount) {
+		this.feedcount = feedcount;
+	}
+	public int getLikecount() {
+		return likecount;
+	}
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
+	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
 	public int getReply_count() {
 		return reply_count;
 	}

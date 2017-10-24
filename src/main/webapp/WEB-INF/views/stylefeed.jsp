@@ -328,7 +328,34 @@ a {
 	border-radius: 5px;
 	margin-bottom: 1.000rem;
 }
-
+	.mdfeed_img{
+		position: relative;
+	}
+	.mdfeed_img_text{
+	background-color: black;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    opacity: 0.2;
+	}
+	.mdfeed_text{
+	position: absolute;
+	border-top:4px solid;
+    color: white;
+    top: calc(50%);
+    font-size: 30px;
+    left: calc( 50% - 150px );
+    font-weight: bold;
+	}
+	.mdfeed_text_small{
+	position: absolute;
+    color: white;
+    font-weight: bold;
+    top: calc(70%);
+    left: calc( 50% - 120px );
+    font-size: 16px;
+	}
 .mdfeed_content {
 	width: 100%;
 	height: 60px;
@@ -484,7 +511,7 @@ a {
 	margin-right: 65px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
 	margin-right: 15px;
 }
@@ -501,21 +528,21 @@ a {
 }
 
 .feed .goods_link{
+	width:100%;
+	height:62px;
 	display: inline-block;
 	background-color: white;
 }
 
 .feed #goods_img{
 	float:left;
-	width:60px;
-	height:60px;
+	width:62px;
+	height:62px;
 }
 
 .feed #goods_name{
-	display: inline-block;
 	font-size: 13px;
-	margin-top:5px;
-	margin-left: 5px;
+	padding-left:10px;
 	font-weight: bold;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
@@ -523,7 +550,7 @@ a {
 
 .feed #goods_price{
 	font-size:13px;
-	margin-left:5px;
+	margin-left:10px;
 	font-weight: bold;
 }
 .feed .feed_comment {
@@ -531,7 +558,7 @@ a {
 	position: relative;
 	background-color: #F7F7F7;
 	border-radius: 0px 0px 5px 5px;
-	height:170px;
+	height:175px;
 	overflow-y:hidden;
 	display: inline-block;
 }
@@ -609,18 +636,6 @@ a {
 	margin-bottom: 10px;
 }
 
-#feeedpage_content {
-	word-wrap: break-word;
-	display:inline-block;
-	overflow-y:hidden;
-	width: 100%;
-	height: 80px;
-	font-size:14px;
-	color: #AAAAAA;
-	float: left;
-	padding-left: 2.5%;
-	-ms-overflow-style: none;
-}
 
 
 .feed_writer_img{
@@ -712,6 +727,42 @@ overflow-y:auto;
 	display: inline-block;
 }
 @media all and (max-width:767px) {
+	/* mdfeed */
+	.mdfeed {
+		width: 100%;
+		height: auto;
+		margin-bottom: 0.500rem;
+	}
+	.mdfeed_content{
+		font-weight:bold;
+		font-size:14px;
+		padding-top: 10px;
+		position: relative;
+		display: inline-flex;
+	}
+	.mdfeed_content .profile_img{
+		margin-left: 10px;
+		display: inline-block;
+	}
+	.mdfeed_content .profile_img > img{
+		width: 40px;
+		height:40px;
+		border-radius: 20px;
+	}
+	.mdfeed_content .mem_info{
+		margin-left: 10px;
+		float:left;
+		margin-right:10px;
+	}
+	.mdfeed_content .info{
+		text-align:center;
+		line-height: 10px;
+	}
+	.mdfeed_content .mem_data{
+		margin-left:10px;
+		margin-right:10px;
+		float:left;	
+	}
 	/*피드 리스트*/
 	.feed_list #feedlist_writer{
 		font-size: 13px;
@@ -736,13 +787,28 @@ overflow-y:auto;
 	.feed_textarea {
 		padding: 10px;
 	}
-	
+	.feed_goods_link{
+	display: none;
+}
+.feed .goods_link{
+	display: inline-block;
+	height: 62px;
+	width:100%;
+}
+.feed_icon {
+    margin: 5px;
+    height: 24px;
+    float: left;
+    margin-right: 50px;
+}
 	#feeedpage_content {
+		overflow-y : scroll;
 		width: 100%;
 		height: 20%;
 		margin-top: 10px;
 		display: flex
 	}
+	
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
@@ -753,6 +819,9 @@ overflow-y:auto;
 }
 /* 태블릿(768px이상)*/
 @media all and ( min-width : 768px) and (max-width:991px) {
+.container{
+	max-width:800px
+}
 	/*이벤트 배너 캐러쉘*/
 	.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right,
 		.carousel-control .icon-next, .carousel-control .icon-prev {
@@ -799,10 +868,40 @@ overflow-y:auto;
 		display: flex;
 	}
 	/* mdfeed */
+		/* mdfeed */
 	.mdfeed {
 		width: 50%;
 		height: auto;
 		margin-bottom: 0.500rem;
+	}
+	.mdfeed_content{
+		padding-top: 10px;
+		font-size:15px;
+		font-weight:bold;
+		position: relative;
+		display: inline-flex;
+	}
+	.mdfeed_content .profile_img{
+		margin-left: 10px;
+		display: inline-block;
+	}
+	.mdfeed_content .profile_img > img{
+		width: 35px;
+		height:35px;
+		border-radius: 20px;
+	}
+	.mdfeed_content .mem_info{
+		margin-left: 10px;
+		float:left;
+		margin-right:10px;
+	}
+	.mdfeed_content .info{
+		text-align:center;
+		line-height: 10px;
+	}
+	.mdfeed_content .mem_data{
+		margin-right:10px;
+		float:left;	
 	}
 	.mdfeed:first-child {
 		margin-right: 1.000rem;
@@ -866,6 +965,53 @@ overflow-y:auto;
 		width: 320px;
 		height: 320px;
 	}
+	.feed_goods_link{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 130px;
+    padding-top: 15px;
+	background-color: white;
+}
+.feed_icon{
+	    margin: 5px;
+    height: 24px;
+    float: left;
+    margin-right: 50px;
+}
+	#feed_goods_img{
+	float:left;
+	width:100px;
+	height:100px;
+}
+
+#feed_goods_name{
+	font-size: 15px;
+	margin-top:5px;
+	padding-left:10px;
+	font-weight: bold;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+#feed_goods_price{
+	font-size:15px;
+	margin-left:10px;
+	font-weight: bold;
+}
+#feeedpage_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:hidden;
+	width: 100%;
+	height: 80px;
+	font-size:14px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
+}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
@@ -906,11 +1052,39 @@ overflow-y:auto;
 		flex-flow: nowrap;
 		display: flex;
 	}
-	/* mdfeed */
+		/* mdfeed */
 	.mdfeed {
 		width: 50%;
 		height: auto;
 		margin-bottom: 0.500rem;
+	}
+	.mdfeed_content{
+		padding-top: 10px;
+		position: relative;
+		display: inline-flex;
+		font-weight:bold;
+	}
+	.mdfeed_content .profile_img{
+		margin-left: 20px;
+		display: inline-block;
+	}
+	.mdfeed_content .profile_img > img{
+		width: 40px;
+		height:40px;
+		border-radius: 20px;
+	}
+	.mdfeed_content .mem_info{
+		margin-left: 20px;
+		float:left;
+		margin-right:20px;
+	}
+	.mdfeed_content .info{
+	margin-left:20px;
+		line-height: 10px;
+	}
+	.mdfeed_content .mem_data{
+		margin-right:25px;
+		float:left;	
 	}
 	.mdfeed:first-child {
 		margin-right: 1.000rem;
@@ -951,10 +1125,10 @@ overflow-y:auto;
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 50px;
+	margin-right: 45px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
 	margin-right: 15px;
 }
@@ -969,11 +1143,58 @@ overflow-y:auto;
 		width: 320px;
 		height: 320px;
 	}
+	.feed_goods_link{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 130px;
+    padding-top: 15px;
+	background-color: white;
+}
+	#feed_goods_img{
+	float:left;
+	width:100px;
+	height:100px;
+}
+
+#feed_goods_name{
+	font-size: 15px;
+	margin-top:5px;
+	padding-left:10px;
+	font-weight: bold;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+#feed_goods_price{
+	font-size:15px;
+	margin-left:10px;
+	font-weight: bold;
+}
+#feeedpage_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:hidden;
+	width: 100%;
+	height: 80px;
+	font-size:14px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
+}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
 		width: 320px;
 	}
+	.feed_icon{
+	    margin: 5px;
+    height: 24px;
+    float: left;
+    margin-right: 40px;
+}
 	.feed_textarea{
 	width:330px;
 	}
@@ -1015,6 +1236,56 @@ overflow-y:auto;
 		height: auto;
 		margin-bottom: 0.500rem;
 	}
+	
+	.mdfeed_img{
+		position: relative;
+	}
+	.mdfeed_img_text{
+	background-color: black;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    opacity: 0.2;
+	}
+	.mdfeed_text{
+	    position: absolute;
+	    border-top:4px solid;
+	    border-bottom:4px solid;
+    color: white;
+    top: calc( 50%);
+    font-size: 30px;
+    left: calc( 50% - 150px );
+    font-weight: bold;
+}
+	.mdfeed_content{
+		padding-top: 10px;
+		position: relative;
+		font-weight:bold;
+		display: inline-flex;
+	}
+	.mdfeed_content .profile_img{
+		margin-left: 20px;
+		display: inline-block;
+	}
+	.mdfeed_content .profile_img > img{
+		width: 40px;
+		height:40px;
+		border-radius: 20px;
+	}
+	.mdfeed_content .mem_info{
+		margin-left: 20px;
+		float:left;
+		margin-right:50px;
+	}
+	.mdfeed_content .info{
+		margin-left:50px;
+		line-height: 10px;
+	}
+	.mdfeed_content .mem_data{
+		margin-right:50px;
+		float:left;	
+	}
 	.mdfeed:first-child {
 		margin-right: 1.000rem;
 	}
@@ -1054,12 +1325,12 @@ overflow-y:auto;
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 40px;
+	margin-right: 35px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
-	margin-right: 15px;
+	margin-right: auto;
 }
 	.feed_list #feedreply_writer {
 	font-size: 13px;
@@ -1086,6 +1357,47 @@ overflow-y:auto;
 		width: 320px;
 		height: 320px;
 	}
+	
+	#feed_goods_img{
+	float:left;
+	width:100px;
+	height:100px;
+}
+.feed_goods_link{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 130px;
+    padding-top: 15px;
+	background-color: white;
+}
+#feed_goods_name{
+	font-size: 15px;
+	margin-top:5px;
+	padding-left:10px;
+	font-weight: bold;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+#feed_goods_price{
+	font-size:15px;
+	margin-left:10px;
+	font-weight: bold;
+}
+#feeedpage_content {
+	word-wrap: break-word;
+	display:inline-block;
+	overflow-y:hidden;
+	width: 100%;
+	height: 80px;
+	font-size:14px;
+	color: #AAAAAA;
+	float: left;
+	padding-left: 2.5%;
+	-ms-overflow-style: none;
+}
 	.myOverlay2-side-position {
 		padding: 15px;
 		padding-bottom: 20px;
@@ -1157,24 +1469,74 @@ overflow-y:auto;
 			</div>
 			<div class="feed_list">
 				<div class="mdfeed">
-					<a href="mypage.do"> <img class="card-img-top"
+					<div class="mdfeed_img" onclick="location.href='mdpage.do'">
+						<a href="mypage.do"> <img class="card-img-top"
 						src="https://usercontents-c.styleshare.kr/images/22937491/460x288"
 						alt="">
-					</a>
+						</a>
+						<div class="mdfeed_img_text">
+						</div>
+							<div class="mdfeed_text">
+							올 가을 유행할 코디들
+							</div>
+							<div class="mdfeed_text_small">
+							본격 가을준비는 트렌드쉐어에서~!
+							</div>
+					</div>
 					<div class="mdfeed_content">
-						<span>여기는 작성자, 좋아요 갯수</span>
+					<c:forEach var="mem" items="memberInfo }">
+					<div class="profile_img">
+						<img src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png">
+					</div>
+					<div class="mem_info">
+					<div class="mem_id">master</div>
+					</div>
+					<div class="info">
+						<div class="mem_data">
+					<p>좋아요</p>
+					<div class="likecount">222</div>
+						</div>
+						<div class="mem_data">
+					<p>조회수</p>
+					<div class="readcount">3333</div>
+						</div>
+					</div>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="mdfeed">
-					<a href="#"> <img class="card-img-top"
+					<div class="mdfeed_img">
+					<a href="mypage.do"> <img class="card-img-top"
 						src="https://usercontents-c.styleshare.kr/images/22828389/460x288"
 						alt="">
 					</a>
+					<div class="mdfeed_img_text_area">
+						<div class="mdfeed_img_text">
+						</div>
+					</div>
+					</div>
 					<div class="mdfeed_content">
-						<span>여기는 작성자, 좋아요 갯수</span>
+					<c:forEach var="mem" items="memberInfo }">
+					<div class="profile_img">
+						<img src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png">
+					</div>
+					<div class="mem_info">
+					<div class="mem_id">mem.mem_name</div>
+					</div>
+					<div class="info">
+						<div class="mem_data">
+					<p>좋아요</p>
+					<div class="likecount">4444</div>
+						</div>
+						<div class="mem_data">
+					<p>조회수</p>
+					<div class="readcount">2222</div>
+						</div>
+					</div>
+					</c:forEach>
 					</div>
 				</div>
-			</div>
+				</div>
 		</section>
 		<!-- 피드리스트 글 -->
 		<section class="feedlist_section">
@@ -1250,7 +1612,8 @@ overflow-y:auto;
 				</c:forEach> --%> 
 			</div>
 			<div class="feed_more" style="text-align: center;">
-				<button class="btn btn-danger" id="feed_more_btn" data-pageNum="">more</button>
+				<!-- <button class="btn btn-danger" id="feed_more_btn" data-pageNum="">more</button> -->
+				<img id="feed_more_btn" data-pageNum="" data-listType="" src="resources/images/icons/more.png">
 			</div> 
 		</section>
 		<div class="write_btn">
@@ -1412,6 +1775,18 @@ overflow-y:auto;
 		</div>
 	</div>  --%>
 
+	<!-- 상품페이지 링크용 페이지 -->
+							<div class="modal fade bd-example-modal-lg1" tabindex="-1"
+							role="dialog" aria-labelledby="myLargeModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">
+								<div class="modal-content">
+									<%@ include file="goods/view.jsp"%>
+								</div>
+							</div>
+						</div>
+
+
 
 <!-- 	<script type="text/javascript" src="resources/js/Overlay.js"></script> -->
 	<script type="text/javascript"
@@ -1449,9 +1824,11 @@ overflow-y:auto;
 						timeout:100000,
 						success : function(data) {
 							console.log("최신순 정렬 ajax 함수 success");
+							console.log(data);
 							/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
 							var overlayjs = document.createElement('script');
 							overlayjs.src = "/howAbout/resources/js/Overlay.js";
+							overlayjs.id="overlay";
 							document.getElementsByTagName('head')[0].appendChild(overlayjs);
 							/*ajxx밭은 data 출력하기*/
 							var mem_id = "";
@@ -1488,7 +1865,7 @@ overflow-y:auto;
 														+ '</p></div>'
 														+'<div class="feed_icon">'
 														+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-														+ '<p class="icon_txt">'+$(feed).attr('reply_count')
+														+ '<p class="icon_txt" id="reply_count">'+$(feed).attr('reply_count')
 														+ '</p></div>'
 														+'<div class="feed_icon">'
 														+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
@@ -1497,35 +1874,35 @@ overflow-y:auto;
 														+ '</div></div>'
 														+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 														+ '"></div>');
-								if($(feed).attr('ts_id')=='22'){
+								if($(feed).attr('ts_id')=='24'){
 									$('.feed_comment').prepend('<div class="goods_link">'
-											+ '<img class="goods_info" id="goods_img" src="https://usercontents-c.styleshare.kr/images/i59bb8e5d1ad0a/80x80">'
-											+ '<div class="goods_info" id="goods_name"><a>Bulging Tumble Hood T-Shirt</a></div>'
+											+ '<img class="goods_info" id="goods_img" src="/howAbout/resources/images/goods/08.png">'
+											+ '<div class="goods_info" id="goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]17신상 갈색코트...</a></div>'
 											+ '<span class="goods_info" id="goods_price">34,900원</span>'
 											+ '</div>');
 								}
 
 														
-							$.each(data.rlist, function(index, reply) {
-								if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
+							$.each(data.rlist, function(index, rlist) {
+								if($(feed).attr('ts_id')==$(rlist).attr('ts_id')){
 								$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
-								+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
+								+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(rlist).attr('reply_id')+'">'
 								+ '<div class="feed_writer_img">'
 								+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
 								+ 'width="100%" height="100%"></div>'
-								+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(reply).attr("mem_id")
-								+ '">'+$(reply).attr("mem_name")
-								+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
+								+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(rlist).attr("mem_id")
+								+ '">'+$(rlist).attr("mem_name")
+								+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(rlist).attr("ts_id")
 								+'">'
-								+ $(reply).attr("reply_content")+'</div>'
+								+ $(rlist).attr("reply_content")+'</div>'
 								/* +'<div class="feedreply_regdate">'+$(reply).attr('reply_regdate')+'</div>' */
 								+'</div>'); 
 								}
 							});
-			
 					});
 							
-						$('#feed_more_btn').attr('data-pageNum','1');	
+						$('#feed_more_btn').attr('data-pageNum','2');	
+						$('#feed_more_btn').attr('data-listType','recent');	
 						},beforeSend:function(){
 							$("#user_feed").html(" ");
 					        $('.feed_loading').removeClass('display-none');
@@ -1769,6 +2146,8 @@ overflow-y:auto;
 																						}
 																					});
 																		});
+																	$('#feed_more_btn').removeAttr('data-pageNum')
+																	$('#feed_more_btn').attr('data-pageNum','1');
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
@@ -1806,9 +2185,10 @@ overflow-y:auto;
 															success : function(data) {
 																console.log("최신순 정렬 ajax 함수 success");
 																/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
-																var overlayjs = document.createElement('script');
+																/* var overlayjs = document.createElement('script');
 																overlayjs.src = "/howAbout/resources/js/Overlay.js";
-																document.getElementsByTagName('head')[0].appendChild(overlayjs); 
+																document.getElementsByTagName('head')[0].appendChild(overlayjs);  */
+																$("#overlay").remove();
 																/*ajxx밭은 data 출력하기*/
 																var mem_id = "";
 																var mem_name = "";
@@ -1870,13 +2250,20 @@ overflow-y:auto;
 																});
 												
 														});
+																/* $('#feed_more_btn').attr('data-listType','recent');	 */
 															},beforeSend:function(){
 																$("#user_feed").html(" ");
 														        $('.feed_loading').removeClass('display-none');
+														        $('#feed_more_btn').attr('data-pageNum','1');
 														    },complete:function(){
 														    	$('.feed_loading').addClass('display-none');
 														    	$("#order_recent").css('color','blue');
 														    	$("#order_like").css('color','black');
+														    	/*ajax로 데이터 가져온 데이터를 append 함수로 tag 출력 후 JavaScript 이벤트 동작 안하는 문제 해결*/
+														    	var overlayjs = document.createElement('script');
+																overlayjs.src = "/howAbout/resources/js/Overlay.js";
+																overlayjs.id="overlay";
+																document.getElementsByTagName('head')[0].appendChild(overlayjs); 
 															},error : function(request,status,error) {
 																console.log("code:"+ request.status
 																				+ "\n"
@@ -1903,6 +2290,7 @@ overflow-y:auto;
 															async : true,
 															dataType : "json",
 															success : function(data) {
+																$("#overlayContainer:first-child").remove();
 																var mem_id = "";
 																var mem_name = "";
 																var ts_content = "";
@@ -1943,6 +2331,14 @@ overflow-y:auto;
 																		+'<input type="text" id="feed_reply_content" name="reply_content" style="width:100%;" placeholder="댓글을 입력하려면 로그인하세요.">'
 																		+'</c:if>'
 																		+'</form><div class="feed_reply"></div>');
+																	
+																	if($(feed).attr('ts_id')=='24'){
+																		$('#myOverlay2').append('<div class="feed_goods_link">'
+																		+ '<img class="feed_goods_info" id="feed_goods_img" src="/howAbout/resources/images/goods/08.png">'
+																		+ '<div class="feed_goods_info" id="feed_goods_name"><a class="card-img-top" data-toggle="modal" data-target=".bd-example-modal-lg1" alt="8" href="view.do">[한정특가]17신상 갈색코트...</a></div>'
+																		+ '<span class="feed_goods_info" id="feed_goods_price">34,900원</span>'
+																		+ '</div>')
+																	}
 																	
 																	$.each(data.rlist, function(index, reply) {
 																		 $(".feed_reply").append('<div id="feedpage_replyList">'
@@ -2000,20 +2396,24 @@ overflow-y:auto;
 						});
 							
 							/*피드 더보기 기능(ajax)*/
-							$(document).on('click','#feed_more_btn',function() {
-								var pageNum = $('#feed_more_btn').attr('data-pageNum');
-								console.log("더보기 클릭"+pageNum);
+/* 							$(document).on('click','#feed_more_btn',function nextPage() { */
+							function nextPage() {
+								console.log("nextPage함수실행");
+								var current_pageNum = $('#feed_more_btn').attr('data-pageNum');
+								console.log("current_pageNum:",current_pageNum);
 								$.ajax({
 									url:"feedmore.do",
 									type:"POST",
-									data:{pageNum:pageNum},
+									data:{current_pageNum:current_pageNum},
 									async:true,
 									dataType:"json",
 									success:function(data){
 										console.log("더보기버튼 ajx success");
 										console.log(data);
-										
-										$.each(data, function(index, feed) {
+										var next_pageNum = "${next_pageNum}";
+										var total_pageNum ="${total_pageNum}";
+										console.log("페이지정보:",data.page);
+										$.each(data.list, function(index, feed) {
 											console.log("더보기 출력");											
 											$("#user_feed").append('<div class="feed">'
 																	+ '<div class="feed_imgbox">'
@@ -2052,8 +2452,8 @@ overflow-y:auto;
 																	+'</div></div>'
 																	+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
 																	+ '"></div>');
-		/* 															
-										$.each(data.rlist, function(index, reply) {
+																	
+/* 										$.each(data.rlist, function(index, reply) {
 											if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
 											$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
 											+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
@@ -2066,12 +2466,18 @@ overflow-y:auto;
 											+'">'
 											+ $(reply).attr("reply_content")+'</div></div>'); 
 											}
-										});  */
-						
+										});  */ 
 													});
-											}
-									})
-							});
+											$('#feed_more_btn').attr('data-pageNum',next_pageNum);	
+											if(data.page[0]==data.page[1]){
+												console.log("조건만족");													
+												$('.feed_more').remove();
+											};
+										},complete:function(){
+											$('#feed_more_btn').attr('data-pageNum','1');
+										}
+									});
+							};
 							
 							
 							/*닉네임 클릭하면 mypage로 이동*/
@@ -2104,7 +2510,51 @@ overflow-y:auto;
 									}
 								})								
 							});
+							
+							$(window).scroll(function(){ 
+								/* console.log("$(window).scrollTop():",$(window).scrollTop());
+								console.log("$(document).height():",$(document).height());
+								console.log("$(window).height():",$(window).height()); */
+									if($(window).scrollTop()+0.80>=$(document).height()-$(window).height()){
+										console.log("scroll내 if문");
+										$("#overlay").remove();
+										nextPage();
+									}
+							})
+
 });
+						
+							/* 이미지 클릭시 상품 상세정보  */
+							$(document).on('click', '.card-img-top', function() {
+									$("#overlayContainer").remove();
+									var goods_id = $(this).attr("alt");
+
+									$.ajax({
+										url : "view.do",
+										method : "POST",
+
+										//위에서 클릭한 goods_id 데이터를 url로 넘겨주고
+										data : {
+											goods_id : goods_id
+										},
+										success : function(data) {
+											console.log(data);
+											//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
+											$('.view_container').html(data);
+											var sumpri = $('#goods_pri_del').val();
+											$('#price').append().text(sumpri);
+											$(function() {
+												$('#cart').on('change', function() {
+													var qty = $('#cart').val();
+													var price1 = $('#goods_price').val();
+													var price2 = $('#goods_delprice').val();
+													var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
+													$('#price').append().text(total_price);
+												});
+											});
+										}
+									});
+								});	
 							
 	</script>
 

@@ -71,11 +71,11 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	}
 
 	@Override
-	public List feedmore(int startRow, int endRow) {
+	public List feedmore_recent(int startRow, int endRow) {
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-		return sst.selectList("stylefeedns.feedmore",map);
+		return sst.selectList("stylefeedns.feedmore_recent",map);
 	}
 
 	@Override
@@ -102,5 +102,15 @@ public class StylefeedDaoImpl implements StylefeedDao{
 	@Override
 	public void feedRead(int ts_id) {
 		sst.update("stylefeedns.feedRead",ts_id);
+	}
+
+	@Override
+	public List allreplycount() {
+		return sst.selectList("stylefeedns.allreplycount");
+	}
+
+	@Override
+	public List memberInfo(String mem_id) {
+		return sst.selectList("stylefeedns.memberInfo", mem_id);
 	}
 }

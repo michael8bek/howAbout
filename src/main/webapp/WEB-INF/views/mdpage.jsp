@@ -49,7 +49,7 @@ display:none;
 
 .mypage_header_center {
 	float: left;
-	width: 490px;
+	width: 580px;
 	height: 320px;
 	display: grid;
 }
@@ -58,16 +58,15 @@ display:none;
     width: 120px;
     height: 120px;
     border-radius: 200px;
-    top: 100px;
+    top: 75px;
     left: calc( 50% - 60px );
 }
 .mem_info{
-text-align:left;
+text-align:center;
 font-weight:bold;
-left: 0px;
     position: relative;
     font-size: 20px;
-    top:50px;
+    top:90px;
 }
 
 .info{
@@ -79,16 +78,49 @@ text-align: center;
 	margin-right: 50px;
 	font-weight: bold;
 }
-/* .mypage_header_right {
+.mypage_header_right {
 	width: 250px;
-	height: 350px;
-	border: 1px solid green;
+	height: 320px;
+	    background-color: darkgrey;
+    opacity: 0.6;
 	float: left;
 	right: 0;
 	top: 0;
 	bottom: 0;
-} */
+} 
+
+.mdfeed_img{
+		position: relative;
+	}
+	.mdfeed_img_text{
+	background-color: black;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    opacity: 0.2;
+	}
+	.mdfeed_text{
+	    position: absolute;
+	    border-top:4px solid;
+	    border-bottom:4px solid;
+    color: white;
+    top: calc( 50%);
+    font-size: 30px;
+    left: calc( 50% - 150px );
+    font-weight: bold;
+}
+	.mdfeed_text_small{
+	position: absolute;
+    color: white;
+    font-weight: bold;
+    top: calc(70%);
+    left: calc( 50% - 120px );
+    font-size: 16px;
+	}
 /*mypage body부분*/
+
+
 /* 피드 리스트 section css*/
 /* 피드 리스트 section css*/
 .feedlist_section {
@@ -762,9 +794,42 @@ overflow-y:auto;
 }
 /* pc 큰화면(1200px이상) */
 @media all and ( min-width : 1200px) {
+
+
 .mypage_header {
 	padding: 1.000rem;
 }
+
+
+.mdfeed_img{
+		position: relative;
+	}
+	.mdfeed_img_text{
+	background-color: black;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    opacity: 0.2;
+	}
+	.mdfeed_text{
+	    position: absolute;
+	    border-top:4px solid;
+	    border-bottom:4px solid;
+    color: white;
+    top: calc( 50%);
+    font-size: 30px;
+    left: calc( 50% - 150px );
+    font-weight: bold;
+}
+	.mdfeed_text_small{
+	position: absolute;
+    color: white;
+    font-weight: bold;
+    top: calc(70%);
+    left: calc( 50% - 120px );
+    font-size: 16px;
+	}
 	/* 피드 리스트 section css*/
 	.feedlist_section {
 		order: 4;
@@ -902,9 +967,25 @@ overflow-y:auto;
 					<div class="profile_img">
 						<img src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png">
 					</div>
+					<div class="mem_info">
+					<div class="mem_id">master</div>
+					</div>
 				</div>
-				<div class="mypage_header_center"
-					style="text-align: center; align-content: space-around;">
+				<div class="mypage_header_center">
+				<div class="mdfeed_img">
+						<img class="card-img-top" height="100%"
+						src="https://usercontents-c.styleshare.kr/images/22937491/460x288"
+						alt="">
+						
+						<div class="mdfeed_img_text">
+						</div>
+							<div class="mdfeed_text">
+							올 가을 유행할 코디들
+							</div>
+							<div class="mdfeed_text_small">
+							본격 가을준비는 트렌드쉐어에서~!
+							</div>
+				</div>
 					<c:forEach var="mem" items="${memberInfo }">
 					<div class="mem_info">
 					<div class="mem_id">${mem.mem_name }(${mem.mem_id })</div>
@@ -925,19 +1006,10 @@ overflow-y:auto;
 					</div>
 					</c:forEach>
 				</div>
+				<div class="mypage_header_right" style=""></div>
 			</div>
 		</section>
 		<section class="feedlist_section">
-			<div class="feed_menu" style="height: 35px;">
-				<div class="card-text"
-					style="font-weight: bold; font-size: 20px; vertical-align: super;; display: inline-block;">내 피드</div>
-<!-- 				<div class="card-text"
-					style="font-weight: bold; font-size: 20px; vertical-align: super;; display: inline-block; margin-left: 30px">방명록</div> -->
-				<!-- <div class="list_option" id="order_recent"
-					style="display: inline-block; float: right; margin-right: 10px; font-weight: bold; cursor: pointer;">최신순</div>
-				<div class="list_option" id="order_like"
-					style="display: inline-block; float: right; margin-right: 10px; font-weight: bold; cursor: pointer;">인기순</div> -->
-			</div>
 			<%-- onclick="location.href='feeddetail.do?mem_id=${feed.mem_id}'" --%>
 			<div class="feed_loading display-none">
 				<div>
@@ -1006,11 +1078,6 @@ overflow-y:auto;
 					</div>
 				</c:forEach>
 			</div>
-			<div class="feed_more" style="text-align: center;">
-				<!-- <button class="btn btn-danger" id="feed_more_btn" data-pageNum="">more</button> -->
-				<img id="feed_more_btn" data-pageNum="1" data-listType="recent" src="resources/images/icons/more.png">
-			</div> 
-			
 				<!-- 피드 상세페이지(새창) -->
 	<div style="display: none;">
 		<!-- Each overlay needs an id. The aria-labelledby is not required but is best practice -->
@@ -1151,101 +1218,7 @@ overflow-y:auto;
 				
 		});
 	});
-		
-		/*피드 더보기 기능(ajax)*/
-		/* 							$(document).on('click','#feed_more_btn',function nextPage() { */
-									function nextPage() {
-										console.log("nextPage함수실행");
-										var current_pageNum = $('#feed_more_btn').attr('data-pageNum');
-										console.log("current_pageNum:",current_pageNum);
-										$.ajax({
-											url:"feedmore.do",
-											type:"POST",
-											data:{current_pageNum:current_pageNum},
-											async:true,
-											dataType:"json",
-											success:function(data){
-												console.log("더보기버튼 ajx success");
-												console.log(data);
-												var next_pageNum = "${next_pageNum}";
-												var total_pageNum ="${total_pageNum}";
-												console.log("페이지정보:",data.page);
-												$.each(data.list, function(index, feed) {
-													console.log("더보기 출력");											
-													$("#user_feed").append('<div class="feed">'
-																			+ '<div class="feed_imgbox">'
-																			+ '<a class="feedpage" id="overlayTrigger2" data-seq="'+$(feed).attr('ts_id')+'"data-overlay-trigger="myOverlay2">'
-																			+ '<img class="feed-img" '
-																			+ 'onerror="this.src='+errImg+';"'
-																			+ 'src="'+$(feed).attr('ts_img_path')+$(feed).attr('ts_img_name')+'"alt=""></a>'
-																			+ '<div class="caption_box">'
-																			+ '<a><img class="feed_icon" src="resouces/images/icons/feed_heart.png"></a>'
-																			+ '</div></div>'
-																			+ '<div class="feed_thumbnail">'
-																			+ '<div class="feed_writer_img">'
-																			+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"width="100%" height="100%">'
-																			+ '</div><div class="feed_writer" id="feedlist_writer" data-writer="'+$(feed).attr('mem_id')+'">'
-																			+ $(feed).attr('mem_name')
-																			+ '</div>'
-																			+ '<div class="feed_date" id="feedlist_date">'
-																			+ $(feed).attr('ts_regdate')
-																			+ '</div>'
-																			+ '<div class="feed_content" id="feedlist_content">'
-																			+ $(feed).attr('ts_content')
-																			+ '</div>'
-																			+ '<div class="feed_icon_area" id="feed_icon">'
-																			+ '<div class="feed_icon">'
-																			+ '<img class="icon_img" src="resources/images/icons/feed_heart.png">'
-																			+ '<p class="icon_txt">'+$(feed).attr('ts_like')
-																			+ '</p></div>'
-																			+'<div class="feed_icon">'
-																			+ '<img class="icon_img" src="resources/images/icons/feed_msg.png">'
-																			+ '<p class="icon_txt">'+$(feed).attr('reply_count')
-																			+ '</p></div>'
-																			+'<div class="feed_icon">'
-																			+ '<img class="icon_img" src="resources/images/icons/feed_read.png">'
-																			+ '<p class="icon_txt">'+$(feed).attr('ts_readcount')
-																			+'</p></div>'
-																			+'</div></div>'
-																			+ '<div class="feed_comment" data-seq="'+$(feed).attr('ts_id')
-																			+ '"></div>');
-																			
-		/* 										$.each(data.rlist, function(index, reply) {
-													if($(feed).attr('ts_id')==$(reply).attr('ts_id')){
-													$(".feed_comment[data-seq="+$(feed).attr('ts_id')+"]").append('<div class="comment_list"'
-													+'data-tsid="'+$(feed).attr('ts_id')+'" data-replyid="'+$(reply).attr('reply_id')+'">'
-													+ '<div class="feed_writer_img">'
-													+ '<img alt="" src="http://www.whitepaper.co.kr/news/photo/201510/47008_25930_5622.png"'
-													+ 'width="100%" height="100%"></div>'
-													+ '<div class="feed_writer" id="feedreply_writer" data-writer="'+$(reply).attr("mem_id")
-													+ '">'+$(reply).attr("mem_name")
-													+ '</div><div class="comment_txt" style="padding-top: 9px" data-tsid="'+$(reply).attr("ts_id")
-													+'">'
-													+ $(reply).attr("reply_content")+'</div></div>'); 
-													}
-												});  */ 
-															});
-													$('#feed_more_btn').attr('data-pageNum',next_pageNum);	
-													if(data.page[0]==data.page[1]){
-														console.log("조건만족");													
-														return false;
-													};
-												},complete:function(){
-													$('#feed_more_btn').attr('data-pageNum',next_pageNum);
-												}
-											});
-									};
 									
-									$(window).scroll(function(){ 
-										/* console.log("$(window).scrollTop():",$(window).scrollTop());
-										console.log("$(document).height():",$(document).height());
-										console.log("$(window).height():",$(window).height()); */
-											if($(window).scrollTop()+0.80>=$(document).height()-$(window).height()){
-												console.log("scroll내 if문");
-												$("#overlay").remove();
-												nextPage();
-											}
-									});
 		
 		
 		</script>

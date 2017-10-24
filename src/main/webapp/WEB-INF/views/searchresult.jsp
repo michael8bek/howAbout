@@ -206,10 +206,10 @@ display:none;
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 65px;
+	margin-right: 45px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
 	margin-right: 15px;
 }
@@ -653,12 +653,12 @@ overflow-y:auto;
 	margin:5px;
 	height:24px;
 	float:left;
-	margin-right: 40px;
+	margin-right: 35px;
 }
 .feed_icon_area .feed_icon:first-child{
-	margin-left: 15px;
+	margin-left: 5px;
 }.feed_icon_area .feed_icon:last-child{
-	margin-right: 15px;
+	margin-right: auto;
 }
 	.feed_list #feedreply_writer {
 	font-size: 13px;
@@ -783,6 +783,7 @@ overflow-y:auto;
 	</div>
 	<!-- /.container -->
 	<script type="text/javascript" src="resources/js/Overlay.js"></script>
+	<script type="text/javascript" src="resources/js/trendshare.js"></script>
 	<script type="text/javascript">
 	var errImg = "'http://howmadareyou.com/wp-content/themes/MAD/images/default_profile_image.png'"; //이미지 로딩 에러시 뜰 사진
 	 window.onload = searchColor();
@@ -998,6 +999,24 @@ overflow-y:auto;
 		$(this).find('.feed_content').html(resultString);
         });
 	};
+	
+	/*피드 좋아요 버튼 클릭*/
+	$(document).on('click','#feed_like_btn',function(){
+		var ts_id = $('#ts_id').val();
+		console.log("좋아요버튼",ts_id);
+		$.ajax({
+			url:"feedlike.do",
+			type:"POST",
+			data:{ts_id : ts_id},
+			async:true,
+			dataType:"json",
+			success:function(data){
+				console.log("피드 좋아요 ajax 성공");
+				console.log("좋아요누를때 들어오는 data",data);
+				$('#feed_like_icon').text(data);										
+			}
+		})								
+	});
 
 	</script>
 </body>
