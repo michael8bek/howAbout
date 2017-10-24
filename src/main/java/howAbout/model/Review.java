@@ -10,6 +10,14 @@ public class Review {
 	private int pay_id;
 	private int review_readcount;
 	private String review_title;
+	private String mem_id;
+	
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
 	public int getReview_id() {
 		return review_id;
 	}

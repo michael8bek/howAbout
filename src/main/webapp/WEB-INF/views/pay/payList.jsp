@@ -81,8 +81,9 @@ $(document).on('click', '.card-img-top', function() {
 						<td style="vertical-align: middle;">${cartList.goods_delprice}</td>
 						<%-- ${cartList.goods_price*cartList.goods_qty-cartList.cp_benefit +cartList.goods_delprice} --%>
 					<c:forEach var="paymentList" items="${paymentList}">
-					<c:if test="${cartList.cart_id ==paymentList.cart_id  }">
-						<td style="vertical-align: middle;">${paymentList.pay_total }</td>
+					<c:if test="${cartList.cart_id == paymentList.cart_id  }">
+						<td style="vertical-align: middle;">${paymentList.pay_total }<p>
+						(사용 마일리지 : ${paymentList.mem_usepoint})</td>
 						<td style="vertical-align: middle;"><a href="reviewForm.do?pay_id=${paymentList.pay_id}" class="btn btn-warning">후기작성</a></td>
 					</c:if>
 					</c:forEach>

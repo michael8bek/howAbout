@@ -2,8 +2,56 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
+
 <!DOCTYPE html>
 <html lang="en">
+<script type="text/javascript">
+/* 이미지 클릭시 상품 상세정보  */
+$('.onlynumber').keyup(function () {
+	 this.value = this.value.replace(/[^0-9]/g,'');
+		});
+
+$(document).on('click', '#card-img-top', function() {
+
+		var goods_id = $(this).attr("alt");
+
+		$.ajax({
+			url : "view.do",
+			method : "POST",
+
+			//위에서 클릭한 goods_id 데이터를 url로 넘겨주고
+			data : {
+				goods_id : goods_id
+			},
+			success : function(data) {
+
+				//성공하면 view.do에서 뿌린 데이터를 data 변수에 담아 모달에 붙여라
+				$('.view_container').html(data);
+				var sumpri = $('#goods_pri_del').val();
+				$('#price').append().text(sumpri);
+				$(function() {
+					$('#cart').on('change', function() {
+						var qty = $('#cart').val();
+						var price1 = $('#goods_price').val();
+						var price2 = $('#goods_delprice').val();
+						var total_price = parseInt(price2)+parseInt(price1)*parseInt(qty);
+						$('#price').append().text(total_price);
+					});
+				});
+				$(function() {
+					$('#cartinsert').on('click', function() {
+						$('#viewform').attr('action', 'cartinsert.do');
+						$('#viewform').submit();
+					});
+					$('#orderinsert').on('click', function() {
+						$('#viewform').attr('action', 'orderinsert.do');
+						$('#viewform').submit();
+					});
+				});
+			}
+		});
+	});
+</script>
 <body>
 
 
@@ -28,10 +76,20 @@
 		<c:forEach var="list" items="${list }">
 			<div class="row">
 				<div class="col-md-7" align="center">
-					<a href="#"> <img class="img-fluid rounded mb-3 mb-md-0"
+					<a data-toggle="modal" data-target=".bd-example-modal-lg"> 
+					<img class="img-fluid rounded mb-3 mb-md-0" id="card-img-top"
 						src="${path }/resources/images/goods/${list.mdtext_goods_img}"
-						alt="">
-					</a>
+						alt="${list.mdtext_goods_id}"></a>
+						<script type="text/javascript">
+						</script>
+						<div class="modal fade bd-example-modal-lg" tabindex="-1"
+									role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-lg" style="width: 100%; max-width: 450px;">
+											<div class="modal-content">
+											<%@ include file="view.jsp"%>
+											</div>
+										</div>
+									</div> 
 				</div>
 				<div class="card col-md-5 h3">
 					<h3 style="color: blue;">${list.mdtext_id }</h3>

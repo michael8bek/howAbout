@@ -1,5 +1,7 @@
 package howAbout.service.review;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,10 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int insert(Review review) {
 		return rd.insert(review);
+	}
+	@Override
+	public List<Review> reviewList(String mem_id) {
+		return rd.reviewList(mem_id);
 	}
 
 }

@@ -16,5 +16,7 @@ public interface CouponlistDao {
 
 	int regCouponlist(Couponlist couponlist);
 
+	List<Couponlist> couponlist(String mem_id);
+
 
 }

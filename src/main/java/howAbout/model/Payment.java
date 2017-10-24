@@ -18,8 +18,15 @@ public class Payment {
 	private Date pay_time;
 	private int cplist_id;
 	private int cart_id;
+	private int mem_usepoint;
 
 
+	public int getMem_usepoint() {
+		return mem_usepoint;
+	}
+	public void setMem_usepoint(int mem_usepoint) {
+		this.mem_usepoint = mem_usepoint;
+	}
 	public int getCart_id() {
 		return cart_id;
 	}

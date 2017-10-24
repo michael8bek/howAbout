@@ -10,13 +10,17 @@
 		<result property="pay_id" 		column="pay_id" />
 		<result property="review_readcount" 		column="review_readcount" />
 		<result property="review_title" 		column="review_title" />
+		<result property="mem_id" 		column="mem_id" />
 	</resultMap>
-	<insert id="insert" parameterType="review">
-		<selectKey keyProperty="review_id" resultType="Integer" order="BEFORE">
+	<insert id="insert" parameterType="review" useGeneratedKeys="true" keyProperty="review_id">
+		<!-- <selectKey keyProperty="review_id" resultType="Int" order="BEFORE">
 			select max(review_id)+1 from review
-		</selectKey>
-		insert into review(review_id,review_content,review_regdate,review_del
-		 pay_id,review_readcount,review_title)
-		 values(#{review_id},#{review_content},now(),#{review_del},#{pay_id},#{review_readcount},#{review_title})
+		</selectKey> -->
+		insert into review(review_content,review_regdate,review_del,
+		 pay_id,review_readcount,review_title, mem_id)
+		 values(#{review_content},now(),'n',#{pay_id},'0',#{review_title}, #{mem_id})
 	</insert>
+	<select id="reviewList" resultMap="reviewResult">
+		select * from review where mem_id=#{mem_id}
+	</select>
 </mapper>

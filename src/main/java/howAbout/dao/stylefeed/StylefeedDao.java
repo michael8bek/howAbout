@@ -28,7 +28,7 @@ public interface StylefeedDao {
 
 	List feedReply(Stylefeed sf);
 
-	List feedmore(int startRow, int endRow);
+	List feedmore_recent(int startRow, int endRow);
 
 	int feedcount();
 
@@ -39,5 +39,9 @@ public interface StylefeedDao {
 	List feedDetailDft(int ts_id);
 
 	void feedRead(int ts_id);
+
+	List allreplycount();
+
+	List memberInfo(String mem_id);
 
 }
