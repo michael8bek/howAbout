@@ -112,11 +112,7 @@
                      <c:if test="${member.mem_name=='master' }">
                      <a
                         class="dropdown-item" href="mdtextInsertForm.do">MD추천 입력</a>
-                        </c:if><a
-                        class="dropdown-item" href="portfolio-3-col.jsp">3 Column
-                        Portfolio</a> <a class="dropdown-item" href="portfolio-4-col.jsp">4
-                        Column Portfolio</a> <a class="dropdown-item"
-                        href="portfolio-item.jsp">Single Portfolio Item</a>
+                        </c:if>
                   </div></li>
                <!-- <li class="nav-item dropdown"><a
                   class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
