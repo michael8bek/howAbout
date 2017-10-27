@@ -972,7 +972,7 @@ overflow-y:auto;
 	function searchColor(){
 		//검색어
 		var pattern = '${search}';
-		var re = new RegExp(pattern, "g");
+		var re = new RegExp(pattern, "g"); //따로 학습 필요
 
 		$('.feed').each(function() {
 			console.log($(this).find('.feed_content').text());

@@ -84,7 +84,7 @@ $(document).on('click', '.card-img-top', function() {
 					<c:if test="${cartList.cart_id == paymentList.cart_id  }">
 						<td style="vertical-align: middle;">${paymentList.pay_total }<p>
 						(사용 마일리지 : ${paymentList.mem_usepoint})</td>
-						<td style="vertical-align: middle;"><a href="reviewForm.do?pay_id=${paymentList.pay_id}" class="btn btn-warning">후기작성</a></td>
+						<td style="vertical-align: middle;"><a href="reviewForm.do?pay_id=${paymentList.pay_id}" class="btn btn-warning">후기보기</a></td>
 					</c:if>
 					</c:forEach>
 					</tr>

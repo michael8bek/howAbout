@@ -196,7 +196,7 @@
 			alert("최대 가능 마일리지입니다");
 			frm.mem_usepoint.value = parseInt(frm.mem_point1.value);
 		}
-		if(point == null || point == ""){
+		if(isNaN(point) == true){
 			point = 0;
 		}
 		var sum = 0;
@@ -232,10 +232,7 @@
 		}
 	}
 	
-	/* 이미지 클릭시 상품 상세정보  */
-	 $('.onlynumber').keyup(function () {
-		 this.value = this.value.replace(/[^0-9]/g,'');
-			});
+	/* 이미지 클릭시 상품 상세정보  */	
 	 
 	 $(document).on('click', '.card-img-top', function() {
 
@@ -371,8 +368,6 @@
 						<tr>
 							<th colspan="2">
 									- 마일리지 1 = 1원으로, 현금처럼 사용 가능합니다.
-									<br> - 마일리지는 3000점 이상부터 사용가능합니다.
-									<br> - 마일리지는 10점 단위로 사용 가능합니다.
 
 								
 							</th>

@@ -113,6 +113,7 @@ public class StylefeedController {
 	public String uploadFeedImg(HttpSession session, HttpServletRequest request,
 			@RequestParam("input_img") MultipartFile input_img, @RequestParam("input_content") String input_content,
 			Member feed_mem, Model model) {
+			
 		// System.out.println("사용자:"+member.getMem_name());
 		// 1.피드 이미지 등록
 		// 1-1.이미지 파일 저장

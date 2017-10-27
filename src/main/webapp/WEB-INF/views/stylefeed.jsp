@@ -1614,6 +1614,7 @@ overflow-y:auto;
 			<div class="feed_more" style="text-align: center;">
 				<!-- <button class="btn btn-danger" id="feed_more_btn" data-pageNum="">more</button> -->
 				<img id="feed_more_btn" data-pageNum="" data-listType="" src="resources/images/icons/more.png">
+				
 			</div> 
 		</section>
 		<div class="write_btn">
@@ -2260,7 +2261,7 @@ overflow-y:auto;
 																var mem_name = "";
 																var ts_content = "";
 																var ts_img = ""; /*ts_img_path+ts_img_name*/
-																var ts_regdate = "";
+																var ts_regdate = ""; 
 																$.each(data.list, function(index, feed) {
 																	$("#user_feed").append('<div class="feed">'
 																							+ '<div class="feed_imgbox">'
@@ -2578,9 +2579,9 @@ overflow-y:auto;
 							});
 							
 							$(window).scroll(function(){ 
-								/* console.log("$(window).scrollTop():",$(window).scrollTop());
+								console.log("$(window).scrollTop():",$(window).scrollTop());
 								console.log("$(document).height():",$(document).height());
-								console.log("$(window).height():",$(window).height()); */
+								console.log("$(window).height():",$(window).height());
 									if($(window).scrollTop()+0.80>=$(document).height()-$(window).height()){
 										console.log("scroll내 if문");
 										$("#overlay").remove();

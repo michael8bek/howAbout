@@ -97,9 +97,9 @@ function ckeckAll(index) {
 		
 	}else {
 		$("input[name=chk]").prop("checked", false);
-		frm.total_sum.value ="";
-		frm.total_sum1.value ="";
-		frm.delprice.value = "";
+		frm.total_sum.value =0;
+		frm.total_sum1.value =0;
+		frm.delprice.value = 0;
 	}
 }
 
